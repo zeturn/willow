@@ -29,17 +29,22 @@
                 </div>
             </div>
             
-            <!-- Add New Comment Form -->
-            <div class="bg-white rounded-lg">
-                <div class="p-6">
+            <!-- Check if user is authenticated -->
+            @if (auth()->check())
+                <!-- Add New Comment Form -->
+                <div class="bg-white rounded-lg p-6">
                     <h2 class="text-xl font-semibold mb-4">Add New Comment</h2>
                     <form action="{{ route('comment.store') }}" method="POST">
                         @csrf
                         <input type="hidden" name="topic_id" value="{{ $topic->id }}">
+                        
+                        <!-- Comment Field -->
                         <div class="mb-4">
                             <label for="content" class="block text-sm font-medium text-gray-700">Comment</label>
                             <textarea name="content" id="content" rows="4" class="mt-1 p-2 w-full border rounded-lg" required></textarea>
                         </div>
+
+                        <!-- Submit Button -->
                         <div class="mt-4">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
                                 Post Comment
@@ -47,7 +52,14 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            @else
+                <!-- Not Authenticated User Message -->
+                <div class="bg-white rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-700">Authentication Required</h2>
+                    <p class="text-sm text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to post a comment.</p>
+                </div>
+            @endif
+
         </div>
         <!-- Sidebar -->
         <div class="w-full lg:w-1/4 px-4 mt-6 lg:mt-0">

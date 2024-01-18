@@ -30,9 +30,11 @@
                     <li class="-mb-px mr-1">
                         <a href="{{ route('entry.branch.show.showEditors', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-editors' ? 'text-blue-700 border-l border-t border-r rounded-t' : 'text-blue-500' }} bg-white dark:bg-gray-800 inline-block py-2 px-4 font-semibold">Editors</a>
                     </li>
+                    @auth
                     <li class="-mb-px mr-1">
                         <a href="{{ route('entry.branch.show.showControl', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-control' ? 'text-blue-700 border-l border-t border-r rounded-t' : 'text-green-500' }} bg-white dark:bg-gray-800 inline-block py-2 px-4 font-semibold">Control</a>
                     </li>
+                    @endauth
                 </ul>
 
                 {{-- Tab Content --}}

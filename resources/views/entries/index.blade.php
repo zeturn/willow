@@ -32,9 +32,11 @@
                         {{ __('Operations') }}
                     </h3>
                 </div>
+                @auth
                 <a href="{{ route('entry.create') }}" class="block w-full text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
                     {{ __('Add New Entry') }}
                 </a>
+                @endauth
                 <!-- You can add other sidebar content here -->
             </div>
         </div>

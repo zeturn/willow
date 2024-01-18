@@ -55,7 +55,7 @@
                         < {{ __('Back to Branch') }}
                     </a>
                 </div>
-                <!-- Author and Created At -->
+                <!-- Author and Created At --> 
                 <dl>
                     <div class="mb-4">
                         <dt class="text-sm font-medium text-gray-500">
@@ -85,6 +85,7 @@
                 @endforelse
 
                 <!-- Wall Creation Form -->
+                @if(auth()->check())
                 <form action="{{ route('entry.version.createEWLink', $version->id) }}" method="POST" class="mt-6">
                     @csrf
                     <div class="mb-4">
@@ -104,6 +105,13 @@
 
                     <input type="submit" value="{{ __('Create Link') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                 </form>
+                @else
+                    <!-- Not Authenticated User Message -->
+                    <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+                        <h2 class="text-xl font-semibold mb-4 text-gray-700">Authentication Required</h2>
+                        <p class="text-sm text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to create new content.</p>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

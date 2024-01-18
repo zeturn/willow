@@ -9,8 +9,10 @@
                 <div class="px-8">
 
                     {{-- Title and Button --}}
+                    
                     <div class="flex justify-between items-center">
-                        <h1 class="text-4xl mb-8 dark:text-white">{{ $entry->name }}</h1>
+                        <h1 class="text-4xl mt-8 dark:text-white">{{ $entry->name }}</h1>
+                        @auth
                         <a href="{{ route('entry.editgate', $entry->id) }}" class=" mb-8 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 mr-2">
                                 <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32l8.4-8.4z" />
@@ -18,7 +20,9 @@
                             </svg>
                             Edit
                         </a>
+                        @endauth
                     </div>
+                    
 
                     {{-- Category Tag --}}
                     <div class="flex flex-wrap gap-2 mb-8">

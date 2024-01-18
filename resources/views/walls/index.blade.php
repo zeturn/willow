@@ -30,6 +30,7 @@
                 <!-- You can add other sidebar content here -->
             </div>
 
+            @auth
             <div class="bg-white rounded-lg p-6">
                 <div class="mb-4">
                     <a href="{{ route('wall.create') }}" class="block w-full text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
@@ -38,7 +39,7 @@
                 </div>
                 <!-- You can add other sidebar content here -->
             </div>
-
+            @endauth
         </div>
     </div>
 </div>

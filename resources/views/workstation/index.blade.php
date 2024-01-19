@@ -1,33 +1,44 @@
 @extends('layouts.workstation')
 
 @section('title')
-工作站
+{{ __('Workstation') }}
 @endsection
 
 @section('content')
-<body class="container min-h-screen flex flex-col">
-  <div class="flex-grow flex flex-col sm:flex-row items-stretch h-screen">
+<body class="container mx-auto p-4 dark:bg-gray-900 max-w-full min-h-screen flex flex-col">
+  <div class="flex-grow flex flex-col lg:flex-row flex-wrap h-screen">
 
-    <!-- 最左侧列 -->
-    <div class="flex flex-grow w-full sm:w-3/12 bg-gray-300 min-h-full">
-      Left Column Content
+    <!-- 最左侧列 Left Column -->
+    <div class="w-full lg:w-1/4 px-4 min-h-full py-4 overflow-auto">
+      @for ($i = 0; $i < 3; $i++)
+      <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+        Left Column Card Content {{ $i + 1 }}
+      </div>
+      @endfor
     </div>
 
-    <!-- 中间列 -->
-    <div class="flex flex-grow w-full sm:w-6/12 bg-gray-400 min-h-full">
-      Middle Column Content
+    <!-- 中间列 Middle Column -->
+    <div class="w-full lg:w-1/2 px-4 min-h-full py-4 overflow-auto">
+      @for ($i = 0; $i < 3; $i++)
+      <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+        Middle Column Card Content {{ $i + 1 }}
+      </div>
+      @endfor
     </div>
 
-    <!-- 最右侧列 -->
-    <div class="flex flex-grow w-full sm:w-3/12 bg-gray-500 min-h-full">
-      Right Column Content
-      <livewire:counter/>
+    <!-- 最右侧列 Right Column -->
+    <div class="w-full lg:w-1/4 px-4 min-h-full py-4 overflow-auto">
+      @for ($i = 0; $i < 3; $i++)
+      <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+        Right Column Card Content {{ $i + 1 }}
+        <livewire:counter/>
+      </div>
+      @endfor
     </div>
   </div>
 
-
   <script>
-    // 你的JavaScript代码（如果有的话）
+    // JavaScript code (if any)
   </script>
 </body>
 @endsection

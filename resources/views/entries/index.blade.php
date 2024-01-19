@@ -11,7 +11,7 @@
             <!-- Entry List -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 @foreach($entries as $entry)
-                    <div class="border rounded-lg p-4 dark:border-gray-700 dark:bg-gray-800 bg-white">
+                    <div class=" rounded-lg p-4 dark:border-gray-700 dark:bg-gray-800 bg-white">
                         <h2 class="text-xl dark:text-white">{{ $entry->name }}</h2>
                         <p class="text-gray-700 dark:text-gray-300">{{ $entry->description }}</p>
                         <p class="text-sm text-gray-400 dark:text-gray-500 mt-2">Created at: {{ $entry->created_at->format('d M, Y') }}</p>

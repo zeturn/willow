@@ -1,9 +1,9 @@
 @extends('entries.show.entry') {{-- 确保使用了正确的布局文件 --}}
 
 @section('entry-content')
-@auth
-
-            <div class="max-w-4xl mx-auto p-6 bg-white rounded-md shadow">
+    @auth
+        <div>
+            <div class="max-w-4xl mx-auto p-6 bg-white rounded-md">
                 <h1 class="text-2xl font-semibold mb-4">
                     General Zone
                 </h1>
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="max-w-4xl mx-auto p-6 bg-white rounded-md shadow">
+            <div class="max-w-4xl mx-auto p-6 bg-white rounded-md">
                 <h1 class="text-2xl font-semibold mb-4">
                     Danger Zone
                 </h1>
@@ -122,7 +122,6 @@
                 <!-- ... -->
                 </div>
             </div>
-@endauth
-
-需要登录以进行查看
+        </div>
+    @endauth
 @endsection

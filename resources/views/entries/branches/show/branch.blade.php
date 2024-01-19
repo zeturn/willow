@@ -8,10 +8,14 @@
             <div class="bg-white dark:bg-gray-800 rounded-lg p-6 dark:border-gray-700 mb-4">
                 {{-- Content Header --}}
                 <div class="flex justify-between items-center mb-6">
-                    <h1 class="text-4xl font-semibold dark:text-white">Branch:{{ $branch->id }}</h1>
+
                     @yield('action-button')
                 </div>
 
+                <div class = "px-6">
+                    <h1 class="text-3xl font-semibold dark:text-white">Branch:{{ $branch->id }}</h1>
+                    <h2 class="text-2xl font-semibold dark:text-white">From:{{ $branch->entry->name }}</h2>
+                </div>
                 {{-- Tabs Navigation --}}
                 @php
                     $currentRouteName = Route::currentRouteName();

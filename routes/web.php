@@ -47,6 +47,8 @@ use App\Http\Controllers\{
 
 };
 
+use Inertia\Inertia;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,6 +67,14 @@ Route::get('/', function () {
 Route::get('/map', function () {
     return view('map');
 });
+
+Route::get('/reactjs', function () {
+    return Inertia::render('hello-world');
+});
+
+
+
+
 
 Route::middleware([
     'auth:sanctum',

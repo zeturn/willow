@@ -18,7 +18,7 @@ class CensorTask extends Model
         'status'
     ];
 
-             /**
+    /**
      * 更改状态。
      * Change the status of the entry.
      *

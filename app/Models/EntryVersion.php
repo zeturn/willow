@@ -58,6 +58,12 @@ class EntryVersion extends Model
         ]);
     }
 
+    public function censorTasks()
+    {
+        return $this->hasMany(CensorTask::class, 'entity_id')
+                    ->where('entity_type', 'Version');
+    }
+
     /**
      * 返回这个版本属于哪个分支。
      * Get the branch this version belongs to.

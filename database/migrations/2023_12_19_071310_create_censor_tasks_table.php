@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('entity_type');
             $table->uuid('entity_id');
             $table->integer('status'); 
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

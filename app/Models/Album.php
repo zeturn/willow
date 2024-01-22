@@ -47,6 +47,31 @@ class Album extends Model
         $this->changeStatus($newStatus);
         return true;
     }
+
+    /**
+     * 为当前相册创建审核
+     * Create Censor Task for this album.
+     * 
+     * @param 
+     * @return CensorTask $censorTask - 新创建的Task
+     */
+    public function createCensorTask(){
+        return $censorTask = CensorTask::create([
+            'entity_type' => 'Album',
+            'entity_id' => $this->id,
+            'status' => 5,
+        ]);
+    }
+
+    /**
+     * 多对一结构
+     * 
+     */
+    public function censorTasks()
+    {
+        return $this->hasMany(CensorTask::class, 'entity_id')
+                    ->where('entity_type', 'Album');
+    }
     
     /**
      * 媒体关系 / Media Relation

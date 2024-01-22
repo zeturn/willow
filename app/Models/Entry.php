@@ -72,6 +72,12 @@ class Entry extends Model
         ]);
     }
 
+    public function censorTasks()
+    {
+        return $this->hasMany(CensorTask::class, 'entity_id')
+                    ->where('entity_type', 'Entry');
+    }
+
     /**
      * 获取词条的所有版本（通过分支）。
      * Get all versions of the entry (through branches).

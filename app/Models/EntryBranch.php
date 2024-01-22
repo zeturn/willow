@@ -54,6 +54,12 @@ class EntryBranch extends Model
         ]);
     }
 
+    public function censorTasks()
+    {
+        return $this->hasMany(CensorTask::class, 'entity_id')
+                    ->where('entity_type', 'Branch');
+    }
+
     public function Entry()
     {
         return $this->belongsTo(Entry::class);

@@ -58,6 +58,21 @@ class Entry extends Model
     }
 
     /**
+     * 为当前词条创建审核
+     * Create Censor Task for this entry.
+     * 
+     * @param 
+     * @return CensorTask $censorTask - 新创建的Task
+     */
+    public function createCensorTask(){
+        return $censorTask = CensorTask::create([
+            'entity_type' => 'Entry',
+            'entity_id' => $this->id,
+            'status' => 5,
+        ]);
+    }
+
+    /**
      * 获取词条的所有版本（通过分支）。
      * Get all versions of the entry (through branches).
      *

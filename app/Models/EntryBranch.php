@@ -39,11 +39,27 @@ class EntryBranch extends Model
         return true;
     }
 
+    /**
+     * 为当前词条分支创建审核
+     * Create Censor Task for this branch.
+     * 
+     * @param 
+     * @return CensorTask $censorTask - 新创建的Task
+     */
+    public function createCensorTask(){
+        return $censorTask = CensorTask::create([
+            'entity_type' => 'Branch',
+            'entity_id' => $this->id,
+            'status' => 5,
+        ]);
+    }
+
     public function Entry()
     {
         return $this->belongsTo(Entry::class);
     }
 
+    
 
     /**
      * 获取分支下所有的版本。

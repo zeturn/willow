@@ -44,6 +44,21 @@ class EntryVersion extends Model
     }
     
     /**
+     * 为当前版本创建审核
+     * Create Censor Task for this version.
+     * 
+     * @param 
+     * @return CensorTask $censorTask - 新创建的Task
+     */
+    public function createCensorTask(){
+        return $censorTask = CensorTask::create([
+            'entity_type' => 'Version',
+            'entity_id' => $this->id,
+            'status' => 5,
+        ]);
+    }
+
+    /**
      * 返回这个版本属于哪个分支。
      * Get the branch this version belongs to.
      *

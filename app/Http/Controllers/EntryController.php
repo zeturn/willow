@@ -18,6 +18,7 @@ use Illuminate\Support\Arr; // 添加这一行来引入 Arr 类
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
+use Inertia\Inertia;
 
 class EntryController extends Controller
 {
@@ -32,6 +33,7 @@ class EntryController extends Controller
     public function create()
     {
         return view('entries.create');
+        //return Inertia::render('entry/create');
     }
 
 
@@ -57,7 +59,7 @@ class EntryController extends Controller
             // 创建新词条
             $entry = Entry::create([
                 'name' => $validated['name'],
-                'status' => 5 // 假设 5 代表某种状态
+                'status' => 11113244, // 假设 11113244 代表某种状态
             ]);
     
             // 创建主分支（CB）
@@ -66,7 +68,7 @@ class EntryController extends Controller
                 'entry_id'=> $entry->id,
                 'is_pb' => true,
                 'is_free' => true,
-                'status' => 5
+                'status' => 12132346, //
             ]);
     
             EntryBranchUser::newOwner($branch->id, Auth::id());
@@ -78,12 +80,16 @@ class EntryController extends Controller
                 'description' => $validated['description'],
                 'content' => $validated['content'],
                 'author_id' => Auth::id(),
-                'status' => 5,
+                'status' => 13133464, //待审核
             ]);
     
             $branch->changeDemoVersion($version->id);
             $entry->changeDemoBranch($branch->id);
-    
+
+            $entry->createCensorTask();
+            $branch->createCensorTask();
+            $version->createCensorTask();
+
             DB::commit();
     
             return redirect()->route('entry.index')->with('success', '词条创建成功');

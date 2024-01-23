@@ -207,4 +207,65 @@ class Album extends Model
     {
         return EntityAlbumAssociation::addAELink($entity, $this);
     }
+
+        /**
+     * --------------------------
+     *  状态区域
+     * --------------------------
+     *  使用 Status trait
+     *///
+     //###
+    /**
+     * 检查Owner和Editor是否可见
+     * 
+     * @return bool
+     */
+    public function isOwnerAndEditorVisible() {
+        return $this->isOwnerAndEditorVisible_Media($this->status);
+    }
+
+    /**
+     * 检查Owner是否可见
+     * 
+     * @return bool
+     */
+    public function isOwnerVisible() {
+        return $this->isOwnerVisible_Media($this->status);
+    }
+
+    /**
+     * 检查Public是否可编辑
+     * 
+     * @return bool
+     */
+    public function isPublicEditable() {
+        return $this->isPublicEditable_Media($this->status);
+    }
+
+    /**
+     * 检查Owner和Editor是否可编辑
+     * 
+     * @return bool
+     */
+    public function isOwnerAndEditorEditable() {
+        return $this->isOwnerAndEditorEditable_Media($this->status);
+    }
+
+    /**
+     * 检查Owner是否可编辑
+     * 
+     * @return bool
+     */
+    public function isOwnerEditable() {
+        return $this->isOwnerEditable_Media($this->status);
+    }
+
+    /**
+     * 获取审核状态
+     * 
+     * @return int
+     */
+    public function getCensorStatus() {
+        return $this->censorStatus_Media($this->status);
+    }
 }

@@ -306,5 +306,121 @@ trait Status {
         return $this->findDigit($status,3);
     }
 
+    /**
+     * --------------------------
+     * Media系列 状态区域
+     * --------------------------
+     *///
+     //
+    /**
+     * Public是否可见
+     * 
+     * 
+     * @param int $status
+     * @return bool
+     */
+    public function isPublicVisible_Media($status){
+
+        if($this->findDigit($status,1) == 5){
+            return true;            
+        }else{
+            return false;
+        }
+
+    }
+
+    /**
+     * Owner和 Editor是否可见
+     * 
+     * 
+     * @param int
+     * @return bool
+     */
+    public function isOwnerAndEditorVisible_Media($status){
+        
+        if($this->findDigit($status,1) == 5||$this->findDigit($status,1) == 7){
+            return true;            
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * Owner是否可见
+     * 
+     * 
+     * @param int
+     * @return bool
+     */
+    public function isOwnerVisible_Media($status){
+        
+        if($this->findDigit($status,1) == 5|| $this->findDigit($status,1) == 7 || $this->findDigit($status,1) == 6){
+            return true;            
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * Public是否可编辑
+     * 
+     * 
+     * @param int $status
+     * @return bool
+     */
+    public function isPublicEditable_Media($status){
+
+        if($this->findDigit($status,2) == 5){
+            return true;            
+        }else{
+            return false;
+        }
+
+    }
+
+    /**
+     * Owner和 Editor是否可编辑
+     * 
+     * 
+     * @param int $status
+     * @return bool
+     */
+    public function isOwnerAndEditorEditable_Media($status){
+        
+        if($this->findDigit($status,2) == 5||$this->findDigit($status,2) == 7){
+            return true;            
+        }else{
+            return false;
+        }
+    }
+
+    /**
+     * Owner是否可编辑
+     * 
+     * 
+     * @param int $status
+     * @return bool
+     */
+    public function isOwnerEditable_Media($status){
+        
+        if($this->findDigit($status,2) == 5|| $this->findDigit($status,2) == 7 || $this->findDigit($status,2) == 6){
+            return true;            
+        }else{
+            return false;
+        }
+    }
+    
+
+    /**
+     * 返回审核状态
+     * 
+     * 
+     * @param int $status
+     * @return int
+     */
+    public function censorStatus_Media($status){
+        return $this->findDigit($status,3);
+    }
+
 }
 

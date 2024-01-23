@@ -218,4 +218,92 @@ class EntryBranch extends Model
 
         return EntityWallAssociation::createNewWallAndLink($entityType, $entityUuid, $wallData);
     }
+
+        /**
+     * --------------------------
+     *  状态区域
+     * --------------------------
+     *  使用 Status trait
+     *///
+     //###
+    /**
+     * 检查Public是否可见
+     * 
+     * @return bool
+     */
+    public function isPublicVisible() {
+        return $this->isPublicVisible_Entry($this->status);
+    }
+
+    /**
+     * 检查Owner和Editor是否可见
+     * 
+     * @return bool
+     */
+    public function isOwnerAndEditorVisible() {
+        return $this->isOwnerAndEditorVisible_Entry($this->status);
+    }
+
+    /**
+     * 检查Owner是否可见
+     * 
+     * @return bool
+     */
+    public function isOwnerVisible() {
+        return $this->isOwnerVisible_Entry($this->status);
+    }
+
+    /**
+     * 检查Public是否可编辑
+     * 
+     * @return bool
+     */
+    public function isPublicEditable() {
+        return $this->isPublicEditable_Entry($this->status);
+    }
+
+    /**
+     * 检查Owner和Editor是否可编辑
+     * 
+     * @return bool
+     */
+    public function isOwnerAndEditorEditable() {
+        return $this->isOwnerAndEditorEditable_Entry($this->status);
+    }
+
+    /**
+     * 检查Owner是否可编辑
+     * 
+     * @return bool
+     */
+    public function isOwnerEditable() {
+        return $this->isOwnerEditable_Entry($this->status);
+    }
+
+    /**
+     * 获取审核状态
+     * 
+     * @return int
+     */
+    public function getCensorStatus() {
+        return $this->censorStatus_Entry($this->status);
+    }
+
+    /**
+     * 检查是否可以继承
+     * 
+     * @return bool
+     */
+    public function isInheritable() {
+        return $this->isInheritable_Entry($this->status);
+    }
+
+    /**
+     * 检查是否为demo version
+     * 
+     * @return bool
+     */
+    public function isDemoVersion() {
+        return $this->isDemoVersion_Entry($this->status);
+    } 
 }

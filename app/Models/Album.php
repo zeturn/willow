@@ -208,7 +208,7 @@ class Album extends Model
         return EntityAlbumAssociation::addAELink($entity, $this);
     }
 
-        /**
+    /**
      * --------------------------
      *  状态区域
      * --------------------------

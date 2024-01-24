@@ -181,4 +181,9 @@ class Wall extends Model
     public function getCensorStatus() {
         return $this->censorStatus_Wall($this->status);
     }
+
+    /**
+     * 本文件结束
+     * 
+     */
 }

@@ -36,7 +36,6 @@ class EntryController extends Controller
         //return Inertia::render('entry/create');
     }
 
-
     /***
      * store
      * 总创建方法
@@ -59,7 +58,7 @@ class EntryController extends Controller
             // 创建新词条
             $entry = Entry::create([
                 'name' => $validated['name'],
-                'status' => 11113244, // 假设 11113244 代表某种状态
+                'status' => 1101113344,//初始状态，等待审核
             ]);
     
             // 创建主分支（CB）
@@ -68,7 +67,7 @@ class EntryController extends Controller
                 'entry_id'=> $entry->id,
                 'is_pb' => true,
                 'is_free' => true,
-                'status' => 12132346, //
+                'status' => 1201113244,//初始状态，等待审核
             ]);
     
             EntryBranchUser::newOwner($branch->id, Auth::id());
@@ -80,12 +79,13 @@ class EntryController extends Controller
                 'description' => $validated['description'],
                 'content' => $validated['content'],
                 'author_id' => Auth::id(),
-                'status' => 13133464, //待审核
+                'status' => 1301113244, //初始状态，等待审核
             ]);
     
             $branch->changeDemoVersion($version->id);
             $entry->changeDemoBranch($branch->id);
 
+            //创建审核任务
             $entry->createCensorTask();
             $branch->createCensorTask();
             $version->createCensorTask();
@@ -99,7 +99,7 @@ class EntryController extends Controller
             // 记录错误日志
             Log::error('[Entry]词条创建失败: ' . $e->getMessage());
     
-            return back()->withInput()->withErrors('词条创建失败');
+            return back()->withInput()->withErrors('数据库异常，词条创建失败');
         }
     }
     
@@ -108,26 +108,31 @@ class EntryController extends Controller
     // 显示特定词条的详细信息。
     public function show($id)
     {
+        
         $entry = Entry::findOrFail($id);//寻找词条
 
-        $walls = $entry->walls;
-        // 使用模型中的方法获取 Demo Branch 和 Demo Version
-        $demoBranch = $entry->getDemoBranch();
-        //dd($demoBranch);
-        $demoVersion = $demoBranch->getDemoVersion();
+        if($entry -> isPublicVisible()){
 
-        //dd(Auth::id());
+            $walls = $entry->walls;
+            // 使用模型中的方法获取 Demo Branch 和 Demo Version
+            $demoBranch = $entry->getDemoBranch();
+            //dd($demoBranch);
+            $demoVersion = $demoBranch->getDemoVersion();
 
-        // 返回到视图，并传递获取的数据
-        return view('entries.show', [
-            'entry' => $entry,
-            'walls' => $walls,
-            'demoBranch' => $demoBranch,
-            'demoVersion' => $demoVersion,
-            'userId' =>  Auth::id(),
-            'entryId' => $id,
+            // 返回到视图，并传递获取的数据
+            return view('entries.show', [
+                'entry' => $entry,
+                'walls' => $walls,
+                'demoBranch' => $demoBranch,
+                'demoVersion' => $demoVersion,
+                'userId' =>  Auth::id(),
+                'entryId' => $id,
 
-        ]);
+            ]);
+        }else{
+            abort(403);
+        }
+
     }
 
     // 显示解释页面
@@ -135,24 +140,29 @@ class EntryController extends Controller
     {
         $entry = Entry::findOrFail($id);//寻找词条
 
-        $walls = $entry->walls;
-        // 使用模型中的方法获取 Demo Branch 和 Demo Version
-        $demoBranch = $entry->getDemoBranch();
-        //dd($demoBranch);
-        $demoVersion = $demoBranch->getDemoVersion();
+        if($entry -> isPublicVisible()){
 
-        //dd(Auth::id());
+            $walls = $entry->walls;
+            // 使用模型中的方法获取 Demo Branch 和 Demo Version
+            $demoBranch = $entry->getDemoBranch();
+            //dd($demoBranch);
+            $demoVersion = $demoBranch->getDemoVersion();
 
-        // 返回到视图，并传递获取的数据
-        return view('entries.show.show-explanation', [
-            'entry' => $entry,
-            'walls' => $walls,
-            'demoBranch' => $demoBranch,
-            'demoVersion' => $demoVersion,
-            'userId' =>  Auth::id(),
-            'entryId' => $id,
+            //dd(Auth::id());
 
-        ]);
+            // 返回到视图，并传递获取的数据
+            return view('entries.show.show-explanation', [
+                'entry' => $entry,
+                'walls' => $walls,
+                'demoBranch' => $demoBranch,
+                'demoVersion' => $demoVersion,
+                'userId' =>  Auth::id(),
+                'entryId' => $id,
+
+            ]);
+        }else{
+            abort(403);
+        }
     }
 
     // 显示分支页面

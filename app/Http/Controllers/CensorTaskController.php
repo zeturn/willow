@@ -64,4 +64,59 @@ class CensorTaskController extends Controller
     {
         //
     }
+    
+    public function entryTaskList()
+    {
+        $tasks = CensorTask::where('entity_type', 'Entry')->get();
+        return view('censor.entryTaskList', ['tasks' => $tasks]);
+    }
+
+    public function branchTaskList()
+    {
+        $tasks = CensorTask::where('entity_type', 'Branch')->get();
+        return view('censor.branchTaskList', ['tasks' => $tasks]);
+    }
+
+    public function versionTaskList()
+    {
+        $tasks = CensorTask::where('entity_type', 'Version')->get();
+        return view('censor.versionTaskList', ['tasks' => $tasks]);
+    }
+
+    public function taskTaskList()
+    {
+        $tasks = CensorTask::where('entity_type', 'Task')->get();
+        return view('censor.taskTaskList', ['tasks' => $tasks]);
+    }
+
+    public function wallTaskList()
+    {
+        $tasks = CensorTask::where('entity_type', 'Wall')->get();
+        return view('censor.wallTaskList', ['tasks' => $tasks]);
+    }
+
+    public function topicTaskList()
+    {
+        $tasks = CensorTask::where('entity_type', 'Topic')->get();
+        return view('censor.topicTaskList', ['tasks' => $tasks]);
+    }
+
+    public function commentTaskList()
+    {
+        $tasks = CensorTask::where('entity_type', 'Comment')->get();
+        return view('censor.commentTaskList', ['tasks' => $tasks]);
+    }
+
+    public function mediaTaskList()
+    {
+        $tasks = CensorTask::where('entity_type', 'Media')->get();
+        return view('censor.mediaTaskList', ['tasks' => $tasks]);
+    }
+
+    public function albumTaskList()
+    {
+        $tasks = CensorTask::where('entity_type', 'Album')->get();
+        return view('censor.albumTaskList', ['tasks' => $tasks]);
+    }
+
 }

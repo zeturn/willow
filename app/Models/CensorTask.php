@@ -19,6 +19,11 @@ class CensorTask extends Model
     ];
 
     /**
+    *--------------------------
+    * 状态区
+    *--------------------------
+    */
+    /**
      * 更改状态。
      * Change the status of the entry.
      *
@@ -30,43 +35,69 @@ class CensorTask extends Model
         $this->update(['status' => $newStatus]);
     }
 
-
-    public function execute()
+    public function approveCensorTask()
     {
-        // Dynamically resolve the class from entity_type 获取实体类型
-        $className = $this->entity_type;
+        return $this->censorTask()->update(['status' => 5]);
+    }
 
-        //当不存在报错
-        if (!class_exists($className)) {
-            // Handle the case where the class does not exist
-            return false;
-        }
+    public function rejectCensorTask()
+    {
+        return $this->censorTask()->update(['status' => 7]);
+    }
 
-        // Find the entity using the class name and entity_id 获取实体
-        $entity = $className::find($this->entity_id);
+    public function waitCensorTask()
+    {
+        return $this->censorTask()->update(['status' => 6]);
+    }
 
-        //当不存在报错
-        if (!$entity) {
-            // Handle the case where the entity is not found
-            return false;
-        }
-       
-        // Check if the entity has the changeStatus method 检查是否有所需功能
-        if (!method_exists($entity, 'changeCensorStatus')) {
-            // Handle the case where the method does not exist
-            return false;
-        }
+    /**
+    *--------------------------
+    * 关联区
+    *--------------------------
+    */
 
-        // Execute the  method
-        $result = $entity->changeCensorStatus(1550);
+    public function entry()
+    {
+        return $this->entity_type === 'Entry' ? $this->belongsTo(Entry::class, 'entity_id') : null;
+    }
 
-        // If VersionGeneration returns true, update the status of the task to 10
-        if ($result === true) {
-            $this->status = 10;//当前审核记录为5
-            $this->save();
-            return true;
-        }
+    public function branch()
+    {
+        return $this->entity_type === 'EntryBranch' ? $this->belongsTo(EntryBranch::class, 'entity_id') : null;
+    }
 
-        return false;
+    public function version()
+    {
+        return $this->entity_type === 'EntryVersion' ? $this->belongsTo(EntryVersion::class, 'entity_id') : null;
+    }
+
+    public function task()
+    {
+        return $this->entity_type === 'EntryVersionTask' ? $this->belongsTo(EntryVersionTask::class, 'entity_id') : null;
+    }
+
+    public function wall()
+    {
+        return $this->entity_type === 'Wall' ? $this->belongsTo(Wall::class, 'entity_id') : null;
+    }
+
+    public function topic()
+    {
+        return $this->entity_type === 'Topic' ? $this->belongsTo(Topic::class, 'entity_id') : null;
+    }
+
+    public function comment()
+    {
+        return $this->entity_type === 'Comment' ? $this->belongsTo(Comment::class, 'entity_id') : null;
+    }
+
+    public function media()
+    {
+        return $this->entity_type === 'Media' ? $this->belongsTo(Media::class, 'entity_id') : null;
+    }
+
+    public function album()
+    {
+        return $this->entity_type === 'Album' ? $this->belongsTo(Album::class, 'entity_id') : null;
     }
 }

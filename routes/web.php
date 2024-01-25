@@ -15,7 +15,7 @@
  * @see        null相关文件或类的链接
  * @since      2023-11 2023-12
  * @deprecated False
- */
+ **/
 
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +35,7 @@ use App\Http\Controllers\{
     CommentController,
 
     ReportController,
+    CensorTasksController,
 
     CategoryController,
     TreeController,
@@ -368,4 +369,17 @@ Route::prefix('albums')->name('albums.')->group(function () {
     Route::get('/{album}/edit', [AlbumsController::class, 'edit'])->name('edit');
     Route::put('/{album}', [AlbumsController::class, 'update'])->name('update');
     Route::delete('/{album}', [AlbumsController::class, 'delete'])->name('delete');
+});
+
+
+Route::controller(CensorTasksController::class)->group(function () {
+    Route::get('/tasks/entry', 'entryTaskList');
+    Route::get('/tasks/branch', 'branchTaskList');
+    Route::get('/tasks/version', 'versionTaskList');
+    Route::get('/tasks/task', 'taskTaskList');
+    Route::get('/tasks/wall', 'wallTaskList');
+    Route::get('/tasks/topic', 'topicTaskList');
+    Route::get('/tasks/comment', 'commentTaskList');
+    Route::get('/tasks/media', 'mediaTaskList');
+    Route::get('/tasks/album', 'albumTaskList');
 });

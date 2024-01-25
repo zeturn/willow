@@ -48,7 +48,7 @@ class EntryBranch extends Model
      */
     public function createCensorTask(){
         return $censorTask = CensorTask::create([
-            'entity_type' => 'Branch',
+            'entity_type' => 'EntryBranch',
             'entity_id' => $this->id,
             'status' => 5,
         ]);

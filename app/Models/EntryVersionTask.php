@@ -60,6 +60,21 @@ class EntryVersionTask extends Model
     }
 
     /**
+     * 为当前版本创建审核
+     * Create Censor Task for this version.
+     * 
+     * @param 
+     * @return CensorTask $censorTask - 新创建的Task
+     */
+    public function createCensorTask(){
+        return $censorTask = CensorTask::create([
+            'entity_type' => 'EntryVersionTask',
+            'entity_id' => $this->id,
+            'status' => 5,
+        ]);
+    }
+
+    /**
      * 创建新版本 / Create new version
      * 
      * 生成一个新的条目版本 / Generate a new entry version.

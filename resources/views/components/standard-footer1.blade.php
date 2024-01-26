@@ -1,15 +1,15 @@
 <footer class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto">
+    <div class="container max-w-7xl py-24 mx-auto">
         <div class="flex flex-wrap text-center md:text-left">
 
             <!-- 大标题 -->
-            <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-                <h2 class="title-font font-bold text-gray-900 dark:text-gray-300 tracking-widest text-5xl mb-3">memeGit</h2>
+            <div class="lg:w-1/4 md:w-1/2 w-full">
+                <h2 class="title-font font-bold tracking-tight leading-8 text-gray-900 dark:text-gray-300 text-5xl mb-3">memeGit</h2>
                 <p class="text-gray-500 text-base lg:text-3xl mt-2 md:text-left text-center">记录迷因的<br class="hidden lg:block">分布式版本控制系统</p>
             </div>
 
             <!-- 导航链接 -->
-            <div class="lg:w-3/4 md:w-1/2 w-full px-4 flex flex-col md:flex-row justify-evenly">
+            <div class="lg:w-3/4 md:w-1/2 w-full flex flex-col md:flex-row justify-evenly">
                 <div class="flex flex-col mb-10">
                     <h2 class="title-font font-medium text-gray-900 dark:text-gray-300 tracking-widest text-sm mb-3">EXPLORE</h2>
                     <nav class="list-none">

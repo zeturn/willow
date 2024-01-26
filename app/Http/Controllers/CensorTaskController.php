@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CensorTask;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class CensorTaskController extends Controller
 {
@@ -12,7 +13,7 @@ class CensorTaskController extends Controller
      */
     public function index()
     {
-        //
+        return view('censor.index');
     }
 
     
@@ -73,19 +74,19 @@ class CensorTaskController extends Controller
 
     public function branchTaskList()
     {
-        $tasks = CensorTask::where('entity_type', 'Branch')->get();
+        $tasks = CensorTask::where('entity_type', 'EntryBranch')->get();
         return view('censor.branchTaskList', ['tasks' => $tasks]);
     }
 
     public function versionTaskList()
     {
-        $tasks = CensorTask::where('entity_type', 'Version')->get();
+        $tasks = CensorTask::where('entity_type', 'EntryVersion')->get();
         return view('censor.versionTaskList', ['tasks' => $tasks]);
     }
 
     public function taskTaskList()
     {
-        $tasks = CensorTask::where('entity_type', 'Task')->get();
+        $tasks = CensorTask::where('entity_type', 'EntryVersionTask')->get();
         return view('censor.taskTaskList', ['tasks' => $tasks]);
     }
 
@@ -130,21 +131,21 @@ class CensorTaskController extends Controller
 
     public function branchTask($id)
     {
-        $task = CensorTask::where('entity_type', 'Branch')->findOrFail($id);
+        $task = CensorTask::where('entity_type', 'EntryBranch')->findOrFail($id);
         $encryptedId = Crypt::encrypt($task->id);
         return view('censor.branchCheck', compact('task', 'encryptedId'));
     }
 
     public function versionTask($id)
     {
-        $task = CensorTask::where('entity_type', 'Version')->findOrFail($id);
+        $task = CensorTask::where('entity_type', 'EntryVersion')->findOrFail($id);
         $encryptedId = Crypt::encrypt($task->id);
         return view('censor.versionCheck', compact('task', 'encryptedId'));
     }
 
     public function taskTask($id)
     {
-        $task = CensorTask::where('entity_type', 'Task')->findOrFail($id);
+        $task = CensorTask::where('entity_type', 'EntryVersionTask')->findOrFail($id);
         $encryptedId = Crypt::encrypt($task->id);
         return view('censor.taskCheck', compact('task', 'encryptedId'));
     }
@@ -174,14 +175,96 @@ class CensorTaskController extends Controller
     {
         $task = CensorTask::where('entity_type', 'Media')->findOrFail($id);
         $encryptedId = Crypt::encrypt($task->id);
-        return view('censor.mediaCheck', compact('task', 'encryptedId'));
+        $media = $task->media;
+        return view('censor.mediaCheck', compact('task', 'encryptedId','media'));
     }
 
     public function albumTask($id)
     {
         $task = CensorTask::where('entity_type', 'Album')->findOrFail($id);
+        $album = $task->album;
         $encryptedId = Crypt::encrypt($task->id);
-        return view('censor.albumCheck', compact('task', 'encryptedId'));
+        return view('censor.albumCheck', compact('task', 'encryptedId','album'));
     }
 
+    //执行区
+
+    private function updateTaskStatus($encryptedId, $action)
+    {
+        $id = Crypt::decrypt($encryptedId);
+        $task = CensorTask::findOrFail($id);
+
+        switch ($action) {
+            case 'approve':
+                $task->status = 6; // 同意
+                break;
+            case 'reject':
+                $task->status = 4; // 拒绝
+                break;
+            case 'wait':
+                $task->status = 3; // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
+
+        $task->save();
+
+        return $task;
+    }
+
+    public function handleEntryTask(Request $request)
+    {
+        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        return back()->with('success', 'Entry task status updated.');
+    }
+
+    public function handleBranchTask(Request $request)
+    {
+        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        return back()->with('success', 'Branch task status updated.');
+    }
+
+    public function handleVersionTask(Request $request)
+    {
+        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        return back()->with('success', 'Version task status updated.');
+    }
+
+    public function handleTaskTask(Request $request)
+    {
+        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        return back()->with('success', 'Task task status updated.');
+    }
+
+    public function handleWallTask(Request $request)
+    {
+        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        return back()->with('success', 'Wall task status updated.');
+    }
+
+    public function handleTopicTask(Request $request)
+    {
+        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        return back()->with('success', 'Topic task status updated.');
+    }
+
+    public function handleCommentTask(Request $request)
+    {
+        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        return back()->with('success', 'Comment task status updated.');
+    }
+
+    public function handleMediaTask(Request $request)
+    {
+        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        return back()->with('success', 'Media task status updated.');
+    }
+
+    public function handleAlbumTask(Request $request)
+    {
+        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        return back()->with('success', 'Album task status updated.');
+    }
 }

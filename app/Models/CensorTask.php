@@ -71,6 +71,11 @@ class CensorTask extends Model
         return $this->entity_type === 'EntryVersion' ? $this->belongsTo(EntryVersion::class, 'entity_id') : null;
     }
 
+    public function VersionTask()
+    {
+        return $this->entity_type === 'EntryVersionTask' ? $this->belongsTo(EntryVersionTask::class, 'entity_id') : null;
+    }
+
     public function task()
     {
         return $this->entity_type === 'EntryVersionTask' ? $this->belongsTo(EntryVersionTask::class, 'entity_id') : null;

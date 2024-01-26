@@ -54,6 +54,8 @@ class AlbumsController extends Controller
             }
         }
 
+        $album->createCensorTask();
+
         return redirect()->route('albums.show', $album->id);
     }
 

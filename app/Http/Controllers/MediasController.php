@@ -42,10 +42,12 @@ class MediasController extends Controller
     
             // 其他字段设置
             $media->save();
+
+            $media->createCensorTask();
     
             return response()->json(['id' => $media->id, 'url' => $media->url]); // 返回媒体文件的ID和URL
         } catch (\Exception $e) {
-            return response()->json(['error' => '文件上传失败'], 500);
+            return response()->json(['error' => '文件上传失败'.$e], 500);
         }
     }
     

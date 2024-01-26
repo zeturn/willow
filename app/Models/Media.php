@@ -34,6 +34,22 @@ class Media extends Model
         return true;
     }
 
+    /**
+     * 为当前相册创建审核
+     * Create Censor Task for this album.
+     * 
+     * @param 
+     * @return CensorTask $censorTask - 新创建的Task
+     */
+    public function createCensorTask(){
+        return $censorTask = CensorTask::create([
+            'entity_type' => 'Media',
+            'entity_id' => $this->id,
+            'status' => 5,
+        ]);
+    }
+
+
     public function getUrlAttribute($value)
     {
         // 返回媒体文件的完整 URL

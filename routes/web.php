@@ -372,14 +372,39 @@ Route::prefix('albums')->name('albums.')->group(function () {
 });
 
 
-Route::controller(CensorTaskController::class)->group(function () {
-    Route::get('/tasks/entry', 'entryTaskList');
-    Route::get('/tasks/branch', 'branchTaskList');
-    Route::get('/tasks/version', 'versionTaskList');
-    Route::get('/tasks/task', 'taskTaskList');
-    Route::get('/tasks/wall', 'wallTaskList');
-    Route::get('/tasks/topic', 'topicTaskList');
-    Route::get('/tasks/comment', 'commentTaskList');
-    Route::get('/tasks/media', 'mediaTaskList');
-    Route::get('/tasks/album', 'albumTaskList');
+Route::prefix('censor')->group(function () {
+    Route::controller(CensorTaskController::class)->group(function () {
+        Route::get('/tasks', 'index')->name('censor.tasks.index');       
+ 
+        Route::get('/tasks/list/entry', 'entryTaskList')->name('censor.tasks.list.entry');
+        Route::get('/tasks/list/branch', 'branchTaskList')->name('censor.tasks.list.branch');
+        Route::get('/tasks/list/version', 'versionTaskList')->name('censor.tasks.list.version');
+        Route::get('/tasks/list/task', 'taskTaskList')->name('censor.tasks.list.task');
+        Route::get('/tasks/list/wall', 'wallTaskList')->name('censor.tasks.list.wall');
+        Route::get('/tasks/list/topic', 'topicTaskList')->name('censor.tasks.list.topic');
+        Route::get('/tasks/list/comment', 'commentTaskList')->name('censor.tasks.list.comment');
+        Route::get('/tasks/list/media', 'mediaTaskList')->name('censor.tasks.list.media');
+        Route::get('/tasks/list/album', 'albumTaskList')->name('censor.tasks.list.album');
+
+        Route::get('/tasks/entry/{id}', 'entryTask')->name('censor.tasks.entry');
+        Route::get('/tasks/branch/{id}', 'branchTask')->name('censor.tasks.branch');
+        Route::get('/tasks/version/{id}', 'versionTask')->name('censor.tasks.version');
+        Route::get('/tasks/task/{id}', 'taskTask')->name('censor.tasks.task');
+        Route::get('/tasks/wall/{id}', 'wallTask')->name('censor.tasks.wall');
+        Route::get('/tasks/topic/{id}', 'topicTask')->name('censor.tasks.topic');
+        Route::get('/tasks/comment/{id}', 'commentTask')->name('censor.tasks.comment');
+        Route::get('/tasks/media/{id}', 'mediaTask')->name('censor.tasks.media');
+        Route::get('/tasks/album/{id}', 'albumTask')->name('censor.tasks.album');
+
+        // 新增的POST路由
+        Route::post('/tasks/update/entry', 'handleEntryTask')->name('censor.tasks.update.entry');
+        Route::post('/tasks/update/branch', 'handleBranchTask')->name('censor.tasks.update.branch');
+        Route::post('/tasks/update/version', 'handleVersionTask')->name('censor.tasks.update.version');
+        Route::post('/tasks/update/task', 'handleTaskTask')->name('censor.tasks.update.task');
+        Route::post('/tasks/update/wall', 'handleWallTask')->name('censor.tasks.update.wall');
+        Route::post('/tasks/update/topic', 'handleTopicTask')->name('censor.tasks.update.topic');
+        Route::post('/tasks/update/comment', 'handleCommentTask')->name('censor.tasks.update.comment');
+        Route::post('/tasks/update/media', 'handleMediaTask')->name('censor.tasks.update.media');
+        Route::post('/tasks/update/album', 'handleAlbumTask')->name('censor.tasks.update.album');
+    });
 });

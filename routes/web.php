@@ -35,7 +35,7 @@ use App\Http\Controllers\{
     CommentController,
 
     ReportController,
-    CensorTasksController,
+    CensorTaskController,
 
     CategoryController,
     TreeController,
@@ -372,7 +372,7 @@ Route::prefix('albums')->name('albums.')->group(function () {
 });
 
 
-Route::controller(CensorTasksController::class)->group(function () {
+Route::controller(CensorTaskController::class)->group(function () {
     Route::get('/tasks/entry', 'entryTaskList');
     Route::get('/tasks/branch', 'branchTaskList');
     Route::get('/tasks/version', 'versionTaskList');

@@ -119,4 +119,69 @@ class CensorTaskController extends Controller
         return view('censor.albumTaskList', ['tasks' => $tasks]);
     }
 
+    //审核方法
+
+    public function entryTask($id)
+    {
+        $task = CensorTask::where('entity_type', 'Entry')->findOrFail($id);
+        $encryptedId = Crypt::encrypt($task->id);
+        return view('censor.entryCheck', compact('task', 'encryptedId'));
+    }
+
+    public function branchTask($id)
+    {
+        $task = CensorTask::where('entity_type', 'Branch')->findOrFail($id);
+        $encryptedId = Crypt::encrypt($task->id);
+        return view('censor.branchCheck', compact('task', 'encryptedId'));
+    }
+
+    public function versionTask($id)
+    {
+        $task = CensorTask::where('entity_type', 'Version')->findOrFail($id);
+        $encryptedId = Crypt::encrypt($task->id);
+        return view('censor.versionCheck', compact('task', 'encryptedId'));
+    }
+
+    public function taskTask($id)
+    {
+        $task = CensorTask::where('entity_type', 'Task')->findOrFail($id);
+        $encryptedId = Crypt::encrypt($task->id);
+        return view('censor.taskCheck', compact('task', 'encryptedId'));
+    }
+
+    public function wallTask($id)
+    {
+        $task = CensorTask::where('entity_type', 'Wall')->findOrFail($id);
+        $encryptedId = Crypt::encrypt($task->id);
+        return view('censor.wallCheck', compact('task', 'encryptedId'));
+    }
+
+    public function topicTask($id)
+    {
+        $task = CensorTask::where('entity_type', 'Topic')->findOrFail($id);
+        $encryptedId = Crypt::encrypt($task->id);
+        return view('censor.topicCheck', compact('task', 'encryptedId'));
+    }
+
+    public function commentTask($id)
+    {
+        $task = CensorTask::where('entity_type', 'Comment')->findOrFail($id);
+        $encryptedId = Crypt::encrypt($task->id);
+        return view('censor.commentCheck', compact('task', 'encryptedId'));
+    }
+
+    public function mediaTask($id)
+    {
+        $task = CensorTask::where('entity_type', 'Media')->findOrFail($id);
+        $encryptedId = Crypt::encrypt($task->id);
+        return view('censor.mediaCheck', compact('task', 'encryptedId'));
+    }
+
+    public function albumTask($id)
+    {
+        $task = CensorTask::where('entity_type', 'Album')->findOrFail($id);
+        $encryptedId = Crypt::encrypt($task->id);
+        return view('censor.albumCheck', compact('task', 'encryptedId'));
+    }
+
 }

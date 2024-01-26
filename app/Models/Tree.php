@@ -40,6 +40,21 @@ class Tree extends Model
 
         return true;
     }
+
+    /**
+     * 为当前词条创建审核
+     * Create Censor Task for this entry.
+     * 
+     * @param 
+     * @return CensorTask $censorTask - 新创建的Task
+     */
+    public function createCensorTask(){
+        return $censorTask = CensorTask::create([
+            'entity_type' => 'Tree',
+            'entity_id' => $this->id,
+            'status' => 5,
+        ]);
+    }
     
     /**
      * 获取父分类。

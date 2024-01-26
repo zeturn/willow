@@ -33,6 +33,18 @@
                     <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                         <a href="{{ route('censor.tasks.list.album') }}" class="btn btn-primary mb-2">Album Task List</a>
                     </div>
+                    <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+                        <a href="{{ route('censor.tasks.list.tree') }}" class="btn btn-primary mb-2">Tree Task List</a>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+                        <a href="{{ route('censor.tasks.list.edge') }}" class="btn btn-primary mb-2">Edge Task List</a>
+                    </div>
+                    <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+                        <a href="{{ route('censor.tasks.list.node') }}" class="btn btn-primary mb-2">Node Task List</a>
+                    </div>
+
+
+
                 </div>
             </div>
 

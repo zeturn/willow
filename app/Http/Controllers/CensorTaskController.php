@@ -120,6 +120,24 @@ class CensorTaskController extends Controller
         return view('censor.albumTaskList', ['tasks' => $tasks]);
     }
 
+    public function treeTaskList()
+    {
+        $tasks = CensorTask::where('entity_type', 'Tree')->get();
+        return view('censor.treeTaskList', ['tasks' => $tasks]);
+    }
+
+    public function edgeTaskList()
+    {
+        $tasks = CensorTask::where('entity_type', 'Edge')->get();
+        return view('censor.edgeTaskList', ['tasks' => $tasks]);
+    }
+
+    public function nodeTaskList()
+    {
+        $tasks = CensorTask::where('entity_type', 'Node')->get();
+        return view('censor.nodeTaskList', ['tasks' => $tasks]);
+    }
+
     //审核方法
 
     public function entryTask($id)
@@ -187,6 +205,26 @@ class CensorTaskController extends Controller
         return view('censor.albumCheck', compact('task', 'encryptedId','album'));
     }
 
+    public function treeTask($id)
+    {
+        $task = CensorTask::where('entity_type', 'Tree')->findOrFail($id);
+        $encryptedId = Crypt::encrypt($task->id);
+        return view('censor.treeCheck', compact('task', 'encryptedId'));
+    }
+
+    public function edgeTask($id)
+    {
+        $task = CensorTask::where('entity_type', 'Edge')->findOrFail($id);
+        $encryptedId = Crypt::encrypt($task->id);
+        return view('censor.edgeCheck', compact('task', 'encryptedId'));
+    }
+
+    public function nodeTask($id)
+    {
+        $task = CensorTask::where('entity_type', 'Node')->findOrFail($id);
+        $encryptedId = Crypt::encrypt($task->id);
+        return view('censor.nodeCheck', compact('task', 'encryptedId'));
+    }
     //执行区
 
     private function updateTaskStatus($encryptedId, $action)
@@ -266,5 +304,23 @@ class CensorTaskController extends Controller
     {
         $task = $this->updateTaskStatus($request->encryptedId, $request->action);
         return back()->with('success', 'Album task status updated.');
+    }
+
+    public function handleTreeTask(Request $request)
+    {
+        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        return back()->with('success', 'Tree task status updated.');
+    }
+
+    public function handleEdgeTask(Request $request)
+    {
+        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        return back()->with('success', 'Edge task status updated.');
+    }
+
+    public function handleNodeTask(Request $request)
+    {
+        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        return back()->with('success', 'Node task status updated.');
     }
 }

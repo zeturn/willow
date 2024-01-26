@@ -51,6 +51,8 @@ class TreeController extends Controller
 
         $tree = Tree::create($request->all()); // 创建分类树节点并保存
 
+        $tree->createCensorTask();
+
         return redirect()->route('trees.show', $tree->id); // 重定向到分类树节点详情页
     }
 

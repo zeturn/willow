@@ -43,8 +43,10 @@ class NodeController extends Controller
         if (!isset($nodeData['status'])) {
             $nodeData['status'] = 5;
         }
-        
+   
         $node = Node::create($nodeData); // 创建节点并保存
+ 
+        $node->createCensorTask();
 
         return redirect()->route('nodes.show', $node->id); // 重定向到节点详情页
     }

@@ -385,6 +385,9 @@ Route::prefix('censor')->group(function () {
         Route::get('/tasks/list/comment', 'commentTaskList')->name('censor.tasks.list.comment');
         Route::get('/tasks/list/media', 'mediaTaskList')->name('censor.tasks.list.media');
         Route::get('/tasks/list/album', 'albumTaskList')->name('censor.tasks.list.album');
+        Route::get('/tasks/list/tree', 'treeTaskList')->name('censor.tasks.list.tree');
+        Route::get('/tasks/list/node', 'nodeTaskList')->name('censor.tasks.list.node');
+        Route::get('/tasks/list/edge', 'edgeTaskList')->name('censor.tasks.list.edge');
 
         Route::get('/tasks/entry/{id}', 'entryTask')->name('censor.tasks.entry');
         Route::get('/tasks/branch/{id}', 'branchTask')->name('censor.tasks.branch');
@@ -395,6 +398,9 @@ Route::prefix('censor')->group(function () {
         Route::get('/tasks/comment/{id}', 'commentTask')->name('censor.tasks.comment');
         Route::get('/tasks/media/{id}', 'mediaTask')->name('censor.tasks.media');
         Route::get('/tasks/album/{id}', 'albumTask')->name('censor.tasks.album');
+        Route::get('/tasks/tree/{id}', 'treeTask')->name('censor.tasks.tree');
+        Route::get('/tasks/edge/{id}', 'edgeTask')->name('censor.tasks.edge');     
+        Route::get('/tasks/node/{id}', 'nodeTask')->name('censor.tasks.node');   
 
         // 新增的POST路由
         Route::post('/tasks/update/entry', 'handleEntryTask')->name('censor.tasks.update.entry');
@@ -406,5 +412,8 @@ Route::prefix('censor')->group(function () {
         Route::post('/tasks/update/comment', 'handleCommentTask')->name('censor.tasks.update.comment');
         Route::post('/tasks/update/media', 'handleMediaTask')->name('censor.tasks.update.media');
         Route::post('/tasks/update/album', 'handleAlbumTask')->name('censor.tasks.update.album');
+        Route::post('/tasks/update/tree', 'handleTreeTask')->name('censor.tasks.update.tree');
+        Route::post('/tasks/update/edge', 'handleEdgeTask')->name('censor.tasks.update.edge');
+        Route::post('/tasks/update/node', 'handleNodeTask')->name('censor.tasks.update.node');        
     });
 });

@@ -34,6 +34,21 @@ class Node extends Model
     }
 
     /**
+     * 为当前词条创建审核
+     * Create Censor Task for this entry.
+     * 
+     * @param 
+     * @return CensorTask $censorTask - 新创建的Task
+     */
+    public function createCensorTask(){
+        return $censorTask = CensorTask::create([
+            'entity_type' => 'Node',
+            'entity_id' => $this->id,
+            'status' => 5,
+        ]);
+    }
+
+    /**
      * 获取从此节点出发的边。
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

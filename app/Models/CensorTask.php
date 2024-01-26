@@ -105,4 +105,19 @@ class CensorTask extends Model
     {
         return $this->entity_type === 'Album' ? $this->belongsTo(Album::class, 'entity_id') : null;
     }
+
+    public function tree()
+    {
+        return $this->entity_type === 'Tree' ? $this->belongsTo(Tree::class, 'entity_id') : null;
+    }
+
+    public function edge()
+    {
+        return $this->entity_type === 'Edge' ? $this->belongsTo(Edge::class, 'entity_id') : null;
+    }
+
+    public function node()
+    {
+        return $this->entity_type === 'Node' ? $this->belongsTo(Node::class, 'entity_id') : null;
+    }
 }

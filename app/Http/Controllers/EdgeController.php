@@ -56,6 +56,8 @@ class EdgeController extends Controller
         
         $edge = Edge::create($edgeData); // 创建边并保存
 
+        $edge->createCensorTask();
+
         return redirect()->route('edges.show', $edge->id); // 重定向到边详情页
     }
 

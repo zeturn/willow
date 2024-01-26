@@ -140,6 +140,7 @@ class EntryController extends Controller
     {
         $entry = Entry::findOrFail($id);//寻找词条
 
+        //dd($entry -> isPublicVisible());
         if($entry -> isPublicVisible()){
 
             $walls = $entry->walls;

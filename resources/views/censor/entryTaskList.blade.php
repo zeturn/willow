@@ -9,7 +9,7 @@
                 <div class="p-6">
                     <h2 class="text-2xl font-bold mb-4">Task List</h2>
                     @foreach ($tasks as $task)
-                        @if($task->entity_type === 'EntryTask')
+                        @if($task->entity_type === 'Entry')
                             <div class="mb-4 border-b pb-4">
                                 <a href="{{ route('censor.tasks.entry', ['id' => $task->id]) }}" class="text-xl font-bold">
                                     Task ID: {{ $task->id }}

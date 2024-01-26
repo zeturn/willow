@@ -2,9 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CensorTask;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+
+use App\Models\CensorTask;
+use App\Models\User;
+use App\Models\Entry;
+use App\Models\EntryBranch;
+use App\Models\EntryBranchUser;
+use App\Models\EntryVersion;
+use App\Models\EntryVersionTask;
+use App\Models\EntityWallAssociation;
+
+use App\Models\Tree;
+use App\Models\Node;
+use App\Models\Edge;
+use App\Models\DAG;
+
+use App\Models\Wall;
+use App\Models\Topic;
+use App\Models\Comment;
+
+use App\Models\Album;
+use App\Models\Media;
+use App\Models\AlbumsMediaAssociation;
 
 class CensorTaskController extends Controller
 {
@@ -66,6 +88,11 @@ class CensorTaskController extends Controller
         //
     }
     
+    /**
+    *--------------------------
+    * 任务列表
+    *--------------------------
+    */
     public function entryTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'Entry')->get();
@@ -138,7 +165,11 @@ class CensorTaskController extends Controller
         return view('censor.nodeTaskList', ['tasks' => $tasks]);
     }
 
-    //审核方法
+    /**
+    *--------------------------
+    * 审核页面
+    *--------------------------
+    */
 
     public function entryTask($id)
     {
@@ -225,14 +256,94 @@ class CensorTaskController extends Controller
         $encryptedId = Crypt::encrypt($task->id);
         return view('censor.nodeCheck', compact('task', 'encryptedId'));
     }
-    //执行区
+    
+    /**
+    *--------------------------
+    * 审核执行
+    *--------------------------
+    */
 
-    private function updateTaskStatus($encryptedId, $action)
+    public function handleEntryTask(Request $request)
     {
-        $id = Crypt::decrypt($encryptedId);
+        $id = Crypt::decrypt($request->encryptedId);
         $task = CensorTask::findOrFail($id);
 
-        switch ($action) {
+        switch ($request->action) {
+            case 'approve':
+                $task->status = 6; // 同意
+                $task->entry->changeStatus(1101111545);
+                break;
+            case 'reject':
+                $task->status = 4; // 拒绝
+                $task->entry->changeStatus(1101111444);
+                break;
+            case 'wait':
+                $task->status = 3; // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
+
+        return back()->with('success', 'Entry task status updated.');
+    }
+
+    public function handleBranchTask(Request $request)
+    {
+        $id = Crypt::decrypt($request->encryptedId);
+        $task = CensorTask::findOrFail($id);
+
+        switch ($request->action) {
+            case 'approve':
+                $task->entry->changeStatus(1201111545);
+                $task->status = 6; // 同意
+                break;
+            case 'reject':
+                $task->entry->changeStatus(1201113474);
+                $task->status = 4; // 拒绝
+                break;
+            case 'wait':
+                $task->status = 3; // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
+        
+        return back()->with('success', 'Branch task status updated.');
+    }
+
+    public function handleVersionTask(Request $request)
+    {
+        $id = Crypt::decrypt($request->encryptedId);
+        $task = CensorTask::findOrFail($id);
+
+        switch ($request->action) {
+            case 'approve':
+                $task->entry->changeStatus(1301111545);
+                $task->status = 6; // 同意
+                break;
+            case 'reject':
+                $task->entry->changeStatus(1301113474);
+                $task->status = 4; // 拒绝
+                break;
+            case 'wait':
+                $task->status = 3; // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
+
+        return back()->with('success', 'Version task status updated.');
+    }
+
+    public function handleTaskTask(Request $request)
+    {
+        $id = Crypt::decrypt($request->encryptedId);
+        $task = CensorTask::findOrFail($id);
+
+        switch ($request->action) {
             case 'approve':
                 $task->status = 6; // 同意
                 break;
@@ -247,80 +358,189 @@ class CensorTaskController extends Controller
                 break;
         }
 
-        $task->save();
-
-        return $task;
-    }
-
-    public function handleEntryTask(Request $request)
-    {
-        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
-        return back()->with('success', 'Entry task status updated.');
-    }
-
-    public function handleBranchTask(Request $request)
-    {
-        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
-        return back()->with('success', 'Branch task status updated.');
-    }
-
-    public function handleVersionTask(Request $request)
-    {
-        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
-        return back()->with('success', 'Version task status updated.');
-    }
-
-    public function handleTaskTask(Request $request)
-    {
-        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
         return back()->with('success', 'Task task status updated.');
     }
 
     public function handleWallTask(Request $request)
     {
-        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        $id = Crypt::decrypt($request->encryptedId);
+        $task = CensorTask::findOrFail($id);
+
+        switch ($request->action) {
+            case 'approve':
+                $task->status = 6; // 同意
+                break;
+            case 'reject':
+                $task->status = 4; // 拒绝
+                break;
+            case 'wait':
+                $task->status = 3; // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
+
         return back()->with('success', 'Wall task status updated.');
     }
 
     public function handleTopicTask(Request $request)
     {
-        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        $id = Crypt::decrypt($request->encryptedId);
+        $task = CensorTask::findOrFail($id);
+
+        switch ($request->action) {
+            case 'approve':
+                $task->status = 6; // 同意
+                break;
+            case 'reject':
+                $task->status = 4; // 拒绝
+                break;
+            case 'wait':
+                $task->status = 3; // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
+
         return back()->with('success', 'Topic task status updated.');
     }
 
     public function handleCommentTask(Request $request)
     {
-        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        $id = Crypt::decrypt($request->encryptedId);
+        $task = CensorTask::findOrFail($id);
+
+        switch ($request->action) {
+            case 'approve':
+                $task->status = 6; // 同意
+                break;
+            case 'reject':
+                $task->status = 4; // 拒绝
+                break;
+            case 'wait':
+                $task->status = 3; // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
+
         return back()->with('success', 'Comment task status updated.');
     }
 
     public function handleMediaTask(Request $request)
     {
-        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        $id = Crypt::decrypt($request->encryptedId);
+        $task = CensorTask::findOrFail($id);
+
+        switch ($request->action) {
+            case 'approve':
+                $task->status = 6; // 同意
+                break;
+            case 'reject':
+                $task->status = 4; // 拒绝
+                break;
+            case 'wait':
+                $task->status = 3; // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
+
         return back()->with('success', 'Media task status updated.');
     }
 
     public function handleAlbumTask(Request $request)
     {
-        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        $id = Crypt::decrypt($request->encryptedId);
+        $task = CensorTask::findOrFail($id);
+
+        switch ($request->action) {
+            case 'approve':
+                $task->status = 6; // 同意
+                break;
+            case 'reject':
+                $task->status = 4; // 拒绝
+                break;
+            case 'wait':
+                $task->status = 3; // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
+
         return back()->with('success', 'Album task status updated.');
     }
 
     public function handleTreeTask(Request $request)
     {
-        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        $id = Crypt::decrypt($request->encryptedId);
+        $task = CensorTask::findOrFail($id);
+
+        switch ($request->action) {
+            case 'approve':
+                $task->status = 6; // 同意
+                break;
+            case 'reject':
+                $task->status = 4; // 拒绝
+                break;
+            case 'wait':
+                $task->status = 3; // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
+
         return back()->with('success', 'Tree task status updated.');
     }
 
     public function handleEdgeTask(Request $request)
     {
-        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        $id = Crypt::decrypt($request->encryptedId);
+        $task = CensorTask::findOrFail($id);
+
+        switch ($request->action) {
+            case 'approve':
+                $task->status = 6; // 同意
+                break;
+            case 'reject':
+                $task->status = 4; // 拒绝
+                break;
+            case 'wait':
+                $task->status = 3; // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
+
         return back()->with('success', 'Edge task status updated.');
     }
 
     public function handleNodeTask(Request $request)
     {
-        $task = $this->updateTaskStatus($request->encryptedId, $request->action);
+        $id = Crypt::decrypt($request->encryptedId);
+        $task = CensorTask::findOrFail($id);
+
+        switch ($request->action) {
+            case 'approve':
+                $task->status = 6; // 同意
+                break;
+            case 'reject':
+                $task->status = 4; // 拒绝
+                break;
+            case 'wait':
+                $task->status = 3; // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
         return back()->with('success', 'Node task status updated.');
     }
 }

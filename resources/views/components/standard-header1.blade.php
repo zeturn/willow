@@ -4,10 +4,10 @@
       <span class="ml-3 text-blue-500 font-semibold text-3xl">memeGit </span>
     </a>
     <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
-      <a class="mr-5 hover:bg-gray-200 rounded hover:text-gray-900" href="{{ url('/entry') }}">Entry</a>
-      <a class="mr-5 hover:bg-gray-200 rounded hover:text-gray-900" href="{{ url('/wall') }}">Discuss</a>
-      <a class="mr-5 hover:bg-gray-200 rounded hover:text-gray-900" href="{{ route('categories.index') }}">Category</a>
-      <a class="mr-5 hover:bg-gray-200 rounded hover:text-gray-900">API</a>
+      <a class="mr-5  rounded hover:text-blue-500" href="{{ url('/entry') }}">Entry</a>
+      <a class="mr-5  rounded hover:text-blue-500" href="{{ url('/wall') }}">Discuss</a>
+      <a class="mr-5  rounded hover:text-blue-500" href="{{ route('categories.index') }}">Category</a>
+      <a class="mr-5  rounded hover:text-blue-500">API</a>
     </nav>
 
     @guest

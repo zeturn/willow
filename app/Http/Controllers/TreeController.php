@@ -15,7 +15,7 @@ class TreeController extends Controller
      */
     public function index()
     {
-        $trees = Tree::all(); // 获取所有分类树节点
+        $trees = Tree::paginate(20); // 获取所有分类树节点
 
         return view('trees.index', compact('trees'));
     }

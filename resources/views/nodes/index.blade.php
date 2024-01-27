@@ -23,6 +23,11 @@
                     </li>
                     @endforeach
                 </ul>
+
+                <!-- Pagination -->
+                <div class="mt-4">
+                    {{ $nodes->links() }}
+                </div>
             </div>
         </div>
 

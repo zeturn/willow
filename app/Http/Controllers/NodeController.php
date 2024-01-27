@@ -15,7 +15,7 @@ class NodeController extends Controller
      */
     public function index()
     {
-        $nodes = Node::all(); // 获取所有节点
+        $nodes = Node::paginate(20); // 获取所有节点
         return view('nodes.index', compact('nodes'));
     }
 

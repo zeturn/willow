@@ -15,7 +15,7 @@ class EdgeController extends Controller
      */
     public function index()
     {
-        $edges = Edge::all(); // 获取所有边
+        $edges = Edge::paginate(20); // 获取所有边
         return view('edges.index', compact('edges'));
     }
 

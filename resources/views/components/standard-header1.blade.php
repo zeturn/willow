@@ -41,28 +41,28 @@
             <li>
                 <button
                     :class="{ 'bg-neutral-100' : navigationMenu=='entry-card', 'hover:bg-neutral-100' : navigationMenu!='entry-card' }" @mouseover="navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='entry-card'" @mouseleave="navigationMenuLeave()" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none group w-max">
-                    <span>{{_('Entry')}}</span> 
+                    <span>{{ __('Entry')}}</span> 
                     <svg :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'entry-card' }" class="relative top-[1px] ml-1 h-3 w-3 ease-out duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </button>
             </li>
             <li>
                 <button 
                     :class="{ 'bg-neutral-100' : navigationMenu=='discuss-card', 'hover:bg-neutral-100' : navigationMenu!='discuss-card' }" @mouseover="navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='discuss-card'" @mouseleave="navigationMenuLeave()" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none bg-background hover:bg-neutral-100 group w-max">
-                    <span>{{_('Discuss')}}</span>
+                    <span>{{ __('Discuss')}}</span>
                     <svg :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'discuss-card' }" class="relative top-[1px] ml-1 h-3 w-3 ease-out duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </button>
             </li>
             <li>
                 <button 
                     :class="{ 'bg-neutral-100' : navigationMenu=='category-card', 'hover:bg-neutral-100' : navigationMenu!='category-card' }" @mouseover="navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='category-card'" @mouseleave="navigationMenuLeave()" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none bg-background hover:bg-neutral-100 group w-max">
-                    <span>{{_('Category')}}</span>
+                    <span>{{ __('Category')}}</span>
                     <svg :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'category-card' }" class="relative top-[1px] ml-1 h-3 w-3 ease-out duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
                 </button>
             </li>
 
             <li>
                 <a href="#_" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md hover:text-neutral-900 focus:outline-none disabled:opacity-50 disabled:pointer-events-none bg-background hover:bg-neutral-100 group w-max">
-                    Documentation
+                {{ __('Documentation')}}
                 </a>
             </li>
         </ul>
@@ -144,10 +144,10 @@
 
     @guest
       <button class="inline-flex items-center border-0 py-1 px-4 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-        <a href="{{ route('login') }}">Login</a>
+        <a href="{{ route('login') }}">{{ __('Login')}}</a>
       </button>
       <button class="inline-flex items-center border-0 py-1 px-4 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-        <a href="{{ route('register') }}">Register</a>
+        <a href="{{ route('register') }}">{{ __('Register')}}</a>
       </button>
     @else
       <a href="{{ route('workstation.index') }}">

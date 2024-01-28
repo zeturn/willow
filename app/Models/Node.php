@@ -80,33 +80,69 @@ class Node extends Model
             return $this->hasMany(Edge::class, 'end_node');
         }
     
-        // 获取与当前节点邻接的所有节点和边的状态
-        public function getAdjacentNodesAndEdges()
-        {
-            $adjacentNodesAndEdges = [];
-    
-            // 获取以当前节点为起点的边
+    /**
+     * 获取与当前节点邻接的所有节点和边的状态
+     * Get all adjacent nodes and the status of edges connected to the current node
+     * 此方法返回当前节点所有邻接节点及其边的状态。它考虑了异常情况，如数据库查询失败或返回空值。
+     * This method returns all adjacent nodes and the status of their edges. It handles exceptions such as database query failures or null returns.
+     * @return array 返回包含邻接节点和边状态的数组/Returns an array containing adjacent nodes and edge status
+     */
+    public function getAdjacentNodesAndEdges()
+    {
+        $adjacentNodesAndEdges = [];
+
+        // 尝试获取以当前节点为起点的边，处理潜在的查询异常
+        // Attempt to retrieve edges with the current node as the start, handling potential query exceptions
+        try {
             $edgesAsStart = $this->edgesAsStart()->with('endNode')->get();
-    
-            foreach ($edgesAsStart as $edge) {
-                $adjacentNodesAndEdges[] = [
-                    'adjacent_node' => $edge->endNode, // 邻接节点
-                    'edge_status' => $edge->status, // 边的状态
-                ];
-            }
-    
-            // 获取以当前节点为终点的边
-            $edgesAsEnd = $this->edgesAsEnd()->with('startNode')->get();
-    
-            foreach ($edgesAsEnd as $edge) {
-                $adjacentNodesAndEdges[] = [
-                    'adjacent_node' => $edge->startNode, // 邻接节点
-                    'edge_status' => $edge->status, // 边的状态
-                ];
-            }
-    
-            return $adjacentNodesAndEdges;
+        } catch (\Exception $e) {
+            // 查询失败时返回错误信息
+            // Return an error message if the query fails
+            return ['error' => 'Failed to retrieve edges as start node'];
         }
+
+        // 检查结果是否为非空数组
+        // Check if the result is a non-empty array
+        if (!empty($edgesAsStart)) {
+            foreach ($edgesAsStart as $edge) {
+                // 检查边和邻接节点是否存在
+                // Check if edge and adjacent node exist
+                if ($edge && $edge->endNode) {
+                    $adjacentNodesAndEdges[] = [
+                        'adjacent_node' => $edge->endNode, // 邻接节点 / Adjacent node
+                        'edge_status' => $edge->status, // 边的状态 / Edge status
+                    ];
+                }
+            }
+        }
+
+        // 尝试获取以当前节点为终点的边，处理潜在的查询异常
+        // Attempt to retrieve edges with the current node as the end, handling potential query exceptions
+        try {
+            $edgesAsEnd = $this->edgesAsEnd()->with('startNode')->get();
+        } catch (\Exception $e) {
+            // 查询失败时返回错误信息
+            // Return an error message if the query fails
+            return ['error' => 'Failed to retrieve edges as end node'];
+        }
+
+        // 检查结果是否为非空数组
+        // Check if the result is a non-empty array
+        if (!empty($edgesAsEnd)) {
+            foreach ($edgesAsEnd as $edge) {
+                // 检查边和邻接节点是否存在
+                // Check if edge and adjacent node exist
+                if ($edge && $edge->startNode) {
+                    $adjacentNodesAndEdges[] = [
+                        'adjacent_node' => $edge->startNode, // 邻接节点 / Adjacent node
+                        'edge_status' => $edge->status, // 边的状态 / Edge status
+                    ];
+                }
+            }
+        }
+
+        return $adjacentNodesAndEdges;
+    }
 
     /**
      * 获取关联的墙

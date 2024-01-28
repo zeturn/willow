@@ -60,8 +60,8 @@ class NodeController extends Controller
     public function show(Node $node)
     {
         $walls = $node->walls;
-        //dd($walls);
-        return view('nodes.show', compact('node','walls')); // 返回节点详情视图
+        $adjacentNodesAndEdges = $node->getAdjacentNodesAndEdges();
+        return view('nodes.show', compact('node','walls', 'adjacentNodesAndEdges')); // 返回节点详情视图
     }
 
     /**

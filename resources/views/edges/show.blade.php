@@ -8,12 +8,12 @@
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                 <h1 class="text-lg font-bold mb-4">边详情 (Edge Details)</h1>
                 <p class="mb-2">
-                    <a href="{{ route('edges.show', $edge->startNode->id) }}" class="text-blue-500 hover:text-blue-600 transition duration-200">
+                    <a href="{{ route('nodes.show', $edge->startNode->id) }}" class="text-blue-500 hover:text-blue-600 transition duration-200">
                         <span class="font-medium">起始节点 (Start Node):</span> {{ $edge->startNode->name }} {{ $edge->start_node }}
                     </a>
                 </p>
                 <p class="mb-4">
-                    <a href="{{ route('edges.show', $edge->endNode->id) }}" class="text-blue-500 hover:text-blue-600 transition duration-200">
+                    <a href="{{ route('nodes.show', $edge->endNode->id) }}" class="text-blue-500 hover:text-blue-600 transition duration-200">
                         <span class="font-medium">结束节点 (End Node):</span> {{ $edge->endNode->name }} {{ $edge->end_node }}
                     </a>
                 </p>

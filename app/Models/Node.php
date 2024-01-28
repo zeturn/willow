@@ -68,6 +68,46 @@ class Node extends Model
         return $this->hasMany(Edge::class, 'end_node');
     }
 
+        // 与起点为当前节点的边的关系
+        public function edgesAsStart()
+        {
+            return $this->hasMany(Edge::class, 'start_node');
+        }
+    
+        // 与终点为当前节点的边的关系
+        public function edgesAsEnd()
+        {
+            return $this->hasMany(Edge::class, 'end_node');
+        }
+    
+        // 获取与当前节点邻接的所有节点和边的状态
+        public function getAdjacentNodesAndEdges()
+        {
+            $adjacentNodesAndEdges = [];
+    
+            // 获取以当前节点为起点的边
+            $edgesAsStart = $this->edgesAsStart()->with('endNode')->get();
+    
+            foreach ($edgesAsStart as $edge) {
+                $adjacentNodesAndEdges[] = [
+                    'adjacent_node' => $edge->endNode, // 邻接节点
+                    'edge_status' => $edge->status, // 边的状态
+                ];
+            }
+    
+            // 获取以当前节点为终点的边
+            $edgesAsEnd = $this->edgesAsEnd()->with('startNode')->get();
+    
+            foreach ($edgesAsEnd as $edge) {
+                $adjacentNodesAndEdges[] = [
+                    'adjacent_node' => $edge->startNode, // 邻接节点
+                    'edge_status' => $edge->status, // 边的状态
+                ];
+            }
+    
+            return $adjacentNodesAndEdges;
+        }
+
     /**
      * 获取关联的墙
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

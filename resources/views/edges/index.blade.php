@@ -9,7 +9,7 @@
                 <div class="mt-4">
                     @foreach ($edges as $edge)
                     <div class="bg-gray-100 rounded-lg p-4 flex justify-between items-center mb-2">
-                        <span>{{ $edge->start_node }} 到 {{ $edge->end_node }}</span>
+                        <span>{{ $edge->startNode->name }} 到 {{ $edge->endNode->name }}</span>
                         <div class="flex space-x-2">
                             <a href="{{ route('edges.show', $edge->id) }}" class="text-blue-600 hover:text-blue-800">
                                 查看详情

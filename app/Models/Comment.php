@@ -52,31 +52,82 @@ class Comment extends Model
         return is_null($this->parent_id);
     }
 
-    // 与Topic关联
+    /**
+     * Establishes a relationship with the Topic model.
+     * 建立与Topic模型的关联关系。
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo The relationship query builder.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo 关系查询构建器。
+     */
     public function topic()
     {
+        // Return the belongsTo relationship with Topic model.
+        // 返回与Topic模型的belongsTo关系。
         return $this->belongsTo(Topic::class);
     }
 
-    // 与User关联
+    /**
+     * Establishes a relationship with the User model.
+     * 建立与User模型的关联关系。
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo The relationship query builder.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo 关系查询构建器。
+     */
     public function user()
     {
+        // Return the belongsTo relationship with User model.
+        // 返回与User模型的belongsTo关系。
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * Establishes a many-to-many polymorphic relationship with Album.
+     * 建立与Album的多对多多态关联关系。
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany The relationship query builder.
+     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany 关系查询构建器。
+     */
     public function albums()
     {
+        // Return the morphToMany relationship with Album model.
+        // 返回与Album模型的morphToMany关系。
         return $this->morphToMany(Album::class, 'entity', 'entity_album_association');
     }
 
-    public function EntityAlbumAssociations() {
+    /**
+     * Retrieves EntityAlbumAssociations where entity_type is 'comment'.
+     * 获取entity_type为'comment'的EntityAlbumAssociations。
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany The relationship query builder.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany 关系查询构建器。
+     */
+    public function EntityAlbumAssociations()
+    {
+        // Return the hasMany relationship with EntityAlbumAssociation model, filtering by entity_type.
+        // 返回与EntityAlbumAssociation模型的hasMany关系，并通过entity_type进行过滤。
         return $this->hasMany(EntityAlbumAssociation::class, 'entity_id')
                     ->where('entity_type', 'comment');
     }
 
+    /**
+     * Adds an album to the entity.
+     * 将相册添加到实体。
+     *
+     * @param \App\Models\Album $album The album to add.
+     * @param \App\Models\Album $album 要添加的相册。
+     * @return mixed The result of the association operation.
+     * @return mixed 关联操作的结果。
+     */
     public function addAlbum($album)
     {
+        if (!($album instanceof Album)) {
+            // Return an error view if the provided album is not an instance of Album model.
+            // 如果提供的相册不是Album模型的实例，则返回错误视图。
+            return view('errors.general', ['message' => 'Invalid album type provided'], 500);
+        }
+
         return EntityAlbumAssociation::addAELink($this, $album);
+
     }
 
     /**

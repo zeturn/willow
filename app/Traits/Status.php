@@ -5,42 +5,58 @@ namespace App\Traits;
 trait Status {
     
     /**
-     * 查询status指定位上的数字
+     * 查询status指定位上的数字 / Find the digit at the specified position in a number
      * 
-     * @param int $num 原始数字
-     * @param int $p 位置
-     * @return int|null 位上的数字或者null（如果位置无效）
+     * @param int $num 原始数字 / Original number
+     * @param int $p 位置 / Position
+     * @return int|null 位上的数字或者null（如果位置无效） / Digit at the position or null (if the position is invalid)
      */
     function findDigit($num, $p) {
-        $numStr = strval($num);
-    
-        if ($p > strlen($numStr) || $p <= 0) {
-            // 位置无效
+        // 验证输入是否为整数 / Validate if inputs are integers
+        if (!is_int($num) || !is_int($p)) {
+            // 输入类型错误 / Input type incorrect
             return null;
         }
-    
-        return $numStr[strlen($numStr) - $p];
+
+        $numStr = strval($num);
+
+        // 验证位置是否有效 / Validate if the position is valid
+        if ($p > strlen($numStr) || $p <= 0) {
+            // 位置无效 / Position invalid
+            return null;
+        }
+
+        // 返回指定位置的数字 / Return the digit at the specified position
+        return (int)$numStr[strlen($numStr) - $p];
     }
 
     /**
-     * 更改指定位数上的数字
+     * 更改指定位数上的数字 / Change the digit at the specified position in a number
      * 
-     * @param int $num 原始数字
-     * @param int $p 位置
-     * @param int $newDigit 新的数字
-     * @return int|null 更改后的数字或者null（如果位置或新数字无效）
+     * @param int $num 原始数字 / Original number
+     * @param int $p 位置 / Position
+     * @param int $newDigit 新的数字 / New digit
+     * @return int|null 更改后的数字或者null（如果位置或新数字无效） / Modified number or null (if the position or new digit is invalid)
      */
     function changeDigit($num, $p, $newDigit) {
-        $numStr = strval($num);
-
-        if ($p > strlen($numStr) || $p <= 0 || $newDigit < 0 || $newDigit > 9) {
-            // 位置或新数字无效
+        // 验证输入是否为整数 / Validate if inputs are integers
+        if (!is_int($num) || !is_int($p) || !is_int($newDigit)) {
+            // 输入类型错误 / Input type incorrect
             return null;
         }
 
-        // 从右向左修改数字
+        $numStr = strval($num);
+
+        // 验证位置和新数字是否有效 / Validate if the position and new digit are valid
+        if ($p > strlen($numStr) || $p <= 0 || $newDigit < 0 || $newDigit > 9) {
+            // 位置或新数字无效 / Position or new digit invalid
+            return null;
+        }
+
+        // 从右向左修改数字 / Modify the digit from right to left
         $numStr[strlen($numStr) - $p] = strval($newDigit);
 
+        // 返回修改后的数字 / Return the modified number
         return intval($numStr);
     }
 

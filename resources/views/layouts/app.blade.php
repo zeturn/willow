@@ -41,6 +41,5 @@
         @stack('modals')
 
         @livewireScripts
-        @inertia
     </body>
 </html>

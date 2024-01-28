@@ -20,7 +20,7 @@ class LoginResponse implements LoginResponseContract
         if (Gate::allows('filament-panel')) {
             $home = '/admin'; // 如果有权限，重定向到 '/admin'
         } else {
-            $home = '/workstation'; // 如果没有权限，重定向到 '/dashboard'
+            $home = '/workstation'; // 如果没有权限，重定向到 '/workstation'
         }
 
         return redirect()->intended($home);

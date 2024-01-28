@@ -21,7 +21,7 @@
         @livewireStyles
     </head>
     <body class="">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen bg-[#f7fdff] dark:bg-gray-900">
 
             <!-- Page Heading -->
             <x-standard-header2 />

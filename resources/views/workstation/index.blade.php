@@ -30,6 +30,12 @@
           <div class="text-sm text-gray-600">More...</div>
         @endif
       </div>
+
+      <div class="bg-purple-100 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+        <h3 class="text-xl mb-2">{{ __('Censor Tasks') }}</h3>
+        
+      </div>
+
     </div>
 
     <!-- Right Column (Branch, Version, Topic, Comment) -->
@@ -65,7 +71,7 @@
             <h3 class="text-xl mb-2">{{ __('Topics') }}</h3>
             @foreach($topics->take(5) as $topic)
                 <div class="mb-2">
-                    <span class="font-semibold">{{ $topic->id }}</span> - Updated at: {{ $topic->updated_at }}
+                    <span class="font-semibold">{{ $topic->name }}</span> - Updated at: {{ $topic->updated_at }}
                 </div>
             @endforeach
             @if($topics->count() > 5)
@@ -77,9 +83,9 @@
         <div class="bg-green-100 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
             <h3 class="text-xl mb-2">{{ __('Comments') }}</h3>
             @foreach($comments->take(5) as $comment)
-                <div class="mb-2">
-                    <span class="font-semibold">{{ $comment->id }}</span> - Updated at: {{ $comment->updated_at }}
-                </div>
+            <div class="mb-2">
+                <span class="font-semibold">{{ \Illuminate\Support\Str::limit($comment->content, 30) }}</span> - Updated at: {{ $comment->updated_at }}
+            </div>
             @endforeach
             @if($comments->count() > 5)
                 <div class="text-sm text-gray-600">More...</div>

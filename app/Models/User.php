@@ -69,12 +69,60 @@ class User extends Authenticatable
     ];
 
     /**
-     * 返回用户持有的分支
+     * 返回用户持有的分支EntryBranch
      * 
-     * 
+     * 修改:拥有多个
      */
     public function branches() {
         return $this->belongsToMany(EntryBranch::class, 'entry_branch_users', 'user_id', 'entry_branch_id')
                     ->where('role', 1);
+    }
+
+    /**
+     * 用户持有的EntryVersion
+     * 拥有多个
+     */
+    public function versions() {
+        return $this->hasMany(EntryVersion::class, 'author_id');
+    }
+
+    /**
+     * 用户持有的EntryVersionTask
+     * 拥有多个
+     */
+    public function versiontasks() {
+        return $this->hasMany(EntryVersionTask::class, 'author_id');
+    }
+
+    /**
+     * 用户发表的Topic
+     * 拥有多个
+     */
+    public function topics() {
+        return $this->hasMany(Topic::class, 'user_id');
+    }
+
+    /**
+     * 用户发表的Comments
+     * 拥有多个
+     */
+    public function comments() {
+        return $this->hasMany(Comment::class, 'user_id');
+    }
+
+    /**
+     * 用户拥有的Medias
+     * 拥有多个
+     */
+    public function medias() {
+        return $this->hasMany(Media::class, 'user_id');
+    }
+
+    /**
+     * 用户拥有的Albums
+     * 拥有多个
+     */
+    public function albums() {
+        return $this->hasMany(Album::class, 'user_id');
     }
 }

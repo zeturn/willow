@@ -21,7 +21,7 @@ class Topic extends Model
      * 可以批量赋值的属性。
      * @var array
      */
-    protected $fillable = ['wall_id', 'name', 'slug', 'description', 'status'];
+    protected $fillable = ['wall_id', 'name', 'slug', 'description', 'user_id', 'status'];
 
     /**
      * Attributes that are searchable.

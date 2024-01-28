@@ -57,7 +57,7 @@ class EntryVersionController extends Controller
         EntryVersion::create([
             'entry_branch_id' => $branchId,
             'name' => $request->name,
-            'description' => $request-> description ,
+            'description' => $request-> description,
             'content' => $request-> content,
             'author_id' => Auth::id(),
             'status' => 9,

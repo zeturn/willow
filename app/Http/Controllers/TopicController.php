@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Wall;
 use App\Models\Topic;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
 {
@@ -31,6 +32,7 @@ class TopicController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'slug' => $request->name, // 确保这里的 slug 是唯一的
+            'user_id' => Auth::id(),
             'status' => 5, // May The 5 Be With You!
         ]);
     

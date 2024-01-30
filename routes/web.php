@@ -73,10 +73,6 @@ Route::get('/reactjs', function () {
     return Inertia::render('hello-world');
 });
 
-
-
-
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -203,7 +199,7 @@ Route::prefix('entry')->name('entry.')->group(function () {
         Route::patch('/{versionId}', [EntryVersionController::class, 'update'])->name('update');
         Route::post('/createEWLink/{versionUuid}', [EntryVersionController::class, 'createEWLink'])->name('createEWLink');
 
-        Route::get('/editor/{editorId}', [EntryVersionController::class, 'editor'])->name('editor');
+        Route::get('/editor/{editorId}', [EntryVersionController::class, 'editor'])->name('editor');//entry.version.editor
         // 其他 EntryVersionController 的路由
     });
 
@@ -371,49 +367,62 @@ Route::prefix('albums')->name('albums.')->group(function () {
     Route::delete('/{album}', [AlbumsController::class, 'delete'])->name('delete');
 });
 
+/**
+ * -----------------------------
+ * 审核组
+ * censor route group
+ * 
+ * 
+ * 
+ */
 
-Route::prefix('censor')->group(function () {
+// 使用 CensorTaskController 控制器，并为所有路由定义一个共同的前缀 'censor'
+Route::prefix('censor')->name('censor.')->group(function () {
     Route::controller(CensorTaskController::class)->group(function () {
-        Route::get('/tasks', 'index')->name('censor.tasks.index');       
- 
-        Route::get('/tasks/list/entry', 'entryTaskList')->name('censor.tasks.list.entry');
-        Route::get('/tasks/list/branch', 'branchTaskList')->name('censor.tasks.list.branch');
-        Route::get('/tasks/list/version', 'versionTaskList')->name('censor.tasks.list.version');
-        Route::get('/tasks/list/task', 'taskTaskList')->name('censor.tasks.list.task');
-        Route::get('/tasks/list/wall', 'wallTaskList')->name('censor.tasks.list.wall');
-        Route::get('/tasks/list/topic', 'topicTaskList')->name('censor.tasks.list.topic');
-        Route::get('/tasks/list/comment', 'commentTaskList')->name('censor.tasks.list.comment');
-        Route::get('/tasks/list/media', 'mediaTaskList')->name('censor.tasks.list.media');
-        Route::get('/tasks/list/album', 'albumTaskList')->name('censor.tasks.list.album');
-        Route::get('/tasks/list/tree', 'treeTaskList')->name('censor.tasks.list.tree');
-        Route::get('/tasks/list/node', 'nodeTaskList')->name('censor.tasks.list.node');
-        Route::get('/tasks/list/edge', 'edgeTaskList')->name('censor.tasks.list.edge');
+        
+        // 获取任务列表的路由
+        Route::get('/tasks', 'index')->name('tasks.index');
 
-        Route::get('/tasks/entry/{id}', 'entryTask')->name('censor.tasks.entry');
-        Route::get('/tasks/branch/{id}', 'branchTask')->name('censor.tasks.branch');
-        Route::get('/tasks/version/{id}', 'versionTask')->name('censor.tasks.version');
-        Route::get('/tasks/task/{id}', 'taskTask')->name('censor.tasks.task');
-        Route::get('/tasks/wall/{id}', 'wallTask')->name('censor.tasks.wall');
-        Route::get('/tasks/topic/{id}', 'topicTask')->name('censor.tasks.topic');
-        Route::get('/tasks/comment/{id}', 'commentTask')->name('censor.tasks.comment');
-        Route::get('/tasks/media/{id}', 'mediaTask')->name('censor.tasks.media');
-        Route::get('/tasks/album/{id}', 'albumTask')->name('censor.tasks.album');
-        Route::get('/tasks/tree/{id}', 'treeTask')->name('censor.tasks.tree');
-        Route::get('/tasks/edge/{id}', 'edgeTask')->name('censor.tasks.edge');     
-        Route::get('/tasks/node/{id}', 'nodeTask')->name('censor.tasks.node');   
+        // 列出不同类型任务的路由
+        Route::get('/tasks/list/entry', 'entryTaskList')->name('tasks.list.entry');
+        Route::get('/tasks/list/branch', 'branchTaskList')->name('tasks.list.branch');
+        Route::get('/tasks/list/version', 'versionTaskList')->name('tasks.list.version');
+        Route::get('/tasks/list/task', 'taskTaskList')->name('tasks.list.task');
+        Route::get('/tasks/list/wall', 'wallTaskList')->name('tasks.list.wall');
+        Route::get('/tasks/list/topic', 'topicTaskList')->name('tasks.list.topic');
+        Route::get('/tasks/list/comment', 'commentTaskList')->name('tasks.list.comment');
+        Route::get('/tasks/list/media', 'mediaTaskList')->name('tasks.list.media');
+        Route::get('/tasks/list/album', 'albumTaskList')->name('tasks.list.album');
+        Route::get('/tasks/list/tree', 'treeTaskList')->name('tasks.list.tree');
+        Route::get('/tasks/list/node', 'nodeTaskList')->name('tasks.list.node');
+        Route::get('/tasks/list/edge', 'edgeTaskList')->name('tasks.list.edge');
 
-        // 新增的POST路由
-        Route::post('/tasks/update/entry', 'handleEntryTask')->name('censor.tasks.update.entry');
-        Route::post('/tasks/update/branch', 'handleBranchTask')->name('censor.tasks.update.branch');
-        Route::post('/tasks/update/version', 'handleVersionTask')->name('censor.tasks.update.version');
-        Route::post('/tasks/update/task', 'handleTaskTask')->name('censor.tasks.update.task');
-        Route::post('/tasks/update/wall', 'handleWallTask')->name('censor.tasks.update.wall');
-        Route::post('/tasks/update/topic', 'handleTopicTask')->name('censor.tasks.update.topic');
-        Route::post('/tasks/update/comment', 'handleCommentTask')->name('censor.tasks.update.comment');
-        Route::post('/tasks/update/media', 'handleMediaTask')->name('censor.tasks.update.media');
-        Route::post('/tasks/update/album', 'handleAlbumTask')->name('censor.tasks.update.album');
-        Route::post('/tasks/update/tree', 'handleTreeTask')->name('censor.tasks.update.tree');
-        Route::post('/tasks/update/edge', 'handleEdgeTask')->name('censor.tasks.update.edge');
-        Route::post('/tasks/update/node', 'handleNodeTask')->name('censor.tasks.update.node');        
+        // 根据 ID 获取特定任务的路由
+        Route::get('/tasks/entry/{id}', 'entryTask')->name('tasks.entry');
+        Route::get('/tasks/branch/{id}', 'branchTask')->name('tasks.branch');
+        Route::get('/tasks/version/{id}', 'versionTask')->name('tasks.version');
+        Route::get('/tasks/task/{id}', 'taskTask')->name('tasks.task');
+        Route::get('/tasks/wall/{id}', 'wallTask')->name('tasks.wall');
+        Route::get('/tasks/topic/{id}', 'topicTask')->name('tasks.topic');
+        Route::get('/tasks/comment/{id}', 'commentTask')->name('tasks.comment');
+        Route::get('/tasks/media/{id}', 'mediaTask')->name('tasks.media');
+        Route::get('/tasks/album/{id}', 'albumTask')->name('tasks.album');
+        Route::get('/tasks/tree/{id}', 'treeTask')->name('tasks.tree');
+        Route::get('/tasks/edge/{id}', 'edgeTask')->name('tasks.edge');
+        Route::get('/tasks/node/{id}', 'nodeTask')->name('tasks.node');
+
+        // 处理更新任务的 POST 路由
+        Route::post('/tasks/update/entry', 'handleEntryTask')->name('tasks.update.entry');
+        Route::post('/tasks/update/branch', 'handleBranchTask')->name('tasks.update.branch');
+        Route::post('/tasks/update/version', 'handleVersionTask')->name('tasks.update.version');
+        Route::post('/tasks/update/task', 'handleTaskTask')->name('tasks.update.task');
+        Route::post('/tasks/update/wall', 'handleWallTask')->name('tasks.update.wall');
+        Route::post('/tasks/update/topic', 'handleTopicTask')->name('tasks.update.topic');
+        Route::post('/tasks/update/comment', 'handleCommentTask')->name('tasks.update.comment');
+        Route::post('/tasks/update/media', 'handleMediaTask')->name('tasks.update.media');
+        Route::post('/tasks/update/album', 'handleAlbumTask')->name('tasks.update.album');
+        Route::post('/tasks/update/tree', 'handleTreeTask')->name('tasks.update.tree');
+        Route::post('/tasks/update/edge', 'handleEdgeTask')->name('tasks.update.edge');
+        Route::post('/tasks/update/node', 'handleNodeTask')->name('tasks.update.node');
     });
 });

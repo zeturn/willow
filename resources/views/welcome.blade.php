@@ -11,7 +11,7 @@
             <!-- Hero Section with Transparent Background -->
             <section class="flex flex-wrap items-center py-10 px-6">
                 <div class="w-full lg:w-1/2">
-                    <h1 class="text-6xl font-extrabold mb-6 text-gray-800 dark:text-white">{{ __('Welcome to memeGit DEV site') }}</h1>
+                    <h1 class="text-6xl font-extrabold mb-6 text-gray-800 dark:text-white">{{ __('Welcome to memeGit Pre site') }}</h1>
                     <p class="text-xl mb-6 text-gray-800 dark:text-white">{{ __('Explore the world of development and innovation.') }}</p>
                     <a href="#" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">{{ __('Learn More') }}</a>
                 </div>

@@ -1,8 +1,11 @@
 @extends('layouts.page')
 
 @section('title')
-    {{ __('Home') }} {{-- Translates "首页" into "Home" --}}
+    {{ __('Home') }}
 @endsection
+
+@section('description', 'memeGit是一个人文条目数据库，你可以在这里了解、创建和分享你的文化基因！这里针对迷因的特性针对设计了版本管理工具，帮助任何人轻松的给任何迷因提出自己的理解。')
+@section('keywords', '迷因, meme, HollowData, memeGit')
 
 @section('content')
     <div class="container mx-auto p-4 dark:bg-gray-900 max-w-7xl">

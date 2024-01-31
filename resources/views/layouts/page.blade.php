@@ -8,7 +8,7 @@
         <meta name="keywords" content="@yield('keywords', 'memegit, Hollowdata')">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>@yield('title', config('app.name', 'memeGit'))</title>
+        <title>@yield('title', config('app.name', 'memeGit')) - memeGit</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

@@ -11,7 +11,7 @@ def connect_db():
         host="154.12.37.165",  # 替换为您的数据库主机地址
         user="root",  # 替换为您的数据库用户名
         password="Jad57boq!",  # 替换为您的数据库密码
-        database="HD6",  # 替换为您的数据库名
+        database="HD7",  # 替换为您的数据库名
         port=3307
     )
 

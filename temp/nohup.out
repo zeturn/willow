@@ -1,8 +1,24 @@
-Building prefix dict from the default dictionary ...
-Loading model from cache /tmp/jieba.cache
-Loading model cost 1.027 seconds.
-Prefix dict has been built successfully.
-Building prefix dict from the default dictionary ...
-Loading model from cache /tmp/jieba.cache
-Loading model cost 1.008 seconds.
-Prefix dict has been built successfully.
+start
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/pymysql/connections.py", line 644, in connect
+    sock = socket.create_connection(
+  File "/usr/lib/python3.10/socket.py", line 845, in create_connection
+    raise err
+  File "/usr/lib/python3.10/socket.py", line 833, in create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/memegit/web/memegit.com/public_html/willow/temp/trinode.py", line 218, in <module>
+    main()
+  File "/home/memegit/web/memegit.com/public_html/willow/temp/trinode.py", line 190, in main
+    db = connect_db()
+  File "/home/memegit/web/memegit.com/public_html/willow/temp/trinode.py", line 18, in connect_db
+    return pymysql.connect(
+  File "/usr/local/lib/python3.10/dist-packages/pymysql/connections.py", line 358, in __init__
+    self.connect()
+  File "/usr/local/lib/python3.10/dist-packages/pymysql/connections.py", line 711, in connect
+    raise exc
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on '154.12.37.165' (timed out)")

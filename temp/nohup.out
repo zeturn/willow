@@ -1,17 +1,8 @@
 Building prefix dict from the default dictionary ...
 Loading model from cache /tmp/jieba.cache
-Loading model cost 1.147 seconds.
+Loading model cost 1.027 seconds.
 Prefix dict has been built successfully.
 Building prefix dict from the default dictionary ...
 Loading model from cache /tmp/jieba.cache
-Loading model cost 2.163 seconds.
-Prefix dict has been built successfully.
-start
-Building prefix dict from the default dictionary ...
-Loading model from cache /tmp/jieba.cache
-Loading model cost 1.082 seconds.
-Prefix dict has been built successfully.
-Building prefix dict from the default dictionary ...
-Loading model from cache /tmp/jieba.cache
-Loading model cost 1.678 seconds.
+Loading model cost 1.008 seconds.
 Prefix dict has been built successfully.

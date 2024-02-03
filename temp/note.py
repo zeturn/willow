@@ -11,7 +11,7 @@ def connect_db():
         host="154.12.37.165",  # 替换为您的数据库主机地址
         user="root",  # 替换为您的数据库用户名
         password="Jad57boq!",  # 替换为您的数据库密码
-        database="HD4",  # 替换为您的数据库名
+        database="HD6",  # 替换为您的数据库名
         port=3307
     )
 
@@ -95,6 +95,13 @@ def replace_words_with_same_pos(content, title, word_dict, replace_prob=0.5):
     # 分词并获取title的词性
     title_words = {word for word, _ in pseg.lcut(title)}
 
+    # 示例词汇库（简化版本）
+    word_dict = {
+        'n': ['华为手机', '原神', 'ikun','丁真','怪零','细颈瓶','原石','YUAN','迷你世界','孙笑川','老八','奥里给','小学生','米哈游','元梦之星','马化腾'],  # 名词
+        'v': ['唱', '跳', '撸', '搓', '拔', '淦', '捻'],   # 动词
+        # ... 其他词性
+    }
+
     # 新的content
     new_content = []
 
@@ -108,13 +115,6 @@ def replace_words_with_same_pos(content, title, word_dict, replace_prob=0.5):
             new_content.append(word)
 
     return ''.join(new_content)
-
-# 示例词汇库（简化版本）
-word_dict = {
-    'n': ['华为手机', '原神', 'ikun','丁真','怪零','细颈瓶','原石','YUAN','迷你世界','孙笑川','老八','奥里给','小学生','米哈游','元梦之星','马化腾'],  # 名词
-    'v': ['唱', '跳', '撸', '搓', '拔', '淦', '捻'],   # 动词
-    # ... 其他词性
-}
 
 def replace_title_words_in_content_xi(title, content):
     # 分词
@@ -204,13 +204,14 @@ def main():
         title = name
         confusing_sentences = replace_words_with_same_pos(content, title, word_dict)
         confusing_sentences_xi = replace_title_words_in_content_xi(title, content)
-
         # 向API发送混淆数据（这里需要您根据实际情况编写API调用代码）
-        time.sleep(1)
-        new_confusing_sentences = generate_paraphrased_content(confusing_sentences)
-        time.sleep(1)
-        new_confusing_sentences_xi = generate_paraphrased_content(confusing_sentences_xi)
+        if random.random() < 0.5:
+            time.sleep(1)
+            new_confusing_sentences = generate_paraphrased_content(confusing_sentences)
 
+        if random.random() < 0.5:
+            time.sleep(1)
+            new_confusing_sentences_xi = generate_paraphrased_content(confusing_sentences_xi)
         # 打印混淆结果
         #print("混淆一")
         #print(new_confusing_sentences)

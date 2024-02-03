@@ -5,13 +5,21 @@ import jieba.posseg as pseg
 import google.generativeai as genai
 import re
 import time
+import threading
+
+# 定义三个API密钥
+API_KEYS = [
+    "AIzaSyCoIcIP6BVNZD32ZbFjQzTg0gblu_YUjF0",
+    "AIzaSyB3mT7uWnmJ2S-GMwi9HDuU8d5Qai0FdwI",
+    "AIzaSyBERUY3rIomskHbktQFWu5or8HA7zSJzNo"
+]
 
 def connect_db():
     return pymysql.connect(
-        host="154.12.37.165",  # 替换为您的数据库主机地址
-        user="root",  # 替换为您的数据库用户名
-        password="Jad57boq!",  # 替换为您的数据库密码
-        database="HD7",  # 替换为您的数据库名
+        host="154.12.37.165",
+        user="root",
+        password="Jad57boq!",
+        database="HD6",
         port=3307
     )
 
@@ -22,78 +30,21 @@ def init_db(cursor):
             id INT PRIMARY KEY,
             name VARCHAR(255),
             content TEXT,
-            update_time DATETIME NULL  -- Here is the corrected line
+            update_time DATETIME NULL
         )
         """
     )
-
-def read_data(cursor, table_name):
-    cursor.execute(f"SELECT id, name, content, update_time FROM {table_name}")
-    return cursor.fetchall()
-
-def insert_result(cursor, data):
-    query = "INSERT INTO results (id, name, content, update_time) VALUES (%s, %s, %s, %s)"
-    cursor.execute(query, data)
-
-def generate_paraphrased_content(content):
-    # 重试配置
-    max_retries = 3  # 最大重试次数
-    retries = 0      # 当前重试次数
-
-    while retries < max_retries:
-        try:
-            # 配置API密钥
-            genai.configure(api_key="AIzaSyB3mT7uWnmJ2S-GMwi9HDuU8d5Qai0FdwI")
-
-            # 设置模型配置
-            generation_config = {
-                "temperature": 0.9,
-                "top_p": 1,
-                "top_k": 1,
-                "max_output_tokens": 2048,
-            }
-
-            # 安全设置
-            safety_settings = [
-                {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
-                {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
-                {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
-                {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"},
-            ]
-
-            # 初始化模型
-            model = genai.GenerativeModel(model_name="gemini-pro",
-                                          generation_config=generation_config,
-                                          safety_settings=safety_settings)
-
-            # 准备输入数据
-            prompt_parts = [
-                "You are an article cleaning GPT, and I will send you an entry from an encyclopedia website that explains professional terminology. Your task is to paraphrase the meaning of the entry based on its content. According to the purpose of use, your answer will be directly entered into our database, which means you need to provide a paraphrase directly without any other content (such as: okay, I will help you paraphrase the article, I understand your article, etc.), you need to provide the article directly. You need to paraphrase in a rigorous and objective tone so that everyone can understand the meaning of the entry. The entry needs to provide the usage of this word as much as possible. You need to make the entries more coherent. You need to make the entry detailed and informative. At the same time, you need to ensure that the generated result is different from all the sentences, word order, and word usage in the original entry. You need to provide a Chinese answer. Here are the entries (which may be in Chinese):",
-                content
-            ]
-
-            # 尝试生成内容
-            response = model.generate_content(prompt_parts)
-
-            # 检查response是否有效
-            if response and response.text:
-                return response.text  # 成功获取响应
-
-        except Exception as e:
-            # 捕获异常，准备重试
-            retries += 1  # 重试次数加1
-
-    # 所有重试均失败
-    return "等待解释"
-
-# 负责生成胡言乱语
-import jieba
-import jieba.posseg as pseg
-import random
-
+# 示例词汇库（简化版本）
+word_dict = {
+    'n': ['华为手机', '原神', 'ikun','丁真','怪零','细颈瓶','原石','YUAN','迷你世界','孙笑川','老八','奥里给','小学生','米哈游','元梦之星','马化腾'],  # 名词
+    'v': ['唱', '跳', '撸', '搓', '拔', '淦', '捻'],   # 动词
+    # ... 其他词性
+}
 def replace_words_with_same_pos(content, title, word_dict, replace_prob=0.5):
     # 分词并获取title的词性
     title_words = {word for word, _ in pseg.lcut(title)}
+
+
 
     # 新的content
     new_content = []
@@ -108,13 +59,6 @@ def replace_words_with_same_pos(content, title, word_dict, replace_prob=0.5):
             new_content.append(word)
 
     return ''.join(new_content)
-
-# 示例词汇库（简化版本）
-word_dict = {
-    'n': ['华为手机', '原神', 'ikun','丁真','怪零','细颈瓶','原石','YUAN','迷你世界','孙笑川','老八','奥里给','小学生','米哈游','元梦之星','马化腾'],  # 名词
-    'v': ['唱', '跳', '撸', '搓', '拔', '淦', '捻'],   # 动词
-    # ... 其他词性
-}
 
 def replace_title_words_in_content_xi(title, content):
     # 分词
@@ -177,6 +121,69 @@ def replace_title_words_in_content_xi(title, content):
 
     return content
 
+def read_data(cursor, table_name):
+    cursor.execute(f"SELECT id, name, content, update_time FROM {table_name}")
+    return cursor.fetchall()
+
+def insert_result(cursor, data):
+    query = "INSERT INTO results (id, name, content, update_time) VALUES (%s, %s, %s, %s)"
+    cursor.execute(query, data)
+
+def generate_paraphrased_content(content, api_key):
+    max_retries = 3
+    retries = 0
+
+    while retries < max_retries:
+        try:
+            genai.configure(api_key=api_key)
+            generation_config = {
+                "temperature": 0.9,
+                "top_p": 1,
+                "top_k": 1,
+                "max_output_tokens": 2048,
+            }
+            safety_settings = [
+                {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_NONE"},
+                {"category": "HARM_CATEGORY_HATE_SPEECH", "threshold": "BLOCK_NONE"},
+                {"category": "HARM_CATEGORY_SEXUALLY_EXPLICIT", "threshold": "BLOCK_NONE"},
+                {"category": "HARM_CATEGORY_DANGEROUS_CONTENT", "threshold": "BLOCK_NONE"},
+            ]
+            model = genai.GenerativeModel(model_name="gemini-pro",
+                                          generation_config=generation_config,
+                                          safety_settings=safety_settings)
+            prompt_parts = ["You are an article cleaning GPT, and I will send you an entry from an encyclopedia website that explains professional terminology. Your task is to paraphrase the meaning of the entry based on its content. According to the purpose of use, your answer will be directly entered into our database, which means you need to provide a paraphrase directly without any other content (such as: okay, I will help you paraphrase the article, I understand your article, etc.), you need to provide the article directly. You need to paraphrase in a rigorous and objective tone so that everyone can understand the meaning of the entry. The entry needs to provide the usage of this word as much as possible. You need to make the entries more coherent. You need to make the entry detailed and informative. At the same time, you need to ensure that the generated result is different from all the sentences, word order, and word usage in the original entry. You need to provide a Chinese answer. Here are the entries (which may be in Chinese):", content]
+            response = model.generate_content(prompt_parts)
+            if response and response.text:
+                return response.text
+        except Exception as e:
+            retries += 1
+    return "等待解释"
+
+def worker(data, api_key):
+    db = connect_db()
+    cursor = db.cursor()
+    for row in data:
+        id, name, content, update_time = row
+        new_content = generate_paraphrased_content(content, api_key)
+        insert_result(cursor, (id, name, new_content, update_time))
+
+        # 生成混淆数据
+        title = name
+
+        # 向API发送混淆数据（这里需要您根据实际情况编写API调用代码）
+        if random.random() < 0.45:
+            confusing_sentences = replace_words_with_same_pos(content, title, word_dict)
+            time.sleep(0.8)
+            new_confusing_sentences = generate_paraphrased_content(confusing_sentences, api_key)
+
+        if random.random() < 0.45:
+            time.sleep(0.8)
+            confusing_sentences_xi = replace_title_words_in_content_xi(title, content)
+            new_confusing_sentences_xi = generate_paraphrased_content(confusing_sentences_xi, api_key)
+
+    db.commit()
+    cursor.close()
+    db.close()
 
 def main():
     print('start')
@@ -186,39 +193,26 @@ def main():
     init_db(cursor)
     db.commit()
 
-    original_table = "memes"  # 替换为您的原始数据表名
+    original_table = "memes"
     data = read_data(cursor, original_table)
-
-    for row in data:
-        id, name, content, update_time = row
-
-        # 生成新内容
-        time.sleep(1)
-        new_content = generate_paraphrased_content(content)
-
-        # 插入到result表
-        insert_result(cursor, (id, name, new_content, update_time))
-        db.commit()
-
-        # 生成混淆数据
-        title = name
-        confusing_sentences = replace_words_with_same_pos(content, title, word_dict)
-        confusing_sentences_xi = replace_title_words_in_content_xi(title, content)
-
-        # 向API发送混淆数据（这里需要您根据实际情况编写API调用代码）
-        time.sleep(1)
-        new_confusing_sentences = generate_paraphrased_content(confusing_sentences)
-        time.sleep(1)
-        new_confusing_sentences_xi = generate_paraphrased_content(confusing_sentences_xi)
-
-        # 打印混淆结果
-        #print("混淆一")
-        #print(new_confusing_sentences)
-        #print("混淆二")
-        #print(new_confusing_sentences_xi)
-
     cursor.close()
     db.close()
+
+    print('read and cut data chunk')
+    # 分割数据以便于在不同线程中处理
+    data_chunks = [data[i::3] for i in range(3)]
+
+    print('allocate thread...')
+    threads = []
+    for i in range(3):
+        thread = threading.Thread(target=worker, args=(data_chunks[i], API_KEYS[i]))
+        threads.append(thread)
+        thread.start()
+    print('start')
+    for thread in threads:
+        thread.join()
+
+    print('Processing complete')
 
 if __name__ == "__main__":
     main()

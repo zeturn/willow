@@ -1,3 +1,9 @@
+@section('title')
+    {{ __('Login') }}
+@endsection
+
+@section('description', 'memeGit的登陆页面')
+@section('keywords', 'auth','login','迷因, meme, HollowData, memeGit')
 <x-guest-layout>
     <x-authentication-card>
         <x-slot name="logo">

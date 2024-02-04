@@ -54,7 +54,7 @@ class EntryVersion extends Model
         return $censorTask = CensorTask::create([
             'entity_type' => 'EntryVersion',
             'entity_id' => $this->id,
-            'status' => 5,
+            'status' => 6,
         ]);
     }
 

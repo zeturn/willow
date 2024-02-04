@@ -45,7 +45,7 @@ class Media extends Model
         return $censorTask = CensorTask::create([
             'entity_type' => 'Media',
             'entity_id' => $this->id,
-            'status' => 5,
+            'status' => 6,
         ]);
     }
 

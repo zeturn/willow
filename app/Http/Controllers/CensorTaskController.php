@@ -95,9 +95,9 @@ class CensorTaskController extends Controller
     */
     public function entryTaskList()
     {
-        $tasks = CensorTask::where('entity_type', 'Entry')->get();
+        $tasks = CensorTask::where('entity_type', 'Entry')->where('status', 6)->get();
         return view('censor.entry.entryTaskList', ['tasks' => $tasks]);
-    }
+    }    
 
     public function branchTaskList()
     {
@@ -270,15 +270,15 @@ class CensorTaskController extends Controller
 
         switch ($request->action) {
             case 'approve':
-                $task->status = 6; // 同意
+                $task->changeStatus(10); // 同意
                 $task->entry->changeStatus(1101111545);
                 break;
             case 'reject':
-                $task->status = 4; // 拒绝
+                $task->changeStatus(4); // 拒绝
                 $task->entry->changeStatus(1101111444);
                 break;
             case 'wait':
-                $task->status = 3; // 等待
+                $task->changeStatus(7); // 等待
                 break;
             default:
                 // 可能需要处理未知操作
@@ -296,14 +296,14 @@ class CensorTaskController extends Controller
         switch ($request->action) {
             case 'approve':
                 $task->entry->changeStatus(1201111545);
-                $task->status = 6; // 同意
+                $task->changeStatus(10); // 同意
                 break;
             case 'reject':
                 $task->entry->changeStatus(1201113474);
-                $task->status = 4; // 拒绝
+                $task->changeStatus(4); // 拒绝
                 break;
             case 'wait':
-                $task->status = 3; // 等待
+                $task->changeStatus(7); // 等待
                 break;
             default:
                 // 可能需要处理未知操作
@@ -321,14 +321,14 @@ class CensorTaskController extends Controller
         switch ($request->action) {
             case 'approve':
                 $task->entry->changeStatus(1301111545);
-                $task->status = 6; // 同意
+                $task->changeStatus(10);; // 同意
                 break;
             case 'reject':
                 $task->entry->changeStatus(1301113474);
-                $task->status = 4; // 拒绝
+                $task->changeStatus(4); // 拒绝
                 break;
             case 'wait':
-                $task->status = 3; // 等待
+                $task->changeStatus(7); // 等待
                 break;
             default:
                 // 可能需要处理未知操作
@@ -345,13 +345,13 @@ class CensorTaskController extends Controller
 
         switch ($request->action) {
             case 'approve':
-                $task->status = 6; // 同意
+                $task->changeStatus(10); // 同意
                 break;
             case 'reject':
-                $task->status = 4; // 拒绝
+                $task->changeStatus(4); // 拒绝
                 break;
             case 'wait':
-                $task->status = 3; // 等待
+                $task->changeStatus(7); // 等待
                 break;
             default:
                 // 可能需要处理未知操作
@@ -368,13 +368,13 @@ class CensorTaskController extends Controller
 
         switch ($request->action) {
             case 'approve':
-                $task->status = 6; // 同意
+                $task->changeStatus(10); // 同意
                 break;
             case 'reject':
-                $task->status = 4; // 拒绝
+                $task->changeStatus(4); // 拒绝
                 break;
             case 'wait':
-                $task->status = 3; // 等待
+                $task->changeStatus(7); // 等待
                 break;
             default:
                 // 可能需要处理未知操作
@@ -391,13 +391,13 @@ class CensorTaskController extends Controller
 
         switch ($request->action) {
             case 'approve':
-                $task->status = 6; // 同意
+                $task->changeStatus(10); // 同意
                 break;
             case 'reject':
-                $task->status = 4; // 拒绝
+                $task->changeStatus(4); // 拒绝
                 break;
             case 'wait':
-                $task->status = 3; // 等待
+                $task->changeStatus(7); // 等待
                 break;
             default:
                 // 可能需要处理未知操作
@@ -414,13 +414,13 @@ class CensorTaskController extends Controller
 
         switch ($request->action) {
             case 'approve':
-                $task->status = 6; // 同意
+                $task->changeStatus(10); // 同意
                 break;
             case 'reject':
-                $task->status = 4; // 拒绝
+                $task->changeStatus(4); // 拒绝
                 break;
             case 'wait':
-                $task->status = 3; // 等待
+                $task->changeStatus(7); // 等待
                 break;
             default:
                 // 可能需要处理未知操作
@@ -437,13 +437,13 @@ class CensorTaskController extends Controller
 
         switch ($request->action) {
             case 'approve':
-                $task->status = 6; // 同意
+                $task->changeStatus(10); // 同意
                 break;
             case 'reject':
-                $task->status = 4; // 拒绝
+                $task->changeStatus(4); // 拒绝
                 break;
             case 'wait':
-                $task->status = 3; // 等待
+                $task->changeStatus(7);// 等待
                 break;
             default:
                 // 可能需要处理未知操作
@@ -460,13 +460,13 @@ class CensorTaskController extends Controller
 
         switch ($request->action) {
             case 'approve':
-                $task->status = 6; // 同意
+                $task->changeStatus(10); // 同意
                 break;
             case 'reject':
-                $task->status = 4; // 拒绝
+                $task->changeStatus(4); // 拒绝
                 break;
             case 'wait':
-                $task->status = 3; // 等待
+                $task->changeStatus(7); // 等待
                 break;
             default:
                 // 可能需要处理未知操作
@@ -483,13 +483,13 @@ class CensorTaskController extends Controller
 
         switch ($request->action) {
             case 'approve':
-                $task->status = 6; // 同意
+                $task->changeStatus(10); // 同意
                 break;
             case 'reject':
-                $task->status = 4; // 拒绝
+                $task->changeStatus(4); // 拒绝
                 break;
             case 'wait':
-                $task->status = 3; // 等待
+                $task->changeStatus(7); // 等待
                 break;
             default:
                 // 可能需要处理未知操作
@@ -506,13 +506,13 @@ class CensorTaskController extends Controller
 
         switch ($request->action) {
             case 'approve':
-                $task->status = 6; // 同意
+                $task->changeStatus(10); // 同意
                 break;
             case 'reject':
-                $task->status = 4; // 拒绝
+                $task->changeStatus(4); // 拒绝
                 break;
             case 'wait':
-                $task->status = 3; // 等待
+                $task->changeStatus(7); // 等待
                 break;
             default:
                 // 可能需要处理未知操作
@@ -529,13 +529,13 @@ class CensorTaskController extends Controller
 
         switch ($request->action) {
             case 'approve':
-                $task->status = 6; // 同意
+                $task->changeStatus(10); // 同意
                 break;
             case 'reject':
-                $task->status = 4; // 拒绝
+                $task->changeStatus(7); // 拒绝
                 break;
             case 'wait':
-                $task->status = 3; // 等待
+                $task->changeStatus(7); // 等待
                 break;
             default:
                 // 可能需要处理未知操作

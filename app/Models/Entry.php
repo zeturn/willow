@@ -77,7 +77,7 @@ class Entry extends Model
         return $censorTask = CensorTask::create([
             'entity_type' => 'Entry',
             'entity_id' => $this->id,
-            'status' => 5,
+            'status' => 6,
         ]);
     }
 

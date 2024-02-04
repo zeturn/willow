@@ -96,73 +96,73 @@ class CensorTaskController extends Controller
     public function entryTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'Entry')->get();
-        return view('censor.entryTaskList', ['tasks' => $tasks]);
+        return view('censor.entry.entryTaskList', ['tasks' => $tasks]);
     }
 
     public function branchTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'EntryBranch')->get();
-        return view('censor.branchTaskList', ['tasks' => $tasks]);
+        return view('censor.branch.branchTaskList', ['tasks' => $tasks]);
     }
 
     public function versionTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'EntryVersion')->get();
-        return view('censor.versionTaskList', ['tasks' => $tasks]);
+        return view('censor.version.versionTaskList', ['tasks' => $tasks]);
     }
 
     public function taskTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'EntryVersionTask')->get();
-        return view('censor.taskTaskList', ['tasks' => $tasks]);
+        return view('censor.task.taskTaskList', ['tasks' => $tasks]);
     }
 
     public function wallTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'Wall')->get();
-        return view('censor.wallTaskList', ['tasks' => $tasks]);
+        return view('censor.wall.wallTaskList', ['tasks' => $tasks]);
     }
 
     public function topicTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'Topic')->get();
-        return view('censor.topicTaskList', ['tasks' => $tasks]);
+        return view('censor.topic.topicTaskList', ['tasks' => $tasks]);
     }
 
     public function commentTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'Comment')->get();
-        return view('censor.commentTaskList', ['tasks' => $tasks]);
+        return view('censor.comment.commentTaskList', ['tasks' => $tasks]);
     }
 
     public function mediaTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'Media')->get();
-        return view('censor.mediaTaskList', ['tasks' => $tasks]);
+        return view('censor.media.mediaTaskList', ['tasks' => $tasks]);
     }
 
     public function albumTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'Album')->get();
-        return view('censor.albumTaskList', ['tasks' => $tasks]);
+        return view('censor.album.albumTaskList', ['tasks' => $tasks]);
     }
 
     public function treeTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'Tree')->get();
-        return view('censor.treeTaskList', ['tasks' => $tasks]);
+        return view('censor.tree.treeTaskList', ['tasks' => $tasks]);
     }
 
     public function edgeTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'Edge')->get();
-        return view('censor.edgeTaskList', ['tasks' => $tasks]);
+        return view('censor.edge.edgeTaskList', ['tasks' => $tasks]);
     }
 
     public function nodeTaskList()
     {
         $tasks = CensorTask::where('entity_type', 'Node')->get();
-        return view('censor.nodeTaskList', ['tasks' => $tasks]);
+        return view('censor.node.nodeTaskList', ['tasks' => $tasks]);
     }
 
     /**

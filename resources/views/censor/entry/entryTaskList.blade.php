@@ -11,9 +11,15 @@
                     @foreach ($tasks as $task)
                         @if($task->entity_type === 'Entry')
                             <div class="mb-4 border-b pb-4">
+
                                 <a href="{{ route('censor.tasks.entry', ['id' => $task->id]) }}" class="text-xl font-bold">
-                                    Task ID: {{ $task->id }}
+                                    @if($task->entry)
+                                        Entry: {{ $task->entry->name }}
+                                    @else
+                                        Entry: Name Not Available
+                                    @endif
                                 </a>
+                                <p class="text-gray-600">Task ID: {{ $task->id }}</p>
                                 <p class="text-gray-600">Status: {{ $task->status }}</p>
                                 {{-- 其他您希望展示的信息 --}}
                                 <p class="text-sm text-gray-400 mt-2">Updated at: {{ $task->updated_at->format('d M, Y') }}</p>

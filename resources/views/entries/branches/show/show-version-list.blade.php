@@ -8,6 +8,7 @@
 @section('entry-content')
     {{-- Content specific to Version List --}}
     <div class="space-y-4">
+    @livewire('branch.version-edit-portal', ['branchId' => $branch->id])
         @foreach($versions as $version)
             <a href="{{ route('entry.version.show', $version->id) }}" >
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-4 dark:border-gray-700 mb-4 shadow-sm">

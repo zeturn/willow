@@ -70,7 +70,7 @@ class EntryVersionTask extends Model
         return $censorTask = CensorTask::create([
             'entity_type' => 'EntryVersionTask',
             'entity_id' => $this->id,
-            'status' => 5,
+            'status' => 6,//等待规则审核
         ]);
     }
 
@@ -88,7 +88,7 @@ class EntryVersionTask extends Model
             'description' => $this->description,
             'content' => $this->content,
             'author_id' => $this->author_id,
-            'status' => 5, // 假设5是要设置的状态 / Assuming 5 is the status to set
+            'status' => 1301113244, // 假设5是要设置的状态 / Assuming 5 is the status to set
         ]);
 
         $newVersionStatus = $newVersion->save();
@@ -102,11 +102,11 @@ class EntryVersionTask extends Model
             $newcensortask = new CensorTask([
                 'entity_type' => get_class($newVersion),
                 'entity_id' => $newVersion->id,
-                'status' => 6,
+                'status' => 6,//等待规则审核
             ]);
 
             $newcensortask->save();
-            $newcensortask->execute(); // 执行第一次尝试 / Execute the first attempt
+            //$newcensortask->execute(); // 执行第一次尝试 / Execute the first attempt
 
             // 如果新版本保存成功 / If the new version is successfully saved
             if ($newVersion->save()) {

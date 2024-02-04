@@ -295,11 +295,11 @@ class CensorTaskController extends Controller
 
         switch ($request->action) {
             case 'approve':
-                $task->entry->changeStatus(1201111545);
+                $task->branch->changeStatus(1201111545);
                 $task->changeStatus(10); // 同意
                 break;
             case 'reject':
-                $task->entry->changeStatus(1201113474);
+                $task->branch->changeStatus(1201113474);
                 $task->changeStatus(4); // 拒绝
                 break;
             case 'wait':
@@ -320,11 +320,11 @@ class CensorTaskController extends Controller
 
         switch ($request->action) {
             case 'approve':
-                $task->entry->changeStatus(1301111545);
+                $task->version->changeStatus(1301111545);
                 $task->changeStatus(10);; // 同意
                 break;
             case 'reject':
-                $task->entry->changeStatus(1301113474);
+                $task->version->changeStatus(1301113474);
                 $task->changeStatus(4); // 拒绝
                 break;
             case 'wait':

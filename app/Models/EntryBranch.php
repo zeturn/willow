@@ -84,7 +84,7 @@ class EntryBranch extends Model
     public function versionsforreview()
     {
         // 这里使用 where 条件来过滤 status 为 7 的版本
-        return $this->versions()->where('status', 1550);
+        return $this->versions()->where('status', 1301111545);
     }
 
     /**

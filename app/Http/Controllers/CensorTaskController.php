@@ -46,7 +46,7 @@ class CensorTaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('censor.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class CensorTaskController extends Controller
      */
     public function show(CensorTask $censorTask)
     {
-        //
+        return view('censor.show');
     }
 
     /**
@@ -70,7 +70,7 @@ class CensorTaskController extends Controller
      */
     public function edit(CensorTask $censorTask)
     {
-        //
+        return view('censor.edit');
     }
 
     /**
@@ -96,72 +96,132 @@ class CensorTaskController extends Controller
     */
     public function entryTaskList()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tasks = CensorTask::where('entity_type', 'Entry')->where('status', 6)->get();
         return view('censor.entry.entryTaskList', ['tasks' => $tasks]);
     }    
 
     public function branchTaskList()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tasks = CensorTask::where('entity_type', 'EntryBranch')->get();
         return view('censor.branch.branchTaskList', ['tasks' => $tasks]);
     }
 
     public function versionTaskList()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tasks = CensorTask::where('entity_type', 'EntryVersion')->get();
         return view('censor.version.versionTaskList', ['tasks' => $tasks]);
     }
 
     public function taskTaskList()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tasks = CensorTask::where('entity_type', 'EntryVersionTask')->get();
         return view('censor.task.taskTaskList', ['tasks' => $tasks]);
     }
 
     public function wallTaskList()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tasks = CensorTask::where('entity_type', 'Wall')->get();
         return view('censor.wall.wallTaskList', ['tasks' => $tasks]);
     }
 
     public function topicTaskList()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tasks = CensorTask::where('entity_type', 'Topic')->get();
         return view('censor.topic.topicTaskList', ['tasks' => $tasks]);
     }
 
     public function commentTaskList()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tasks = CensorTask::where('entity_type', 'Comment')->get();
         return view('censor.comment.commentTaskList', ['tasks' => $tasks]);
     }
 
     public function mediaTaskList()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tasks = CensorTask::where('entity_type', 'Media')->get();
         return view('censor.media.mediaTaskList', ['tasks' => $tasks]);
     }
 
     public function albumTaskList()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tasks = CensorTask::where('entity_type', 'Album')->get();
         return view('censor.album.albumTaskList', ['tasks' => $tasks]);
     }
 
     public function treeTaskList()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tasks = CensorTask::where('entity_type', 'Tree')->get();
         return view('censor.tree.treeTaskList', ['tasks' => $tasks]);
     }
 
     public function edgeTaskList()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tasks = CensorTask::where('entity_type', 'Edge')->get();
         return view('censor.edge.edgeTaskList', ['tasks' => $tasks]);
     }
 
     public function nodeTaskList()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tasks = CensorTask::where('entity_type', 'Node')->get();
         return view('censor.node.nodeTaskList', ['tasks' => $tasks]);
     }
@@ -264,78 +324,159 @@ class CensorTaskController extends Controller
     *--------------------------
     */
 
+    /**
+     * 处理词条任务。
+     * Handle the entry task based on the action provided.
+     * 此方法首先确认用户是否登录，然后尝试解密请求中的加密ID，并根据提供的动作更新任务状态。
+     * This method first ensures the user is authenticated, attempts to decrypt the encrypted ID in the request, and updates the task status based on the provided action.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function handleEntryTask(Request $request)
     {
-        $id = Crypt::decrypt($request->encryptedId);
-        $task = CensorTask::findOrFail($id);
+        // 确认用户是否登录 / Ensure the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，则重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Ensure the 'login' route is defined in your routes file
+        }
 
+        try {
+            // 尝试解密请求中的加密ID / Attempt to decrypt the encrypted ID in the request
+            $id = Crypt::decrypt($request->encryptedId);
+        } catch (Exception $e) {
+            // 解密失败，返回错误信息 / Decryption failed, return with an error message
+            return back()->with('error', 'Invalid task identifier.');
+        }
+
+        // 尝试找到对应的任务，如果不存在则返回错误 / Attempt to find the corresponding task, return an error if not found
+        $task = CensorTask::find($id);
+        if (!$task) {
+            return back()->with('error', 'Task not found.');
+        }
+
+        // 根据请求中的动作更新任务状态 / Update the task status based on the action in the request
         switch ($request->action) {
             case 'approve':
-                $task->changeStatus(10); // 同意
+                $task->changeStatus(10); // 同意 / Approve
                 $task->entry->changeStatus(1101111545);
                 break;
             case 'reject':
-                $task->changeStatus(4); // 拒绝
+                $task->changeStatus(4); // 拒绝 / Reject
                 $task->entry->changeStatus(1101111444);
                 break;
             case 'wait':
-                $task->changeStatus(7); // 等待
+                $task->changeStatus(7); // 等待 / Wait
                 break;
             default:
-                // 可能需要处理未知操作
-                break;
+                // 处理未知操作 / Handle unknown actions
+                return back()->with('error', 'Invalid action.');
         }
 
+        // 返回成功消息 / Return with a success message
         return back()->with('success', 'Entry task status updated.');
     }
 
+    /**
+     * 处理分支任务。
+     * Handle the branch task based on the action provided.
+     * 此方法确保用户已经登录，并且对加密ID解密、查找任务、以及更新任务状态进行了异常处理和验证。
+     * This method ensures the user is authenticated, and adds exception handling and validation for decrypting ID, finding tasks, and updating task status.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function handleBranchTask(Request $request)
     {
-        $id = Crypt::decrypt($request->encryptedId);
-        $task = CensorTask::findOrFail($id);
+        // 确认用户是否已经登录 / Ensure the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，则重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Ensure the 'login' route is defined in your routes file
+        }
 
+        try {
+            // 尝试解密请求中的加密ID / Attempt to decrypt the encrypted ID in the request
+            $id = Crypt::decrypt($request->encryptedId);
+        } catch (Exception $e) {
+            // 解密失败，返回错误信息 / Decryption failed, return with an error message
+            return back()->with('error', 'Invalid task identifier.');
+        }
+
+        // 尝试找到对应的任务，如果不存在则返回错误 / Attempt to find the corresponding task, return an error if not found
+        $task = CensorTask::find($id);
+        if (!$task) {
+            return back()->with('error', 'Task not found.');
+        }
+
+        // 根据请求中的动作更新任务和分支的状态 / Update the task and branch status based on the action in the request
         switch ($request->action) {
             case 'approve':
                 $task->branch->changeStatus(1201111545);
-                $task->changeStatus(10); // 同意
+                $task->changeStatus(10); // 同意 / Approve
                 break;
             case 'reject':
                 $task->branch->changeStatus(1201113474);
-                $task->changeStatus(4); // 拒绝
+                $task->changeStatus(4); // 拒绝 / Reject
                 break;
             case 'wait':
-                $task->changeStatus(7); // 等待
+                $task->changeStatus(7); // 等待 / Wait
                 break;
             default:
-                // 可能需要处理未知操作
-                break;
+                // 处理未知操作 / Handle unknown actions
+                return back()->with('error', 'Invalid action.');
         }
-        
+
+        // 返回成功消息 / Return with a success message
         return back()->with('success', 'Branch task status updated.');
     }
 
+    /**
+     * 处理版本任务。
+     * Handle the version task based on the action provided.
+     * 此方法首先确认用户是否登录，然后尝试解密请求中的加密ID，并根据提供的动作更新版本任务状态。
+     * This method first ensures the user is authenticated, attempts to decrypt the encrypted ID in the request, and updates the version task status based on the provided action.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function handleVersionTask(Request $request)
     {
-        $id = Crypt::decrypt($request->encryptedId);
-        $task = CensorTask::findOrFail($id);
-
-        switch ($request->action) {
-            case 'approve':
-                $task->version->changeStatus(1301111545);
-                $task->changeStatus(10);; // 同意
-                break;
-            case 'reject':
-                $task->version->changeStatus(1301113474);
-                $task->changeStatus(4); // 拒绝
-                break;
-            case 'wait':
-                $task->changeStatus(7); // 等待
-                break;
-            default:
-                // 可能需要处理未知操作
-                break;
+        // 确认用户是否登录 / Ensure the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，则重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Ensure the 'login' route is defined in your routes file
         }
 
+        try {
+            // 尝试解密请求中的加密ID / Attempt to decrypt the encrypted ID in the request
+            $id = Crypt::decrypt($request->encryptedId);
+        } catch (Exception $e) {
+            // 解密失败，返回错误信息 / Decryption failed, return with an error message
+            return back()->with('error', 'Invalid task identifier.');
+        }
+
+        // 通过ID查找任务，如果未找到则自动抛出异常 / Find the task by ID, automatically throws an exception if not found
+        $task = CensorTask::findOrFail($id);
+
+        // 根据请求中的动作更新任务状态 / Update the task status based on the action in the request
+        switch ($request->action) {
+            case 'approve':
+                $task->version->changeStatus(1301111545); // 同意版本变更 / Approve version change
+                $task->changeStatus(10); // 同意 / Approve
+                break;
+            case 'reject':
+                $task->version->changeStatus(1301113474); // 拒绝版本变更 / Reject version change
+                $task->changeStatus(4); // 拒绝 / Reject
+                break;
+            case 'wait':
+                $task->changeStatus(7); // 等待 / Wait
+                break;
+            default:
+                // 处理未知操作，返回错误消息 / Handle unknown actions, return with an error message
+                return back()->with('error', 'Invalid action.');
+        }
+
+        // 返回成功消息 / Return with a success message
         return back()->with('success', 'Version task status updated.');
     }
 

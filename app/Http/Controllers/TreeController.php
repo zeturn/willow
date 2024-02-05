@@ -17,6 +17,12 @@ class TreeController extends Controller
      */
     public function index()
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $trees = Tree::paginate(20); // 获取所有分类树节点
 
         return view('trees.index', compact('trees'));
@@ -29,6 +35,12 @@ class TreeController extends Controller
      */
     public function create()
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         return view('trees.create'); // 返回创建分类树节点的视图
     }
 
@@ -40,6 +52,12 @@ class TreeController extends Controller
      */
     public function store(Request $request)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'description' => 'nullable|max:65535',
@@ -83,6 +101,12 @@ class TreeController extends Controller
      */
     public function edit(Tree $tree)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         return view('trees.edit', compact('tree')); // 返回分类树节点编辑视图
     }
 
@@ -95,6 +119,12 @@ class TreeController extends Controller
      */
     public function update(Request $request, Tree $tree)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'description' => 'nullable|max:65535',
@@ -119,6 +149,11 @@ class TreeController extends Controller
      */
     public function destroy(Tree $tree)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
         $tree->delete(); // 删除分类树节点
 
         return redirect()->route('trees.index'); // 重定向到分类树节点列表页
@@ -133,6 +168,12 @@ class TreeController extends Controller
      */
     public function createEWLink(Request $request, $treeUuid)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         // 数据验证
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',

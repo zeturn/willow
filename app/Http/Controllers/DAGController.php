@@ -19,6 +19,12 @@ class DAGController extends Controller
      */
     public function index()
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $nodes = Node::all();
         $edges = Edge::all();
 
@@ -36,6 +42,12 @@ class DAGController extends Controller
      */
     public function createNode()
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         // 此处返回创建节点的视图
         return view('dag.createNode');
     }
@@ -48,6 +60,12 @@ class DAGController extends Controller
      */
     public function storeNode(Request $request)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $nodeData = $request->all();
 
         // 检查是否提供了status，如果没有，则默认为5
@@ -82,6 +100,12 @@ class DAGController extends Controller
      */
     public function editNode($id)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $node = Node::findOrFail($id);
 
         // 此处返回节点编辑视图
@@ -97,6 +121,12 @@ class DAGController extends Controller
      */
     public function updateNode(Request $request, $id)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $node = Node::findOrFail($id); // 根据ID查找节点
 
         $node->update($request->all()); // 更新节点信息
@@ -112,6 +142,13 @@ class DAGController extends Controller
      */
     public function deleteNode($id)
     {
+
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $node = Node::findOrFail($id);
         $node->delete();
 
@@ -128,6 +165,12 @@ class DAGController extends Controller
      */
     public function createEdge()
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         // 此处返回创建边的视图
         return view('dag.createEdge');
     }
@@ -140,6 +183,12 @@ class DAGController extends Controller
      */
     public function storeEdge(Request $request)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $validator = Validator::make($request->all(), [
             'start_node' => 'required|exists:nodes,id',
             'end_node' => 'required|exists:nodes,id|different:start_node',
@@ -183,6 +232,12 @@ class DAGController extends Controller
      */
     public function editEdge($id)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $edge = Edge::findOrFail($id);
 
         // 此处返回边编辑视图
@@ -198,6 +253,12 @@ class DAGController extends Controller
      */
     public function updateEdge(Request $request, $id)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $edge = Edge::findOrFail($id); // 根据ID查找节点
 
         $edge->update($request->all()); // 更新边信息
@@ -213,6 +274,12 @@ class DAGController extends Controller
      */
     public function deleteEdge($id)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $edge = Edge::findOrFail($id);
         $edge->delete();
 

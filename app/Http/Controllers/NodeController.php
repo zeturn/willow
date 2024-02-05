@@ -17,6 +17,12 @@ class NodeController extends Controller
      */
     public function index()
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $nodes = Node::paginate(20); // 获取所有节点
         return view('nodes.index', compact('nodes'));
     }
@@ -28,6 +34,12 @@ class NodeController extends Controller
      */
     public function create()
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         return view('nodes.create'); // 返回创建节点的视图
     }
 
@@ -39,6 +51,12 @@ class NodeController extends Controller
      */
     public function store(Request $request)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $nodeData = $request->all();
 
         // 检查是否提供了status，如果没有，则默认为5
@@ -74,6 +92,12 @@ class NodeController extends Controller
      */
     public function edit(Node $node)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         return view('nodes.edit', compact('node')); // 返回节点编辑视图
     }
 
@@ -100,6 +124,12 @@ class NodeController extends Controller
      */
     public function destroy(Node $node)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $node->delete(); // 删除节点
 
         return redirect()->route('nodes.index'); // 重定向到节点列表页
@@ -114,6 +144,12 @@ class NodeController extends Controller
      */
     public function createEWLink(Request $request, $nodeUuid)
     {
+        // 检查用户是否已经登录（如果需要） / Check if the user is authenticated (if required)
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         // 验证请求数据
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',

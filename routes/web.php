@@ -200,6 +200,9 @@ Route::prefix('entry')->name('entry.')->group(function () {
         Route::post('/createEWLink/{versionUuid}', [EntryVersionController::class, 'createEWLink'])->name('createEWLink');
 
         Route::get('/editor/{editorId}', [EntryVersionController::class, 'editor'])->name('editor');//entry.version.editor
+        Route::get('/contentcensor/id={versionId}', [EntryVersionController::class, 'contentCensorShow'])->name('contentCensorShow');//entry.version.contentCensorShow 内容审核区域
+        Route::post('/handleContentCensor', [EntryVersionController::class, 'handleContentCensor'])->name('handleContentCensor');//entry.version.handleContentCensor 内容审核区域
+
         // 其他 EntryVersionController 的路由
     });
 

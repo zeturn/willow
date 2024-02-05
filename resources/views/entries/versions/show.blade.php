@@ -32,16 +32,9 @@
                         </dd>
                     </div>
 
-                    @if($version->status == 1550)
-                    <div class="flex space-x-4 mt-4">
-                        <a href="{{ route('entry.branch.changeDemoVersion', [$version->branch->id, $version->id]) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition duration-200 ease-in-out">
-                            {{ __('Convert to demo version') }}
-                        </a>
+                    @if($version->status == 1301111545)
+                    <a href="{{ route('entry.version.contentCensorShow', $version->id) }}" class="block bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 transition">
 
-                        <a href="{{ route('entry.branch.VersionAccept', [$version->branch->id, $version->id]) }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition duration-200 ease-in-out">
-                            {{ __('Version Accept') }}
-                        </a>
-                    </div>
                     @endif
                 </div>
             </div>

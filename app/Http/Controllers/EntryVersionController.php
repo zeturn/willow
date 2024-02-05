@@ -8,6 +8,7 @@ use App\Models\EntryVersion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Crypt;
 
 class EntryVersionController extends Controller
 {
@@ -20,6 +21,38 @@ class EntryVersionController extends Controller
         $walls = $version -> walls;
 
         return view('entries.versions.show', compact('version','walls'));
+    }
+
+    public function contentCensorShow($versionId)
+    {
+        // 根据给定的ID找到版本
+        $version = EntryVersion::find($versionId);
+
+        $encryptedId = Crypt::encrypt($version->id);
+
+        return view('entries.versions.content-censor-show', compact('version','encryptedId'));
+    }
+
+    public function handleContentCensor(Request $request){
+        $id = Crypt::decrypt($request->encryptedId);
+        $version = version::findOrFail($id);
+
+        switch ($request->action) {
+            case 'approve':
+                $task->changeStatus(1301113745);; // 同意
+                break;
+            case 'reject':
+                $task->changeStatus(130111847); // 拒绝
+                break;
+            case 'wait':
+                $task->changeStatus(130111847); // 等待
+                break;
+            default:
+                // 可能需要处理未知操作
+                break;
+        }
+
+        return back()->with('success', 'Version task status updated.');
     }
     
     // 显示创建新版本的表单。

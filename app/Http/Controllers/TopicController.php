@@ -4,10 +4,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use App\Models\Wall;
 use App\Models\Topic;
 use App\Models\Comment;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller

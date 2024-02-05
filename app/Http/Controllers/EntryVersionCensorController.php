@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EntryVersionCensor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EntryVersionCensorController extends Controller
 {

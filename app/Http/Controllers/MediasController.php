@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Media;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;

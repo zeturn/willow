@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Album;
 use App\Models\Media;
 use App\Models\AlbumsMediaAssociation;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AlbumsController extends Controller
 {

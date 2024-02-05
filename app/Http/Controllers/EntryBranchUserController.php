@@ -7,7 +7,9 @@ use App\Models\User;
 use App\Models\Entry;
 use App\Models\EntryBranch;
 use App\Models\EntryBranchUser;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EntryBranchUserController extends Controller
 {

@@ -10,6 +10,7 @@ use App\Models\EntryBranchUser;
 use App\Models\EntryVersion;
 use App\Models\EntryVersionTask;
 use App\Models\EntityWallAssociation;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -29,11 +30,25 @@ class EntryController extends Controller
         return view('entries.index', compact('entries'));
     }
 
-    // 显示创建新词条的表单。
+    /**
+     * 显示创建新词条的表单。
+     * Display the form for creating a new entry.
+     * 这个方法现在增加了一个检查，确保只有当用户已经登录时才能访问创建词条的表单。
+     * If the user is not authenticated, they are redirected to the login page.
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
+        // 用户已登录，显示创建新词条的表单 / The user is authenticated, display the form for creating a new entry
         return view('entries.create');
-        //return Inertia::render('entry/create');
+        // return Inertia::render('entry/create');
     }
 
     /**

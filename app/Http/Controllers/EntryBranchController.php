@@ -6,14 +6,15 @@ use App\Models\Entry;
 use App\Models\EntryBranch;
 use App\Models\EntryVersion;
 use App\Models\EntryBranchUser;
+
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+
 class EntryBranchController extends Controller
 {
 

@@ -72,6 +72,7 @@ class CategoryEntityAssociation extends Model
             'entity_type' => get_class($entity),
             'category_id' => $category->id,
             'category_type' => get_class($category),
+            'relationship_type' => 5,
             'status' => 5,
             // 如果需要，可以设置其他字段，例如 'relationship_type' 和 'status'
         ]);

@@ -34,7 +34,8 @@
 
                     @if($version->status == 1301111545)
                     <a href="{{ route('entry.version.contentCensorShow', $version->id) }}" class="block bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 transition">
-
+                        需要内容审核
+                    </a>
                     @endif
                 </div>
             </div>

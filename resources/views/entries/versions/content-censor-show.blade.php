@@ -30,10 +30,9 @@
                                 {{ $version->content }}
                             </div>
                         </dd>
-                    </div>
 
-                    @if($version->status == 1301111545)
-                    <!-- 审核表单 -->
+                        @if($version->status == 1301111545)
+                    <!-- 审核表单 --> 
                     <form action="{{ route('entry.version.handleContentCensor') }}" method="POST">
                         @csrf <!-- CSRF 令牌 -->
 
@@ -82,6 +81,8 @@
                         </button>
                     </form>
                     @endif
+                    </div>
+
                 </div>
             </div>
         </div>

@@ -100,7 +100,7 @@ class EntryVersionTask extends Model
 
         if ($newVersionStatus) {
             $newcensortask = new CensorTask([
-                'entity_type' => get_class($newVersion),
+                'entity_type' => 'EntryVersion',
                 'entity_id' => $newVersion->id,
                 'status' => 6,//等待规则审核
             ]);

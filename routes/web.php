@@ -192,7 +192,7 @@ Route::prefix('entry')->name('entry.')->group(function () {
 
     // 子路由组 - Branch下的Version branchUser. 名称为entry.version.*
     Route::prefix('version')->name('version.')->group(function () {
-        Route::get('/{versionId}', [EntryVersionController::class, 'show'])->name('show');
+        Route::get('/show/{versionId}', [EntryVersionController::class, 'show'])->name('show');
         Route::get('/{branchId}/list', [EntryVersionController::class, 'versionList'])->name('list'); // 版本列表
         Route::get('/{branchId}/create/from/{versionId}', [EntryVersionController::class, 'create'])->name('create');//创建分支下的版本
         Route::post('/{branchId}', [EntryVersionController::class, 'store'])->name('store');
@@ -201,7 +201,7 @@ Route::prefix('entry')->name('entry.')->group(function () {
 
         Route::get('/editor/{editorId}', [EntryVersionController::class, 'editor'])->name('editor');//entry.version.editor
         Route::get('/contentcensor/id={versionId}', [EntryVersionController::class, 'contentCensorShow'])->name('contentCensorShow');//entry.version.contentCensorShow 内容审核区域
-        Route::post('/handleContentCensor', [EntryVersionController::class, 'handleContentCensor'])->name('handleContentCensor');//entry.version.handleContentCensor 内容审核区域
+        Route::post('/contentcensor/handleContentCensor', [EntryVersionController::class, 'handleContentCensor'])->name('handleContentCensor');//entry.version.handleContentCensor 内容审核区域
 
         // 其他 EntryVersionController 的路由
     });

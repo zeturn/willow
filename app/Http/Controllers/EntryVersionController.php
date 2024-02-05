@@ -35,17 +35,17 @@ class EntryVersionController extends Controller
 
     public function handleContentCensor(Request $request){
         $id = Crypt::decrypt($request->encryptedId);
-        $version = version::findOrFail($id);
+        $version = EntryVersion::findOrFail($id);
 
         switch ($request->action) {
             case 'approve':
-                $task->changeStatus(1301113745);; // 同意
+                $version->changeStatus(1301113745); // 同意
                 break;
             case 'reject':
-                $task->changeStatus(130111847); // 拒绝
+                $version->changeStatus(130111847); // 拒绝
                 break;
             case 'wait':
-                $task->changeStatus(130111847); // 等待
+                $version->changeStatus(130111847); // 等待
                 break;
             default:
                 // 可能需要处理未知操作

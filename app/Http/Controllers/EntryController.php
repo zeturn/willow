@@ -371,6 +371,12 @@ class EntryController extends Controller
     // 删除特定词条（硬删除）。
     public function delete($id)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         Entry::findOrFail($id)->forceDelete();
         return redirect()->route('entry.index');
     }
@@ -378,6 +384,12 @@ class EntryController extends Controller
     // 软删除特定词条。
     public function softDelete($id)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         Entry::findOrFail($id)->softDelete();
         return redirect()->route('entry.index');
     }
@@ -385,6 +397,12 @@ class EntryController extends Controller
     // 恢复软删除的词条。
     public function restore($id)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $entry = Entry::withTrashed()->findOrFail($id);
         $entry->restore();
         return redirect()->route('entry.index');

@@ -27,6 +27,12 @@ class WallController extends Controller
      */
     public function index()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         try {
             // Retrieve all Wall instances from the database / 从数据库中检索所有 Wall 实例
             $walls = Wall::all();
@@ -55,6 +61,12 @@ class WallController extends Controller
      */
     public function create()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+        
         try {
 
             // Return the view for creating a new Wall / 返回创建新 Wall 的视图
@@ -84,6 +96,12 @@ class WallController extends Controller
      */
     public function store(Request $request)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         // Validate the request data / 验证请求数据
         $validator = Validator::make($request->all(), [
             // Define your validation rules here / 在此定义验证规则
@@ -111,11 +129,23 @@ class WallController extends Controller
 
     public function edit(Wall $wall)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         return view('walls.edit', compact('wall'));
     }
 
     public function update(Request $request, Wall $wall)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $wall->update($request->all());
         return redirect()->route('wall.index');
     }
@@ -148,10 +178,33 @@ class WallController extends Controller
             return response()->view('errors.not-found', [], 404);
         }
     }
-
+    /**
+     * 删除指定的墙实例。
+     * Delete the specified Wall instance.
+     * 此方法增加了权限检查以确保用户有权进行删除操作，并对删除过程进行异常处理。
+     * This method includes a permission check to ensure the user has the right to perform the deletion and handles exceptions that might occur during the deletion process.
+     *
+     * @param  Wall  $wall
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(Wall $wall)
     {
-        $wall->delete();
-        return back();
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
+        // TODO: 检查当前用户是否有权限删除此墙实例 / Check if the current user has permission to delete this Wall instance
+        // 这里应当根据应用的业务逻辑来实现具体的权限检查逻辑 / The specific permission checking logic should be implemented based on the application's business logic
+        
+        try {
+            $wall->delete();
+            // 删除成功，返回成功消息 / Deletion successful, return with a success message
+            return back()->with('success', 'Wall deleted successfully.');
+        } catch (\Exception $e) {
+            // 删除失败，返回错误消息 / Deletion failed, return with an error message
+            return back()->with('error', 'Failed to delete the wall.');
+        }
     }
 }

@@ -204,6 +204,8 @@ class EntryController extends Controller
         //dd($entry -> isPublicVisible());
         if($entry -> isPublicVisible()){
 
+            $nodes = $entry->nodes;
+
             $walls = $entry->walls;
             // 使用模型中的方法获取 Demo Branch 和 Demo Version
             $demoBranch = $entry->getDemoBranch();
@@ -216,6 +218,7 @@ class EntryController extends Controller
             return view('entries.show.show-explanation', [
                 'entry' => $entry,
                 'walls' => $walls,
+                'nodes' => $nodes,
                 'demoBranch' => $demoBranch,
                 'demoVersion' => $demoVersion,
                 'userId' =>  Auth::id(),

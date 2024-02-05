@@ -26,6 +26,12 @@ class EntryController extends Controller
     // 显示所有词条。
     public function index()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $entries = Entry::paginate(30);
         return view('entries.index', compact('entries'));
     }
@@ -60,6 +66,12 @@ class EntryController extends Controller
      */
     public function store(Request $request)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         // 数据验证 / Data validation
         $validated = $request->validate([
             'name' => 'required|max:255',
@@ -264,6 +276,12 @@ class EntryController extends Controller
          */
         public function myBranches($id)
         {
+                        // 检查用户是否已经登录 / Check if the user is authenticated
+            if (!Auth::check()) {
+                // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+                return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+            }
+
             $entry = Entry::findOrFail($id);
             //dd();
             $mybranches = User::findOrFail(Auth::id())->branches->where('entry_id', $id);

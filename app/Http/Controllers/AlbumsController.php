@@ -14,6 +14,12 @@ class AlbumsController extends Controller
 
     public function index()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $albums = Album::with('medias')->get(); // 获取所有相册及其关联的媒体
 
         return view('albums.index', compact('albums'));
@@ -21,6 +27,12 @@ class AlbumsController extends Controller
     
     public function create()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         return view('albums.create');
     }
 
@@ -28,6 +40,12 @@ class AlbumsController extends Controller
 
     public function store(Request $request)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $request->validate([
             'title' => 'required|string',
             'photos' => 'required',
@@ -70,6 +88,12 @@ class AlbumsController extends Controller
 
     public function edit($id)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $album = Album::with('medias')->findOrFail($id);
 
         return view('albums.edit', compact('album'));
@@ -77,6 +101,12 @@ class AlbumsController extends Controller
 
     public function update(Request $request, $id)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $album = Album::with('medias')->findOrFail($id);
 
         // 更新相册标题等信息
@@ -119,6 +149,12 @@ class AlbumsController extends Controller
 
     public function delete($id)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+        
         $album = Album::with('medias')->findOrFail($id);
 
         // 删除与相册关联的所有媒体关联

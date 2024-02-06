@@ -14,6 +14,12 @@ class MediasController extends Controller
 
     public function index()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $medias = Media::with('user')->paginate(10); // 假设存在 user() 关联
         return view('medias.index', compact('medias'));
     }
@@ -21,11 +27,23 @@ class MediasController extends Controller
 
     public function create()
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         return view('medias.create');
     }
 
     public function store(Request $request)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $validatedData = $request->validate([
             'file' => 'required|image|mimes:jpeg,png,bmp,gif,svg|max:10240', // 确保文件为图片且大小不超过10MB
         ]);
@@ -62,6 +80,12 @@ class MediasController extends Controller
 
     public function delete($id)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $media = Media::findOrFail($id);
         $media->deleteWithFile(); // 使用模型中的 deleteWithFile 方法
 
@@ -70,12 +94,24 @@ class MediasController extends Controller
 
     public function edit($id)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
         $media = Media::findOrFail($id);
         return view('medias.edit', compact('media'));
     }
 
     public function update(Request $request, $id)
     {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+        
         $request->validate([
             'description' => 'required|string', // 根据需要调整验证规则
         ]);

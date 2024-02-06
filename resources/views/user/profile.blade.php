@@ -20,7 +20,7 @@
                             <div class="flex justify-between items-center border-b dark:border-gray-600 py-2">
                                 <span>Branch ID: {{ $branch->id }}</span>
                                 <span>Created At: {{ $branch->created_at->format('M d, Y') }}</span>
-                                <span>{{ $branch->entry->name }}</span>
+                                <span>{{ $branch->entry?->name }}</span>
                             </div>
                         @endforeach
                     </div>

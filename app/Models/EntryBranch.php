@@ -60,7 +60,7 @@ class EntryBranch extends Model
                     ->where('entity_type', 'Branch');
     }
 
-    public function Entry()
+    public function entry()
     {
         return $this->belongsTo(Entry::class);
     }

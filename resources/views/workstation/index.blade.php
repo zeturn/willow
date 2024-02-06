@@ -21,13 +21,13 @@
     <div class="w-full lg:w-1/4 px-4 py-4 lg:py-0 order-2 lg:order-1">
       <div class="bg-blue-100 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 shadow">
         <h3 class="text-2xl font-semibold mb-4">{{ __('Entry Version Tasks') }}</h3>
-        @foreach($versionTasks->take(5) as $item)
-          <div class="mb-2">
-            <a href="{{ route('entry.version.editor', $item->id) }}" class="hover:text-blue-500">
-              <span class="font-semibold">{{ $item->name }}</span> - <span class="text-sm text-gray-500">{{ $item->updated_at->format('M d, Y H:i') }}</span>
-            </a>
-          </div>
-        @endforeach
+          @foreach($versionTasks->take(5) as $item)
+            <div class="mb-2">
+              <a href="{{ route('entry.version.editor', $item->id) }}" class="hover:text-blue-500">
+                <span class="font-semibold">{{ $item->name }}</span> - <span class="text-sm text-gray-500">{{ $item->updated_at->format('M d, Y H:i') }}</span>
+              </a>
+            </div>
+          @endforeach
         @if($versionTasks->count() > 5)
           <div class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</div>
         @endif
@@ -45,13 +45,13 @@
         <!-- Branches Section -->
         <div class="bg-orange-100 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 shadow">
             <h3 class="text-2xl font-semibold mb-4">{{ __('Branches') }}</h3>
-            @foreach($branches->take(5) as $branch)
-                <div class="mb-2">
-                  <a href="{{ route('entry.branch.show', $item->id) }}" class="hover:text-orange-500">
-                    <span class="font-semibold">{{ $branch->id }}</span> - <span class="text-sm text-gray-500">Updated at: {{ $branch->updated_at->format('M d, Y H:i') }}</span>
-                  </a>
-                </div>
-            @endforeach
+              @foreach($branches->take(5) as $branch)
+                  <div class="mb-2">
+                    <a href="{{ route('entry.branch.show', $branch->id) }}" class="hover:text-orange-500">
+                      <span class="font-semibold">{{ $branch->id }}</span> - <span class="text-sm text-gray-500">Updated at: {{ $branch->updated_at->format('M d, Y H:i') }}</span>
+                    </a>
+                  </div>
+              @endforeach
             @if($branches->count() > 5)
                 <div class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</div>
             @endif
@@ -62,7 +62,7 @@
             <h3 class="text-2xl font-semibold mb-4">{{ __('Versions') }}</h3>
             @foreach($versions->take(5) as $version)
                 <div class="mb-2">
-                  <a href="{{ route('entry.version.show', $item->id) }}" class="hover:text-yellow-500">
+                  <a href="{{ route('entry.version.show',$version->id) }}" class="hover:text-yellow-500">
                     <span class="font-semibold">{{ $version->id }}</span> - <span class="text-sm text-gray-500">Updated at: {{ $version->updated_at->format('M d, Y H:i') }}</span>
                   </a>
                 </div>
@@ -77,7 +77,7 @@
             <h3 class="text-2xl font-semibold mb-4">{{ __('Topics') }}</h3>
             @foreach($topics->take(5) as $topic)
                 <div class="mb-2">
-                  <a href="{{ route('topic.show', $item->id) }}" class="hover:text-blue-500">
+                  <a href="{{ route('topic.show', $topic->id) }}" class="hover:text-blue-500">
                     <span class="font-semibold">{{ $topic->name }}</span> - <span class="text-sm text-gray-500">Updated at: {{ $topic->updated_at->format('M d, Y H:i') }}</span>
                   </a>
                 </div>
@@ -92,7 +92,7 @@
             <h3 class="text-2xl font-semibold mb-4">{{ __('Comments') }}</h3>
             @foreach($comments->take(5) as $comment)
             <div class="mb-2">
-              <a href="{{ route('comment.show', $item->id) }}" class="hover:text-green-500">
+              <a href="{{ route('comment.show', $comment->id) }}" class="hover:text-green-500">
                 <span class="font-semibold">{{ \Illuminate\Support\Str::limit($comment->content, 30) }}</span> - <span class="text-sm text-gray-500">Updated at: {{ $comment->updated_at->format('M d, Y H:i') }}</span>
               </a>
             </div>

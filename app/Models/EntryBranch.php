@@ -18,7 +18,7 @@ class EntryBranch extends Model
     protected $guarded = []; // 没有受保护的字段，这意味着所有字段都可以被批量赋值
     public $incrementing = false; // 主键不自增
     protected $keyType = 'string'; // 主键的数据类型是字符串
-    protected $fillable = ['id', 'entry_id', 'demo_version_id', 'is_pb', 'is_free', 'status']; // 可以批量赋值的字段
+    protected $fillable = ['id', 'name', 'entry_id', 'demo_version_id', 'is_pb', 'is_free', 'status']; // 可以批量赋值的字段
 
     /**
      * 更改状态。

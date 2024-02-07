@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('entry_branches', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('name')->nullable();
             $table->uuid('entry_id');
             $table->uuid('demo_version_id')->nullable();
             $table->boolean('is_pb');

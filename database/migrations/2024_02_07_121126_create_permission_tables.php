@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Spatie\Permission\PermissionRegistrar;
 
 return new class extends Migration
 {
@@ -26,7 +25,7 @@ return new class extends Migration
         }
 
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
-            $table->uuid('uuid')->primary()->unique(); // permission id
+            $table->bigIncrements('id'); // permission id
             $table->string('name');       // For MySQL 8.0 use string('name', 125);
             $table->string('guard_name'); // For MySQL 8.0 use string('guard_name', 125);
             $table->timestamps();
@@ -35,7 +34,7 @@ return new class extends Migration
         });
 
         Schema::create($tableNames['roles'], function (Blueprint $table) use ($teams, $columnNames) {
-            $table->uuid('uuid')->primary()->unique(); // role id
+            $table->bigIncrements('id'); // role id
             if ($teams || config('permission.testing')) { // permission.testing is a fix for sqlite testing
                 $table->unsignedBigInteger($columnNames['team_foreign_key'])->nullable();
                 $table->index($columnNames['team_foreign_key'], 'roles_team_foreign_key_index');
@@ -51,14 +50,14 @@ return new class extends Migration
         });
 
         Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames, $pivotPermission, $teams) {
-            $table->uuid($pivotPermission);
+            $table->unsignedBigInteger($pivotPermission);
 
             $table->string('model_type');
-            $table->uuid($columnNames['model_morph_key']);
+            $table->unsignedBigInteger($columnNames['model_morph_key']);
             $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_permissions_model_id_model_type_index');
 
             $table->foreign($pivotPermission)
-                ->references('uuid') // permission id
+                ->references('id') // permission id
                 ->on($tableNames['permissions'])
                 ->onDelete('cascade');
             if ($teams) {
@@ -75,14 +74,14 @@ return new class extends Migration
         });
 
         Schema::create($tableNames['model_has_roles'], function (Blueprint $table) use ($tableNames, $columnNames, $pivotRole, $teams) {
-            $table->uuid($pivotRole);
+            $table->unsignedBigInteger($pivotRole);
 
             $table->string('model_type');
-            $table->uuid($columnNames['model_morph_key']);
+            $table->unsignedBigInteger($columnNames['model_morph_key']);
             $table->index([$columnNames['model_morph_key'], 'model_type'], 'model_has_roles_model_id_model_type_index');
 
             $table->foreign($pivotRole)
-                ->references('uuid') // role id
+                ->references('id') // role id
                 ->on($tableNames['roles'])
                 ->onDelete('cascade');
             if ($teams) {
@@ -98,16 +97,16 @@ return new class extends Migration
         });
 
         Schema::create($tableNames['role_has_permissions'], function (Blueprint $table) use ($tableNames, $pivotRole, $pivotPermission) {
-            $table->uuid($pivotPermission);
-            $table->uuid($pivotRole);
+            $table->unsignedBigInteger($pivotPermission);
+            $table->unsignedBigInteger($pivotRole);
 
             $table->foreign($pivotPermission)
-                ->references('uuid') // permission id
+                ->references('id') // permission id
                 ->on($tableNames['permissions'])
                 ->onDelete('cascade');
 
             $table->foreign($pivotRole)
-                ->references('uuid') // role id
+                ->references('id') // role id
                 ->on($tableNames['roles'])
                 ->onDelete('cascade');
 
@@ -127,7 +126,7 @@ return new class extends Migration
         $tableNames = config('permission.table_names');
 
         if (empty($tableNames)) {
-            throw new \Exception('Error: config/permission.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually. （错误：找不到 config/permission.php 并且无法合并默认值。 请在继续之前发布包配置，或手动删除表。）');
+            throw new \Exception('Error: config/permission.php not found and defaults could not be merged. Please publish the package configuration before proceeding, or drop the tables manually.');
         }
 
         Schema::drop($tableNames['role_has_permissions']);

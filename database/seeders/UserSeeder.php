@@ -22,14 +22,17 @@ class UserSeeder extends Seeder
             'id' => '62662626-6662-6626-2666-262662626226',
             'name' => 'Henry',
             'email' => 'zhr626@outlook.com',
-            'password' => Hash::make('123456')
+            'password' => Hash::make('123456'),
+            'email_verified_at' => \Carbon\Carbon::now(),
         ]);
+
+        $user->assignRole('SuperAdmin');
 
         // 为指定用户创建团队
         $this->createTeam($user);
 
         // 创建 50 个随机用户
-        User::factory()->count(50)->create()->each(function ($user) {
+        User::factory()->count(200)->create()->each(function ($user) {
             $this->createTeam($user);
         });
     }

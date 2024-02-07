@@ -22,7 +22,7 @@ class EntrySeeder extends Seeder
         for ($i = 0; $i < 50; $i++) {
             $entry = Entry::create([
                 'name' => 'Entry Name ' . $i,
-                'status' => 5,
+                'status' => 1101111545,
                 // 其他所需字段...
             ]);
 
@@ -32,9 +32,10 @@ class EntrySeeder extends Seeder
             for ($j = 0; $j < 10; $j++) {
                 $branch = EntryBranch::create([
                     'entry_id' => $entry->id,
+                    'name' => $faker->slug,
                     'is_pb' => rand(0, 1),
                     'is_free' => rand(0, 1),
-                    'status' => 5,
+                    'status' => 1201111545,
                     // 其他所需字段...
                 ]);
 
@@ -44,11 +45,11 @@ class EntrySeeder extends Seeder
                 for ($k = 0; $k < 10; $k++) {
                     $version = EntryVersion::create([
                         'entry_branch_id' => $branch->id,
-                        'name' => 'Version ' . $k,
-                        'description' => 'Description for version ' . $k,
-                        'content' => $faker->text,
+                        'name' => '(Version ' . $k . ')'. $faker->text,
+                        'description' => $faker->text,
+                        'content' => $faker->sentence,
                         'author_id' => User::inRandomOrder()->first()->id,
-                        'status' => 5,
+                        'status' => 1301111545,
                         // 其他所需字段...
                     ]);
 

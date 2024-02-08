@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Models\Permission;
+use App\Models\Role;
 
 class PermissionTableSeeder extends Seeder
 {
@@ -56,12 +56,13 @@ class PermissionTableSeeder extends Seeder
 
         // 创建超级管理员角色并赋予权限
         $roleSuperAdmin = Role::create(['name' => 'SuperAdmin']);
-        $permissions = Permission::pluck('id','id')->all();
+        $permissions = Permission::pluck('uuid','uuid')->all();
         $roleSuperAdmin->syncPermissions($permissions);
 
         // 创建普通用户角色并赋予特定权限
         $roleUser = Role::create(['name' => 'User']);
-        $userPermissions = Permission::whereIn('name', ['workstation-visit', 'workstation-edit'])->pluck('id','id')->all();
+        $userPermissions = Permission::whereIn('name', ['workstation-visit', 'workstation-edit'])->pluck('uuid','uuid')->all();
         $roleUser->syncPermissions($userPermissions);
+
     }
 }

@@ -17,12 +17,15 @@ use App\Models\EntryBranchUser;
 use App\Traits\UUID;
 use App\Traits\Status;
 
+use Spatie\Permission\Traits\HasRoles;
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use HasTeams;
+    use HasRoles;
     use Notifiable;
     use TwoFactorAuthenticatable;
 

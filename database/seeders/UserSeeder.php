@@ -2,11 +2,14 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Team;
+use App\Models\Permission;
+use App\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -26,14 +29,19 @@ class UserSeeder extends Seeder
             'email_verified_at' => \Carbon\Carbon::now(),
         ]);
 
-        $user->assignRole('SuperAdmin');
+        // 确保"User"角色存在
+        $roleUser = Role::firstOrCreate(['name' => 'SuperAdmin']);
+        $user->assignRole($roleUser);
 
         // 为指定用户创建团队
         $this->createTeam($user);
+        // 确保"User"角色存在
+        $roleUser = Role::firstOrCreate(['name' => 'User']);
 
         // 创建 50 个随机用户
         User::factory()->count(200)->create()->each(function ($user) {
             $this->createTeam($user);
+            $this->assignRole($roleUser);
         });
     }
 

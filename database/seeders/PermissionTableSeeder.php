@@ -47,6 +47,7 @@ class PermissionTableSeeder extends Seeder
             'entry-version-soft-delete',
             'entry-version-delete',
             'entry-version-censor',
+
         ];
 
         // 创建权限

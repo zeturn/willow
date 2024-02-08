@@ -20,6 +20,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        //$role = Role::create(['name' => 'Admin']);
+         
+        //$permissions = Permission::pluck('uuid','uuid')->all();
+       
+        //$role->syncPermissions($permissions);
+         
+        //$user->assignRole([$role->id]);
+
         // 插入指定用户
         $user = User::create([
             'id' => '62662626-6662-6626-2666-262662626226',
@@ -33,11 +41,13 @@ class UserSeeder extends Seeder
         $roleSuperAdmin = Role::firstOrCreate(['name' => 'SuperAdmin', 'team_id' => null]);
         $roleUser = Role::firstOrCreate(['name' => 'User', 'team_id' => null]);
 
+
         //dd($roleSuperAdmin);
         // 为指定用户创建团队并分配"SuperAdmin"角色
         $team = $this->createTeam($user); // 接收返回的团队实例
         setPermissionsTeamId($team->id);
         $user->assignRole($roleSuperAdmin); // 在分配角色时指定团队 ID
+        $user->givePermissionTo('workstation-visit');
 
         // 创建 200 个随机用户
         User::factory()->count(200)->create()->each(function ($user) use ($roleUser) {

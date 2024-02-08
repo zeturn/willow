@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 
 use App\Models\User;
 use App\Models\Entry;
@@ -13,9 +14,19 @@ use App\Models\EntityWallAssociation;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\Hash;
+
  
 class WorkstationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['role:SuperAdmin|User','permission:workstation-visit|workstation-edit']);
+    }
     /**
      * 每个人的工作站
      * 

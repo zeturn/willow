@@ -19,18 +19,23 @@ use App\Traits\Status;
 
 use Spatie\Permission\Traits\HasRoles;
 
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+
+
 class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use HasTeams;
-    use HasRoles;
+
     use Notifiable;
     use TwoFactorAuthenticatable;
 
     use UUID;
     use Status;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.

@@ -36,6 +36,7 @@ use App\Http\Controllers\{
 
     ReportController,
     CensorTaskController,
+    RoleController,
 
     CategoryController,
     TreeController,
@@ -84,6 +85,8 @@ Route::middleware([
 });
 
 
+Route::group(['middleware' => ['auth']], function() {
+
 /**
  * 用户工作组
  * Users Working Group
@@ -95,8 +98,6 @@ Route::controller(WorkstationController::class)->group(function () {
 });
 
 Route::get('/user/{id}', [UserController::class, 'showProfile'])->name('user.profile');
-
-
 
 /**
  * --------------------------------------
@@ -275,6 +276,8 @@ Route::prefix('report')->name('report.')->group(function () {
     Route::delete('/{report}', [ReportController::class, 'destroy'])->name('destroy');
 }); 
 
+Route::resource('roles', RoleController::class);
+
 /**
  * ------------------------
  * 分类组
@@ -428,4 +431,6 @@ Route::prefix('censor')->name('censor.')->group(function () {
         Route::post('/tasks/update/edge', 'handleEdgeTask')->name('tasks.update.edge');
         Route::post('/tasks/update/node', 'handleNodeTask')->name('tasks.update.node');
     });
+});
+
 });

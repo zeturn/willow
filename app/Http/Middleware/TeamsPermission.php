@@ -2,13 +2,21 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
+use Illuminate\Http\Request;
+use Spatie\Permission\PermissionRegistrar;
+use Illuminate\Support\Facades\Auth;
+
 class TeamsPermission
 {
     
     public function handle($request, \Closure $next){
-        if(!empty(auth()->user())){
+        $user = Auth::user();
+
+        if(!empty($user = auth()->user()) && !empty($user->current_team_id)){
+            
             // session value set on login
-            setPermissionsTeamId(session('team_id'));
+            setPermissionsTeamId($user->current_team_id);
         }
         // other custom ways to get team_id
         /*if(!empty(auth('api')->user())){

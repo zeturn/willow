@@ -9,6 +9,7 @@
   <div class="flex-grow flex flex-col lg:flex-row">
 
     <!-- Middle Column -->
+    @can('role-list')
     <div class="w-full lg:w-1/2 px-4 mt-4 lg:mt-0 order-1 lg:order-2">
       <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 shadow">
         <h3 class="text-2xl font-semibold mb-4">{{ __('欢迎来到workstation！') }}</h3>
@@ -16,7 +17,7 @@
         <p class="text-gray-600 dark:text-gray-300">看起来没有内容需要检查</p>
       </div>
     </div>
-
+    @endcan
     <!-- Left Column (EntryVersion) -->
     <div class="w-full lg:w-1/4 px-4 py-4 lg:py-0 order-2 lg:order-1">
       <div class="bg-blue-100 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 shadow">

@@ -55,12 +55,12 @@ class PermissionTableSeeder extends Seeder
         }
 
         // 创建超级管理员角色并赋予权限
-        $roleSuperAdmin = Role::create(['name' => 'SuperAdmin']);
+        $roleSuperAdmin = Role::create(['name' => 'SuperAdmin', 'team_id' => null]);
         $permissions = Permission::pluck('uuid','uuid')->all();
         $roleSuperAdmin->syncPermissions($permissions);
 
         // 创建普通用户角色并赋予特定权限
-        $roleUser = Role::create(['name' => 'User']);
+        $roleUser = Role::create(['name' => 'User', 'team_id' => null]);
         $userPermissions = Permission::whereIn('name', ['workstation-visit', 'workstation-edit'])->pluck('uuid','uuid')->all();
         $roleUser->syncPermissions($userPermissions);
 

@@ -26,22 +26,24 @@ class UserSeeder extends Seeder
             'name' => 'Henry',
             'email' => 'zhr626@outlook.com',
             'password' => Hash::make('123456'),
-            'email_verified_at' => \Carbon\Carbon::now(),
+            'email_verified_at' => now(),
         ]);
 
-        // 确保"User"角色存在
-        $roleUser = Role::firstOrCreate(['name' => 'SuperAdmin']);
-        $user->assignRole($roleUser);
+        // 创建或确保角色存在
+        $roleSuperAdmin = Role::firstOrCreate(['name' => 'SuperAdmin', 'team_id' => null]);
+        $roleUser = Role::firstOrCreate(['name' => 'User', 'team_id' => null]);
 
-        // 为指定用户创建团队
-        $this->createTeam($user);
-        // 确保"User"角色存在
-        $roleUser = Role::firstOrCreate(['name' => 'User']);
+        //dd($roleSuperAdmin);
+        // 为指定用户创建团队并分配"SuperAdmin"角色
+        $team = $this->createTeam($user); // 接收返回的团队实例
+        setPermissionsTeamId($team->id);
+        $user->assignRole($roleSuperAdmin); // 在分配角色时指定团队 ID
 
-        // 创建 50 个随机用户
-        User::factory()->count(200)->create()->each(function ($user) {
-            $this->createTeam($user);
-            $this->assignRole($roleUser);
+        // 创建 200 个随机用户
+        User::factory()->count(200)->create()->each(function ($user) use ($roleUser) {
+            $team = $this->createTeam($user); // 为每个用户创建团队
+            setPermissionsTeamId($team->id);
+            $user->assignRole($roleUser); // 在分配角色时指定团队 ID
         });
     }
 
@@ -52,12 +54,13 @@ class UserSeeder extends Seeder
      */
     protected function createTeam($user)
     {
-        $user->ownedTeams()->save(new Team([
+        $team = $user->ownedTeams()->save(new Team([
             'name' => $user->name . "'s Team",
             'user_id' => $user->id,
             'personal_team' => true,
         ]));
+    
+        return $team; // 返回创建的团队实例
     }
 }
-
 //php artisan db:seed --class=UserSeeder

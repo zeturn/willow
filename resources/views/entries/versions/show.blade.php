@@ -13,7 +13,7 @@
                     <span class="mx-2 text-gray-400">/</span>
                     <li><a href="{{ route('entry.show.explanation', $version->branch->entry->id) }}" class="inline-flex items-center py-1 font-normal hover:text-neutral-900 focus:outline-none">{{ $version->branch->entry?->name }}</a></li>
                     <span class="mx-2 text-gray-400">/</span>
-                    <li><a href="{{ route('entry.branch.show.showDemoVersion', $version->branch->id) }}" class="inline-flex items-center py-1 font-normal hover:text-neutral-900 focus:outline-none">{{ $version->branch?->id }}</a></li>
+                    <li><a href="{{ route('entry.branch.show.showDemoVersion', $version->branch->id) }}" class="inline-flex items-center py-1 font-normal hover:text-neutral-900 focus:outline-none">{{ $version->branch?->name }}</a></li>
                     <span class="mx-2 text-gray-400">/</span>
                     <li><a class="inline-flex items-center py-1 font-normal rounded cursor-default active-breadcrumb focus:outline-none"> {{ $version->name }}</a></li>
                 </ol>

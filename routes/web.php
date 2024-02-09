@@ -85,7 +85,7 @@ Route::middleware([
 });
 
 
-Route::group(['middleware' => ['auth']], function() {
+//Route::group(['middleware' => ['auth']], function() {
 
     /**
      * 用户工作组
@@ -433,4 +433,4 @@ Route::group(['middleware' => ['auth']], function() {
         });
     });
 
-});
+//});

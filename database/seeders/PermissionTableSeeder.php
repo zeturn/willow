@@ -49,11 +49,29 @@ class PermissionTableSeeder extends Seeder
             'entry-version-censor',
 
             // 讨论wall区权限
+            'wall-index',
+            'wall-create',
+            'wall-edit',
+            'wall-delete-soft-delete',
+            'wall-delete',
+            'wall-censor',
+
 
             // 讨论topic区权限
+            'topic-index',
+            'topic-create',
+            'topic-edit',
+            'topic-delete-soft-delete',
+            'topic-delete',
+            'topic-censor',
 
             // 讨论comment区权限
-            
+            'comment-index',
+            'comment-create',
+            'comment-edit',
+            'comment-delete-soft-delete',
+            'comment-delete',
+            'comment-censor',
 
             // censor权限
             'censor-index',

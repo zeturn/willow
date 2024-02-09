@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:comment-index', ['only' => ['index']]);
+        $this->middleware('permission:comment-create', ['only' => ['create','store']]);
+        $this->middleware('permission:comment-editt', ['only' => ['edit','update']]);
+        $this->middleware('permission:comment-delete-soft-delete', ['only' => ['softDelete']]);//一般用户，仅可以软删除
+        $this->middleware('permission:comment-delete', ['only' => ['destroy', 'softDelete', 'restore']]);//高级用户，删除、软删除、恢复
+    }
+
     public function store(Request $request)
     {
         Comment::create([

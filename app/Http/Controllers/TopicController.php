@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\Auth;
 
 class TopicController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth')->except('show');
+        $this->middleware('permission:topic-index', ['only' => ['index']]);
+        $this->middleware('permission:topic-create', ['only' => ['create','store']]);
+        $this->middleware('permission:topic-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:topic-delete-soft-delete', ['only' => ['softDelete']]);//一般用户，仅可以软删除
+        $this->middleware('permission:topic-delete', ['only' => ['destroy', 'softDelete', 'restore']]);//高级用户，删除、软删除、恢复
+    }
+
     public function index()
     {
         $topics = Topic::all();

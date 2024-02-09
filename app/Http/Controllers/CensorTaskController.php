@@ -48,6 +48,15 @@ class CensorTaskController extends Controller
          $this->middleware('permission:entry-censor', ['only' => ['entryTaskList', 'entryTask', 'handleEntryTask']]);
          $this->middleware('permission:entry-branch-censor', ['only' => ['branchTaskList', 'branchTask', 'handleBranchTask']]);
          $this->middleware('permission:entry-version-censor', ['only' => ['versionTaskList','versionTask','handleVersionTask']]);
+         $this->middleware('permission:wall-censor', ['only' => ['wallTaskList', 'wallTask', 'handleWallTask']]);
+         $this->middleware('permission:topic-censor', ['only' => ['topicTaskList', 'topicTask', 'handleTopicTask']]);
+         $this->middleware('permission:comment-censor', ['only' => ['commentTaskList', 'commentTask', 'handleCommentTask']]);
+         $this->middleware('permission:album-censor', ['only' => ['albumTaskList', 'albumTask', 'handleAlbumTask']]);
+         $this->middleware('permission:media-censor', ['only' => ['mediaTaskList', 'mediaTask', 'handleMediaTask']]);
+         $this->middleware('permission:tree-censor', ['only' => ['treeTaskList', 'treeTask', 'handleTreeTask']]);
+         $this->middleware('permission:node-censor', ['only' => ['nodeTaskList', 'nodeTask', 'handleNodeTask']]);
+         $this->middleware('permission:edge-censor', ['only' => ['edgeTaskList', 'edgeTask', 'handleEdgeTask']]);
+
 
     }
 

@@ -4,6 +4,8 @@ namespace App\Actions\Fortify;
 
 use App\Models\Team;
 use App\Models\User;
+use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -34,7 +36,11 @@ class CreateNewUser implements CreatesNewUsers
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
-                $this->createTeam($user);
+                $team = $this->createTeam($user); // 接收返回的团队实例
+                setPermissionsTeamId($team->id);
+                $user->switchTeam($team);
+                $roleUser = Role::firstOrCreate(['name' => 'SuperAdmin', 'team_id' => null]);
+                $user->assignRole($roleUser); // 在分配角色时指定团队 ID
             });
         });
     }
@@ -42,12 +48,14 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Create a personal team for the user.
      */
-    protected function createTeam(User $user): void
+    protected function createTeam(User $user): Team
     {
-        $user->ownedTeams()->save(Team::forceCreate([
+        $team = $user->ownedTeams()->save(Team::forceCreate([
             'user_id' => $user->id,
             'name' => explode(' ', $user->name, 2)[0]."'s Team",
             'personal_team' => true,
         ]));
+
+        return $team; // 返回创建的团队实例
     }
 }

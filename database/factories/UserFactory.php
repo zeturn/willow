@@ -32,17 +32,6 @@ class UserFactory extends Factory
             'current_team_id' => null,
         ];
     }
-
-    public function configure()
-    {
-        return $this->afterCreating(function (User $user) {
-            Team::factory()->create([
-                'name' => $user->name . "'s Team",
-                'user_id' => $user->id,
-                'personal_team' => true,
-            ]);
-        });
-    }
     
     /**
      * Indicate that the model's email address should be unverified.

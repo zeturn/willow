@@ -12,6 +12,8 @@ use App\Models\EntryVersion;
 use App\Models\EntryVersionTask;
 use App\Models\EntityWallAssociation;
 
+use App\Models\Role;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +27,7 @@ class WorkstationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:SuperAdmin|User','permission:workstation-visit|workstation-edit']);
+        $this->middleware(['role_or_permission:SuperAdmin|workstation-visit|workstation-edit']);
     }
     /**
      * 每个人的工作站
@@ -44,6 +46,17 @@ class WorkstationController extends Controller
         // 获取当前登录用户
         $user = Auth::user();
 
+        /*setPermissionsTeamId($user->current_team_id);
+
+        $roles = $user->getRoleNames();
+        $session_team_id = getPermissionsTeamId();
+        $current_team = $user->currentTeam;
+
+        $role = Role::where('name', 'User')->firstOrFail();
+
+        $hasper = $role->hasPermissionTo('workstation-visit');
+
+        dd($roles, $session_team_id,$current_team,$hasper);*/
         // 加载用户相关资产
         $branches = $user->branches;
         $versions = $user->versions;

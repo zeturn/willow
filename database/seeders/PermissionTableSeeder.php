@@ -50,6 +50,8 @@ class PermissionTableSeeder extends Seeder
 
         ];
 
+        
+
         // 创建权限
         foreach ($permissions as $permission) {
             Permission::create(['name' => $permission]);
@@ -62,8 +64,8 @@ class PermissionTableSeeder extends Seeder
 
         // 创建普通用户角色并赋予特定权限
         $roleUser = Role::create(['name' => 'User', 'team_id' => null]);
-        $userPermissions = Permission::whereIn('name', ['workstation-visit', 'workstation-edit'])->pluck('uuid','uuid')->all();
-        $roleUser->syncPermissions($userPermissions);
+        $roleUser -> givePermissionTo('workstation-visit');
+        $roleUser -> givePermissionTo('workstation-edit');
 
     }
 }

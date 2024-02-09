@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Team;
 use App\Models\Permission;
 use App\Models\Role;
+use Illuminate\Support\Facades\Artisan;
 
 class UserSeeder extends Seeder
 {
@@ -27,6 +28,16 @@ class UserSeeder extends Seeder
         //$role->syncPermissions($permissions);
          
         //$user->assignRole([$role->id]);
+        // 清除缓存
+        Artisan::call('cache:clear');
+
+        // 检查 `permissions` 表中是否有内容
+        $permissionsCount = DB::table('permissions')->count();
+
+        if ($permissionsCount == 0) {
+            // 如果没有内容，执行 PermissionTableSeeder
+            Artisan::call('db:seed', ['--class' => 'PermissionTableSeeder']);
+        }
 
         // 插入指定用户
         $user = User::create([
@@ -46,15 +57,19 @@ class UserSeeder extends Seeder
         // 为指定用户创建团队并分配"SuperAdmin"角色
         $team = $this->createTeam($user); // 接收返回的团队实例
         setPermissionsTeamId($team->id);
+        $user->switchTeam($team);
         $user->assignRole($roleSuperAdmin); // 在分配角色时指定团队 ID
-        $user->givePermissionTo('workstation-visit');
 
         // 创建 200 个随机用户
-        User::factory()->count(200)->create()->each(function ($user) use ($roleUser) {
+        User::factory()->count(100)->create()->each(function ($user) use ($roleUser) {
             $team = $this->createTeam($user); // 为每个用户创建团队
             setPermissionsTeamId($team->id);
+            $user->switchTeam($team);
             $user->assignRole($roleUser); // 在分配角色时指定团队 ID
         });
+
+        // 清除缓存
+        Artisan::call('cache:clear');
     }
 
     /**

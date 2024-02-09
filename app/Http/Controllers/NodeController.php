@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Validator;
 
 class NodeController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:node-index', ['only' => ['index']]);
+        $this->middleware('permission:node-create', ['only' => ['create','store']]);
+        $this->middleware('permission:node-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:node-soft-edit', ['only' => ['destroy']]);//一般用户，仅可以软删除
+        $this->middleware('permission:node-delete', ['only' => ['destroy']]);//高级用户，删除、软删除、恢复
+    }
+
     /**
      * 显示节点列表的页面。
      *

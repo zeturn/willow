@@ -52,7 +52,7 @@ class PermissionTableSeeder extends Seeder
             'wall-index',
             'wall-create',
             'wall-edit',
-            'wall-delete-soft-delete',
+            'wall-soft-delete',
             'wall-delete',
             'wall-censor',
 
@@ -61,7 +61,7 @@ class PermissionTableSeeder extends Seeder
             'topic-index',
             'topic-create',
             'topic-edit',
-            'topic-delete-soft-delete',
+            'topic-soft-delete',
             'topic-delete',
             'topic-censor',
 
@@ -69,7 +69,7 @@ class PermissionTableSeeder extends Seeder
             'comment-index',
             'comment-create',
             'comment-edit',
-            'comment-delete-soft-delete',
+            'comment-soft-delete',
             'comment-delete',
             'comment-censor',
 
@@ -77,7 +77,7 @@ class PermissionTableSeeder extends Seeder
             'album-index',
             'album-create',
             'album-edit',
-            'album-delete-soft-delete',
+            'album-soft-delete',
             'album-delete',
             'album-censor',
 
@@ -85,9 +85,44 @@ class PermissionTableSeeder extends Seeder
             'media-index',
             'media-create',
             'media-edit',
-            'media-delete-soft-delete',
+            'media-soft-delete',
             'media-delete',
             'media-censor',
+
+            // 分类tree区权限
+            'tree-index',
+            'tree-create',
+            'tree-edit',
+            'tree-soft-delete',
+            'tree-delete',
+            'tree-censor',
+
+            // 分类DAG区权限
+            'dag-index',
+            'dag-node-create',
+            'dag-node-edit',
+            'dag-node-soft-delete',
+            'dag-node-delete',
+            'dag-edge-create',
+            'dag-edge-edit',
+            'dag-edge-soft-delete',
+            'dag-edge-delete',
+
+            // 分类Node区权限
+            'node-index',
+            'node-create',
+            'node-edit',
+            'node-soft-delete',
+            'node-delete',
+            'node-censor',
+
+            // 分类Edge区权限
+            'edge-index',
+            'edge-create',
+            'edge-edit',
+            'edge-soft-delete',
+            'edge-delete',
+            'edge-censor',
 
             // censor权限
             'censor-index',

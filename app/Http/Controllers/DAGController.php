@@ -12,6 +12,22 @@ use Illuminate\Support\Facades\Auth;
 
 class DAGController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:dag-index', ['only' => ['index']]);
+
+        $this->middleware('permission:dag-node-create', ['only' => ['createNode','storeNode']]);
+        $this->middleware('permission:dag-node-edit', ['only' => ['editNode','updateNode']]);
+        $this->middleware('permission:dag-node-soft-delete', ['only' => ['deleteNode']]);//一般用户，仅可以软删除
+        $this->middleware('permission:dag-node-delete', ['only' => ['deleteNode']]);//高级用户，删除、软删除、恢复
+
+        $this->middleware('permission:dag-edge-create', ['only' => ['createEdge','storeEdge']]);
+        $this->middleware('permission:dag-edge-edit', ['only' => ['editEdge','updateEdge']]);
+        $this->middleware('permission:dag-edge-soft-delete', ['only' => ['deleteEdge']]);//一般用户，仅可以软删除
+        $this->middleware('permission:dag-edge-delete', ['only' => ['deleteEdge']]);//高级用户，删除、软删除、恢复
+    }
+
+
     /**
      * 显示DAG的所有节点和边的列表。
      *

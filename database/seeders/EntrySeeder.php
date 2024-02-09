@@ -12,9 +12,16 @@ use Faker\Factory as Faker;
 
 
 class EntrySeeder extends Seeder
-{
+{        
+    protected $signature = 'measure:time';
+
+    protected $description = 'Measure the execution time of a code snippet';
+
     public function run()
     {
+
+        // 开始计时
+        $start = microtime(true);
 
         $faker = Faker::create();
 
@@ -81,6 +88,15 @@ class EntrySeeder extends Seeder
                 }
             }
         }
+
+        // 结束计时
+        $end = microtime(true);
+
+        // 计算所需时间（毫秒）
+        $executionTime = round(($end - $start) * 1000, 2);
+
+        // 输出所需时间到终端
+        echo 'Entry 在 ' . $executionTime . ' ms 内完成填充' . PHP_EOL;
     }
 }
 // php artisan db:seed --class=EntrySeeder

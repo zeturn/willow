@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Tree;
 use Illuminate\Console\Command;
 
-class CategorySeeder extends Seeder
+class TreeTableSeeder extends Seeder
 {
     protected $signature = 'measure:time';
 
@@ -25,8 +25,9 @@ class CategorySeeder extends Seeder
 
         // Create root node 创建根节点
         $rootNode = Tree::create([
-            'name' => 'Root',
+            'name' => 'Cedrus',
             'parent_id' => null,
+            'description'=>'A large and sturdy tree.',
             'status' => 1
         ]);
 
@@ -4000,7 +4001,7 @@ class CategorySeeder extends Seeder
         $executionTime = round(($end - $start) * 1000, 2);
 
         // 输出所需时间到终端
-        echo '在 ' . $executionTime . ' ms 内完成填充' . PHP_EOL;
+        echo 'Tree 在 ' . $executionTime . ' ms 内完成填充' . PHP_EOL;
     }
 
     /**
@@ -4027,4 +4028,4 @@ class CategorySeeder extends Seeder
         }
     }
 }
-// php artisan db:seed --class=CategorySeeder
+// php artisan db:seed --class=TreeTableSeeder

@@ -47,6 +47,8 @@ use App\Http\Controllers\{
     MediasController,
     AlbumsController,
 
+    InitializationController,
+
 };
 
 use Inertia\Inertia;
@@ -434,3 +436,7 @@ Route::middleware([
     });
 
 //});
+
+Route::get('/initialization', [InitializationController::class, 'index'])->name('initialization.index');
+Route::post('/initialization/run', [InitializationController::class, 'runInitialization'])->name('initialization.run');
+Route::post('/artificialdata/run', [InitializationController::class, 'runArtificialData'])->name('ArtificialData.run');

@@ -12,7 +12,7 @@ use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Support\Facades\Artisan;
 
-class UserSeeder extends Seeder
+class UserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -21,24 +21,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //$role = Role::create(['name' => 'Admin']);
-         
-        //$permissions = Permission::pluck('uuid','uuid')->all();
-       
-        //$role->syncPermissions($permissions);
-         
-        //$user->assignRole([$role->id]);
-        // 清除缓存
-        Artisan::call('cache:clear');
-
-        // 检查 `permissions` 表中是否有内容
-        $permissionsCount = DB::table('permissions')->count();
-
-        if ($permissionsCount == 0) {
-            // 如果没有内容，执行 PermissionTableSeeder
-            Artisan::call('db:seed', ['--class' => 'PermissionTableSeeder']);
-        }
-
         // 插入指定用户
         $user = User::create([
             'id' => '62662626-6662-6626-2666-262662626226',
@@ -67,9 +49,6 @@ class UserSeeder extends Seeder
             $user->switchTeam($team);
             $user->assignRole($roleUser); // 在分配角色时指定团队 ID
         });
-
-        // 清除缓存
-        Artisan::call('cache:clear');
     }
 
     /**

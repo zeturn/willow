@@ -12,6 +12,15 @@ use Illuminate\Support\Str;
 class MediasController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware('auth')->except('show');
+        $this->middleware('permission:media-index', ['only' => ['index']]);
+        $this->middleware('permission:media-create', ['only' => ['create','store']]);
+        $this->middleware('permission:media-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:media-delete-soft-delete', ['only' => ['softDelete']]);//一般用户，仅可以软删除
+        $this->middleware('permission:media-delete', ['only' => ['destroy', 'softDelete', 'restore']]);//高级用户，删除、软删除、恢复
+    }
     public function index()
     {
         // 检查用户是否已经登录 / Check if the user is authenticated

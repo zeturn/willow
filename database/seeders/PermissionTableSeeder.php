@@ -73,6 +73,22 @@ class PermissionTableSeeder extends Seeder
             'comment-delete',
             'comment-censor',
 
+            // 媒体相册album区权限
+            'album-index',
+            'album-create',
+            'album-edit',
+            'album-delete-soft-delete',
+            'album-delete',
+            'album-censor',
+
+            // 媒体media区权限
+            'media-index',
+            'media-create',
+            'media-edit',
+            'media-delete-soft-delete',
+            'media-delete',
+            'media-censor',
+
             // censor权限
             'censor-index',
             'censor-list',

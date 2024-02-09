@@ -12,6 +12,16 @@ use Illuminate\Support\Facades\Auth;
 class AlbumsController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware('auth')->except('show');
+        $this->middleware('permission:album-index', ['only' => ['index']]);
+        $this->middleware('permission:album-create', ['only' => ['create','store']]);
+        $this->middleware('permission:album-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:album-delete-soft-delete', ['only' => ['softDelete']]);//一般用户，仅可以软删除
+        $this->middleware('permission:album-delete', ['only' => ['destroy', 'softDelete', 'restore']]);//高级用户，删除、软删除、恢复
+    }
+
     public function index()
     {
         // 检查用户是否已经登录 / Check if the user is authenticated

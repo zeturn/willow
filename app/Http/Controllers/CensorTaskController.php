@@ -31,6 +31,26 @@ use App\Models\AlbumsMediaAssociation;
 
 class CensorTaskController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    function __construct()
+    {
+         $this->middleware('permission:censor-index|censor-list|censor-create|censor-edit|censor-delete', ['only' => ['index','show']]);
+         $this->middleware('permission:censor-create', ['only' => ['create','store']]);
+         $this->middleware('permission:censor-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:censor-delete', ['only' => ['destroy']]);
+
+
+         $this->middleware('permission:entry-censor', ['only' => ['entryTaskList', 'entryTask', 'handleEntryTask']]);
+         $this->middleware('permission:entry-branch-censor', ['only' => ['branchTaskList', 'branchTask', 'handleBranchTask']]);
+         $this->middleware('permission:entry-version-censor', ['only' => ['versionTaskList','versionTask','handleVersionTask']]);
+
+    }
+
     /**
      * Display a listing of the resource.
      */

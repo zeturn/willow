@@ -9,7 +9,7 @@
                 <h2 class="text-xl font-bold mb-4">{{ $task->branch->id }}</h2>
 
                 <!-- 审核表单 -->
-                <form action="{{ route('censor.tasks.update.entry') }}" method="POST" class="space-y-4">
+                <form action="{{ route('censor.tasks.update.branch') }}" method="POST" class="space-y-4">
                     @csrf <!-- CSRF 令牌 -->
 
                     <!-- 加密的任务ID，隐藏字段 -->

@@ -7,14 +7,30 @@ use Illuminate\Database\Eloquent\SoftDeletes; // 如果您计划使用软删除
 use App\Traits\UUID;
 use App\Traits\Status;
 use Illuminate\Support\Facades\Storage; // 引入 Storage 门面
+use Laravel\Scout\Searchable;
 
 class Media extends Model
 {
     use SoftDeletes, UUID, Status; // 如果您计划使用软删除
+    use Searchable;
 
     protected $fillable = ['url', 'status', 'user_id', 'description'];
     protected $table = 'medias'; // 显式指定表名
 
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'description' => $this->description,
+            // Add other fields you want to index here
+        ];
+    }
+    
     /**
      * 更改状态。
      * Change the status of the entry.

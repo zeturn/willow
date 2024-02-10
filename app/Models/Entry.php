@@ -30,19 +30,31 @@ class Entry extends Model
 
     protected $fillable = ['id', 'name', 'demo_branch_id', 'status']; // 可填充的字段
 
-        /**
+    /**
      * Get the indexable data array for the model.
      *
      * @return array
      */
     public function toSearchableArray()
     {
+        $content = '';
+    
+        if ($this->getDemoBranch()) {
+            $demoBranch = $this->getDemoBranch();
+            
+            if ($demoBranch->getDemoVersion()) {
+                $content = $demoBranch->getDemoVersion()->content;
+            }
+        }
+    
         return [
             'id' => $this->id,
             'name' => $this->name,
-            // Add other fields you want to index here
+            'content' => $content,
+            // 添加其他你想要索引的字段在这里
         ];
     }
+    
 
     public function getEntityName() {
         return 'entry';

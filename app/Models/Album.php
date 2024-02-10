@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes; // 如果您计划使用软删除 / If you plan to use soft deletes
 use App\Traits\UUID;
 use App\Traits\Status;
+use Laravel\Scout\Searchable;
 
 /**
  * 相册模型 / Album Model
@@ -17,9 +18,24 @@ class Album extends Model
     use UUID;
     use Status;
     use SoftDeletes; // 如果您计划使用软删除 / If you plan to use soft deletes
+    use Searchable;
 
     protected $fillable = ['title', 'user_id', 'status']; // 可填充字段 / Fillable fields
     protected $table = 'albums'; // 显式指定表名 / Explicitly specify table name
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            // Add other fields you want to index here
+        ];
+    }
 
     /**
      * 更改状态 / Change the status

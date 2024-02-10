@@ -12,6 +12,10 @@ class SearchController extends Controller
         return view('search.index');
     }
 
+    public function search(){
+        
+    }
+
     public function searchEntry(Request $request)
     {
         // 获取搜索关键词

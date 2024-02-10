@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\UUID;
 use App\Traits\Status;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class EntryVersion extends Model
 {
@@ -14,6 +15,7 @@ class EntryVersion extends Model
     use UUID;
     use SoftDeletes;
     use Status;
+    use Searchable;
 
     public $incrementing = false; // 不自增
     protected $keyType = 'string';  // 主键的数据类型是字符串
@@ -24,7 +26,23 @@ class EntryVersion extends Model
         return 'entry.version';
     }
 
-         /**
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            'content' => $this->content,
+            // Add other fields you want to index here
+        ];
+    }
+
+    /**
      * 更改状态。
      * Change the status of the entry.
      *

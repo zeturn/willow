@@ -7,16 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\UUID;
 use App\Traits\Status;
+use Laravel\Scout\Searchable;
 
 class Comment extends Model
 {
     use HasFactory, SoftDeletes, UUID, Status;
+    use Searchable;
 
     protected $fillable = ['topic_id', 'user_id', 'content', 'status'];
 
     // 可搜索属性
     protected $searchable = ['content'];
 
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'content' => $this->content,
+            // Add other fields you want to index here
+        ];
+    }
     /**
      * 更改状态。
      * Change the status of the entry.

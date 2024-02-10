@@ -443,8 +443,12 @@ Route::get('/initialization', [InitializationController::class, 'index'])->name(
 Route::post('/initialization/run', [InitializationController::class, 'runInitialization'])->name('initialization.run');
 Route::post('/artificialdata/run', [InitializationController::class, 'runArtificialData'])->name('ArtificialData.run');
 
-Route::get('/search', [SearchController::class, 'index'])->name('search');
-Route::get('/search/entry', [SearchController::class, 'searchEntry'])->name('search.entry');
+Route::prefix('search')->name('search.')->group(function () {
+
+    Route::get('/', [SearchController::class, 'index'])->name('index');
+    Route::get('/entry', [SearchController::class, 'searchEntry'])->name('entry');
+
+});
 
 Route::get('/check-redis', function () {
     try {

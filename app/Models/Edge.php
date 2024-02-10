@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\UUID;
 use App\Traits\Status;
+use Laravel\Scout\Searchable;
 
 class Edge extends Model
 {
     use HasFactory, SoftDeletes, UUID, Status;
+    use Searchable;
 
     protected $guarded = [];  // 没有受保护的字段
     public $incrementing = false;  // 主键不是自增长的
@@ -18,7 +20,22 @@ class Edge extends Model
 
     protected $fillable = ['start_node', 'end_node', 'status'];
 
-                 /**
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'start_node' => $this->start_node,
+            'end_node' => $this->end_node,
+            // Add other fields you want to index here
+        ];
+    }
+
+    /**
      * 更改状态。
      * Change the status of the entry.
      *

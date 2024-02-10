@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\UUID;
 use App\Traits\Status;
 
+
 class CensorTask extends Model
 {
     use HasFactory, SoftDeletes, UUID, Status;

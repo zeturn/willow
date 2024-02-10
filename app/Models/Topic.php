@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\UUID;
 use App\Traits\Status;
+use Laravel\Scout\Searchable;
 
 /**
  * Represents a Topic in the system.
@@ -15,6 +16,7 @@ use App\Traits\Status;
 class Topic extends Model
 {
     use HasFactory, SoftDeletes, UUID, Status;
+    use Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +31,23 @@ class Topic extends Model
      * @var array
      */
     protected $searchable = ['name', 'description'];
+
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'slug' => $this->slug,
+            'description' => $this->description,
+            // Add other fields you want to index here
+        ];
+    }
 
     /**
      * Get the name of the entity.

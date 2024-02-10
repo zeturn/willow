@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\UUID;
 use App\Traits\Status;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class EntryBranch extends Model
 {
@@ -14,11 +15,26 @@ class EntryBranch extends Model
     use UUID; // 使用UUID trait，可能用于生成UUID作为主键
     use SoftDeletes; // 使用软删除功能
     use Status;
+    use Searchable;
     
     protected $guarded = []; // 没有受保护的字段，这意味着所有字段都可以被批量赋值
     public $incrementing = false; // 主键不自增
     protected $keyType = 'string'; // 主键的数据类型是字符串
     protected $fillable = ['id', 'name', 'entry_id', 'demo_version_id', 'is_pb', 'is_free', 'status']; // 可以批量赋值的字段
+    
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            // Add other fields you want to index here
+        ];
+    }
 
     /**
      * 更改状态。

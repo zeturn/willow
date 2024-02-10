@@ -7,16 +7,33 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\UUID;
 use App\Traits\Status;
+use Laravel\Scout\Searchable;
 
 class Node extends Model
 {
     use HasFactory, SoftDeletes, UUID, Status;
+    use Searchable;
 
     protected $guarded = [];  // 没有受保护的字段
     public $incrementing = false;  // 主键不是自增长的
     protected $keyType = 'string'; // 主键类型为字符串
 
     protected $fillable = ['name', 'description', 'status'];
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'description' => $this->description,
+            // Add other fields you want to index here
+        ];
+    }
 
     public function getEntityName() {
         return 'nodes';

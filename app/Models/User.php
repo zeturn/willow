@@ -22,6 +22,8 @@ use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
+use Laravel\Scout\Searchable;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -36,6 +38,8 @@ class User extends Authenticatable implements MustVerifyEmail
     use UUID;
     use Status;
     use HasRoles;
+
+    use Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -75,6 +79,20 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+        /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            // Add other fields you want to index here
+        ];
+    }
 
     /**
      * 返回用户持有的分支EntryBranch

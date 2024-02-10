@@ -7,10 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\UUID;
 use App\Traits\Status;
+use Laravel\Scout\Searchable;
 
 class Wall extends Model
 {
     use HasFactory, SoftDeletes, UUID, Status;
+    use Searchable;
 
     public $incrementing = false; // 关闭自增属性
     protected $keyType = 'string'; // 主键不是整型
@@ -20,6 +22,22 @@ class Wall extends Model
     ];
 
     protected $fillable = ['name', 'slug', 'description', 'status', 'eid'];
+
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'slug' => $this->slug,
+            'description' => $this->description,
+            // Add other fields you want to index here
+        ];
+    }
 
     //对应的entry
     public function entry()

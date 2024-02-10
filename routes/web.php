@@ -37,6 +37,7 @@ use App\Http\Controllers\{
     ReportController,
     CensorTaskController,
     RoleController,
+    SearchController,
 
     CategoryController,
     TreeController,
@@ -440,3 +441,6 @@ Route::middleware([
 Route::get('/initialization', [InitializationController::class, 'index'])->name('initialization.index');
 Route::post('/initialization/run', [InitializationController::class, 'runInitialization'])->name('initialization.run');
 Route::post('/artificialdata/run', [InitializationController::class, 'runArtificialData'])->name('ArtificialData.run');
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
+Route::get('/search/entry', [SearchController::class, 'searchEntry'])->name('search.entry');

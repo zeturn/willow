@@ -16,17 +16,33 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\UUID;
 use App\Traits\Status;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class Entry extends Model
 {
     use HasFactory;
     use UUID;
     use Status;
+    use Searchable;
     protected $guarded = [];  // 没有受保护的字段
     public $incrementing = false;  // 主键不是自增长的
     protected $keyType = 'string'; // 主键类型为字符串
 
     protected $fillable = ['id', 'name', 'demo_branch_id', 'status']; // 可填充的字段
+
+        /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            // Add other fields you want to index here
+        ];
+    }
 
     public function getEntityName() {
         return 'entry';

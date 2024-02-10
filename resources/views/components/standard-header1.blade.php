@@ -26,7 +26,7 @@
         navigationMenuClose(){
             this.navigationMenuOpen = false;
             this.navigationMenu = '';
-        } }" class="relative md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+        } }" class="relative md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center z-50">
         <div class="relative">
             <ul class="flex items-center justify-center flex-1 p-1 list-none rounded-md text-neutral-700 group">
                 <li>

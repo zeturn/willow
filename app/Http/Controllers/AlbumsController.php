@@ -59,12 +59,12 @@ class AlbumsController extends Controller
         $request->validate([
             'title' => 'required|string',
             'photos' => 'required',
-            'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
         ]);
 
         $album = Album::create([
             'title' => $request->title,
-            'user_id' => auth()->id(), // 假设用户已登录
+            'user_id' => auth()->id(), // 用户必须已登录
             'status' => 1, // 设置状态或其他必要字段
         ]);
 
@@ -84,7 +84,7 @@ class AlbumsController extends Controller
             }
         }
 
-        $album->createCensorTask();
+        $album->createCensorTask();//创建审核任务
 
         return redirect()->route('albums.show', $album->id);
     }

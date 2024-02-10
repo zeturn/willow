@@ -91,7 +91,7 @@ class NodeController extends Controller
         $walls = $node->walls;
         $adjacentNodesAndEdges = $node->getAdjacentNodesAndEdges();
         $entries = $node->entries;
-        return view('nodes.show', compact('node','walls', 'adjacentNodesAndEdges', 'entries')); // 返回节点详情视图
+        return view('nodes.show', compact('node', 'walls', 'adjacentNodesAndEdges', 'entries')); // 返回节点详情视图
     }
 
     /**

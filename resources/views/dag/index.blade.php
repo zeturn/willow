@@ -27,6 +27,10 @@
                         @endforeach
                     </ul>
                 </div>
+                <!-- Pagination -->
+                <div class="mt-4">
+                    {{ $nodes->links() }}
+                </div>
 
                 <!-- Edges section -->
                 <div class="mt-6">
@@ -47,6 +51,11 @@
                         @endforeach
                     </ul>
                 </div>
+                <!-- Pagination -->
+                <div class="mt-4">
+                    {{ $edges->links() }}
+                </div>
+
             </div>
         </div><!-- Main column -->
 

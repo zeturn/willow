@@ -41,8 +41,8 @@ class DAGController extends Controller
             return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
         }
 
-        $nodes = Node::all();
-        $edges = Edge::all();
+        $nodes = Node::paginate(30);
+        $edges = Edge::paginate(30);
 
         // 此处返回DAG总览视图
         return view('dag.index', compact('nodes', 'edges'));
@@ -103,9 +103,12 @@ class DAGController extends Controller
     public function showNode($id)
     {
         $node = Node::findOrFail($id);
+        $walls = $node->walls;
+        $adjacentNodesAndEdges = $node->getAdjacentNodesAndEdges();
+        $entries = $node->entries;
 
         // 此处返回节点详情视图
-        return view('dag.showNode', compact('node'));
+        return view('dag.showNode', compact('node','walls', 'adjacentNodesAndEdges', 'entries'));
     }
 
     /**

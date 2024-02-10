@@ -7,9 +7,10 @@
         <!-- Main column -->
         <div class="w-full lg:w-3/4 px-4">
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-                <h1 class="text-4xl font-semibold text-gray-900">{{ $node->name }}</h1>
-                <p class="text-lg text-gray-700 mt-4"><span class="font-medium">{{ $node->description }}</span></p>
-
+                <div class=" ">
+                    <h1 class="text-4xl font-semibold text-gray-900">{{ $node->name }}</h1>
+                    <p class="text-lg text-gray-700 mt-4"><span class="font-medium">{{ $node->description }}</span></p>
+                </div>
                 <!-- Adjacent Nodes Display -->
                 <div class="mt-6">
                     <h2 class="text-2xl font-semibold text-gray-900">{{ __('Adjacent Nodes') }}</h2>
@@ -44,6 +45,7 @@
                         <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-150 ease-in-out">{{ __('Delete Node') }}</button>
                     </form>
                 </div>
+                
             </div>
         </div>
 

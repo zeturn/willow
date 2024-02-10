@@ -18,6 +18,7 @@
  **/
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redis;
 
 use App\Http\Controllers\{
 
@@ -444,3 +445,12 @@ Route::post('/artificialdata/run', [InitializationController::class, 'runArtific
 
 Route::get('/search', [SearchController::class, 'index'])->name('search');
 Route::get('/search/entry', [SearchController::class, 'searchEntry'])->name('search.entry');
+
+Route::get('/check-redis', function () {
+    try {
+        $pong = Redis::ping();
+        return response()->json(['message' => 'Redis is working fine! 😊'.' '.$pong]);
+    } catch (\Exception $e) {
+        return response()->json(['m7essage' => 'Failed to connect to Redis! 😔', 'error' => $e->getMessage()], 500);
+    }
+});

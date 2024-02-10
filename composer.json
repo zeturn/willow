@@ -17,6 +17,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.2",
         "meilisearch/meilisearch-php": "^1.6",
+        "predis/predis": "^2.2",
         "spatie/laravel-permission": "^6.3",
         "sven/artisan-view": "^3.6"
     },

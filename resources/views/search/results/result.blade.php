@@ -9,8 +9,8 @@
 
 	<form id="searchForm" action="{{ route('search.result') }}" method="GET">
 
-		<div class="w-full bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4"> <!-- 修改宽度 -->
-			<div class="form-group flex justify-center">
+		<div class="w-full bg-white rounded-lg dark:border-gray-700 dark:bg-gray-800 mb-4"> <!-- 修改宽度 -->
+			<div class="form-group flex justify-center p-6 m-4">
 				<input type="text" name="query" id="query" class="w-1/2 h-10 px-3 py-2 text-sm bg-white border rounded-md border-gray-300 ring-offset-background placeholder:text-gray-500 focus:border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Enter your search query..." value="{{ $query ?? '' }}">
 			</div>
 		</div>

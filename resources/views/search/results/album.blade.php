@@ -12,7 +12,7 @@
         <ul class="divide-y divide-gray-200">
             @foreach ($results as $album)
                 <li class="py-4">
-                    <span class="block text-lg font-semibold text-gray-800">{{ $album->title }}</span>
+                    <a href="{{ route('comment.show', ['id' => $album->id]) }}" class="block text-lg font-semibold text-gray-800">{{ $comment->title }}</a>
                     <span class="block text-sm text-gray-500">{{ $album->id }}</span>
                     <!-- Add other fields you want to display -->
                 </li>

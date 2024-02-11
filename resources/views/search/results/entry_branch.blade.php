@@ -12,7 +12,7 @@
         <ul class="divide-y divide-gray-200">
             @foreach ($results as $entry_branch)
                 <li class="py-4">
-                    <span class="block text-lg font-semibold text-gray-800">{{ $entry_branch->name }}</span>
+                    <a href="{{ route('entry.branch.show.showDemoVersion', ['id' => $entry_branch->id]) }}" class="block text-lg font-semibold text-gray-800">{{ $entry_branch->name }}</a>
                     <span class="block text-sm text-gray-500">{{ $entry_branch->id }}</span>
                     <!-- Add other fields you want to display -->
                 </li>

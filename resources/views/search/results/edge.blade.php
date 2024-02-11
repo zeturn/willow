@@ -12,8 +12,8 @@
         <ul class="divide-y divide-gray-200">
             @foreach ($results as $edge)
                 <li class="py-4">
-                    <span class="block text-lg font-semibold text-gray-800">{{ $edge->start_node }}</span>
-                    <span class="block text-lg font-semibold text-gray-800">{{ $edge->end_node }}</span>
+                    <a href="{{ route('edges.show', ['edge' => $edge->id]) }}" class="block text-lg font-semibold text-gray-800">{{ $edge->start_node }}</a>
+                    <a href="{{ route('edges.show', ['edge' => $edge->id]) }}" class="block text-lg font-semibold text-gray-800">{{ $edge->end_node }}</a>
                     <span class="block text-sm text-gray-500">{{ $edge->id }}</span>
                     <!-- Add other fields you want to display -->
                 </li>

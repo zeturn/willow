@@ -39,6 +39,10 @@ class SearchController extends Controller
     
         // 获取搜索的模型类型
         $modelType = $request->input('model_type');
+
+        $start_date = $request->input('start_date');
+        
+        $end_date = $request->input('end_date');
     
         // 根据模型类型执行相应的搜索
         switch ($modelType) {
@@ -94,6 +98,6 @@ class SearchController extends Controller
         }
     
         // 返回搜索结果视图
-        return view($view, compact('results', 'modelType', 'query'));
+        return view($view, compact('results', 'modelType', 'query', 'start_date','end_date'));
     }
 }

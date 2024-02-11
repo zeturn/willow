@@ -12,7 +12,7 @@
         <ul class="divide-y divide-gray-200">
             @foreach ($results as $node)
                 <li class="py-4">
-                    <span class="block text-lg font-semibold text-gray-800">{{ $node->name }}</span>
+                    <a href="{{ route('nodes.show', ['node' => $node->id]) }}" class="block text-lg font-semibold text-gray-800">{{ $node->name }}</a>
                     <span class="block text-sm text-gray-500">{{ $node->id }}</span>
                     <!-- Add other fields you want to display -->
                 </li>

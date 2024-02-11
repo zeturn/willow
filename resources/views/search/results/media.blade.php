@@ -12,8 +12,8 @@
         <ul class="divide-y divide-gray-200">
             @foreach ($results as $media)
                 <li class="py-4">
-                    <span class="block text-lg font-semibold text-gray-800">{{ $media->description }}</span>
-                    <span class="block text-sm text-gray-500">{{ $media->id }}</span>
+                    <a href="{{ route('medias.show', ['media' => $media->id]) }}" class="block text-lg font-semibold text-gray-800">{{ $media->id }}</a>
+                    <span class="block text-sm text-gray-500">{{ $media->description }}</span>
                     <!-- Add other fields you want to display -->
                 </li>
             @endforeach

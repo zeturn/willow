@@ -12,17 +12,12 @@
         <ul class="divide-y divide-gray-200">
             @foreach ($results as $tree)
                 <li class="py-4">
-                    <span class="block text-lg font-semibold text-gray-800">{{ $tree->name }}</span>
+                    <a href="{{ route('trees.show', ['tree' => $tree->id]) }}" class="block text-lg font-semibold text-gray-800">{{ $tree->name }}</a>
                     <span class="block text-sm text-gray-500">{{ $tree->id }}</span>
                     <!-- Add other fields you want to display -->
                 </li>
             @endforeach
         </ul>
     @endif
-
-@endsection
-
-
-@section('content-bar')
 
 @endsection

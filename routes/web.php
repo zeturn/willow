@@ -446,7 +446,9 @@ Route::post('/artificialdata/run', [InitializationController::class, 'runArtific
 Route::prefix('search')->name('search.')->group(function () {
 
     Route::get('/', [SearchController::class, 'index'])->name('index');
-    Route::get('/entry', [SearchController::class, 'searchEntry'])->name('entry');
+    Route::get('/advanced', [SearchController::class, 'AdvancedSearchIndex'])->name('advancedsearchindex');
+
+    Route::get('/result', [SearchController::class, 'search'])->name('result');
 
 });
 

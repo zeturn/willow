@@ -97,16 +97,16 @@ class PermissionTableSeeder extends Seeder
             'tree-delete',
             'tree-censor',
 
-            // 分类DAG区权限
-            'dag-index',
-            'dag-node-create',
-            'dag-node-edit',
-            'dag-node-soft-delete',
-            'dag-node-delete',
-            'dag-edge-create',
-            'dag-edge-edit',
-            'dag-edge-soft-delete',
-            'dag-edge-delete',
+            // 分类DCG区权限
+            'dcg-index',
+            'dcg-node-create',
+            'dcg-node-edit',
+            'dcg-node-soft-delete',
+            'dcg-node-delete',
+            'dcg-edge-create',
+            'dcg-edge-edit',
+            'dcg-edge-soft-delete',
+            'dcg-edge-delete',
 
             // 分类Node区权限
             'node-index',

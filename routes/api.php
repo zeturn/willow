@@ -40,7 +40,7 @@ use App\Http\Controllers\{
     TreeController,
     NodeController,
     EdgeController,
-    DAGController,
+    DCGController,
 
     MediasController,
     AlbumsController,

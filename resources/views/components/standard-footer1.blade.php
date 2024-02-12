@@ -26,7 +26,7 @@
                         <li><a href="/map" class="text-gray-600 hover:text-gray-800">Map</a></li>
                         <li><a href="/category" class="text-gray-600 hover:text-gray-800">Categories</a></li>
                         <li><a href="/trees" class="text-gray-600 hover:text-gray-800">Trees</a></li>
-                        <li><a href="/dag" class="text-gray-600 hover:text-gray-800">DAG</a></li>
+                        <li><a href="/dcg" class="text-gray-600 hover:text-gray-800">DCG</a></li>
                     </nav>
                 </div>
 

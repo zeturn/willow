@@ -139,7 +139,7 @@ class EntityWallAssociation extends Model
     /**
      * 创建一个新的 Wall 实例并建立与实体的关联。
      *
-     * @param string $entityType 实体类型 ('dag', 'edge', 'node', 'tree', ...)
+     * @param string $entityType 实体类型 ('dcg', 'edge', 'node', 'tree', ...)
      * @param string $entityUuid 实体UUID
      * @param array  $wallData   包含 Wall 信息的数组 (name, slug, description)
      * @return EntityWallAssociation 创建的关联实例

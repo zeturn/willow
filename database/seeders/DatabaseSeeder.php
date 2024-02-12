@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
         
         public function run()
         {
+            // 结束计时
+            $start = microtime(true);
             // 执行 migrate 命令
             Artisan::call('migrate:refresh');
 

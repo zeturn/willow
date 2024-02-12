@@ -44,7 +44,7 @@ use App\Http\Controllers\{
     TreeController,
     NodeController,
     EdgeController,
-    DAGController,
+    DCGController,
 
     MediasController,
     AlbumsController,
@@ -303,7 +303,7 @@ Route::resource('/post', PostController::class);
         Route::post('/createEWLink/{treeUuid}', [TreeController::class, 'createEWLink'])->name('createEWLink');
     });
 
-    // DAG节点(Node)相关路由
+    // DCG节点(Node)相关路由
     Route::prefix('nodes')->name('nodes.')->group(function () {
         Route::get('/', [NodeController::class, 'index'])->name('index');
         Route::get('/create', [NodeController::class, 'create'])->name('create');
@@ -315,7 +315,7 @@ Route::resource('/post', PostController::class);
         Route::post('/createEWLink/{nodeUuid}', [NodeController::class, 'createEWLink'])->name('createEWLink');
     });
 
-    // DAG边(Edge)相关路由
+    // DCG边(Edge)相关路由
     Route::prefix('edges')->name('edges.')->group(function () {
         Route::get('/', [EdgeController::class, 'index'])->name('index');
         Route::get('/create', [EdgeController::class, 'create'])->name('create');
@@ -327,24 +327,24 @@ Route::resource('/post', PostController::class);
         Route::post('/createEWLink/{edgeUuid}', [EdgeController::class, 'createEWLink'])->name('createEWLink');
     });
 
-    // 使用'dag'作为前缀
-    Route::prefix('dag')->name('dag.')->group(function () {
-        Route::get('/index', [DAGController::class, 'index'])->name('index');
-        Route::get('/createNode', [DAGController::class, 'createNode'])->name('createNode');
-        Route::post('/storeNode', [DAGController::class, 'storeNode'])->name('storeNode');
-        Route::get('/Node/{id}', [DAGController::class, 'showNode'])->name('showNode');
-        Route::get('/editNode/{id}', [DAGController::class, 'editNode'])->name('editNode');
-        Route::patch('/updateNode/{id}', [DAGController::class, 'updateNode'])->name('updateNode');
-        Route::delete('/deleteNode/{id}', [DAGController::class, 'deleteNode'])->name('deleteNode');
+    // 使用'dcg'作为前缀
+    Route::prefix('dcg')->name('dcg.')->group(function () {
+        Route::get('/index', [DCGController::class, 'index'])->name('index');
+        Route::get('/createNode', [DCGController::class, 'createNode'])->name('createNode');
+        Route::post('/storeNode', [DCGController::class, 'storeNode'])->name('storeNode');
+        Route::get('/Node/{id}', [DCGController::class, 'showNode'])->name('showNode');
+        Route::get('/editNode/{id}', [DCGController::class, 'editNode'])->name('editNode');
+        Route::patch('/updateNode/{id}', [DCGController::class, 'updateNode'])->name('updateNode');
+        Route::delete('/deleteNode/{id}', [DCGController::class, 'deleteNode'])->name('deleteNode');
 
-        Route::get('/createEdge', [DAGController::class, 'createEdge'])->name('createEdge');
-        Route::post('/storeEdge', [DAGController::class, 'storeEdge'])->name('storeEdge');
-        Route::get('/Edge/{id}', [DAGController::class, 'showEdge'])->name('showEdge');
-        Route::get('/editEdge/{id}', [DAGController::class, 'editEdge'])->name('editEdge');
-        Route::patch('/updateEdge/{id}', [DAGController::class, 'updateEdge'])->name('updateEdge');
-        Route::delete('/deleteEdge/{id}', [DAGController::class, 'deleteEdge'])->name('deleteEdge');
+        Route::get('/createEdge', [DCGController::class, 'createEdge'])->name('createEdge');
+        Route::post('/storeEdge', [DCGController::class, 'storeEdge'])->name('storeEdge');
+        Route::get('/Edge/{id}', [DCGController::class, 'showEdge'])->name('showEdge');
+        Route::get('/editEdge/{id}', [DCGController::class, 'editEdge'])->name('editEdge');
+        Route::patch('/updateEdge/{id}', [DCGController::class, 'updateEdge'])->name('updateEdge');
+        Route::delete('/deleteEdge/{id}', [DCGController::class, 'deleteEdge'])->name('deleteEdge');
 
-        // 这里可以继续添加其他DAG相关的路由
+        // 这里可以继续添加其他DCG相关的路由
     });
 
     /**

@@ -207,7 +207,7 @@ class Entry extends Model
         return EntityAlbumAssociation::addAELink($this, $album);
     }
 
-    // 获取相关的 Node (DAG)
+    // 获取相关的 Node (DCG)
     public function nodes()
     {
         return $this->morphToMany(Node::class, 'entity', 'category_entity_association', 'entity_id', 'category_id');

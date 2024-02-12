@@ -4,32 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Node;
 use App\Models\Edge;
-use App\Models\DAG;
+use App\Models\DCG;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
-class DAGController extends Controller
+class DCGController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:dag-index', ['only' => ['index']]);
+        $this->middleware('permission:dcg-index', ['only' => ['index']]);
 
-        $this->middleware('permission:dag-node-create', ['only' => ['createNode','storeNode']]);
-        $this->middleware('permission:dag-node-edit', ['only' => ['editNode','updateNode']]);
-        $this->middleware('permission:dag-node-soft-delete', ['only' => ['deleteNode']]);//一般用户，仅可以软删除
-        $this->middleware('permission:dag-node-delete', ['only' => ['deleteNode']]);//高级用户，删除、软删除、恢复
+        $this->middleware('permission:dcg-node-create', ['only' => ['createNode','storeNode']]);
+        $this->middleware('permission:dcg-node-edit', ['only' => ['editNode','updateNode']]);
+        $this->middleware('permission:dcg-node-soft-delete', ['only' => ['deleteNode']]);//一般用户，仅可以软删除
+        $this->middleware('permission:dcg-node-delete', ['only' => ['deleteNode']]);//高级用户，删除、软删除、恢复
 
-        $this->middleware('permission:dag-edge-create', ['only' => ['createEdge','storeEdge']]);
-        $this->middleware('permission:dag-edge-edit', ['only' => ['editEdge','updateEdge']]);
-        $this->middleware('permission:dag-edge-soft-delete', ['only' => ['deleteEdge']]);//一般用户，仅可以软删除
-        $this->middleware('permission:dag-edge-delete', ['only' => ['deleteEdge']]);//高级用户，删除、软删除、恢复
+        $this->middleware('permission:dcg-edge-create', ['only' => ['createEdge','storeEdge']]);
+        $this->middleware('permission:dcg-edge-edit', ['only' => ['editEdge','updateEdge']]);
+        $this->middleware('permission:dcg-edge-soft-delete', ['only' => ['deleteEdge']]);//一般用户，仅可以软删除
+        $this->middleware('permission:dcg-edge-delete', ['only' => ['deleteEdge']]);//高级用户，删除、软删除、恢复
     }
 
 
     /**
-     * 显示DAG的所有节点和边的列表。
+     * 显示DCG的所有节点和边的列表。
      *
      * @return \Illuminate\View\View
      */
@@ -44,8 +44,8 @@ class DAGController extends Controller
         $nodes = Node::paginate(30);
         $edges = Edge::paginate(30);
 
-        // 此处返回DAG总览视图
-        return view('dag.index', compact('nodes', 'edges'));
+        // 此处返回DCG总览视图
+        return view('dcg.index', compact('nodes', 'edges'));
     }
 
 
@@ -65,7 +65,7 @@ class DAGController extends Controller
         }
 
         // 此处返回创建节点的视图
-        return view('dag.createNode');
+        return view('dcg.createNode');
     }
 
     /**
@@ -108,7 +108,7 @@ class DAGController extends Controller
         $entries = $node->entries;
 
         // 此处返回节点详情视图
-        return view('dag.showNode', compact('node','walls', 'adjacentNodesAndEdges', 'entries'));
+        return view('dcg.showNode', compact('node','walls', 'adjacentNodesAndEdges', 'entries'));
     }
 
     /**
@@ -128,7 +128,7 @@ class DAGController extends Controller
         $node = Node::findOrFail($id);
 
         // 此处返回节点编辑视图
-        return view('dag.editNode', compact('node'));
+        return view('dcg.editNode', compact('node'));
     }
 
     /**
@@ -191,7 +191,7 @@ class DAGController extends Controller
         }
 
         // 此处返回创建边的视图
-        return view('dag.createEdge');
+        return view('dcg.createEdge');
     }
 
     /**
@@ -240,7 +240,7 @@ class DAGController extends Controller
         $edge = Edge::findOrFail($id);
 
         // 此处返回边详情视图
-        return view('dag.showEdge', compact('edge'));
+        return view('dcg.showEdge', compact('edge'));
     }
 
     /**
@@ -260,7 +260,7 @@ class DAGController extends Controller
         $edge = Edge::findOrFail($id);
 
         // 此处返回边编辑视图
-        return view('dag.editEdge', compact('edge'));
+        return view('dcg.editEdge', compact('edge'));
     }
 
     /**

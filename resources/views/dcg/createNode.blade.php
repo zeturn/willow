@@ -7,7 +7,7 @@
         <div class="w-full lg:w-3/4 px-4">
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                 <h1 class="text-xl font-semibold mb-6 text-gray-800">创建新节点</h1>
-                <form action="{{ route('dag.storeNode') }}" method="POST" class="space-y-5">
+                <form action="{{ route('dcg.storeNode') }}" method="POST" class="space-y-5">
                     @csrf
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-700">名称:</label>
@@ -33,7 +33,7 @@
         <div class="w-full lg:w-1/4 px-4 mt-6 lg:mt-0">
 
 
-        <x-patrol-button color="yellow" route="dag.index" text1="前往DAG中心" text2="Go to dag"></x-patrol-button>
+        <x-patrol-button color="yellow" route="dcg.index" text1="前往DCG中心" text2="Go to dcg"></x-patrol-button>
 
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                 <!-- Sidebar content goes here -->

@@ -20,8 +20,6 @@ class TreeTableSeeder extends Seeder
      */
     public function run()
     {
-        // 开始计时
-        $start = microtime(true);
 
         // Create root node 创建根节点
         $rootNode = Tree::create([
@@ -3993,15 +3991,6 @@ class TreeTableSeeder extends Seeder
         ];
         // Fill the category tree
         $this->fillCategoryTree($rootNode, $categories);
-
-        // 结束计时
-        $end = microtime(true);
-
-        // 计算所需时间（毫秒）
-        $executionTime = round(($end - $start) * 1000, 2);
-
-        // 输出所需时间到终端
-        echo 'Tree 在 ' . $executionTime . ' ms 内完成填充' . PHP_EOL;
     }
 
     /**

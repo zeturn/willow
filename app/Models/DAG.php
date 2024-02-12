@@ -12,12 +12,12 @@ use App\Models\Node;
 use App\Models\Edge;
 
 /**
- * DAG 抽象层
+ * DCG 抽象层
  * 
  * 本抽象层不能作为对象
  * 
  */
-class DAG extends Model
+class DCG extends Model
 {
     use HasFactory, UUID, Status;
 

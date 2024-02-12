@@ -13,10 +13,10 @@
                 <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                     <h1 class="text-2xl font-semibold text-gray-900">{{ __('分类管理') }}</h1>
                     <div class="mt-4 space-y-2">
-                        <!-- Tree and DAG buttons in a row -->
+                        <!-- Tree and DCG buttons in a row -->
                         <div class="flex justify-between">
                             <a href="{{ route('trees.index') }}" class="block text-center bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 flex-grow mr-2">{{ __('Tree 分类首页') }}</a>
-                            <a href="{{ route('dag.index') }}" class="block text-center bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-700 flex-grow ml-2">{{ __('DAG 首页') }}</a>
+                            <a href="{{ route('dcg.index') }}" class="block text-center bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-700 flex-grow ml-2">{{ __('DCG 首页') }}</a>
                         </div>
                         
                         <!-- Node button -->

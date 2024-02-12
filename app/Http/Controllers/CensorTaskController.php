@@ -19,7 +19,7 @@ use App\Models\EntityWallAssociation;
 use App\Models\Tree;
 use App\Models\Node;
 use App\Models\Edge;
-use App\Models\DAG;
+use App\Models\DCG;
 
 use App\Models\Wall;
 use App\Models\Topic;

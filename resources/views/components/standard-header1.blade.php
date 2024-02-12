@@ -111,9 +111,9 @@
                             <span class="block mb-1 font-medium text-black">Tree</span>
                             <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
                         </a>
-                        <a href="{{ route('dag.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">DAG</span>
-                            <span class="block leading-5 opacity-50">Main page of DAG index.</span>
+                        <a href="{{ route('dcg.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                            <span class="block mb-1 font-medium text-black">DCG</span>
+                            <span class="block leading-5 opacity-50">Main page of DCG index.</span>
                         </a>
                     </div>
                     <div class="w-72">

@@ -14,7 +14,7 @@ class PostController extends Controller
     public function index()
     {
         // Here we provide posts from the database to prop that we created in component
-        return Inertia::render('Index', [
+        return Inertia::render('Post/Index', [
             'posts' => Post::all()
         ]);
     }
@@ -24,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Post/Create');
     }
 
     /**
@@ -32,7 +32,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Post::create([
+            'title' => $request->title,
+            'body' => $request->body
+        ]);
     }
 
     /**
@@ -40,7 +43,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return Inertia::render('Post/Show', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -48,7 +53,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return Inertia::render('Post/Edit', [
+            'post' => $post
+        ]);
     }
 
     /**
@@ -56,7 +63,10 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->update([
+            'title' => $request->title,
+            'body' => $request->body
+        ]);
     }
 
     /**
@@ -64,6 +74,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
     }
 }

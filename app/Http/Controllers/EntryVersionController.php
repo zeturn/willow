@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Crypt;
 
+use Inertia\Inertia;
+
 class EntryVersionController extends Controller
 {
 

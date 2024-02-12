@@ -51,6 +51,8 @@ use App\Http\Controllers\{
 
     InitializationController,
 
+    PostController,
+
 };
 
 use Inertia\Inertia;
@@ -88,7 +90,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
+Route::resource('/post', PostController::class);
 //Route::group(['middleware' => ['auth']], function() {
 
     /**

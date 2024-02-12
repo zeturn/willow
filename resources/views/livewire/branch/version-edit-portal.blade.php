@@ -12,10 +12,5 @@
                 <button wire:click="selectVersion('{{ $version->id }}')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">开始编辑</button>
             </div>
         @endforeach
-
-        <!-- Pagination -->
-        <div class="mt-4">
-            {{ $versions->links() }}
-        </div>
     @endif
 </div>

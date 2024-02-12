@@ -52,7 +52,7 @@
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>  
                 </button>
             </div>
-            <div class="relative w-auto pb-8 max-h-96 overflow-y-auto">
+            <div class="relative w-auto pb-8 max-h-96 overflow-y-auto overscroll-none ">
                     @if($LFcomment)
                         <div class="mb-4 border-b border-gray-200 dark:border-gray-700 pb-4">
                             <x-user-name-and-avatar :user-id="$LFcomment->user->id" class="flex items-center space-x-3 mb-2" />
@@ -64,57 +64,78 @@
                         </div>
                     @endif
 
-                    @forelse($LScomments as $comment)
+
+                    <div id="reply-modal" x-data="{ isLoading: false }" x-ref="commentModal" @scroll="$refs.commentModal.scrollTop + $refs.commentModal.clientHeight >= $refs.commentModal.scrollHeight ? isLoading = true : ''" x-cloak>
+                        @forelse($LScomments as $comment)
                         <div class="mb-4 border-b border-gray-200 dark:border-gray-700 pb-4">
                             <x-user-name-and-avatar :user-id="$comment->user->id" class="flex items-center space-x-3 mb-2" />
                             <p class="text-gray-500 dark:text-gray-400">{{ $comment->content }}</p>
-                            <div class="text-xs text-gray-600 dark:text-gray-400">
-                            </div>
-                            <button @click="$wire.selectComment('{{ $comment->id }}','{{ $comment->user->id }}')" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">回复</button>
-
+                                <div class="text-xs text-gray-600 dark:text-gray-400">
+                                    <button @click="$wire.selectComment('{{ $comment->id }}','{{ $comment->user->id }}')" @click="openModal('{{ $comment->id }}','{{ $comment->user->id }}')" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors bg-white border rounded-md hover:bg-gray-50 focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">回复</button>
+                                </div>
                         </div>
-                    @empty
-                        <p class="text-gray-500 dark:text-gray-400">No comments yet.</p>
-                    @endforelse
+                            
+                        @empty
+                            No comments yet.
+                        @endforelse
+
+                        <div x-data="{
+                                observe () {
+                                    let observer = new IntersectionObserver((entries) => {
+                                        entries.forEach(entry => {
+                                            if (entry.isIntersecting) {
+                                                @this.call('loadMoreComments')
+                                            }
+                                        })
+                                    }, {
+                                        root: null
+                                    })
+                                    observer.observe(this.$el)
+                                }
+                            }"
+                            x-init="observe"
+                        ></div>
+                    </div>
 
                     </div>
                     <!-- Check if user is authenticated -->
                     @if($commentBoadrd)
-                    @if (auth()->check())
-                        <!-- Add New Comment Form -->
-                        <div class="bg-white rounded-lg p-6">
-                        <h2 class="text-xl font-semibold mb-4">Add New Comment to <x-user-name-and-avatar :user-id="$selectedCommentUserId" class="flex items-center space-x-3 mb-2"/></h2>
+                        @if (auth()->check())
+                            <!-- Add New Comment Form -->
+                            <div class="bg-white rounded-lg p-6">
+                            <h2 class="text-xl font-semibold mb-4">Add New Comment to <x-user-name-and-avatar :user-id="$selectedCommentUserId" class="flex items-center space-x-3 mb-2"/></h2>
 
-                            <form action="{{ route('comment.store') }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="topic_id" value="{{ $topicId }}">
-                                <input type="hidden" name="parent_id" value="{{ $selectedCommentId }}">
-                                <!-- Comment Field -->
-                                <div class="mb-4">
-                                    <label for="content" class="block text-sm font-medium text-gray-700">Comment</label>
-                                    <textarea name="content" id="content" rows="4" class="mt-1 p-2 w-full border rounded-lg" required></textarea>
-                                </div>
+                                <form action="{{ route('comment.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="topic_id" value="{{ $topicId }}">
+                                    <input type="hidden" name="parent_id" value="{{ $selectedCommentId }}">
+                                    <!-- Comment Field -->
+                                    <div class="mb-4">
+                                        <label for="content" class="block text-sm font-medium text-gray-700">Comment</label>
+                                        <textarea name="content" id="content" rows="4" class="mt-1 p-2 w-full border rounded-lg" required></textarea>
+                                    </div>
 
-                                <!-- Submit Button -->
-                                <div class="mt-4">
-                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-                                        Post Comment
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    @else
-                        <!-- Not Authenticated User Message -->
-                        <div class="bg-white rounded-lg p-6">
-                            <h2 class="text-xl font-semibold mb-4 text-gray-700">Authentication Required</h2>
-                            <p class="text-sm text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to post a comment.</p>
-                        </div>
-                    @endif
+                                    <!-- Submit Button -->
+                                    <div class="mt-4">
+                                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+                                            Post Comment
+                                        </button>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        @else
+                            <!-- Not Authenticated User Message -->
+                            <div class="bg-white rounded-lg p-6">
+                                <h2 class="text-xl font-semibold mb-4 text-gray-700">Authentication Required</h2>
+                                <p class="text-sm text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to post a comment.</p>
+                            </div>
+                        @endif
                     @endif
             </div>
         </div>
     </template>
-
 
 </div>
 </div>

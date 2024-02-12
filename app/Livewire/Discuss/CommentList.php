@@ -12,7 +12,9 @@ class CommentList extends Component
 
     public $topicId;
 
+    public $AllLScomments = [];
     public $LScomments = [];
+    public $loadedCommentsCount = 0;
     public $LFcomment;//modal里显示的
     public $selectedCommentId;
     public $selectedCommentUserId;
@@ -29,9 +31,8 @@ class CommentList extends Component
     public function render()
     {
         return view('livewire.discuss.comment-list',[
-            'LFcomments' => Comment::where('topic_id', $this->topicId)
-            ->whereNull('parent_id')
-            ->paginate(10),
+            'LFcomments' => Comment::where('topic_id', $this->topicId)->whereNull('parent_id')->paginate(10),
+
         ]);
     }
 
@@ -39,8 +40,12 @@ class CommentList extends Component
     {
         $this->LFcomment = Comment::where('id',$commentId)->first();
         $this->selectedCommentId = $commentId;
-        $this->LScomments = $this->LFcomment->getAllChildrenComments($commentId);
+        $this->AllLScomments = $this->LFcomment->getAllChildrenComments($commentId);
+    
+        // 初始化LScomments并提取初始的10条评论
+        $this->LScomments = array_slice($this->AllLScomments, 0, 10);
     }
+    
 
     public function selectComment($selectedCommentId,$selectedCommentUserId){
         $this->selectedCommentId = $selectedCommentId;
@@ -48,9 +53,16 @@ class CommentList extends Component
         $this->commentBoadrd = true;
     }
 
+    public function loadMoreComments()
+    {
+        $this->LScomments = array_slice($this->AllLScomments, 0, $this->loadedCommentsCount + 5);
+        $this->loadedCommentsCount += 5;
+    }
+
     public function closeModal(){
         $this->selectedCommentId = '';
         $this->commentBoadrd = false;
         $this->LScomments = [];
+        $this->loadedCommentsCount = 0;
     }
 }

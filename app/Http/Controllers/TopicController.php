@@ -68,8 +68,7 @@ class TopicController extends Controller
 
     public function show(Topic $topic)
     {
-        $comments = $topic->comments()->paginate(10); // 分页显示，每页10条
-        return view('topics.show', compact('topic', 'comments'));
+        return view('topics.show', compact('topic'));
     }
 
     public function destroy(Topic $topic)

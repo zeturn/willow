@@ -28,32 +28,15 @@
         <h1 class="text-3xl font-bold mb-2">{{ $topic->name }}</h1>
         <p class="text-gray-600 mb-2">{{ $topic->slug }}</p>
         <p class="text-gray-600 mb-2">{{ $topic->description }}</p>
-        <p class="text-gray-600 mb-2">Status: {{ $topic->status }}</p>
     </div>
     
     <div class="flex flex-wrap -mx-4">
         <!-- Main Content -->
         <div class="w-full lg:w-3/4 px-4">
-        <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-                <div class="mb-6">
-                    <!-- Display Comments -->
-                    @forelse($comments as $comment)
-                        <div class="mb-4 border-b border-gray-200 dark:border-gray-700 pb-4">
-                            <x-user-name-and-avatar :user-id="$comment->user->id" class="flex items-center space-x-3 mb-2" />
-                            <p class="text-gray-500 dark:text-gray-400">{{ $comment->content }}</p>
-                            <div class="text-xs text-gray-600 dark:text-gray-400">
-                                <span>Created: {{ $comment->created_at->diffForHumans() }}</span>
-                                <span>Updated: {{ $comment->updated_at->diffForHumans() }}</span>
-                            </div>
-                        </div>
-                    @empty
-                        <p class="text-gray-500 dark:text-gray-400">No comments yet.</p>
-                    @endforelse
-                    <!-- Pagination -->
-                    <div class="mt-4">
-                        {{ $comments->links() }}
-                    </div>
-                </div>
+            <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+
+            <livewire:discuss.comment-list :topicId="$topic->id" />
+
             </div>
             
             <!-- Check if user is authenticated -->

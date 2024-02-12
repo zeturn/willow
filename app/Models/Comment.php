@@ -14,10 +14,30 @@ class Comment extends Model
     use HasFactory, SoftDeletes, UUID, Status;
     use Searchable;
 
-    protected $fillable = ['topic_id', 'user_id', 'content', 'status'];
+    protected $fillable = ['topic_id', 'user_id', 'content', 'parent_id', 'status'];
 
     // 可搜索属性
     protected $searchable = ['content'];
+
+    public function getAllChildrenComments($commentId)
+    {
+        $comments = Comment::where('parent_id', $commentId)->get();
+        $allComments = [];
+
+        foreach ($comments as $comment) {
+            $allComments[] = $comment;
+            // 递归调用getAllChildrenComments()方法以获取当前评论的所有子评论
+            $allComments = array_merge($allComments, $this->getAllChildrenComments($comment->id));
+        }
+
+        return $allComments;
+    }
+
+    // 定义关联来获取直接子评论
+    public function childrenComments()
+    {
+        return $this->hasMany(Comment::class, 'parent_id', 'id');
+    }
 
     /**
      * Get the indexable data array for the model.

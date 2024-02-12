@@ -27,6 +27,7 @@ class CommentController extends Controller
             'topic_id' => $request->topic_id,
             'content' => $request->content,
             'user_id' => Auth::id(),
+            'parent_id' => $request->parent_id,
             'status' => 5, // May The 5 Be With You!
         ]);
         return back();

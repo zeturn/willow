@@ -18,8 +18,6 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.jsx'])
 
-        <!-- interia  -->
-        @inertiaHead
         <!-- Styles  -->
        @livewireStyles
     </head>
@@ -40,8 +38,6 @@
         </div>
 
         @stack('modals')
-
-        @inertia
 
         @livewireScripts
     </body>

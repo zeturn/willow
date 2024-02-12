@@ -9,9 +9,12 @@ use App\Models\EntryBranchUser;
 use App\Models\EntryVersion;
 use App\Models\EntryVersionTask;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
 
 class VersionEditPortal extends Component
 {
+    use WithPagination;
+    
     public $entryId;
     public $branchId;
     public $branch;

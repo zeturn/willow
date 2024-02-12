@@ -15,7 +15,7 @@
 
                 </div>
                 <p class=text-gray-500 dark:text-gray-400">{{ $comment->content }}</p>
-                <button @click="modalOpen=true;$wire.getChildrenComments('{{ $comment->id }}')" @click="openModal('{{ $comment->id }}')" class="inline-flex items-center justify-center px-4 py-4 text-sm font-medium transition-colors bg-white rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">评论</button>
+                <button @click="modalOpen=true;$wire.getChildrenComments('{{ $comment->id }}')" @click="openModal('{{ $comment->id }}')" class="inline-flex items-center justify-center px-2 py-2 text-sm font-medium transition-colors bg-white rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">评论</button>
 
             </div>
         @empty
@@ -52,15 +52,14 @@
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>  
                 </button>
             </div>
-            <div class="relative w-auto pb-8 max-h-96 overflow-y-auto overscroll-none ">
+            <div class="relative w-auto pb-8 max-h-96 overflow-y-auto overscroll-none">
                     @if($LFcomment)
-                        <div class="mb-4 border-b border-gray-200 dark:border-gray-700 pb-4">
+                        <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
                             <x-user-name-and-avatar :user-id="$LFcomment->user->id" class="flex items-center space-x-3 mb-2" />
                             <p class="text-gray-500 dark:text-gray-400">{{ $LFcomment->content }}</p>
                             <div class="text-xs text-gray-600 dark:text-gray-400">
                             </div>
-                            <button @click="$wire.selectComment('{{ $LFcomment->id }}','{{ $LFcomment->user->id }}')" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors bg-white border rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">回复</button>
-
+                            <button @click="$wire.selectComment('{{ $LFcomment->id }}','{{ $LFcomment->user->id }}')" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors bg-white rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">回复</button>
                         </div>
                     @endif
 

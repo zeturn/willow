@@ -3,7 +3,7 @@
     <!-- Left Side: Branches List -->
     <div class="w-1/2 p-4">
         <h2 class="text-lg font-semibold">Branches</h2>
-        <div class="mt-4 space-y-4">
+        <div class="mt-4 space-y-4 max-h-[750px] overflow-y-auto overscroll-none">
             @foreach($branches as $branch)
                 <div class="p-4 bg-white rounded-lg shadow flex flex-col">
                     <div class="flex items-center mb-2">
@@ -23,6 +23,7 @@
 
     <!-- Right Side: Versions List -->
     <div class="w-1/2 p-4 border-l border-gray-200">
+        <div class="mt-4 space-y-4 max-h-[750px] overflow-y-auto overscroll-none">
         <h2 class="text-lg font-semibold">Versions</h2>
         @if($versions && count($versions) > 0)
             <ul class="mt-4 space-y-4">
@@ -46,10 +47,10 @@
                 @if($selectedBranchId)
                     当前分支中没有版本
                 @else
-
                     在左边分支列表中选择分支
                 @endif
             </div>
         @endif
+        </div>
     </div>
 </div>

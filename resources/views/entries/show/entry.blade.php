@@ -33,37 +33,46 @@
                         @endforeach
                     </div>
 
-                    
-
                     {{-- Tabs Navigation --}}
                     @php
                     $currentRouteName = Route::currentRouteName();
                     @endphp
 
-                    <ul class="flex border-b">
-                        <li class="-mb-px mr-1">
-                            <a href="{{ route('entry.show.explanation', $entry->id) }}" class="{{ $currentRouteName == 'entry.show.explanation' ? 'text-blue-700 border-l border-t border-r rounded-t' : 'text-blue-500' }} bg-white inline-block py-2 px-4 font-semibold">Explanation</a>
+                    <ul class="flex items-center border-b border-slate-200" role="tablist">
+                        <li role="presentation">
+                            <a href="{{ route('entry.show.explanation', $entry->id) }}" class="{{ $currentRouteName == 'entry.show.explanation' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Explanation</a>
                         </li>
-                        <li class="-mb-px mr-1">
-                            <a href="{{ route('entry.show.branch.BranchesList', ['id' => $entry->id]) }}" class="{{ $currentRouteName == 'entry.show.branch.BranchesList' ? 'text-blue-700 border-l border-t border-r rounded-t' : 'text-blue-500' }} bg-white inline-block py-2 px-4 font-semibold">Branch</a>
+                        <li role="presentation">
+                            <a href="{{ route('entry.show.branch.BranchesList', ['id' => $entry->id]) }}" class="{{ $currentRouteName == 'entry.show.branch.BranchesList' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Branch</a>
                         </li>
-                        <li class="-mb-px mr-1">
-                            <a href="{{ route('entry.show.community', $entry->id) }}" class="{{ $currentRouteName == 'entry.show.community' ? 'text-blue-700 border-l border-t border-r rounded-t' : 'text-blue-500' }} bg-white inline-block py-2 px-4 font-semibold">Community</a>
+                        <li role="presentation">
+                            <a href="{{ route('entry.show.community', $entry->id) }}" class="{{ $currentRouteName == 'entry.show.community' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Community</a>
                         </li>
-                        <li class="-mb-px mr-1">
-                            <a href="{{ route('entry.show.album', $entry->id) }}" class="{{ $currentRouteName == 'entry.show.album' ? 'text-blue-700 border-l border-t border-r rounded-t' : 'text-blue-500' }} bg-white inline-block py-2 px-4 font-semibold">Album</a>
+                        <li role="presentation">
+                            <a href="{{ route('entry.show.album', $entry->id) }}" class="{{ $currentRouteName == 'entry.show.album' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Album</a>
                         </li>
-                        <li class="-mb-px mr-1">
-                            <a href="{{ route('entry.show.details', $entry->id) }}" class="{{ $currentRouteName == 'entry.show.details' ? 'text-blue-700 border-l border-t border-r rounded-t' : 'text-blue-500' }} bg-white inline-block py-2 px-4 font-semibold">Details</a>
+                        <li role="presentation">
+                            <a href="{{ route('entry.show.details', $entry->id) }}" class="{{ $currentRouteName == 'entry.show.details' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Details</a>
                         </li>
-
                         @auth
-                        <li class="-mb-px mr-1">
-                            <a href="{{ route('entry.show.control', $entry->id) }}" class="{{ $currentRouteName == 'entry.show.control' ? 'text-green-700 border-l border-t border-r rounded-t' : 'text-green-500' }} bg-white inline-block py-2 px-4 font-semibold">Control</a>
+                        <li role="presentation">
+                            <a href="{{ route('entry.show.control', $entry->id) }}" class="{{ $currentRouteName == 'entry.show.control' ? 'text-green-700 border-b-2 border-green-500 focus:border-green-700 hover:border-green-600 focus:outline-none focus:text-green-700 hover:text-green-600 focus:bg-green-50 hover:bg-green-50' : 'text-slate-700 hover:text-green-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Control</a>
                         </li>
                         @endauth
                     </ul>
+
                 </div>
+
+
+
+
+
+
+
+
+
+
+                
                 {{-- Tab Content --}}
                 @yield('entry-content')
             </div>

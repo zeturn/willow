@@ -22,18 +22,20 @@ class VersionEditPortal extends Component
     public $versions;
     public $selectedVersion;
     public $author_id; // 确保这个属性是从某处赋值的，比如当前登录用户
+    public $hasRole;
 
     public function mount($branchId)
     {
         $this->branchId = $branchId;
         $this->author_id = Auth::id();
+
         $this->loadVersions();
     }
 
     public function loadVersions()
     {
         $this->branch = EntryBranch::find($this->branchId);
-
+        $this->hasRole = $this->branch->getUserRoleByUuid($this->author_id);
         if ($this->branch) {
             $this->versions = $this->branch->versions; // 确保你的 EntryBranch 模型有一个 versions() 关系方法
         }

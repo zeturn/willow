@@ -169,6 +169,7 @@ class EntryBranchController extends Controller
         
         return view('entries.branches.show.control.general-setting', [
             'branch' => $branch,
+            'branchId' => $branch->id,
         ]);
 
     }

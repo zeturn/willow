@@ -3,5 +3,8 @@
 
 @section('entry-branch-control-content')
     <h2 class="text-2xl font-semibold dark:text-white">General Setting</h2>
+    
+    @livewire('branch.switch-is-free', ['entryBranchId' => $branchId])
+
     {{-- General setting content here --}}
 @endsection

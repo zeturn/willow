@@ -122,6 +122,9 @@ class EntryBranch extends Model
         $this->update(['demo_version_id' => $newDemoVersionId]);
     }
     
+    public function EntryBranchUsers(){
+        return $this->hasMany(EntryBranchUser::class, 'entry_branch_id', 'id');
+    }
     /**
      * 检查特定用户是否有编辑该分支的权限。
      * Check if a specific user has permission to edit this branch.
@@ -195,8 +198,12 @@ class EntryBranch extends Model
      * @return int
      */
     public function getUserRoleByUuid(string $uuid): int {
-        $branchUser = $this->users()->where('user_id', $uuid)->first();
-        return $branchUser ? $branchUser->role : 0; // 返回0如果用户没有在这个分支上的角色
+        $branchUser = $this->EntryBranchUsers()->where('user_id', $uuid)->first();
+        if($branchUser){
+            return $branchUser->role;
+        }else{
+            return  0; // 返回0如果用户没有在这个分支上的角色
+        }
     }
     
     /**
@@ -235,7 +242,7 @@ class EntryBranch extends Model
         return EntityWallAssociation::createNewWallAndLink($entityType, $entityUuid, $wallData);
     }
 
-        /**
+    /**
      * --------------------------
      *  状态区域
      * --------------------------

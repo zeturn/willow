@@ -29,7 +29,7 @@ class Team extends JetstreamTeam
            // set actual new team_id to package instance
            setPermissionsTeamId($model);
            // get the admin user and assign roles/permissions on new team model
-           User::find('62662626-6662-6626-2666-262662626226')->assignRole('SuperAdmin');
+           // User::find('62662626-6662-6626-2666-262662626226')->assignRole('SuperAdmin');
            // restore session team_id to package instance using temporary value stored above
            setPermissionsTeamId($session_team_id);
         });
@@ -64,4 +64,16 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+
+    /**
+     * 返回用户持有的分支EntryBranch
+     * 
+     * 修改:拥有多个
+     */
+    public function branches() {
+        return $this->belongsToMany(EntryBranch::class, 'entry_branch_teams', 'team_id', 'entry_branch_id')
+                    ->where('role', 2);
+    }
+
 }

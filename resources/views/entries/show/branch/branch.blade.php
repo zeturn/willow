@@ -3,9 +3,9 @@
 @section('entry-content')
 <div class="container mx-auto p-4 max-w-7xl flex">
 
-<div class="sticky top-0 flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+<div class="sticky top-0 flex flex-col w-64 min-w-[240px] h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
 
-    <div class="flex flex-col justify-between flex-1">
+    <div class="flex flex-col justify-between  flex-1">
         <nav class="-mx-3 space-y-6 ">
             <div class="space-y-3 ">
                 <label class="px-3 text-xs text-gray-500 uppercase dark:text-gray-400">Branch</label>
@@ -21,8 +21,6 @@
 
             <div class="space-y-3 ">
                 <label class="px-3 text-xs text-gray-500 uppercase dark:text-gray-400">MyBranch</label>
-
-
 
                 <a href="{{ route('entry.show.branch.createBranch', ['id' => $entry->id]) }}" class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">

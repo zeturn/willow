@@ -274,6 +274,7 @@ class EntryController extends Controller
                     'demoVersion' => $demoVersion,
                     'userId' => Auth::id(),
                     'entryId' => $id,
+                    'tabname' => 'entry.show.explanation',
                 ]);
             } catch (ModelNotFoundException $e) {
                 // Handle the case where the entry is not found.
@@ -358,6 +359,7 @@ class EntryController extends Controller
                     'demoVersion' => $demoVersion,
                     'userId' => Auth::id(),
                     'entryId' => $id,
+                    'tabname' => 'entry.show.control',
                 ]);
             } catch (ModelNotFoundException $e) {
                 // Log the error and return a custom error view if the entry is not found.
@@ -397,8 +399,10 @@ class EntryController extends Controller
                     return view('errors.general', ['message' => 'Failed to find entry for branches list'], [500]);
                 }
 
+                $tabname = "entries.show.branch";
+
                 // If the entry is found, return the view with the entry data to display its branches / 如果找到条目，返回带有条目数据的视图以显示其分支
-                return view('entries.show.branch.brancheslist', compact('entry'));
+                return view('entries.show.branch.brancheslist', compact('entry', 'tabname'));
             }
 
             /**
@@ -433,8 +437,10 @@ class EntryController extends Controller
                     return view('errors.general', ['message' => 'Failed to load user branches'], [500]);
                 }
 
+                $tabname = "entries.show.branch";
+
                 // Return the view with the entry and its branches / 返回带有条目及其分支的视图
-                return view('entries.show.branch.mybranches', compact('entry', 'mybranches'));
+                return view('entries.show.branch.mybranches', compact('entry', 'mybranches', 'tabname'));
             }
 
             /**
@@ -455,8 +461,10 @@ class EntryController extends Controller
                     return view('errors.general', ['message' => 'Failed to find entry for creating branch'], [500]);
                 }
 
+                $tabname = "entries.show.branch";
+
                 // Return the view to create a new branch with the entry data / 返回创建新分支的视图，带有条目数据
-                return view('entries.show.branch.createbranch', compact('entry'));
+                return view('entries.show.branch.createbranch', compact('entry', 'tabname'));
             }
 
             /**
@@ -526,7 +534,9 @@ class EntryController extends Controller
                                         ->where('entry_id', $id)
                                         ->get(); // Retrieve tasks related to the current user and entry / 检索与当前用户和条目相关的任务
 
-                return view('entries.show.branch.taskinprocess', compact('entry', 'tasks'));
+                $tabname = "entries.show.branch";
+
+                return view('entries.show.branch.taskinprocess', compact('entry', 'tasks', 'tabname'));
             }
 
             // Show-Branch 方法区 结束
@@ -550,6 +560,7 @@ class EntryController extends Controller
             return view('entries.show.show-community', [
                 'entry' => $entry,
                 'walls' => $entry->walls,
+                'tabname' => 'entries.show.community',
             ]);
         }
 
@@ -585,7 +596,9 @@ class EntryController extends Controller
 
             $entryId = $entry->id;
 
-            return view('entries.show.show-album', compact('entry', 'albums', 'entryId', 'albumsCover'));
+            $tabname = "entry.show.album";
+
+            return view('entries.show.show-album', compact('entry', 'albums', 'entryId', 'albumsCover', 'tabname'));
         }
 
         /**
@@ -609,7 +622,9 @@ class EntryController extends Controller
 
             $branchesNum = $entry->branches->count();
 
-            return view('entries.show.show-details', compact('entry', 'branchesNum'));
+            $tabname = "entry.show.details";
+
+            return view('entries.show.show-details', compact('entry', 'branchesNum', 'tabname'));
         }
 
         //show方法区结束

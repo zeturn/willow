@@ -13,6 +13,7 @@ class EditorList extends Component
     public $entryBranch;
     public $users;
     public $owner;
+    public $teams;
     public $newUserId;
     public $searchResult = null; // 用于存储搜索结果
 
@@ -22,6 +23,7 @@ class EditorList extends Component
         $this->entryBranch = EntryBranch::find($this->branchId);
         $this->owner = $this->entryBranch->owner;
         $this->users = $this->entryBranch->users;
+        $this->teams = $this->entryBranch->teams;
     }
 
     public function updatedNewUserId($value)
@@ -29,7 +31,7 @@ class EditorList extends Component
         // 检测输入值是UUID还是邮箱
         if (preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i', $value)) {
             // UUID搜索逻辑
-            $this->searchResult =  ['type' => 'uuid', 'detail' => $value] ;
+            $this->searchResult =  ['type' => 'user', 'detail' => $value] ;
         } elseif (filter_var($value, FILTER_VALIDATE_EMAIL)) {
             // 邮箱搜索逻辑
             $this->searchResult = ['type' => 'email', 'detail' => $value];

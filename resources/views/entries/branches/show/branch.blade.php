@@ -69,13 +69,7 @@
 
         {{-- Sidebar --}}
         <div class="w-full lg:w-1/4 px-4 mt-6 lg:mt-0">
-
-        <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-                <div class="mb-6">
-                    <a href="{{ route('entry.show.explanation', $branch->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200 ease-in-out">
-                        < {{ __('Back to Entry') }}
-                    </a>
-                </div>
+            <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                 <!-- Author and Created At -->
                 <dl>
                     <div class="mb-4">

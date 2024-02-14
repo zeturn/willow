@@ -81,8 +81,6 @@ class EntryBranch extends Model
         return $this->belongsTo(Entry::class);
     }
 
-    
-
     /**
      * 获取分支下所有的版本。
      * Get all versions under this branch.
@@ -121,6 +119,12 @@ class EntryBranch extends Model
     public function changeDemoVersion($newDemoVersionId) {
         $this->update(['demo_version_id' => $newDemoVersionId]);
     }
+
+    /**
+     * -----------------------------------
+     * user区域
+     * -----------------------------------
+     */
     
     public function EntryBranchUsers(){
         return $this->hasMany(EntryBranchUser::class, 'entry_branch_id', 'id');
@@ -205,7 +209,58 @@ class EntryBranch extends Model
             return  0; // 返回0如果用户没有在这个分支上的角色
         }
     }
+
+    /**
+     * --------------------------------------------
+     * team区域
+     * --------------------------------------------
+     */
+
+    /**
+     * 允许BO添加新的用户到分支。
+     * Allow BO to add new teams to the branch.
+     * @param int $teamId
+     * @param int $role
+     * @return \App\Models\EntryBranchTeam
+     */
+    public function addTeam($teamId, $role = 2) {
+        return EntryBranchTeam::create([
+            'entry_branch_id' => $this->id,
+            'team_id' => $teamId,
+            'role' => $role
+        ]);
+    }
+
+    public function deleteTeam($teamId)
+    {
+        // Assuming $this->id is available in this context and represents the entry_branch_id
+        $entryBranchId = $this->id;
     
+        // Delete the record from EntryBranchTeam where entry_branch_id and team_id match
+        EntryBranchTeam::where('entry_branch_id', $entryBranchId)
+                       ->where('team_id', $teamId)
+                       ->delete();
+    
+        // Optionally, add more logic here if needed, like returning a response or redirecting
+    }
+
+    /**
+     * 获取有权限编辑该分支的团队。
+     * Get all teams with permission to edit this branch.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function teams() {
+        return $this->belongsToMany(Team::class, 'entry_branch_teams', 'entry_branch_id', 'team_id')
+                    ->where('role', 2);
+    }
+    
+
+    /**
+     * ---------------------------------------
+     * wall区域
+     * ---------------------------------------
+     */
+
     /**
      * Retrieve all associated walls for the entry branch.
      * 获取关联的墙

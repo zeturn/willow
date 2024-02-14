@@ -35,7 +35,11 @@ class VersionEditPortal extends Component
     public function loadVersions()
     {
         $this->branch = EntryBranch::find($this->branchId);
-        $this->hasRole = $this->branch->getUserRoleByUuid($this->author_id);
+        if($this->author_id){
+            $this->hasRole = $this->branch->getUserRoleByUuid($this->author_id);
+        }else{
+            $this->hasRole = 0;
+        }
         if ($this->branch) {
             $this->versions = $this->branch->versions; // 确保你的 EntryBranch 模型有一个 versions() 关系方法
         }

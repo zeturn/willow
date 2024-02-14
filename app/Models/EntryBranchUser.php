@@ -30,7 +30,7 @@ class EntryBranchUser extends Model
     protected $keyType = 'string';
     protected $fillable = ['id', 'entry_branch_id', 'user_id', 'role']; // Fillable fields.
 
-        /**
+    /**
      * 更改状态。
      * Change the status of the entry.
      *

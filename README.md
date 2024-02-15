@@ -15,3 +15,4 @@ If you discover a security vulnerability within memegit, please send an e-mail t
 ## License
 
 The memegit framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+

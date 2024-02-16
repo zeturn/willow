@@ -6,5 +6,7 @@
     
     @livewire('branch.switch-is-free', ['entryBranchId' => $branchId])
 
+    @livewire('branch.delete-branch', ['branchId' => $branchId])
+
     {{-- General setting content here --}}
 @endsection

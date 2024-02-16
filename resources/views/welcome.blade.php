@@ -32,23 +32,16 @@
             </section>
 
             <!-- Section 3: Our Services -->
-            <section class="mb-8">
-                <h2 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">{{ __('Our Services') }}</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-                        <h3 class="text-2xl font-semibold mb-2">{{ __('Service One') }}</h3>
-                        <p>{{ __('Description of service one.') }}</p>
-                    </div>
-                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-                        <h3 class="text-2xl font-semibold mb-2">{{ __('Service Two') }}</h3>
-                        <p>{{ __('Description of service two.') }}</p>
-                    </div>
-                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
-                        <h3 class="text-2xl font-semibold mb-2">{{ __('Service Three') }}</h3>
-                        <p>{{ __('Description of service three.') }}</p>
+            <section class="h-auto bg-white">
+                <div class="px-10 py-24 mx-auto max-w-7xl">
+                    <div class="w-full mx-auto text-left md:text-center">
+                        <h1 class="mb-6 text-5xl font-extrabold leading-none max-w-5xl mx-auto tracking-normal text-gray-900 sm:text-6xl md:text-6xl lg:text-7xl md:tracking-tight"> The <span class="w-full text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 lg:inline">Number One Source</span> for<br class="lg:block hidden"> all your design needs. </h1>
+                        <p class="px-0 mb-6 text-lg text-gray-600 md:text-xl lg:px-24"> Say hello to the number one source for all your design needs. Drag and drop designs, edit designs, and modify the components to help tell your story. </p>
                     </div>
                 </div>
             </section>
+
+
 
             <!-- Section 4: Testimonials -->
             <section class="mb-8">

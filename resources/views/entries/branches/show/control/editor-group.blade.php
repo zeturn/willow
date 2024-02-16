@@ -3,9 +3,9 @@
 
 @section('entry-branch-control-content')
 
-    @livewire('branch.switch-is-free', ['entryBranchId' => $branchId])
+    @livewire('branch.editors-list', ['branchId' => $branchId])
 
-    @livewire('branch.editor-list', ['branchId' => $branchId])
+    @livewire('branch.teams-list', ['branchId' => $branchId])
 
 @endsection
 

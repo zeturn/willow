@@ -22,7 +22,7 @@ class VersionEditPortal extends Component
     public $versions;
     public $selectedVersion;
     public $author_id; // 确保这个属性是从某处赋值的，比如当前登录用户
-    public $hasRole;
+    public $userEditable;
 
     public function mount($branchId)
     {
@@ -36,9 +36,10 @@ class VersionEditPortal extends Component
     {
         $this->branch = EntryBranch::find($this->branchId);
         if($this->author_id){
-            $this->hasRole = $this->branch->getUserRoleByUuid($this->author_id);
+            $this->userEditable = $this->branch->userEditable(Auth::id());
+            //dd($this->branch->userEditable(Auth::id()));
         }else{
-            $this->hasRole = 0;
+            $this->userEditable = 0;
         }
         if ($this->branch) {
             $this->versions = $this->branch->versions; // 确保你的 EntryBranch 模型有一个 versions() 关系方法

@@ -1,0 +1,29 @@
+<div>
+    @if (Auth::check()) <!-- Check if team is logged in -->
+    <div class="pb-4 mb-4 border-b dark:border-gray-700">
+        <div class="font-bold">{{ _('Add New Team') }}</div>
+        <input type="text" class="mt-2 p-2 border rounded" wire:model.live.debounce.500ms="newTeamId">
+        <button class="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700" wire:click="addTeam()">{{ _('Add team') }}</button>
+        @if($searchResult)
+            <div class="ml-4 mt-2">
+                @if ($searchResult['type'] === 'team')
+                    {{ $team->id }}
+                @else
+                    <span>{{ $searchResult['detail'] }}</span>
+                @endif
+            </div>
+        @endif
+    </div>
+
+    <div id="team" class="font-bold mt-5">{{ _('Teams List') }}</div>
+    @foreach ($teams as $team)
+        <div class="mt-5">
+            {{ $team->id }}
+        </div>
+    @endforeach
+    </div>
+
+    @else
+        <div class="text-center py-4">{{ _('Please Log In First.') }}</div> <!-- Message to show if the team is not logged in -->
+    @endif
+</div>

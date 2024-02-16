@@ -13,7 +13,7 @@
                         {{ \Illuminate\Support\Str::limit($version->description, 150, '...') }}
                     </p>
                 </a>
-                @if($isfree || $hasRole != 0 )
+                @if($isfree|| $userEditable != 0 )
                 <button wire:click="selectVersion('{{ $version->id }}')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">开始编辑</button>
                 @endif
             </div>

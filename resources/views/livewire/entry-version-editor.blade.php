@@ -5,7 +5,7 @@
             <div class="p-4">
                 <!-- Display IDs -->
                 <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-                    {{_('edit')}}
+                    {{_('MemeGit Editor')}}
                 </div>
 
                 <!-- Editing Area -->
@@ -17,12 +17,12 @@
 
                 <!-- Push Changes Button -->
 
-                <button wire:click="autoSave" class="bg-green-500 text-white rounded px-4 py-2">Store Version</button>
 
                 <div x-data="{ modalOpen: false }"
                 @keydown.escape.window="modalOpen = false"
                 class="relative z-50 w-auto h-auto">
-                <button wire:click="push" @click="modalOpen=true" class="bg-orange-500 text-white rounded px-4 py-2">Push Changes</button>
+                <button wire:click="autoSave" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-green-500 transition-colors duration-100 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-green-100 bg-green-50 hover:text-green-600 hover:bg-green-100">Store Version</button>
+                <button wire:click="push" @click="modalOpen=true" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-yellow-600 transition-colors duration-100 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-yellow-100 bg-yellow-50 hover:text-yellow-700 hover:bg-yellow-100">Push Changes</button>
                 <template x-teleport="body">
                     <div x-show="modalOpen" class="fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen" x-cloak>
                         <div x-show="modalOpen" 

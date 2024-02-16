@@ -21,7 +21,7 @@
         <!-- Styles  -->
        @livewireStyles
     </head>
-    <body class="">
+    <body class="overflow-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
         <div class="min-h-screen bg-[#f7fdff] dark:bg-gray-900">
 
             <!-- Page Heading -->

@@ -3,7 +3,7 @@
 @section('entry-content')
 <div class="container mx-auto p-4 max-w-7xl flex">
 
-<div class="sticky top-0 flex flex-col w-64 min-w-[240px] h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+<div class="sticky top-0 flex flex-col w-64 min-w-[200px] h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
 
     <div class="flex flex-col justify-between  flex-1">
         <nav class="-mx-3 space-y-6 ">
@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<div class="flex-grow p-8">
+<div class="flex-grow p-4">
     @yield('entry-branch-content')
 </div>
 

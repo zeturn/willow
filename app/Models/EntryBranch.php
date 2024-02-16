@@ -297,6 +297,26 @@ class EntryBranch extends Model
         return EntityWallAssociation::createNewWallAndLink($entityType, $entityUuid, $wallData);
     }
 
+
+    public function userEditable($userId){
+        // Check if the user has a role
+        $userRole = $this->getUserRoleByUuid($userId);
+        if ($userRole !== 0) {
+            return true;
+        }
+        
+        // Check if the user is associated with any team
+        $teams = $this->teams()->get(); // Assuming teams() is a relationship method
+        foreach ($teams as $team) {
+            if ($team->users()->where('user_id', $userId)->exists()) {
+                return true;
+            }
+        }
+        
+        // If neither condition is met, return false
+        return false;
+    }    
+
     /**
      * --------------------------
      *  状态区域

@@ -25,14 +25,6 @@
         </div>
     @endforeach
 
-    <div id="team" class="font-bold mt-5">{{ _('Teams List') }}</div>
-    @foreach ($teams as $team)
-        <div class="mt-5">
-            {{ $team->id }}
-        </div>
-    @endforeach
-    </div>
-
     @else
         <div class="text-center py-4">{{ _('Please Log In First.') }}</div> <!-- Message to show if the user is not logged in -->
     @endif

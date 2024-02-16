@@ -7,7 +7,7 @@ use App\Models\Entry;
 use App\Models\EntryBranch;
 use App\Models\User; // 引入用户模型
 
-class EditorList extends Component
+class EditorsList extends Component
 {
     public $branchId;
     public $entryBranch;
@@ -40,13 +40,6 @@ class EditorList extends Component
         }
     }
 
-    public function deleteEditor($userId)
-    {
-        $this->entryBranch->deleteUser($userId);
-        $this->owner = $this->entryBranch->owner;
-        $this->users = $this->entryBranch->users;
-    }
-
     public function addEditor()
     {
         $this->entryBranch->addUser($this->newUserId);
@@ -55,8 +48,15 @@ class EditorList extends Component
         $this->newUserId = '';
     }
 
+    public function deleteEditor($userId)
+    {
+        $this->entryBranch->deleteUser($userId);
+        $this->owner = $this->entryBranch->owner;
+        $this->users = $this->entryBranch->users;
+    }
+    
     public function render()
     {
-        return view('livewire.branch.editor-list', ['searchResult' => $this->searchResult]);
+        return view('livewire.branch.editors-list', ['searchResult' => $this->searchResult]);
     }
 }

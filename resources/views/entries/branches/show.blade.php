@@ -19,7 +19,7 @@
                     </div>
                     <div class="mb-4">
                         <span class="text-lg font-medium text-gray-600">Content:</span>
-                        <span class="text-lg">{{ $demoVersion->content }}</span>
+                        <span class="text-lg">{!! \Illuminate\Support\Str::markdown($demoVersion->content) !!}</span>
                     </div>
                     <div class="mb-4">
                         <span class="text-lg font-medium text-gray-600">Author:</span>

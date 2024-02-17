@@ -26,12 +26,12 @@
                 <div class="border-t border-gray-200 pt-6">
                     <!-- Description -->
                     <div class="bg-gray-50 px-4 py-5 dark:bg-gray-700">
-                        <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
+                        <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
                             {{ __('Description') }}
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200">
-                            {{ $version->description }}
-                        </dd>
+                        </div>
+                        <div class="mt-1 text-sm text-gray-900 dark:text-gray-200">
+                            {!! \Illuminate\Support\Str::markdown($version->description) !!}
+                        </div>
                     </div>
                     <!-- Content -->
                     <div class="bg-white px-4 py-5 dark:bg-gray-800">
@@ -40,7 +40,7 @@
                         </dt>
                         <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200">
                             <div class="bg-gray-200 p-4 rounded dark:bg-gray-600">
-                                {{ $version->content }}
+                                {!! \Illuminate\Support\Str::markdown($version->content) !!}
                             </div>
                         </dd>
                     </div>

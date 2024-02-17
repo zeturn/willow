@@ -15,8 +15,8 @@
             <p>{{ $demoversion->description }}</p>
         </div>
         <div class="mt-4">
-            <p class="text-gray-600 dark:text-gray-300">Content Preview:</p>
-            <p>{{ \Illuminate\Support\Str::limit($demoversion->content, 200, '...') }}</p>
+            <p class="text-gray-600 dark:text-gray-300">Content:</p>
+            <p>{!! \Illuminate\Support\Str::markdown($demoversion->content) !!}</p>
         </div>
     </div>
     {{-- 可以在这里添加其他内容 --}}

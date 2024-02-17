@@ -6,7 +6,7 @@
         <!-- Main Content -->
         <div class="w-full lg:w-3/4 px-4">
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-6">
-                <p class="text-gray-700 dark:text-gray-300">{{ $demoVersion->content }}</p>
+                <p class="text-gray-700 dark:text-gray-300">{!! \Illuminate\Support\Str::markdown($demoVersion->content) !!}</p>
             </div>
         </div>
         <!-- Sidebar -->

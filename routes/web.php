@@ -127,8 +127,6 @@ Route::resource('/post', PostController::class);
         Route::patch('/softDelete/{id}', [EntryController::class, 'softDelete'])->name('softDelete');
         Route::patch('/restore/{id}', [EntryController::class, 'restore'])->name('restore');
         Route::post('/createEWLink/{entryUuid}', [EntryController::class, 'createEWLink'])->name('createEWLink');
-        Route::get('/editgate/{id}', [EntryController::class, 'editgate'])->name('editgate');
-
         // 显示路由组
         Route::prefix('show')->name('show.')->group(function () {
             Route::get('/{id}/explanation', [EntryController::class, 'showExplanation'])->name('explanation');

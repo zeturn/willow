@@ -42,7 +42,6 @@
                 <a href="{{ route('entry.branch.create', $entry->id) }}" class="block w-full text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">create new branch</a>
                 <a href="{{ route('entry.branch.list', ['entryId' => $entryId ]) }}" class="block w-full text-center bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">查看该版本的词条分支</a>
                 <a href="{{ route('entry.branchUser.brancheslist', ['userId' => $userId, 'branchId' => $demoBranch->id, 'entryId' => $entryId ]) }}" class="block w-full text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">查看该用户的词条分支</a>
-                <a href="{{ route('entry.editgate', ['id' => $entryId ]) }}" class="block w-full text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">创建更改</a>
             @endauth
             </div>
 

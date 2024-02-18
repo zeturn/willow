@@ -747,36 +747,4 @@ class EntryController extends Controller
         }
     }
 
-    /**
-     * 显示创建新词条的表单 / Display the form for editing an entry.
-     * 在显示表单前进行用户认证状态检查，并确保词条存在 / Checks user authentication status before displaying the form and ensures the entry exists.
-     * @param int $id 词条的ID / ID of the entry
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse 视图或重定向响应 / View or redirect response
-     */
-    public function editgate($id)
-    {
-        // 检查用户是否已经登录 / Check if the user is authenticated
-        if (!Auth::check()) {
-            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
-            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
-        }
-
-        try {
-            // Ensure the ID is an string(uuid) to prevent type mismatch.
-            // 确保ID是一个uuid，以防止类型不匹配。
-            $id = (string) $id;
-
-            // 尝试获取词条以确保其存在 / Attempt to retrieve the entry to ensure it exists
-            $entry = Entry::findOrFail($id);
-        } catch (ModelNotFoundException $e) {
-            // 如果找不到词条，重定向到词条列表并显示错误消息 / If the entry is not found, redirect to the entry list with an error message
-            return redirect()->route('entry.index')->withErrors('Entry not found.');
-        }
-
-        // 如果词条存在，显示编辑表单并传递词条ID / If the entry exists, display the edit form and pass the entry ID
-        return view('entries.editgate', [
-            'entryId' => $id,
-        ]);
-    }
-
 }

@@ -7,7 +7,24 @@
             @foreach($branches as $branch)
                 <div class="p-4 space-x-3 bg-white border rounded-md shadow-sm hover:bg-gray-50 border-neutral-200/70">
                     <div class="flex items-center mb-2">
-                    <x-user-name-and-avatar :user-id="$branch->owner->id" />
+                        <x-user-name-and-avatar :user-id="$branch->owner->id" />
+                        <p>/ {{ substr($branch->name, 0, 20) }}</p>
+                        <div class="ml-2">
+                            @if($branch -> id == $demo_branch_id)
+                                <span class="bg-transparent text-purple-500 border border-purple-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Demo Branch</span>
+                            @elseif($branch -> status == 1301113745)
+                                <span class="bg-transparent text-indigo-500 border border-indigo-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Common Branch</span>
+                            @endif
+                        </div>
+
+                        <div class="ml-2">
+                            @if($is_pb)
+                                <span class="bg-transparent text-green-500 border border-green-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">pb</span>
+                            @else
+                                <span class="bg-transparent text-blue-500 border border-blue-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">cb</span>
+                            @endif
+                        </div>
+
                     </div>
                     <div class="flex items-center justify-between">
                         <button wire:click="loadVersions('{{ $branch->id }}')" class="text-blue-600 hover:text-blue-800 text-sm">
@@ -29,16 +46,16 @@
         @if($versions && count($versions) > 0)
             <ul class="mt-4 space-y-4">
                 <a href="{{ route('entry.branch.show.showDemoVersion', $branch->id) }}" class="block">
-                    <li class="p-4 bg-white rounded-lg shadow">
+                    <li class="p-4 bg-white border rounded-md shadow-sm hover:bg-gray-50 border-neutral-200/70">
                         <div class="text-gray-800">Visit Branch</div>
                     </li>
                 </a>
 
                 @foreach($versions as $version)
                 <a href="{{ route('entry.version.show', $version->id) }}" class="block">
-                    <li class="p-4 bg-white rounded-lg shadow">
-                        <div class="text-gray-800 font-medium">{{ $version->name }}</div>
-                        <div class="text-sm text-gray-600">{{ $version->description }}</div>
+                    <li class="p-4 bg-white border rounded-md shadow-sm hover:bg-gray-50 border-neutral-200/70">
+                        <div class="text-gray-800 font-medium">{{ substr($version->name, 0, 30) }}</div>
+                        <div class="text-sm text-gray-600">{{ substr($version->description, 0, 50) }}</div>
                     </li>
                 </a>
                 @endforeach

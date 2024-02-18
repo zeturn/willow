@@ -3,12 +3,14 @@
 namespace App\Livewire\Entry;
 
 use Livewire\Component;
+use App\Models\Entry;
 use App\Models\EntryBranch;
 use App\Models\EntryVersion;
 
 class ShowBranchVersion extends Component
 {
     public $entryId;
+    public $entry;
     public $branches;
     public $versions;
     public $selectedBranchId;
@@ -17,6 +19,7 @@ class ShowBranchVersion extends Component
     {
         $this->entryId = $entryId;
         $this->branches = EntryBranch::where('entry_id', $this->entryId)->get();
+        $this->entry = Entry::where('id', $this->entryId)->first();
     }
 
     public function loadVersions($branchId)
@@ -37,6 +40,8 @@ class ShowBranchVersion extends Component
         return view('livewire.entry.show-branch-version', [
             'branches' => $this->branches,
             'versions' => $this->versions,
+            'demo_branch_id' => $this->entry->demo_branch_id,
+            'is_pb' => 'is_pb',
         ]);
     }
 }

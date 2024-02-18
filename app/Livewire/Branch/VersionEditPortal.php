@@ -52,6 +52,21 @@ class VersionEditPortal extends Component
         $this->createTask();
     }
 
+    public function deleteVersion($versionId)
+    {
+        // 找到对应的EntryVersion对象
+        $version = EntryVersion::find($versionId);
+    
+        // 如果找到了对象，就删除它
+        if ($version) {
+            $version->delete();
+            if ($this->branch) {
+                $this->versions = $this->branch->versions; // 确保你的 EntryBranch 模型有一个 versions() 关系方法
+            }
+        }
+    }
+    
+
     public function createTask()
     {
         $task = new EntryVersionTask([
@@ -73,6 +88,7 @@ class VersionEditPortal extends Component
     {
         return view('livewire.branch.version-edit-portal', [
             'versions' => $this->versions,
+            'demo_version_id' => $this->branch->demo_version_id,
         ]);
     }
 }

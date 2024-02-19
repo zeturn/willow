@@ -323,56 +323,64 @@ class EntryController extends Controller
                 return view('errors.general', ['message' => 'An error occurred while displaying the branch.'], [500]);
             }
         }
-    
+
         /**
-         * Display the control page for a given entry.
-         * 显示给定词条的控制页面。
-         * This method fetches an entry by its ID, retrieves related information such as walls, demo branch, and demo version, then displays them. It handles cases where the entry might not exist or other exceptions occur gracefully.
-         * 此方法通过其 ID 获取一个词条，检索相关信息，如墙壁、演示分支和演示版本，然后显示它们。它优雅地处理了词条可能不存在或发生其他异常的情况。
+         * ------------------------------------------------------
+         * show方法区——Control方法区
          * 
-         * @param int $id Entry ID / 词条ID
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Http\Response The view with control details or an error response / 带有控制详细信息的视图或错误响应
+         * 
          */
-        public function showControl($id)
-        {
-            try {
-                // Ensure the ID is an string(uuid) to prevent type mismatch.
-                // 确保ID是一个uuid，以防止类型不匹配。
-                $id = (string) $id;
 
-                // Attempt to find the entry; if not found, a 404 exception is thrown.
-                // 尝试查找词条；如果找不到，将抛出404异常。
-                $entry = Entry::findOrFail($id);
+            /**
+             * Display the control page for a given entry.
+             * 显示给定词条的控制页面。
+             * This method fetches an entry by its ID, retrieves related information such as walls, demo branch, and demo version, then displays them. It handles cases where the entry might not exist or other exceptions occur gracefully.
+             * 此方法通过其 ID 获取一个词条，检索相关信息，如墙壁、演示分支和演示版本，然后显示它们。它优雅地处理了词条可能不存在或发生其他异常的情况。
+             * 
+             * @param int $id Entry ID / 词条ID
+             * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Http\Response The view with control details or an error response / 带有控制详细信息的视图或错误响应
+             */
+            public function GeneralSetting($id)
+            {
+                try {
+                    // Ensure the ID is an string(uuid) to prevent type mismatch.
+                    // 确保ID是一个uuid，以防止类型不匹配。
+                    $id = (string) $id;
 
-                // Fetch related data for the entry.
-                // 获取词条的相关数据。
-                $walls = $entry->walls;
-                $demoBranch = $entry->getDemoBranch();
-                $demoVersion = $demoBranch ? $demoBranch->getDemoVersion() : null;
+                    // Attempt to find the entry; if not found, a 404 exception is thrown.
+                    // 尝试查找词条；如果找不到，将抛出404异常。
+                    $entry = Entry::findOrFail($id);
 
-                // Return to the view with the fetched data, ensuring all necessary information is passed to the view.
-                // 返回视图并传递获取的数据，确保向视图传递所有必要信息。
-                return view('entries.show.show-control', [
-                    'entry' => $entry,
-                    'walls' => $walls,
-                    'demoBranch' => $demoBranch,
-                    'demoVersion' => $demoVersion,
-                    'userId' => Auth::id(),
-                    'entryId' => $id,
-                    'tabname' => 'entry.show.control',
-                ]);
-            } catch (ModelNotFoundException $e) {
-                // Log the error and return a custom error view if the entry is not found.
-                // 如果找不到词条，记录错误并返回自定义错误视图。
-                // Log::error("Entry with ID {$id} not found.", ['exception' => $e]);
-                return view('errors.general', ['message' => 'Entry not found.'], [404]);
-            } catch (\Exception $e) {
-                // Handle any other exceptions by logging the error and returning a general error view.
-                // 通过记录错误并返回通用错误视图来处理任何其他异常。
-                Log::error("An error occurred while displaying the control page for entry ID {$id}.", ['exception' => $e]);
-                return view('errors.general', ['message' => 'An error occurred while displaying the control page.'], [500]);
+                    // Fetch related data for the entry.
+                    // 获取词条的相关数据。
+                    $walls = $entry->walls;
+                    $demoBranch = $entry->getDemoBranch();
+                    $demoVersion = $demoBranch ? $demoBranch->getDemoVersion() : null;
+
+                    // Return to the view with the fetched data, ensuring all necessary information is passed to the view.
+                    // 返回视图并传递获取的数据，确保向视图传递所有必要信息。
+                    return view('entries.show.control.general-setting', [
+                        'entry' => $entry,
+                        'walls' => $walls,
+                        'demoBranch' => $demoBranch,
+                        'demoVersion' => $demoVersion,
+                        'userId' => Auth::id(),
+                        'entryId' => $id,
+                        'tabname' => 'entry.show.control',
+                    ]);
+                } catch (ModelNotFoundException $e) {
+                    // Log the error and return a custom error view if the entry is not found.
+                    // 如果找不到词条，记录错误并返回自定义错误视图。
+                    // Log::error("Entry with ID {$id} not found.", ['exception' => $e]);
+                    return view('errors.general', ['message' => 'Entry not found.'], [404]);
+                } catch (\Exception $e) {
+                    // Handle any other exceptions by logging the error and returning a general error view.
+                    // 通过记录错误并返回通用错误视图来处理任何其他异常。
+                    Log::error("An error occurred while displaying the control page for entry ID {$id}.", ['exception' => $e]);
+                    return view('errors.general', ['message' => 'An error occurred while displaying the control page.'], [500]);
+                }
             }
-        }
+
 
         /**
          * ----------------------------------------------------------------------

@@ -127,18 +127,25 @@ Route::resource('/post', PostController::class);
         Route::patch('/softDelete/{id}', [EntryController::class, 'softDelete'])->name('softDelete');
         Route::patch('/restore/{id}', [EntryController::class, 'restore'])->name('restore');
         Route::post('/createEWLink/{entryUuid}', [EntryController::class, 'createEWLink'])->name('createEWLink');
-        // 显示路由组
+
+        // 显示路由组 名称为 entry.show.*
         Route::prefix('show')->name('show.')->group(function () {
+            
             Route::get('/{id}/explanation', [EntryController::class, 'showExplanation'])->name('explanation');
             Route::get('/{id}/branch', [EntryController::class, 'showBranch'])->name('branch');
             Route::get('/{id}/community', [EntryController::class, 'showCommunity'])->name('community');
             Route::get('/{id}/album', [EntryController::class, 'showAlbum'])->name('album');
             Route::get('/{id}/details', [EntryController::class, 'showDetails'])->name('details');
-            Route::get('/{id}/control', [EntryController::class, 'showControl'])->name('control');
 
+            // 控制路由组 名称为 entry.show.control.*
+            Route::prefix('control')->name('control.')->group(function () {
+
+                Route::get('/{id}/generalsetting', [EntryController::class, 'GeneralSetting'])->name('GeneralSetting');
+
+            });// for entry control
             
 
-            //entry中branch逻辑区 无误
+            //entry中 branch逻辑区 无误 名称为 entry.show.branch.*
             Route::prefix('branch')->name('branch.')->group(function () {
                 //Route::get('/{id}/', [EntryController::class, ''])->name('');
                 Route::get('/{id}/myBranches', [EntryController::class, 'myBranches'])->name('myBranches');
@@ -149,7 +156,7 @@ Route::resource('/post', PostController::class);
                 //Route::get('/{id}/', [EntryController::class, ''])->name('');
             });//for entry show branch
 
-        });//for show
+        });//for entry show
 
         // 子路由组 - Branch 名称为 entry.branch.*
         Route::prefix('branch')->name('branch.')->group(function () {
@@ -183,7 +190,7 @@ Route::resource('/post', PostController::class);
                     Route::get('/{id}/VersionList', [EntryBranchController::class, 'VersionList'])->name('VersionList');
                     Route::get('/{id}/GenreralSetting', [EntryBranchController::class, 'GenreralSetting'])->name('GenreralSetting');
                     Route::get('/{id}/pullRule', [EntryBranchController::class, 'pullRule'])->name('pullRule');
-                });// for control
+                });// for branch control
             });// for show
         });//for branch
 

@@ -47,7 +47,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                 </svg>
-                <span class="ml-3 text-xl">HolllowData</span>
+                <span class="ml-3 text-xl">HollowData</span>
             </a>
             <p class="sm:ml-6 sm:mt-0 mt-4 text-gray-600 dark:text-gray-300">© 2021-2023 memeGit — <a href="#" rel="noopener noreferrer" class="ml-1" target="_blank">@Hollowdata Web</a></p>
             <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">

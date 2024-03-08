@@ -7,8 +7,11 @@
         <!-- Main column -->
         <div class="w-full lg:w-3/4 px-4">
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-                <div class=" ">
+                <div>
+                    <div class="flex justify-between">
                     <h1 class="text-4xl font-semibold text-gray-900">{{ $node->name }}</h1>
+                    <span class="bg-transparent text-green-500 border border-green-500 text-xs font-semibold px-2.5 py-0.5 mt-1 rounded-full">Node</span>
+                    </div>
                     <p class="text-lg text-gray-700 mt-4"><span class="font-medium">{{ $node->description }}</span></p>
                 </div>
                 <!-- Adjacent Nodes Display -->

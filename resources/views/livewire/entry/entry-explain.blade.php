@@ -16,8 +16,10 @@
                             @endif
                         </div>
                 </div>
-                <div class="text-gray-400 text-sm dark:text-gray-300">{{$branch->id}}</div> <!-- id放在右侧 -->
+                <div class="text-gray-400 text-sm dark:text-gray-300">{{$branch->id}}<p class="md:mr-2">{{ $branch->getDemoVersion()->created_at->format('M d, Y') }}</p></div> <!-- id放在右侧 -->
+                
             </div>
+
 
             <h2 class="text-2xl font-semibold">{{ $branch->name }}</h2>
             <p class="text-gray-700 dark:text-gray-400">{!! \Illuminate\Support\Str::markdown($branch->getDemoVersion()->content) !!}</p>

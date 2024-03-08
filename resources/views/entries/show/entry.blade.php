@@ -11,8 +11,8 @@
                     {{-- Title and Button --}}
                     
                     <div class="flex justify-between items-center">
-                        <h1 class="text-4xl mt-8 dark:text-white">{{ $entry->name }}</h1>
-
+                        <h1 class="text-4xl mt-8 dark:text-white">{{ $entry->name }}</h1> 
+                        <span class="bg-transparent text-pink-500 border border-pink-500 text-xs font-semibold mt-9 mr-3 px-2.5 py-0.5 rounded-full">Entry</span>
                     </div>
                     
 
@@ -30,7 +30,7 @@
                     $currentRouteName = Route::currentRouteName();
                     @endphp
 
-                    <ul class="flex items-center border-b border-slate-200" role="tablist">
+                    <ul class="flex flex-wrap items-center border-b border-slate-200" role="tablist">
                         <li role="presentation">
                             <a href="{{ route('entry.show.explanation', $entry->id) }}" class="{{ $tabname == 'entry.show.explanation' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Explanation</a>
                         </li>

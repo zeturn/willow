@@ -21,6 +21,8 @@ class EntryVersionEditor extends Component
     public $author_id; // 用于存储当前用户的ID
     public $status;
 
+    public $ConflictingVersions;
+
     
     public function render()
     {
@@ -47,6 +49,10 @@ class EntryVersionEditor extends Component
             $this->status = $entryVersionTask->status;
         }
         // 如果需要，可以在这里处理未找到数据的情况
+
+        $this->ConflictingVersions = EntryVersion::where('entry_branch_id',$this->branchId)
+                        ->where('created_at', '>', $entryVersionTask->created_at)
+                        ->get();
     }
 
     public function startTask($entryId, $branchId, $originalVersionId = null)

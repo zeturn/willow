@@ -5,7 +5,7 @@
             <div class="p-4">
                 <!-- Display IDs -->
                 <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-                    {{_('MemeGit Editor')}}
+                    <p class="text-lg">{{_('MemeGit Editor')}}</p>
                 </div>
 
                 <!-- Editing Area -->
@@ -100,6 +100,22 @@
                     <p>Branch ID: {{ $branchId }}</p>
                     <p>Original Version ID: {{ $originalVersionId }}</p>
                 </div>
+
+                <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+                    <!-- Sidebar Widgets or Additional Information -->
+                    <p>ConflictingVersions</p>
+                    <p>以下列出了当前task创建后生成的版本，为避免编辑冲突，建议检查以下版本：</p>
+
+                    @foreach($ConflictingVersions as $ConflictingVersion)
+                        <a href="{{ route('entry.version.show', $ConflictingVersion->id) }}" class="block">
+                            <div class="p-4 bg-white border rounded-md shadow-sm hover:bg-gray-50 border-neutral-200/70">
+                                <div class="text-gray-800 font-medium">{{ substr($ConflictingVersion->name, 0, 30) }}</div>
+                                <div class="text-sm text-gray-600">{{ $ConflictingVersion->created_at->format('M d, Y') }}</div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+
 
                 <!-- Auto Save Indicator -->
                 <div wire:poll.24000ms="autoSave" class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">

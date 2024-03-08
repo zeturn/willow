@@ -4,10 +4,25 @@
 <div class="container mx-auto p-4 dark:bg-gray-900 max-w-7xl">
     <div class="flex flex-wrap -mx-4">
         <!-- Main Content -->
-        <div class="w-full lg:w-3/4 px-4">
-            <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-6">
-                <p class="text-gray-700 dark:text-gray-300">{!! \Illuminate\Support\Str::markdown($demoVersion->content) !!}</p>
+        <div class="w-full lg:w-3/4 px-6">
+            <div class="p-6 border-b">
+                <div class="flex justify-between">
+                    <div class="flex items-center"> <!-- 新增一个Flex容器，用于头像和branchname并排 -->
+                        <x-user-name-and-avatar :user-id="$demoBranch->owner->id" class="mr-4" /> <!-- 添加间距，让头像和文字之间有间隔 -->
+                        <p>/ {{ substr($demoBranch->name, 0, 20) }}</p>
+                        <div class="ml-2">
+                            <span class="bg-transparent text-purple-500 border border-purple-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Demo Branch</span>
+                        </div>
+                    </div>
+                    <div class="text-gray-400 dark:text-gray-300">{{$demoBranch->id}}</div> <!-- id放在右侧 -->
+                </div>
+                <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">{!! \Illuminate\Support\Str::markdown($demoVersion->content) !!}</p>
+                </div>
             </div>
+
+            <livewire:entry.entry-explain :entryId="$entryId" />
+
         </div>
         <!-- Sidebar -->
         <div class="w-full lg:w-1/4 px-4 mt-6 lg:mt-0">

@@ -72,8 +72,7 @@
                                 <div class="text-xs text-gray-600 dark:text-gray-400">
                                     <button @click="$wire.selectComment('{{ $comment->id }}','{{ $comment->user->id }}')" @click="openModal('{{ $comment->id }}','{{ $comment->user->id }}')" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors bg-white border rounded-md hover:bg-gray-50 focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">回复</button>
                                 </div>
-                        </div>
-                            
+                        </div>  
                         @empty
                             No comments yet.
                         @endforelse
@@ -94,16 +93,19 @@
                             }"
                             x-init="observe"
                         ></div>
-                    </div>
+                        </div>
 
                     </div>
                     <!-- Check if user is authenticated -->
                     @if($commentBoadrd)
                         @if (auth()->check())
                             <!-- Add New Comment Form -->
-                            <div class="bg-white rounded-lg p-6">
-                            <h2 class="text-xl font-semibold mb-4">Add New Comment to <x-user-name-and-avatar :user-id="$selectedCommentUserId" class="flex items-center space-x-3 mb-2"/></h2>
-
+                            <div class="bg-white rounded-lg p-4">
+                            <div class="flex items-center mb-2">
+                                <h2 class="text-md font-semibold mr-2">Add New Comment to</h2>
+                                <x-user-name-and-avatar :user-id="$selectedCommentUserId" class="flex items-center space-x-3"/>
+                            </div>
+                            
                                 <form action="{{ route('comment.store') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="topic_id" value="{{ $topicId }}">
@@ -116,7 +118,7 @@
 
                                     <!-- Submit Button -->
                                     <div class="mt-4">
-                                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+                                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded-lg">
                                             Post Comment
                                         </button>
                                     </div>

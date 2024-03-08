@@ -23,6 +23,8 @@
                 class="relative z-50 w-auto h-auto">
                 <button wire:click="autoSave" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-green-500 transition-colors duration-100 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-green-100 bg-green-50 hover:text-green-600 hover:bg-green-100">Store Version</button>
                 <button wire:click="push" @click="modalOpen=true" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-yellow-600 transition-colors duration-100 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-yellow-100 bg-yellow-50 hover:text-yellow-700 hover:bg-yellow-100">Push Changes</button>
+                <button wire:click="deletetask" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-red-600 transition-colors duration-100 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-red-100 bg-red-50 hover:text-red-700 hover:bg-red-100">Delete Task</button>
+
                 <template x-teleport="body">
                     <div x-show="modalOpen" class="fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen" x-cloak>
                         <div x-show="modalOpen" 

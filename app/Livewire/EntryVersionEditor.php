@@ -131,7 +131,19 @@ class EntryVersionEditor extends Component
             $task->VersionGeneration();
 
             // 任务完成后的逻辑，例如重置组件状态、通知用户等
-            // ...
+            return redirect()->route('workstation.index');
+        }
+    }
+
+
+    public function deletetask(){
+        if ($this->entryId) {
+            $task = EntryVersionTask::where('id', $this->taskId)
+            ->first();
+            if($task){
+                $task->delete();
+                return redirect()->route('workstation.index');
+            }
         }
     }
 }

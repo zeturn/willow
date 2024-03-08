@@ -14,7 +14,7 @@ use App\Models\EntityWallAssociation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Arr; // 添加这一行来引入 Arr 类
+use Illuminate\Support\Arr; // 引入 Arr 类
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -562,7 +562,7 @@ class EntryController extends Controller
             try {
                 $entry = Entry::with('walls.topics')->findOrFail($id);
             } catch (ModelNotFoundException $e) {
-                Log::error('Community not found', ['id' => $id, 'error' => $e->getMessage()]);
+                Log::error('Community not found for Entry', ['id' => $id, 'error' => $e->getMessage()]);
                 return view('errors.general', ['message' => 'Failed to display community details'], [500]);
             }
 
@@ -589,7 +589,7 @@ class EntryController extends Controller
                 $entry = Entry::findOrFail($id);
                 $albums = $entry->albums()->with('medias')->get();
             } catch (ModelNotFoundException $e) {
-                Log::error('Album not found', ['id' => $id, 'error' => $e->getMessage()]);
+                Log::error('Album not found for Entry show', ['id' => $id, 'error' => $e->getMessage()]);
                 return view('errors.general', ['message' => 'Failed to display album details'], [500]);
             } catch (\Exception $e) {
                 Log::error('Error loading albums', ['id' => $id, 'error' => $e->getMessage()]);
@@ -625,8 +625,9 @@ class EntryController extends Controller
                 $id = (string) $id;
 
                 $entry = Entry::findOrFail($id);
+
             } catch (ModelNotFoundException $e) {
-                Log::error('Details not found', ['id' => $id, 'error' => $e->getMessage()]);
+                Log::error('Entry not found for show details', ['id' => $id, 'error' => $e->getMessage()]);
                 return view('errors.general', ['message' => 'Failed to display entry details'], [500]);
             }
 

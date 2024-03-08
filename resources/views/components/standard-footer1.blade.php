@@ -51,6 +51,7 @@
             </a>
             <p class="sm:ml-6 sm:mt-0 mt-4 text-gray-600 dark:text-gray-300">© 2021-2023 memeGit — <a href="#" rel="noopener noreferrer" class="ml-1" target="_blank">@Hollowdata Web</a></p>
             <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+                memeGit LB V0.6
                 <!-- 社交媒体链接图标 -->
             </span>
         </div>

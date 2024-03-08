@@ -20,18 +20,20 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="h-screen">
+    <body class="h-screen bg-[#f7fdff] text-white dark:bg-gray-900">
 
-            <!-- Page Heading -->
-            <x-standard-header3 />
+    <!-- Page Heading -->
+    <x-standard-header3 />
 
-            <!-- Page Content -->
-            <main>
-                @yield('content')
-            </main>
+    <!-- Page Content -->
+    <main class="text-white">
+        @yield('content')
+    </main>
 
-            <!-- Page Footer -->
-            <x-standard-footer1 />
-        @livewireScripts
+    <!-- Page Footer -->
+    <x-standard-footer1 />
+
+    @livewireScripts
     </body>
+
 </html>

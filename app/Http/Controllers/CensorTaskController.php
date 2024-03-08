@@ -403,7 +403,7 @@ class CensorTaskController extends Controller
         }
 
         // 返回成功消息 / Return with a success message
-        return back()->with('success', 'Entry task status updated.');
+        return redirect()->back()->with('success', 'Entry task status updated.');
     }
 
     /**
@@ -506,8 +506,8 @@ class CensorTaskController extends Controller
         }
 
         // 返回成功消息 / Return with a success message
-        return back()->with('success', 'Version task status updated.');
-    }
+        return redirect()->route('censor.tasks.list.version')->with('success', 'Version task status updated.');
+    } 
 
     public function handleTaskTask(Request $request)
     {

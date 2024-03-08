@@ -123,6 +123,12 @@ class EntryBranchController extends Controller
 
         $branch = EntryBranch::findOrFail($id);
 
+        // 检查当前用户是否拥有访问分支的权限
+        if ($branch->owner->id !== Auth::id()) {
+            // 如果没有权限，则返回403 Forbidden响应
+            abort(403);
+        }
+
         $versionsforreview = $branch->versionsforreview; 
 
         return view('entries.branches.show.control.push-requests', [
@@ -134,6 +140,12 @@ class EntryBranchController extends Controller
     public function EditorGroup($id){
 
         $branch = EntryBranch::findOrFail($id);
+
+        // 检查当前用户是否拥有访问分支的权限
+        if ($branch->owner->id !== Auth::id()) {
+            // 如果没有权限，则返回403 Forbidden响应
+            abort(403);
+        }
 
         $branchId = $branch->id;
 
@@ -153,6 +165,12 @@ class EntryBranchController extends Controller
     public function VersionList($id){
 
         $branch = EntryBranch::findOrFail($id);
+
+        // 检查当前用户是否拥有访问分支的权限
+        if ($branch->owner->id !== Auth::id()) {
+            // 如果没有权限，则返回403 Forbidden响应
+            abort(403);
+        }
         
         $versions = $branch->versions;
 
@@ -167,20 +185,31 @@ class EntryBranchController extends Controller
 
         $branch = EntryBranch::findOrFail($id);
         
+        // 检查当前用户是否拥有访问分支的权限
+        if ($branch->owner->id !== Auth::id()) {
+            // 如果没有权限，则返回403 Forbidden响应
+            abort(403);
+        }
+
         return view('entries.branches.show.control.general-setting', [
             'branch' => $branch,
             'branchId' => $branch->id,
         ]);
 
     }
-    public function pullRule($id){
 
+    public function pullRule($id)
+    {
         $branch = EntryBranch::findOrFail($id);
-        
+        // 检查当前用户是否拥有访问分支的权限
+        if ($branch->owner->id !== Auth::id()) {
+            // 如果没有权限，则返回403 Forbidden响应
+            abort(403);
+        }
+        // 如果有权限，则渲染视图
         return view('entries.branches.show.control.pull-rule', [
             'branch' => $branch,
         ]);
-
     }
 
     //功能区域

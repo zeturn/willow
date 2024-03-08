@@ -52,11 +52,13 @@
                         </a>
                     </li>
                     @auth
+                    @if($branch->owner->id == Auth::id())
                     <li role="presentation">
                         <a href="{{ route('entry.branch.show.showControl', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-control' ? 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none whitespace-nowrap border-emerald-500 hover:border-emerald-600 focus:border-emerald-700 text-emerald-500 hover:text-emerald-600 focus:text-emerald-700 hover:bg-emerald-50 focus:bg-emerald-50' : 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 border-transparent rounded-t focus-visible:outline-none justify-self-center hover:border-emerald-500 focus:border-emerald-600 whitespace-nowrap text-slate-700 stroke-slate-700 hover:bg-emerald-50 hover:text-emerald-500 focus:stroke-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 hover:stroke-emerald-600' }}" role="tab" aria-setsize="3" aria-posinset="5" tabindex="{{ $currentRouteName == 'entries.branches.show.show-control' ? '0' : '-1' }}" aria-controls="tab-panel-5a" aria-selected="{{ $currentRouteName == 'entries.branches.show.show-control' ? 'true' : 'false' }}">
                             <span>Control</span>
                         </a>
                     </li>
+                    @endif
                     @endauth
                 </ul>
 

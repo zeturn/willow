@@ -12,7 +12,7 @@
                         @if($task->entity_type === 'EntryVersion')
                             <div class="mb-4 border-b pb-4">
                                 <a href="{{ route('censor.tasks.version', ['id' => $task->id]) }}" class="text-xl font-bold">
-                                    Task ID: {{ $task->version->name }}
+                                    Task ID: {{ $task?->version?->name }}
                                 </a>
                                 <p class="text-gray-600">Status: {{ $task->status }}</p>
                                 {{-- 其他您希望展示的信息 --}}
@@ -23,7 +23,7 @@
                 </div>
             </div>
         </div>
- 
+  
     </div>
 </div>
 @endsection

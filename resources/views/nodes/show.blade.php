@@ -41,12 +41,16 @@
                 </div>
 
                 <div class="flex space-x-4 mt-6">
+                    @can('node-edit')
                     <a href="{{ route('nodes.edit', $node->id) }}" class="inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out">{{ __('Edit Node') }}</a>
+                    @endcan
+                    @can('node-delete')
                     <form action="{{ route('nodes.destroy', $node->id) }}" method="POST" class="inline-flex items-center">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition duration-150 ease-in-out">{{ __('Delete Node') }}</button>
                     </form>
+                    @endcan
                 </div>
                 
             </div>
@@ -64,6 +68,7 @@
                 <p class="text-gray-600">{{ __('No related walls') }}</p>
             @endforelse
 
+            @if(auth()->check())
             <!-- Creating link form -->
             <form action="{{ route('nodes.createEWLink', $node->id) }}" method="POST" class="mt-6">
                 @csrf
@@ -84,6 +89,13 @@
 
                 <input type="submit" value="{{ __('Create Link') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-150 ease-in-out">
             </form>
+            @else
+                <!-- Not Authenticated User Message -->
+                <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-700">Authentication Required</h2>
+                    <p class="text-sm text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to create new content.</p>
+                </div>
+            @endif
         </div>
     </div>
 </div>

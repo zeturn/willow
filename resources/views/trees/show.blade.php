@@ -11,12 +11,18 @@
                     <p class="text-lg text-gray-700">{{ __('Name') }}: <span class="font-medium">{{ $tree->name }}</span></p>
                     <p class="text-lg text-gray-700">{{ __('Description') }}: <span class="font-medium">{{ $tree->description }}</span></p>
                     <p class="text-lg text-gray-700">{{ __('Status') }}: <span class="font-medium">{{ $tree->status }}</span></p>
+                    @if(auth()->check())
+                    @can('tree-edit')
                     <a href="{{ route('trees.edit', $tree->id) }}" class="text-indigo-600 hover:text-indigo-900 mt-4 inline-block">{{ __('Edit') }}</a>
+                    @endcan
+                    @can('tree-delete')
                     <form action="{{ route('trees.destroy', $tree->id) }}" method="POST" class="mt-4">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-red-600 hover:text-red-900">{{ __('Delete') }}</button>
                     </form>
+                    @endcan
+                    @endif
                 </div>
 
                 <div class="flex flex-wrap gap-2 mt-4">
@@ -46,6 +52,8 @@
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                 <!-- Sidebar content goes here -->
             </div>
+
+            @if(auth()->check())
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
             @forelse($walls as $wall)
                 <a href="{{ route('wall.show', $wall->id) }}" class="text-lg text-blue-500 hover:text-blue-600 transition duration-200 mb-4 block">{{ $wall->name }}</a>
@@ -73,6 +81,13 @@
 
                 <input type="submit" value="Create Link" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
             </form>
+            @else
+                <!-- Not Authenticated User Message -->
+                <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-700">Authentication Required</h2>
+                    <p class="text-sm text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to create new content.</p>
+                </div>
+            @endif
             </div>
         </div>
     </div>

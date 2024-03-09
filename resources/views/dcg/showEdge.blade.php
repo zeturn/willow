@@ -10,21 +10,24 @@
                 <div class="mt-4">
                     <p class="text-lg text-gray-700">{{ __('Start Node') }}: <span class="font-medium">{{ $edge->start_node }}</span></p>
                     <p class="text-lg text-gray-700">{{ __('End Node') }}: <span class="font-medium">{{ $edge->end_node }}</span></p>
+                    @if(auth()->check())
+                    @can('dcg-edge-edit')
                     <a href="{{ route('edges.edit', $edge->id) }}" class="text-indigo-600 hover:text-indigo-900 mt-4 inline-block">{{ __('Edit') }}</a>
+                    @endcan
+                    @can('dcg-edge-delete')
                     <form action="{{ route('edges.destroy', $edge->id) }}" method="POST" class="mt-4">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="text-red-600 hover:text-red-900">{{ __('Delete') }}</button>
                     </form>
+                    @endcan
+                    @endif
                 </div>
             </div>
         </div>
 
         <!-- Sidebar -->
         <div class="w-full lg:w-1/4 px-4 mt-6 lg:mt-0">
-
-
-            <x-patrol-button color="yellow" route="dcg.index" text1="前往DCG中心" text2="Go to dcg"></x-patrol-button>
 
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                 <!-- Sidebar content goes here -->

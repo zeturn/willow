@@ -18,20 +18,23 @@
                     </a>
                 </p>
                 <div class="flex">
+                    @can('edge-edit')
                     <a href="{{ route('edges.edit', $edge->id) }}" class="px-4 py-2 bg-green-500 hover:bg-green-700 rounded-md text-white font-medium mr-2">编辑 (Edit)</a>
+                    @endcan
+
+                    @can('edge-delete')
                     <form action="{{ route('edges.destroy', $edge->id) }}" method="POST" class="inline-block">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-700 rounded-md text-white font-medium">删除 (Delete)</button>
                     </form>
+                    @endcan
                 </div>
             </div>
         </div>
 
         <!-- Sidebar -->
         <div class="w-full lg:w-1/4 px-4 mt-6 lg:mt-0">
-            <x-patrol-button color="yellow" route="edges.index" text1="前往Edge中心 (Go to Edge Center)" text2="Go to Edge"></x-patrol-button>
-            
             <!-- Related Walls -->
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                 @forelse($walls as $wall)
@@ -41,6 +44,7 @@
                 @endforelse
 
                 <!-- Create Link Form -->
+                @if(auth()->check())
                 <form action="{{ route('edges.createEWLink', $edge->id) }}" method="POST" class="mt-6">
                     @csrf
                     <div class="mb-4">
@@ -60,6 +64,13 @@
 
                     <input type="submit" value="Create Link" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                 </form>
+                @else
+                <!-- Not Authenticated User Message -->
+                <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-700">Authentication Required</h2>
+                    <p class="text-sm text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to create new content.</p>
+                </div>
+                @endif
             </div>
         </div>
     </div>

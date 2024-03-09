@@ -55,7 +55,8 @@ class PermissionTableSeeder extends Seeder
             'wall-soft-delete',
             'wall-delete',
             'wall-censor',
-
+            //创建墙链接权限
+            'create-wall-link',
 
             // 讨论topic区权限
             'topic-index',

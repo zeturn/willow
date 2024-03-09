@@ -37,14 +37,19 @@
                                 @endforeach
                             </div>
                         </div>
-
-                        <a href="{{ route('dcg.editNode', $node->id) }}" class="text-indigo-600 hover:text-indigo-900 mt-4 inline-block">{{ __('Edit') }}</a>
-                        <form action="{{ route('dcg.deleteNode', $node->id) }}" method="POST" class="mt-4">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="text-red-600 hover:text-red-900">{{ __('Delete') }}</button>
-                        </form>
-
+                        @if(auth()->check())
+                            @can('dcg-node-delete')
+                            
+                            <a href="{{ route('dcg.editNode', $node->id) }}" class="text-indigo-600 hover:text-indigo-900 mt-4 inline-block">{{ __('Edit') }}</a>
+                            @endcan
+                            @can('dcg-node-edit')
+                            <form action="{{ route('dcg.deleteNode', $node->id) }}" method="POST" class="mt-4">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:text-red-900">{{ __('Delete') }}</button>
+                            </form>
+                            @endcan
+                        @endif
                     </div>
             </div>
         </div>

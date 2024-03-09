@@ -5,6 +5,7 @@
     <div class="flex flex-wrap -mx-4">
         <!-- Main Content -->
         <div class="w-full lg:w-3/4 px-6">
+            @if($demoBranch->getDemoVersion()->isOwnerVisible())
             <div class="p-6 border-b">
                 <div class="flex justify-between">
                     <div class="flex items-center"> <!-- 新增一个Flex容器，用于头像和branchname并排 -->
@@ -20,7 +21,11 @@
                     <p class="text-gray-700 dark:text-gray-300">{!! \Illuminate\Support\Str::markdown($demoVersion->content) !!}</p>
                 </div>
             </div>
-
+            @else
+            <div class="flex flex-col items-center max-w-lg mx-auto text-center">
+                <p class="text-sm font-medium text-blue-500 dark:text-blue-400">{{ __('Demo Version 不可用') }}</p>
+            </div>
+            @endif
             <livewire:entry.entry-explain :entryId="$entryId" />
 
         </div>

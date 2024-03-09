@@ -3,6 +3,7 @@
 
 <div class="space-y-6">
     @foreach ($branches as $branch)
+    @if($branch->getDemoVersion()->isOwnerVisible())
         @if($branch -> id != $entry -> getDemoBranch() -> id)
         <div class="bg-white p-6 dark:bg-gray-800 mb-8 border-b border-gray-200 dark:border-gray-700">
             <p class="p-3 m-3 text-lg">全部解释</p>
@@ -27,6 +28,7 @@
             <p class="text-gray-700 dark:text-gray-400">{!! \Illuminate\Support\Str::markdown($branch->getDemoVersion()->content) !!}</p>
         </div>
         @endif
+    @endif
     @endforeach
     @if($hasMoreBranches)
         <button wire:click="loadMoreBranches" class="load-more bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">Load More</button>

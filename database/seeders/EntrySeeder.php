@@ -26,7 +26,7 @@ class EntrySeeder extends Seeder
         $faker = Faker::create();
 
         // 创建 50 个 Entry
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $entry = Entry::create([
                 'name' => 'Entry Name ' . $i,
                 'status' => 1101111545,

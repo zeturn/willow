@@ -65,9 +65,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/media/upload', [MediasController::class, 'store'])->name('media.upload');
 
-Route::middleware(['auth:api'])->group(function () {
+/*Route::middleware(['auth:api'])->group(function () {
     Route::prefix('entry')->name('entry.')->group(function () {
         // Entry的基本操作 名称为 entry.*
         Route::get('/', [EntryController::class, 'index'])->name('index');
     });
-});
+});*/

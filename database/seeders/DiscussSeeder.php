@@ -13,6 +13,10 @@ class DiscussSeeder extends Seeder
 {
     public function run()
     {
+
+        // 开始计时
+        $start = microtime(true);
+
         $faker = Faker::create();
 
         for ($i = 0; $i < 50; $i++) {
@@ -42,6 +46,14 @@ class DiscussSeeder extends Seeder
                 }
             }
         }
+
+        // 结束计时
+        $end = microtime(true);
+        // 计算所需时间（毫秒）
+        $executionTime = round(($end - $start) * 1000, 2);
+
+        // 输出所需时间到终端
+        echo 'Discuss在 ' . $executionTime . ' ms 内完成填充' . PHP_EOL;
     }
 }
 

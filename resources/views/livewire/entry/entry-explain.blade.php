@@ -3,7 +3,9 @@
 
 <div class="space-y-6">
     @foreach ($branches as $branch)
+        @if($branch -> id != $entry -> getDemoBranch() -> id)
         <div class="bg-white p-6 dark:bg-gray-800 mb-8 border-b border-gray-200 dark:border-gray-700">
+            <p class="p-3 m-3 text-lg">全部解释</p>
             <div class="flex justify-between items-center mb-6"> <!-- 修改Flex容器，使用justify-between使子元素分布左右两边 -->
                 <div class="flex items-center"> <!-- 新增一个Flex容器，用于头像和branchname并排 -->
                     <x-user-name-and-avatar :user-id="$branch->owner->id" class="mr-4" /> <!-- 添加间距，让头像和文字之间有间隔 -->
@@ -24,6 +26,7 @@
             <h2 class="text-2xl font-semibold">{{ $branch->name }}</h2>
             <p class="text-gray-700 dark:text-gray-400">{!! \Illuminate\Support\Str::markdown($branch->getDemoVersion()->content) !!}</p>
         </div>
+        @endif
     @endforeach
     @if($hasMoreBranches)
         <button wire:click="loadMoreBranches" class="load-more bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">Load More</button>

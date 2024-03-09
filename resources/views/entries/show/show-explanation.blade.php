@@ -14,7 +14,7 @@
                             <span class="bg-transparent text-purple-500 border border-purple-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Demo Branch</span>
                         </div>
                     </div>
-                    <div class="text-gray-400 dark:text-gray-300">{{$demoBranch->id}}</div> <!-- id放在右侧 -->
+                    <div class="text-gray-400 text-sm dark:text-gray-300">{{$demoBranch->id}}<p class="md:mr-2">{{ $demoBranch->getDemoVersion()->created_at->format('M d, Y') }}</p></div> <!-- id放在右侧 -->
                 </div>
                 <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-6">
                     <p class="text-gray-700 dark:text-gray-300">{!! \Illuminate\Support\Str::markdown($demoVersion->content) !!}</p>

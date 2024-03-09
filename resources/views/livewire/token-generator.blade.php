@@ -3,9 +3,9 @@
         Generate Token
     </button>
 
-    @if ($token)
+    @if ($access_token)
         <div class="mt-4">
-            <p>Your generated token is: <strong>{{ $token }}</strong></p>
+            <p>Your generated token is: <strong>{{ $access_token }}</strong></p>
         </div>
     @endif
 </div>

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class TokenGenerator extends Component
 {
-    public $token = '';
+    public $access_token = '';
 
     public function generateToken()
     {
@@ -17,10 +17,12 @@ class TokenGenerator extends Component
 
         $tokenResult =$user->createToken('Personal Access Token');
 
-        $this->token =$tokenResult->token;
+        $token =$tokenResult->token;
+
+        $this->access_token = $tokenResult->accessToken;
 
         // 如果需要，可以保存令牌到数据库
-        if ($this->token->save()) {
+        if ($token->save()) {
             return response()->json([
                 'access_token' => $tokenResult->accessToken,
                 'token_type' => 'Bearer',//Bearer

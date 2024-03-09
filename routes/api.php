@@ -59,14 +59,15 @@ use App\Http\Controllers\{
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 Route::post('/media/upload', [MediasController::class, 'store'])->name('media.upload');
 
 Route::middleware(['auth:api'])->group(function () {
-    Route::get('/hi', function (Request $request) {
-        return 'hi!!!';
+    Route::prefix('entry')->name('entry.')->group(function () {
+        // Entry的基本操作 名称为 entry.*
+        Route::get('/', [EntryController::class, 'index'])->name('index');
     });
 });

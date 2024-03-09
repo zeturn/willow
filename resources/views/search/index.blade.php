@@ -11,7 +11,7 @@
 
             <form action="{{ route('search.result') }}" method="GET" class="mt-4">
                 <div class="form-group">
-                    <input type="text" name="query" id="query" class="w-full md:w-96 h-10 px-3 py-2 text-sm bg-gray-800 border rounded-md border-gray-600 ring-offset-background placeholder:text-gray-400 focus:border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Enter everything...">
+                    <input type="text" name="query" id="query" class="w-full md:w-96 h-12 px-4 py-3 text-md text-slate-600 rounded-md dark:bg-gray-800 dark:border-gray-600 ring-offset-background placeholder:text-gray-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-300 dark:focus:border-blue-300 dark:focus:ring-blue-800 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Enter everything...">
                 </div>
             </form>
         </div>

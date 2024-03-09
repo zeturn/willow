@@ -19,6 +19,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Laravel\Passport\Http\Middleware\CheckClientCredentials;
 
 use App\Http\Controllers\{
 
@@ -63,3 +64,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/media/upload', [MediasController::class, 'store'])->name('media.upload');
+
+Route::middleware(['auth:api'])->group(function () {
+    Route::get('/hi', function (Request $request) {
+        return 'hi!!!';
+    });
+});

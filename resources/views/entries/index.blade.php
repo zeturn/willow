@@ -45,6 +45,10 @@
                 @endauth
                 <!-- You can add other sidebar content here -->
             </div>
+
+            <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+                <livewire:token-generator />
+            </div>
         </div>
     </div>
 </div>

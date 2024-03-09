@@ -101,6 +101,7 @@ class BranchEdit extends Component
                 $task = new EntryVersionTask();
                 $task->entry_id = $this->entryId;
                 $task->branch_id = $this->branchId;
+                $task->version_id = null;//创建新的task时，不会有对应的version
                 $task->original_version_id = $this->originalVersionId;
                 $task->author_id = Auth::id(); // 从原始版本复制
                 $task->name = $originalVersion->name; // 从原始版本复制

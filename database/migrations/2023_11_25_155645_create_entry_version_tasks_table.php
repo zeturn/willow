@@ -15,6 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('entry_id');   
             $table->uuid('branch_id')->nullable();
+            $table->uuid('version_id')->nullable();//对应version（如果有）           
             $table->uuid('original_version_id')->nullable();   
             $table->uuid('new_version_id')->nullable();  
             $table->string('name');
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->uuid('author_id');
             $table->integer('status');
             $table->timestamps();
+            $table->softDeletes();
 
             /**
              * ------------------------

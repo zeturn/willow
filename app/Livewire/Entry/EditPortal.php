@@ -166,6 +166,7 @@ class EditPortal extends Component
 
         $task->entry_id = $this->entryId;
         $task->branch_id = $this->branchId;
+        $task->version_id = null;
         $task->original_version_id = $this->originalVersionId;
         $task->author_id = $this->author_id;
         $task->name = $this->selectedVersion ? $this->selectedVersion->name : $this->entry->name;

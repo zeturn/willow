@@ -103,6 +103,7 @@ class EntryController extends Controller
         // 数据验证 / Data validation
         $validated = $request->validate([
             'name' => 'required|max:255',
+            'meta' => '',
             'description' => 'required',
             'content' => 'required',
         ]);
@@ -114,6 +115,7 @@ class EntryController extends Controller
             // 创建新词条 / Create new entry
             $entry = Entry::create([
                 'name' => $validated['name'],
+                'meta' => $validated['meta'],
                 'status' => 1101113344, // 初始状态，等待审核 / Initial status, pending review
             ]);
 
@@ -140,6 +142,7 @@ class EntryController extends Controller
             $version = $branch->versions()->create([
                 'entry_branch_id' => $branch->id,
                 'name' => $validated['name'],
+                'meta' => $validated['meta'],
                 'description' => $validated['description'],
                 'content' => $validated['content'],
                 'author_id' => Auth::id(),

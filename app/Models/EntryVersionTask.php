@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\UUID;
 use App\Traits\Status;
 use App\Models\EntryBranch; 
@@ -20,6 +21,7 @@ class EntryVersionTask extends Model
     use HasFactory;
     use UUID;
     use Status;
+    use SoftDeletes;
 
     protected $table = 'entry_version_tasks'; // 显式指定表名 / Explicitly specify the table name
     
@@ -31,6 +33,7 @@ class EntryVersionTask extends Model
         'status',
         'entry_id',
         'branch_id',
+        'version_id',
         'original_version_id',
     ];
 
@@ -94,7 +97,7 @@ class EntryVersionTask extends Model
         $newVersionStatus = $newVersion->save();
         $Branch = EntryBranch::where('id', $this->branch_id)->first(); // 获取单个实例 / Get a single instance
 
-        if (!$Branch->demo_version_id) {
+        if (!$Branch->demo_version_id) {//如果之前没有demo，存入，
             $Branch->update(['demo_version_id' => $newVersion->id]);
         }
 
@@ -111,10 +114,13 @@ class EntryVersionTask extends Model
             // 如果新版本保存成功 / If the new version is successfully saved
             if ($newVersion->save()) {
                 // 软删除当前的EntryVersionTask / Soft delete the current EntryVersionTask
+                $this->version_id = $newVersion->id;
+                $this->save();
                 $this->delete();
                 // 如果保存新版本失败则返回 / Return if saving the new version fails
                 return redirect()->route('entry.show.explanation', $this->entry_id);
             }
         }
     }
+
 }

@@ -19,7 +19,7 @@ class EntryVersion extends Model
 
     public $incrementing = false; // 不自增
     protected $keyType = 'string';  // 主键的数据类型是字符串
-    protected $fillable = ['id', 'entry_branch_id', 'name', 'description', 'content', 'author_id', 'status']; // 可以批量赋值的字段
+    protected $fillable = ['id', 'entry_branch_id', 'name', 'meta', 'description', 'content', 'author_id', 'status']; // 可以批量赋值的字段
     protected $primaryKey = 'id';
 
     public function getEntityName() {

@@ -28,7 +28,7 @@ class Entry extends Model
     public $incrementing = false;  // 主键不是自增长的
     protected $keyType = 'string'; // 主键类型为字符串
 
-    protected $fillable = ['id', 'name', 'demo_branch_id', 'status']; // 可填充的字段
+    protected $fillable = ['id', 'name', 'meta', 'demo_branch_id', 'status']; // 可填充的字段
 
     /**
      * Get the indexable data array for the model.

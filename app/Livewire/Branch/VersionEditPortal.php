@@ -17,6 +17,7 @@ class VersionEditPortal extends Component
     
     public $entryId;
     public $branchId;
+    public $versionId = null;
     public $branch;
     public $branches;
     public $versions;
@@ -72,6 +73,7 @@ class VersionEditPortal extends Component
         $task = new EntryVersionTask([
             'entry_id' => $this->branch->entry_id,
             'branch_id' => $this->branchId,
+            'version_id' => null,
             'original_version_id' => $this->selectedVersion->id,
             'author_id' => $this->author_id,
             'name' => $this->selectedVersion->name,

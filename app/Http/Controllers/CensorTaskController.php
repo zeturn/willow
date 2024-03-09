@@ -496,6 +496,28 @@ class CensorTaskController extends Controller
             case 'reject':
                 $task->version->changeStatus(1301113474); // 拒绝版本变更 / Reject version change
                 $task->changeStatus(4); // 拒绝 / Reject
+
+                $version = $task->version;
+
+                $versionId = $version->id;
+                //dd($versionId);
+
+                // 使用 EntryVersionTask 类来查找匹配的条目
+                $entryVersionTask = EntryVersionTask::where('version_id',$versionId)
+                    ->withTrashed() // 包含软删除的记录
+                    ->first();
+
+            //dd($entryVersionTask);
+                // 如果找到匹配的条目并且它已经被软删除
+                if ($entryVersionTask &&$entryVersionTask->trashed()) {
+                    // 尝试恢复软删除的条目
+                    $entryVersionTask->restore();
+                    $entryVersionTask->status=1401113466;
+                    $entryVersionTask->save();
+
+                    $version->status = 1101113474;
+                    $version->save();
+                }
                 break;
             case 'wait':
                 $task->changeStatus(7); // 等待 / Wait

@@ -11,6 +11,7 @@
                 <!-- Editing Area -->
                 <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                     <input type="text" wire:model="name" placeholder="Name" class="w-full p-2 mb-2 border-2 border-gray-300 rounded">
+                    <input type="text" wire:model="meta" placeholder="Meta" class="w-full p-2 mb-2 border-2 border-gray-300 rounded">
                     <textarea wire:model="description" rows="3" placeholder="Description" class="w-full p-2 mb-2 border-2 border-gray-300 rounded"></textarea>
                     <textarea wire:model="content" rows="10" placeholder="Content" class="w-full p-2 mb-2 border-2 border-gray-300 rounded"></textarea>
                 </div>
@@ -106,6 +107,7 @@
                     <p>ConflictingVersions</p>
                     <p>以下列出了当前task创建后生成的版本，为避免编辑冲突，建议检查以下版本：</p>
 
+                    @if($ConflictingVersions)
                     @foreach($ConflictingVersions as $ConflictingVersion)
                         <a href="{{ route('entry.version.show', $ConflictingVersion->id) }}" class="block">
                             <div class="p-4 bg-white border rounded-md shadow-sm hover:bg-gray-50 border-neutral-200/70">
@@ -114,6 +116,7 @@
                             </div>
                         </a>
                     @endforeach
+                    @endif
                 </div>
 
 

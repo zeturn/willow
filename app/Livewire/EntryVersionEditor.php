@@ -12,6 +12,7 @@ class EntryVersionEditor extends Component
 {
     public $entryId;//所属词条
     public $branchId;//所属分支
+    public $versionId;//对应的分支
     public $originalVersionId;//继承版本
     public $taskId;//编辑任务
 
@@ -37,10 +38,11 @@ class EntryVersionEditor extends Component
         $entryVersionTask = EntryVersionTask::find($eveid);
 
         if ($entryVersionTask) {
-            // 将找到的数据分配给组件的属性
+            // 将找到的数据分配给组件的属性，恢复编辑
             $this->taskId = $entryVersionTask->id;
             $this->entryId = $entryVersionTask->entry_id;
             $this->branchId = $entryVersionTask->branch_id;
+            $this->version_id = $entryVersionTask->version_id;
             $this->originalVersionId = $entryVersionTask->original_version_id;
             $this->name = $entryVersionTask->name;
             $this->description = $entryVersionTask->description;
@@ -49,10 +51,12 @@ class EntryVersionEditor extends Component
             $this->status = $entryVersionTask->status;
         }
         // 如果需要，可以在这里处理未找到数据的情况
+        if($entryVersionTask){
+            $this->ConflictingVersions = EntryVersion::where('entry_branch_id',$this->branchId)
+                ->where('created_at', '>', $entryVersionTask->created_at)
+                ->get();
+        }
 
-        $this->ConflictingVersions = EntryVersion::where('entry_branch_id',$this->branchId)
-                        ->where('created_at', '>', $entryVersionTask->created_at)
-                        ->get();
     }
 
     public function startTask($entryId, $branchId, $originalVersionId = null)
@@ -71,6 +75,7 @@ class EntryVersionEditor extends Component
                 $task = new EntryVersionTask();
                 $task->entry_id = $this->entryId;
                 $task->branch_id = $this->branchId;
+                $task->version_id = null;
                 $task->original_version_id = $this->originalVersionId;
                 $task->author_id = Auth::id(); // 从原始版本复制
                 $task->name = $originalVersion->name; // 从原始版本复制
@@ -134,7 +139,7 @@ class EntryVersionEditor extends Component
                 $task->save(); 
             }
 
-            $task->VersionGeneration();
+            $task->VersionGeneration();//EntryVersionTask
 
             // 任务完成后的逻辑，例如重置组件状态、通知用户等
             return redirect()->route('workstation.index');

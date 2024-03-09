@@ -27,6 +27,12 @@
             <textarea id="description" name="description" rows="4" class="p-2 w-full border rounded dark:bg-gray-800 dark:border-gray-700" required></textarea>
           </div>
 
+          <!-- Entry description -->
+          <div class="mb-4">
+            <label for="meta" class="block text-gray-700 dark:text-white">Entry meta</label>
+            <textarea id="meta" name="meta" rows="4" class="p-2 w-full border rounded dark:bg-gray-800 dark:border-gray-700"></textarea>
+          </div>
+
           <!-- Entry content -->
           <div class="mb-4">
             <div class="flex flex-col space-y-2">

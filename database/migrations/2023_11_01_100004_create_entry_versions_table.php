@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->text('content');
+            $table->json('meta')->nullable();
             $table->uuid('author_id');
             $table->integer('status');
             $table->timestamp('deleted_at')->nullable();

@@ -67,10 +67,13 @@ use Inertia\Inertia;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::middleware(['block.user.agent'])->group(function () {
+
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 
 Route::get('/map', function () {
     return view('map');
@@ -467,3 +470,6 @@ Route::get('/check-redis', function () {
         return response()->json(['m7essage' => 'Failed to connect to Redis! 😔', 'error' => $e->getMessage()], 500);
     }
 });
+
+
+});//middleware(['block.user.agent'])

@@ -29,5 +29,20 @@
 @endsection
  
 @section('censor_sidebar')
-{{-- 这里可以添加更多的侧边栏内容，如果需要 --}}
+<div class="flex flex-col mb-4">
+    <!-- Button 1: 'censor.tasks.list.wall' -->
+    <a href="{{ route('censor.tasks.list.wall') }}" class="my-4 bg-rose-500 hover:bg-rose-700 text-white font-bold py-2 px-4 rounded mt-4">
+        Wall列表
+    </a>
+
+    <!-- Button 2: 'censor.tasks.list.topic' -->
+    <a href="{{ route('censor.tasks.list.topic') }}" class="my-4 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mt-4">
+        Topic列表
+    </a>
+
+    <!-- Button 3: 'censor.tasks.list.comment' -->
+    <a href="{{ route('censor.tasks.list.comment') }}" class="my-4 bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded mt-4">
+        Comment列表
+    </a>
+</div>
 @endsection

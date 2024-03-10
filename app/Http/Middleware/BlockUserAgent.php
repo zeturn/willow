@@ -25,7 +25,7 @@ class BlockUserAgent
         $userAgent =$request->server('HTTP_USER_AGENT');
         $blockList = [
             'BadCrawler/1.0',
-            'Mozilla',
+            'Mozilla',//单独的，只有Mozilla
             'Java 1.7.43_u43',
             'BIZCO EasyScraping Studio 2.0',
             'wget',

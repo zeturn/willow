@@ -33,5 +33,15 @@ class CommentController extends Controller
         return back();
     }
 
+    /**
+     * 默认返回所在topic
+     * 
+     */
+    public function show(Comment $comment)
+    {
+        $topic = $comment->topic;
+        return view('topics.show', compact('topic'));
+    }
+
     // ... 其他方法，如编辑、删除等
 }

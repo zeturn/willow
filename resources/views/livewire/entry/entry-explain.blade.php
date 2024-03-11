@@ -2,11 +2,12 @@
 <!-- resources/views/livewire/entry/entry-explain.blade.php -->
 
 <div class="space-y-6">
+ <p class="p-3 m-3 text-lg">全部解释</p>
     @foreach ($branches as $branch)
     @if($branch->getDemoVersion()->isOwnerVisible())
         @if($branch -> id != $entry -> getDemoBranch() -> id)
         <div class="bg-white p-6 dark:bg-gray-800 mb-8 border-b border-gray-200 dark:border-gray-700">
-            <p class="p-3 m-3 text-lg">全部解释</p>
+
             <div class="flex justify-between items-center mb-6"> <!-- 修改Flex容器，使用justify-between使子元素分布左右两边 -->
                 <div class="flex items-center"> <!-- 新增一个Flex容器，用于头像和branchname并排 -->
                     <x-user-name-and-avatar :user-id="$branch->owner->id" class="mr-4" /> <!-- 添加间距，让头像和文字之间有间隔 -->

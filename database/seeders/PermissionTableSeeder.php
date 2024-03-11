@@ -28,6 +28,7 @@ class PermissionTableSeeder extends Seeder
             'workstation-edit',
 
             // 条目权限
+            'entry-index',
             'entry-create',
             'entry-edit',
             'entry-soft-delete',

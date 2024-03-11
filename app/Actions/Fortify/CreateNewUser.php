@@ -39,7 +39,7 @@ class CreateNewUser implements CreatesNewUsers
                 $team = $this->createTeam($user); // 接收返回的团队实例
                 setPermissionsTeamId($team->id);
                 $user->switchTeam($team);
-                $roleUser = Role::firstOrCreate(['name' => 'SuperAdmin', 'team_id' => null]);
+                $roleUser = Role::firstOrCreate(['name' => 'User', 'team_id' => null]);
                 $user->assignRole($roleUser); // 在分配角色时指定团队 ID
             });
         });

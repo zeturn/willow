@@ -10,6 +10,7 @@
                 </h1>
                 <div class="divide-y divide-gray-200">
                         <!-- Section: Change repository visibility -->
+                        @can('entry-create')
                         <div class="py-4">
                             <div class="flex flex-col sm:flex-row justify-between items-start">
                                     <div>
@@ -26,6 +27,7 @@
                             </div>
 
                         </div>
+                        @endcan
 
                         <div class="py-4">
 
@@ -70,6 +72,7 @@
                 </div>
             </div>
 
+            @can('entry-soft-delete'||'entry-delete')
             <div class="max-w-4xl mx-auto p-6 bg-white rounded-md">
                 <h1 class="text-2xl font-semibold mb-4">
                     Danger Zone
@@ -123,6 +126,7 @@
                 <!-- ... -->
                 </div>
             </div>
+            @endcan
         </div>
     @endauth
 @endsection

@@ -22,6 +22,11 @@ class EntryBranch extends Model
     protected $keyType = 'string'; // 主键的数据类型是字符串
     protected $fillable = ['id', 'name', 'entry_id', 'demo_version_id', 'is_pb', 'is_free', 'status']; // 可以批量赋值的字段
     
+    public function getEntityName(){
+
+        return 'entry.branch';
+    }
+
     /**
      * Get the indexable data array for the model.
      *

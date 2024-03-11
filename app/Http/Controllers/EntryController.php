@@ -28,9 +28,10 @@ class EntryController extends Controller
     {
         $this->middleware('permission:entry-create', ['only' => ['create','store']]);
         $this->middleware('permission:entry-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:entry-soft-edit', ['only' => ['softDelete']]);//一般用户，仅可以软删除
-        $this->middleware('permission:entry-delete', ['only' => ['destroy', 'softDelete', 'restore']]);//高级用户，删除、软删除、恢复
+        $this->middleware('permission:entry-soft-edit', ['only' => ['delete','softDelete']]);//一般用户，仅可以软删除
+        $this->middleware('permission:entry-delete', ['only' => ['delete','destroy', 'softDelete', 'restore']]);//高级用户，删除、软删除、恢复
     }
+
 
     /**
      * 显示所有词条的列表。

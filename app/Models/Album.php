@@ -23,6 +23,11 @@ class Album extends Model
     protected $fillable = ['title', 'user_id', 'status']; // 可填充字段 / Fillable fields
     protected $table = 'albums'; // 显式指定表名 / Explicitly specify table name
 
+    public function getEntityName(){
+
+        return 'albums';
+    }
+
     /**
      * Get the indexable data array for the model.
      *

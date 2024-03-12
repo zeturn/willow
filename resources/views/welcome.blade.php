@@ -16,7 +16,9 @@
                 <div class="w-full lg:w-1/2">
                     <h1 class="text-6xl font-extrabold mb-6 text-gray-800 dark:text-white">{{ __('欢迎来到 memeGit 开发站点') }}</h1>
                     <p class="text-xl mb-6 text-gray-800 dark:text-white">{{ __('为人而编写的百科全书') }}</p>
+                    @guest
                     <a href="{{ route('register') }}" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">{{ __('Sign up') }}</a>
+                    @endguest
                 </div>
                 <div class="w-full lg:w-1/2 pl-8">
                     <!-- Inline SVG Image Placeholder --> 

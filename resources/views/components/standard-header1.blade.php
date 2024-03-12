@@ -94,9 +94,9 @@
                             <span class="block mb-1 font-medium text-black">Wall index</span>
                             <span class="block font-light leading-5 opacity-50">index of wall</span>
                         </a>
-                        <a href="{{ route('censor.tasks.list.entry') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Censor List</span>
-                            <span class="block font-light leading-5 opacity-50">Censor List Page</span>
+                        <a href="{{ route('censor.tasks.list.wall') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                            <span class="block mb-1 font-medium text-black">Wall Censor List</span>
+                            <span class="block font-light leading-5 opacity-50">Wall Censor List Page</span>
                         </a>
                     </div>
                 </div>

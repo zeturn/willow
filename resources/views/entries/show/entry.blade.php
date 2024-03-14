@@ -53,6 +53,96 @@
                         @endauth
                     </ul>
 
+                    <!-- Dropdown Container -->
+                    <div class="relative sm:hidden">
+                        <button id="dropdownButton" class="flex items-center justify-center w-full h-12 px-6 text-md font-medium tracking-wide transition duration-300 rounded-t border-b-2 border-transparent hover:text-emerald-500 focus:outline-none focus:bg-emerald-50 hover:bg-emerald-50">More</button>
+                        <div id="dropdownMenu" class="absolute right-0 z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                            <!-- Dropdown Items -->
+                        </div>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                        const navItems = document.querySelectorAll('ul[role="tablist"] > li');
+                        const dropdownMenu = document.getElementById('dropdownMenu');
+                        const dropdownButton = document.getElementById('dropdownButton');
+
+                        function adjustNavItems() {
+                            let hiddenItems = [];
+                            let visibleItems = [];
+
+                            // Determine how many items can fit in the nav
+                            // This is a simplified example, you may need a more complex calculation
+                            const screenWidth = window.innerWidth;
+                            if (screenWidth <= 450) {
+                                maxItems = 1;
+                            } else if (screenWidth <= 530) {
+                                maxItems = 2;
+                            } else if (screenWidth <= 650) {
+                                maxItems = 3;
+                            } else if (screenWidth <= 730) {
+                                maxItems = 4;
+                            }
+
+                            // Distribute items between visible and hidden
+                            navItems.forEach((item, index) => {
+                                if (index < maxItems) {
+                                    visibleItems.push(item);
+                                } else {
+                                    hiddenItems.push(item);
+                                }
+                            });
+
+                            // Update the DOM
+                            visibleItems.forEach(item => item.classList.remove('hidden'));
+                            hiddenItems.forEach(item => item.classList.add('hidden'));
+
+                            // Update the dropdown menu
+                            if (hiddenItems.length > 0) {
+                                dropdownMenu.innerHTML = ''; // Clear previous items
+                                hiddenItems.forEach(item => {
+                                    const link = item.querySelector('a');
+                                    const clone = link.cloneNode(true);
+                                    dropdownMenu.appendChild(clone);
+                                });
+                                dropdownButton.classList.remove('hidden');
+                            } else {
+                                dropdownButton.classList.add('hidden');
+                            }
+                        }
+
+                        // Initial adjustment
+                        adjustNavItems();
+
+                        // Adjust on window resize
+                        window.addEventListener('resize', adjustNavItems);
+                    });
+
+                    </script>
+<!--
+                    <ul class="flex flex-wrap items-center border-b border-slate-200" role="tablist">
+                        <li role="presentation">
+                            <a href="{{ route('entry.show.explanation', $entry->id) }}" class="{{ $tabname == 'entry.show.explanation' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Explanation</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="{{ route('entry.show.branch.BranchesList', ['id' => $entry->id]) }}" class="{{ $tabname == 'entries.show.branch' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Branch</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="{{ route('entry.show.community', $entry->id) }}" class="{{ $tabname == 'entry.show.community' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Community</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="{{ route('entry.show.album', $entry->id) }}" class="{{ $tabname == 'entry.show.album' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Album</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="{{ route('entry.show.details', $entry->id) }}" class="{{ $tabname == 'entry.show.details' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Details</a>
+                        </li>
+                        @auth
+                        <li role="presentation">
+                            <a href="{{ route('entry.show.control.GeneralSetting', $entry->id) }}" class="{{ $currentRouteName == 'entry.show.control' ? 'text-green-700 border-b-2 border-green-500 focus:border-green-700 hover:border-green-600 focus:outline-none focus:text-green-700 hover:text-green-600 focus:bg-green-50 hover:bg-green-50' : 'text-slate-700 hover:text-green-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Control</a>
+                        </li>
+                        @endauth
+                    </ul>
+-->
                 </div>
       
                 {{-- Tab Content --}}

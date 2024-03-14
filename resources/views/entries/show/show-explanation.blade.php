@@ -7,16 +7,18 @@
         <div class="w-full lg:w-3/4 px-6">
             @if($demoBranch->getDemoVersion()->isOwnerVisible())
             <div class="p-6 border-b">
-                <div class="flex justify-between">
-                    <div class="flex items-center"> <!-- 新增一个Flex容器，用于头像和branchname并排 -->
-                        <x-user-name-and-avatar :user-id="$demoBranch->owner->id" class="mr-4" /> <!-- 添加间距，让头像和文字之间有间隔 -->
-                        <p>/ {{ substr($demoBranch->name, 0, 20) }}</p>
-                        <div class="ml-2">
-                            <span class="bg-transparent text-purple-500 border border-purple-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Demo Branch</span>
-                        </div>
-                    </div>
-                    <div class="text-gray-400 text-sm dark:text-gray-300">{{$demoBranch->id}}<p class="md:mr-2">{{ $demoBranch->getDemoVersion()->created_at->format('M d, Y') }}</p></div> <!-- id放在右侧 -->
+
+            <div class="flex flex-col md:flex-row justify-between mb-6"> <!-- 修改Flex容器，移除items-center -->
+                <div class="flex items-center md:mb-2"> <!-- 新增一个Flex容器，用于头像和branchname并排 -->
+                    <x-user-name-and-avatar :user-id="$demoBranch->owner->id" class="mr-4" />
+                    <p class="text-left">/ {{ substr($demoBranch->name, 0, 20) }}</p> <!-- 添加text-left类 -->
                 </div>
+                <div class="md:hidden text-left"> <!-- 在小屏幕上显示，在大屏幕上隐藏，并左对齐文本 -->
+                    <span class="bg-transparent text-purple-500 border border-purple-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Demo Branch</span>
+                </div>
+                <div class="text-gray-400 text-sm md:text-right dark:text-gray-300">{{$demoBranch->id}}<p class="md:mr-2">{{$demoBranch->getDemoVersion()->created_at->format('M d, Y') }}</p></div> <!-- id放在右侧 -->
+            </div>
+
                 <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-6">
                     <p class="text-gray-700 dark:text-gray-300">{!! \Illuminate\Support\Str::markdown($demoVersion->content) !!}</p>
                 </div>

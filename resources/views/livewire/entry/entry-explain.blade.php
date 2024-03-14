@@ -4,35 +4,30 @@
 <div class="space-y-6">
  <p class="p-3 m-3 text-lg">全部解释</p>
     @foreach ($branches as $branch)
-    @if($branch->getDemoVersion()->isOwnerVisible())
-        @if($branch -> id != $entry -> getDemoBranch() -> id)
-        <div class="bg-white p-6 dark:bg-gray-800 mb-8 border-b border-gray-200 dark:border-gray-700">
+        @if($branch->getDemoVersion()->isOwnerVisible())
+            @if($branch -> id != $entry -> getDemoBranch() -> id)
+            <div class="bg-white p-6 dark:bg-gray-800 mb-8 border-b border-gray-200 dark:border-gray-700">
 
-            <div class="flex justify-between items-center mb-6"> <!-- 修改Flex容器，使用justify-between使子元素分布左右两边 -->
-                <div class="flex items-center"> <!-- 新增一个Flex容器，用于头像和branchname并排 -->
-                    <x-user-name-and-avatar :user-id="$branch->owner->id" class="mr-4" /> <!-- 添加间距，让头像和文字之间有间隔 -->
-                    <p>/ {{ substr($branch->name, 0, 20) }}</p>
-                    <div class="ml-2">
-                            @if($branch -> id == $entry -> getDemoBranch() -> id)
-                                <span class="bg-transparent text-purple-500 border border-purple-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Demo Branch</span>
-                            @else
-                                <span class="bg-transparent text-indigo-500 border border-indigo-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Common Branch</span>
-                            @endif
-                        </div>
+                <div class="flex flex-col md:flex-row justify-between mb-6"> <!-- 修改Flex容器，移除items-center -->
+                    <div class="flex items-center md:mb-2"> <!-- 新增一个Flex容器，用于头像和branchname并排 -->
+                        <x-user-name-and-avatar :user-id="$branch->owner->id" class="mr-4" />
+                        <p class="text-left">/ {{ substr($branch->name, 0, 20) }}</p> <!-- 添加text-left类 -->
+                    </div>
+                    <div class="md:hidden text-left"> <!-- 在小屏幕上显示，在大屏幕上隐藏，并左对齐文本 -->
+                        <span class="bg-transparent text-indigo-500 border border-indigo-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Common Branch</span>
+                    </div>
+                    <div class="text-gray-400 text-sm md:text-right dark:text-gray-300">{{$branch->id}}<p class="md:mr-2">{{$branch->getDemoVersion()->created_at->format('M d, Y') }}</p></div> <!-- id放在右侧 -->
                 </div>
-                <div class="text-gray-400 text-sm dark:text-gray-300">{{$branch->id}}<p class="md:mr-2">{{ $branch->getDemoVersion()->created_at->format('M d, Y') }}</p></div> <!-- id放在右侧 -->
-                
+
+                <h2 class="text-2xl font-semibold">{{ $branch->name }}</h2>
+                <p class="text-gray-700 dark:text-gray-400">{!! \Illuminate\Support\Str::markdown($branch->getDemoVersion()->content) !!}</p>
             </div>
-
-
-            <h2 class="text-2xl font-semibold">{{ $branch->name }}</h2>
-            <p class="text-gray-700 dark:text-gray-400">{!! \Illuminate\Support\Str::markdown($branch->getDemoVersion()->content) !!}</p>
-        </div>
+            @endif
         @endif
-    @endif
     @endforeach
+
     @if($hasMoreBranches)
-        <button wire:click="loadMoreBranches" class="load-more bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">Load More</button>
+        <button wire:click="loadMoreBranches" class="text-center text-gray-500 my-4">Load More 加载更多 ...</button>
 
         <div x-data="{
                     observe () {

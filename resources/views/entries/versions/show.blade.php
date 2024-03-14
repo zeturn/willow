@@ -44,11 +44,12 @@
                             </div>
                         </dd>
                     </div>
-
-                    @if($version->status == 1301111545)
-                    <a href="{{ route('entry.version.contentCensorShow', $version->id) }}" class="block bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 transition">
-                        需要内容审核
-                    </a>
+                    @if($version->branch->owner->id == Auth::id())
+                        @if($version->status == 1301111545)
+                        <a href="{{ route('entry.version.contentCensorShow', $version->id) }}" class="block bg-yellow-500 text-gray-500 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 transition">
+                            需要内容审核
+                        </a>
+                        @endif
                     @endif
                 </div>
             </div>

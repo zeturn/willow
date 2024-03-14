@@ -11,7 +11,7 @@
             <div class="flex flex-col md:flex-row justify-between mb-6"> <!-- 修改Flex容器，移除items-center -->
                 <div class="flex items-center md:mb-2"> <!-- 新增一个Flex容器，用于头像和branchname并排 -->
                     <x-user-name-and-avatar :user-id="$demoBranch->owner->id" class="mr-4" />
-                    <p class="text-left">/ {{ substr($demoBranch->name, 0, 20) }}</p> <!-- 添加text-left类 -->
+                    <a href="{{ route('entry.branch.show.showDemoVersion', $demoBranch->id) }}" class="text-left">/ {{ substr($demoBranch->name, 0, 20) }}</a> <!-- 添加text-left类 -->
                 </div>
                 <div class="md:hidden text-left"> <!-- 在小屏幕上显示，在大屏幕上隐藏，并左对齐文本 -->
                     <span class="bg-transparent text-purple-500 border border-purple-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Demo Branch</span>

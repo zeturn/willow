@@ -68,7 +68,7 @@ use Inertia\Inertia;
 |
 */
 Route::middleware(['block.user.agent'])->group(function () {
-
+Route::middleware(['throttle:web'])->group(function () {
 
 Route::get('/', function () {
     return view('welcome');
@@ -471,5 +471,6 @@ Route::get('/check-redis', function () {
     }
 });
 
+});//middleware(['throttle:5,1'])
 
 });//middleware(['block.user.agent'])

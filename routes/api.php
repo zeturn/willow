@@ -58,7 +58,7 @@ use App\Http\Controllers\{
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
+Route::middleware(['throttle:api'])->group(function () {
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -71,3 +71,5 @@ Route::post('/media/upload', [MediasController::class, 'store'])->name('media.up
         Route::get('/', [EntryController::class, 'index'])->name('index');
     });
 });*/
+
+});//middleware(['throttle:api'])

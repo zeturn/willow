@@ -141,7 +141,7 @@ class CensorTaskController extends Controller
             // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
             return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
         }
-        $tasks = CensorTask::where('entity_type', 'EntryBranch')->get();
+        $tasks = CensorTask::where('entity_type', 'EntryBranch')->where('status', 6)->get();
         return view('censor.branch.branchTaskList', ['tasks' => $tasks]);
     }
 
@@ -152,7 +152,7 @@ class CensorTaskController extends Controller
             // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
             return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
         }
-        $tasks = CensorTask::where('entity_type', 'EntryVersion')->get();
+        $tasks = CensorTask::where('entity_type', 'EntryVersion')->where('status', 6)->get();
         return view('censor.version.versionTaskList', ['tasks' => $tasks]);
     }
 
@@ -403,7 +403,7 @@ class CensorTaskController extends Controller
         }
 
         // 返回成功消息 / Return with a success message
-        return redirect()->back()->with('success', 'Entry task status updated.');
+        return redirect()->route('censor.tasks.list.entry')->with('success', 'Entry task status updated.');
     }
 
     /**
@@ -456,7 +456,7 @@ class CensorTaskController extends Controller
         }
 
         // 返回成功消息 / Return with a success message
-        return back()->with('success', 'Branch task status updated.');
+        return redirect()->route('censor.tasks.list.branch')->with('success', 'Branch task status updated.');
     }
 
     /**

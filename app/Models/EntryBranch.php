@@ -310,10 +310,13 @@ class EntryBranch extends Model
             return true;
         }
         
+        $user = User::find($userId);
+
         // Check if the user is associated with any team
         $teams = $this->teams()->get(); // Assuming teams() is a relationship method
         foreach ($teams as $team) {
-            if ($team->users()->where('user_id', $userId)->exists()) {
+
+            if ($user->teams->contains($team) || $team->isAdmin($user)) {
                 return true;
             }
         }

@@ -66,6 +66,13 @@ class Team extends JetstreamTeam
     ];
 
 
+    public function isAdmin(User $user)
+    {
+        // 假设管理员是通过一个不同的字段或表来确定的
+        return $user->id === $this->user_id;
+    }
+
+
     /**
      * 返回用户持有的分支EntryBranch
      * 

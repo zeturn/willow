@@ -36,7 +36,7 @@ class VersionEditPortal extends Component
     public function loadVersions()
     {
         $this->branch = EntryBranch::find($this->branchId);
-        if($this->author_id){
+        if($this->author_id){//是作者或可编辑
             $this->userEditable = $this->branch->userEditable(Auth::id());
             //dd($this->branch->userEditable(Auth::id()));
         }else{

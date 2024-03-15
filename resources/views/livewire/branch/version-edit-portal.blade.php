@@ -26,7 +26,10 @@
 
                 </a>
                 @if($isfree|| $userEditable != 0 )
-                <button wire:click="selectVersion('{{ $version->id }}')" class=" text-gray-500 py-2 px-4 rounded mt-2">开始编辑</button>
+                {{$version -> getCensorStatus()}}
+                    @if($version -> getCensorStatus() == 7)
+                    <button wire:click="selectVersion('{{ $version->id }}')" class=" text-gray-500 py-2 px-4 rounded mt-2">开始编辑</button>
+                    @endif
                 @endif
                 @if($author_id == $branch->owner->id )
                 <button wire:click="deleteVersion('{{ $version->id }}')" class=" text-red-500 py-2 px-4 rounded mt-2">删除</button>

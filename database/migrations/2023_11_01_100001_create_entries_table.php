@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('entries', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->json('meta')->nullable();
+            $table->json('meta')->nullable();//记录元数据
             $table->uuid('demo_branch_id')->nullable();
             $table->integer('status'); 
             $table->json('log')->nullable();

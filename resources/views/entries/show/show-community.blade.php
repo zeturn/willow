@@ -47,6 +47,7 @@
                     </div>
 
                     <!-- Form for creating link -->
+                    @can('create-wall-link')
                     @if(auth()->check())
                         <form action="{{ route('entry.createEWLink', $entry->id) }}" method="POST" class="mt-6">
                             @csrf
@@ -76,6 +77,7 @@
                     @else
                         <p class="mt-6 text-gray-700 dark:text-gray-400">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to create a link.</p>
                     @endif
+                    @endcan
                 </div>
             </div>
         </div>

@@ -17,6 +17,7 @@ class NodeController extends Controller
         $this->middleware('permission:node-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:node-soft-edit', ['only' => ['destroy']]);//一般用户，仅可以软删除
         $this->middleware('permission:node-delete', ['only' => ['destroy']]);//高级用户，删除、软删除、恢复
+        $this->middleware('permission:create-wall-link', ['only' => ['createEWLink']]);
     }
 
     /**

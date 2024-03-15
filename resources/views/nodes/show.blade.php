@@ -68,6 +68,7 @@
                 <p class="text-gray-600">{{ __('No related walls') }}</p>
             @endforelse
 
+            @can('create-wall-link')
             @if(auth()->check())
             <!-- Creating link form -->
             <form action="{{ route('nodes.createEWLink', $node->id) }}" method="POST" class="mt-6">
@@ -96,6 +97,7 @@
                     <p class="text-sm text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to create new content.</p>
                 </div>
             @endif
+            @endcan
         </div>
     </div>
 </div>

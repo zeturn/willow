@@ -30,6 +30,14 @@ class UserTableSeeder extends Seeder
             'email_verified_at' => now(),
         ]);
 
+        $hollowdata_user = User::create([
+            'id' => '62662626-6662-6626-2666-262662626227',
+            'name' => 'hollowdata',
+            'email' => 'hollowdata@outlook.com',
+            'password' => Hash::make('123456'),
+            'email_verified_at' => now(),
+        ]);
+
         // 创建或确保角色存在
         $roleSuperAdmin = Role::firstOrCreate(['name' => 'SuperAdmin', 'team_id' => null]);
         $roleUser = Role::firstOrCreate(['name' => 'User', 'team_id' => null]);
@@ -41,6 +49,12 @@ class UserTableSeeder extends Seeder
         setPermissionsTeamId($team->id);
         $user->switchTeam($team);
         $user->assignRole($roleSuperAdmin); // 在分配角色时指定团队 ID
+
+        // 为指定用户创建团队并分配"SuperAdmin"角色
+        $hollowdata_team = $this->createTeam($hollowdata_user); // 接收返回的团队实例
+        setPermissionsTeamId($hollowdata_team->id);
+        $hollowdata_user->switchTeam($hollowdata_team);
+        $hollowdata_user->assignRole($roleSuperAdmin); // 在分配角色时指定团队 ID
 
         // 创建 200 个随机用户
         User::factory()->count(100)->create()->each(function ($user) use ($roleUser) {

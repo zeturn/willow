@@ -12,6 +12,7 @@ class CreateAlbumsTable extends Migration
             $table->uuid('id')->primary();
             $table->string('title');
             $table->uuid('user_id')->nullable();
+            $table->json('list')->nullable();
             $table->integer('status');
             $table->timestamps();
             $table->softDeletes(); // 如果您计划使用软删除

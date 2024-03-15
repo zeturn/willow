@@ -20,7 +20,7 @@ class Album extends Model
     use SoftDeletes; // 如果您计划使用软删除 / If you plan to use soft deletes
     use Searchable;
 
-    protected $fillable = ['title', 'user_id', 'status']; // 可填充字段 / Fillable fields
+    protected $fillable = ['title', 'user_id', 'list','status']; // 可填充字段 / Fillable fields
     protected $table = 'albums'; // 显式指定表名 / Explicitly specify table name
 
     public function getEntityName(){

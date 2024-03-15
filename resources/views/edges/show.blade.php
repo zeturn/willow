@@ -44,6 +44,7 @@
                 @endforelse
 
                 <!-- Create Link Form -->
+                @can('create-wall-link')
                 @if(auth()->check())
                 <form action="{{ route('edges.createEWLink', $edge->id) }}" method="POST" class="mt-6">
                     @csrf
@@ -71,6 +72,7 @@
                     <p class="text-sm text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to create new content.</p>
                 </div>
                 @endif
+                @endcan
             </div>
         </div>
     </div>

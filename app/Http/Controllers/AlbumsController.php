@@ -62,9 +62,12 @@ class AlbumsController extends Controller
             'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
         ]);
 
+        $list = [];
+
         $album = Album::create([
             'title' => $request->title,
             'user_id' => auth()->id(), // 用户必须已登录
+            'list' => $list,
             'status' => 1, // 设置状态或其他必要字段
         ]);
 
@@ -119,10 +122,12 @@ class AlbumsController extends Controller
 
         $album = Album::with('medias')->findOrFail($id);
 
+        $list = [];
         // 更新相册标题等信息
         $album->update([
             'title' => $request->input('title'),
             'user_id' => auth()->id(), // 或根据实际情况调整
+            'list' => $list,
             'status' => 1, // 或根据实际情况调整
         ]);
 

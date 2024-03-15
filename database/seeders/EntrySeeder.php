@@ -26,7 +26,7 @@ class EntrySeeder extends Seeder
         $faker = Faker::create();
 
         // 创建 50 个 Entry
-        for ($i = 0; $i < 30; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $entry = Entry::create([
                 'name' => 'Entry Name ' . $i,
                 'status' => 1101111545,
@@ -36,7 +36,7 @@ class EntrySeeder extends Seeder
             $branches = collect();
 
             // 对每个 Entry 创建 10 个 EntryBranch
-            for ($j = 0; $j < 10; $j++) {
+            for ($j = 0; $j < 5; $j++) {
                 $branch = EntryBranch::create([
                     'entry_id' => $entry->id,
                     'name' => $faker->slug,
@@ -49,7 +49,7 @@ class EntrySeeder extends Seeder
                 $versions = collect();
 
                 // 对每个 EntryBranch 创建 10 个 EntryVersion
-                for ($k = 0; $k < 10; $k++) {
+                for ($k = 0; $k < 5; $k++) {
                     $version = EntryVersion::create([
                         'entry_branch_id' => $branch->id,
                         'name' => '(Version ' . $k . ')'. $faker->text,

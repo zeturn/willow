@@ -19,7 +19,7 @@ class DiscussSeeder extends Seeder
 
         $faker = Faker::create();
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $wall = Wall::create([
                 'name' => $faker->word,
                 'slug' => $faker->slug,
@@ -27,7 +27,7 @@ class DiscussSeeder extends Seeder
                 'status' => 5
             ]);
 
-            for ($j = 0; $j < 30; $j++) {
+            for ($j = 0; $j < 10; $j++) {
                 $topic = Topic::create([
                     'wall_id' => $wall->id,
                     'name' => $faker->word,

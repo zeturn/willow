@@ -37,8 +37,13 @@
             
         </div>
 
+
+
         @stack('modals')
 
         @livewireScripts
+
+        <x-toastnotification>
+        </x-toastnotification>
     </body>
 </html>

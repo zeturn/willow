@@ -36,6 +36,7 @@
                 </div>
             </section>
         </div> <!-- End of Main Column -->
+        <button onclick="window.toast('Message', {type: 'success', description: 'short description', position: 'bottom-left', html: ''})">弹出通知</button>
 
         <!-- Footer -->
         <footer class="mt-16 p-6 bg-gradient-to-tl from-teal-500 to-green-500 text-white rounded-lg shadow-md">

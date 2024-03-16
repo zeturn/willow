@@ -1,17 +1,6 @@
-import React from 'react'
-import {createRoot} from 'react-dom/client'
-import {createInertiaApp } from '@inertiajs/inertia-react'
 import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers'
-
-createInertiaApp({
-    // Below you can see that we are going to get all React components from resources/js/Pages folder
-    resolve: (name) => resolvePageComponent(`./Pages/${name}.jsx`,import.meta.glob('./Pages/**/*.jsx')),
-    setup({ el, App, props }) {
-        createRoot(el).render(<App {...props} />)
-    },
-})
-
 import '../css/app.css';
+import './bootstrap';
 
 import Editor from '@toast-ui/editor'
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -27,3 +16,20 @@ e.preventDefault();
 document.querySelector('#content').value = editor.getMarkdown();
 e.target.submit();
 });
+
+import Alpine from 'alpinejs';
+window.Alpine = Alpine;
+Alpine.start();
+
+
+import React from 'react'
+import {createRoot} from 'react-dom/client'
+import {createInertiaApp } from '@inertiajs/inertia-react'
+
+createInertiaApp({
+    // Below you can see that we are going to get all React components from resources/js/Pages folder
+    resolve: (name) => resolvePageComponent(`./Pages/${name}.jsx`,import.meta.glob('./Pages/**/*.jsx')),
+    setup({ el, App, props }) {
+        createRoot(el).render(<App {...props} />)
+    },
+})

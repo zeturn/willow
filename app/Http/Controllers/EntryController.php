@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Arr; // 引入 Arr 类
+use Illuminate\Support\Facades\Session;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -60,9 +61,10 @@ class EntryController extends Controller
             return view('errors.general', ['message' => '无法显示词条列表，请稍后再试。/Failed to display the entry list, please try again later.'], 500);
         }
 
+
         // 如果成功获取到词条列表，返回词条列表视图 / If the list of entries is successfully retrieved, return the entries list view
         // 使用compact函数将词条变量传递给视图，以便在视图中显示词条列表 / Use the compact function to pass the entries variable to the view, so the list of entries can be displayed in the view
-        return view('entries.index', compact('entries'));
+        return view('entries.index', compact('entries'))->with('message', '来啦');
     }
 
     /**
@@ -80,6 +82,9 @@ class EntryController extends Controller
             // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
             return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
         }
+
+        // 使用 session() 辅助函数设置 session 数据
+        session()->flash('message','Entry创建区加载成功！');
 
         // 用户已登录，显示创建新词条的表单 / The user is authenticated, display the form for creating a new entry
         return view('entries.create');
@@ -165,7 +170,11 @@ class EntryController extends Controller
             // 提交数据库事务 / Commit database transaction
             DB::commit();
 
-            return redirect()->route('entry.index')->with('success', '词条创建成功');
+            // 使用 session() 辅助函数设置 session 数据
+            session()->flash('message','Entry创建成功！');
+
+            // 使用 withInput() 方法来确保 session 数据在重定向后可用
+            return redirect()->route('entry.index')->with('info', 'Item successfully created!');
         } catch (\Exception $e) {
             // 回滚数据库事务 / Rollback database transaction
             DB::rollBack();

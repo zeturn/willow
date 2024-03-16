@@ -171,7 +171,6 @@ class NodeController extends Controller
         // 验证请求数据
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
             'description' => 'required|string'
         ]);
 
@@ -187,7 +186,7 @@ class NodeController extends Controller
 
         // 创建 Wall 和 Node 之间的链接
         try {
-            $wallData = $request->only(['name', 'slug', 'description']);
+            $wallData = $request->only(['name', 'description']);
             $entityWallAssociation = $node->createEWLink($wallData);
             // 使用 session() 辅助函数设置 session 数据
             session()->flash('message','讨论墙创建成功！');

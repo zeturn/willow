@@ -746,7 +746,6 @@ class EntryController extends Controller
         // 数据验证
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
             'description' => 'required|string'
         ]);
 
@@ -762,7 +761,7 @@ class EntryController extends Controller
 
         // 创建链接
         try {
-            $wallData = $request->only(['name', 'slug', 'description']);
+            $wallData = $request->only(['name', 'description']);
             $entityWallAssociation = $entry->createEWLink($wallData);
             // 使用 session() 辅助函数设置 session 数据
             session()->flash('message','讨论墙创建成功！');

@@ -118,7 +118,7 @@ class Tree extends Model
     public function createEWLink($wallData) {
         $entityType = 'tree';
         $entityUuid = $this->id;
-
+        
         return EntityWallAssociation::createNewWallAndLink($entityType, $entityUuid, $wallData);
     }
 

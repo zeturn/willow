@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\UUID;
 use App\Traits\Status;
+use Illuminate\Support\Str;
 
 class EntityWallAssociation extends Model
 {
@@ -146,8 +147,22 @@ class EntityWallAssociation extends Model
      */
     public static function createNewWallAndLink($entityType, $entityUuid, $wallData) {
         // 创建 Wall 实例
+       
+        //slug区域
+        $originalSlug = Str::slug($wallData['name'], '-');
+        // 检查slug的唯一性
+        $slug =$originalSlug;
+        $increment = 1;
+        while (Wall::where('slug', $slug)->exists()) {
+            $slug =$originalSlug . '-' . $increment++;
+        }
 
-        $newWall = Wall::createNewWall($wallData['name'], $wallData['slug'], $wallData['description'], 5);
+        $newWall = Wall::createNewWall(
+            $wallData['name'], 
+            $slug, 
+            $wallData['description'],
+            5
+        );
 
         // 创建与实体的关联
         return self::createEWLink($entityType, $entityUuid, $newWall->id, 5); // 假设初始状态为 5

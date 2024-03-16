@@ -89,22 +89,46 @@ class Wall extends Model
     /**
      * 创建一个新的 Wall 实例。(重载)
      *
-     * @param string $name
-     * @param string $slug
-     * @param string $description
-     * @return Wall
+     * @param string $name 墙壁名称
+     * @param string $slug 墙壁别名
+     * @param string $description 墙壁描述
+     * @param string $status 墙壁状态
+     * @return Wall|bool 墙壁实例或失败时返回false
      */
-    public static function createNewWall($name, $slug, $description, $status) {
+    public static function createNewWall($name,$slug, $description,$status) {
+        try {
+            // 验证输入参数
+            if (!is_string($name) || empty($name) || 
+                !is_string($slug) || empty($slug) || 
+                !is_string($description)
+                ) {
+                // 记录日志并返回false
+                Log::error('[Wall]Invalid parameters for creating a new Wall.');
+                return false;
+            }
 
-        $wall = new self();
-        $wall->name = $name;
-        $wall->slug = $slug;
-        $wall->description = $description;
-        $wall->status = $status;
-        $wall->save();
+            // 创建新的 Wall 实例
+            $wall = new self();
+            $wall->name =$name;
+            $wall->slug =$slug;
+            $wall->description =$description;
+            $wall->status =$status;
 
-        return $wall;
+            // 保存实例到数据库
+            if ($wall->save()) {
+                return $wall;
+            } else {
+                // 记录保存失败日志
+                Log::error('[Wall]Failed to save new Wall instance.');
+                return false;
+            }
+        } catch (\Exception $e) {
+            // 捕获并记录异常
+            Log::error('[Wall]Exception occurred while creating a new Wall: ' . $e->getMessage());
+            return false;
+        }
     }
+
 
     /**
      * Get links to all associated entities.

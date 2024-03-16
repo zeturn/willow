@@ -58,12 +58,6 @@
                                     <input type="text" id="name" name="name" required class="bg-white border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                                 </div>
 
-                                <!-- Wall Slug Input -->
-                                <div>
-                                    <label for="slug" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Wall Slug:</label>
-                                    <input type="text" id="slug" name="slug" required class="bg-white border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                                </div>
-
                                 <!-- Wall Description Input -->
                                 <div>
                                     <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Wall Description:</label>

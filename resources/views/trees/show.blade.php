@@ -69,11 +69,6 @@
                     <input type="text" id="name" name="name" required class="appearance-none bg-gray-200 border border-gray-400 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                 </div>
 
-                <div class="mb-4">
-                    <label for="slug" class="block text-sm font-medium text-gray-700 mb-2">Wall Slug:</label>
-                    <input type="text" id="slug" name="slug" required class="appearance-none bg-gray-200 border border-gray-400 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                </div>
-
                 <div class="mb-6">
                     <label for="description" class="block text-sm font-medium text-gray-700 mb-2">Wall Description:</label>
                     <textarea id="description" name="description" required class="appearance-none bg-gray-200 border border-gray-400 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>

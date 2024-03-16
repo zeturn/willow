@@ -10,6 +10,7 @@ use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class WallController extends Controller
 {
@@ -111,19 +112,29 @@ class WallController extends Controller
         }
 
         // Validate the request data / 验证请求数据
-        $validator = Validator::make($request->all(), [
-            // Define your validation rules here / 在此定义验证规则
+        $validatedData =$request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required',
         ]);
 
-        // Check if validation fails / 检查验证是否失败
-        if ($validator->fails()) {
-            // Redirect back with errors / 重定向回去并显示错误信息
-            return redirect()->back()->withErrors($validator)->withInput();
+        //slug区域
+        $originalSlug = Str::slug($validatedData['name'], '-');
+        // 检查slug的唯一性
+        $slug =$originalSlug;
+        $increment = 1;
+        while (Wall::where('slug', $slug)->exists()) {
+            $slug =$originalSlug . '-' . $increment++;
         }
 
         try {
             // Attempt to create a new Wall record / 尝试创建新的 Wall 记录
-            Wall::create($request->all());
+            Wall::create([
+                'name' => $validatedData['name'],
+                'description' => $validatedData['description'],
+                'slug' => $slug, // 使用生成的唯一slug
+                'status' => 5, // 设置默认状态
+                'eid' => $request->eid,
+            ]);
 
             // 使用 session() 辅助函数设置 session 数据
             session()->flash('message','Wall创建成功！');

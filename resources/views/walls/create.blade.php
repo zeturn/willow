@@ -15,19 +15,8 @@
                             <input type="text" name="name" id="name" class="mt-1 p-2 w-full border rounded-lg" required>
                         </div>
                         <div class="mb-4">
-                            <label for="slug" class="block text-sm font-medium text-gray-700">Slug (Unique URL identifier)</label>
-                            <input type="text" name="slug" id="slug" class="mt-1 p-2 w-full border rounded-lg" required>
-                        </div>
-                        <div class="mb-4">
                             <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
                             <textarea name="description" id="description" rows="4" class="mt-1 p-2 w-full border rounded-lg"></textarea>
-                        </div>
-                        <div class="mb-4">
-                            <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
-                            <select name="status" id="status" class="mt-1 p-2 w-full border rounded-lg">
-                                <option value="5">Active</option>
-                                <option value="4">Inactive</option>
-                            </select>
                         </div>
                         <div class="mb-4">
                             <label for="eid" class="block text-sm font-medium text-gray-700">EID (Optional)</label>

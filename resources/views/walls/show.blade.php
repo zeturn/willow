@@ -72,12 +72,6 @@
                             <textarea name="description" id="description" rows="4" class="mt-1 p-2 w-full border rounded-lg"></textarea>
                         </div>
 
-                        <!-- Slug Field -->
-                        <div class="mb-4">
-                            <label for="slug" class="block text-sm font-medium text-gray-700">Slug</label>
-                            <input type="text" name="slug" id="slug" class="mt-1 p-2 w-full border rounded-lg">
-                        </div>
-
                         <!-- Submit Button -->
                         <div class="mt-4">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">

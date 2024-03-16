@@ -402,8 +402,11 @@ class CensorTaskController extends Controller
                 return back()->with('error', 'Invalid action.');
         }
 
+        //使用session创建提示
+        session()->flash('message','审核操作成功！');
+
         // 返回成功消息 / Return with a success message
-        return redirect()->route('censor.tasks.list.entry')->with('success', 'Entry task status updated.');
+        return redirect()->route('censor.tasks.list.entry');
     }
 
     /**
@@ -455,8 +458,11 @@ class CensorTaskController extends Controller
                 return back()->with('error', 'Invalid action.');
         }
 
+        //使用session创建提示
+        session()->flash('message','审核操作成功！');
+
         // 返回成功消息 / Return with a success message
-        return redirect()->route('censor.tasks.list.branch')->with('success', 'Branch task status updated.');
+        return redirect()->route('censor.tasks.list.branch');
     }
 
     /**
@@ -526,9 +532,11 @@ class CensorTaskController extends Controller
                 // 处理未知操作，返回错误消息 / Handle unknown actions, return with an error message
                 return back()->with('error', 'Invalid action.');
         }
+        //使用session创建提示
+        session()->flash('message','审核操作成功！');
 
         // 返回成功消息 / Return with a success message
-        return redirect()->route('censor.tasks.list.version')->with('success', 'Version task status updated.');
+        return redirect()->route('censor.tasks.list.version');
     } 
 
     public function handleTaskTask(Request $request)
@@ -550,8 +558,9 @@ class CensorTaskController extends Controller
                 // 可能需要处理未知操作
                 break;
         }
-
-        return back()->with('success', 'Task task status updated.');
+        //使用session创建提示
+        session()->flash('message','审核操作成功！');
+        return back();
     }
 
     public function handleWallTask(Request $request)
@@ -573,8 +582,9 @@ class CensorTaskController extends Controller
                 // 可能需要处理未知操作
                 break;
         }
-
-        return back()->with('success', 'Wall task status updated.');
+        //使用session创建提示
+        session()->flash('message','审核操作成功！');
+        return back();
     }
 
     public function handleTopicTask(Request $request)
@@ -596,8 +606,9 @@ class CensorTaskController extends Controller
                 // 可能需要处理未知操作
                 break;
         }
-
-        return back()->with('success', 'Topic task status updated.');
+        //使用session创建提示
+        session()->flash('message','审核操作成功！');
+        return back();
     }
 
     public function handleCommentTask(Request $request)
@@ -619,8 +630,9 @@ class CensorTaskController extends Controller
                 // 可能需要处理未知操作
                 break;
         }
-
-        return back()->with('success', 'Comment task status updated.');
+        //使用session创建提示
+        session()->flash('message','审核操作成功！');
+        return back();
     }
 
     public function handleMediaTask(Request $request)
@@ -642,8 +654,9 @@ class CensorTaskController extends Controller
                 // 可能需要处理未知操作
                 break;
         }
-
-        return back()->with('success', 'Media task status updated.');
+        //使用session创建提示
+        session()->flash('message','审核操作成功！');
+        return back();
     }
 
     public function handleAlbumTask(Request $request)
@@ -665,8 +678,9 @@ class CensorTaskController extends Controller
                 // 可能需要处理未知操作
                 break;
         }
-
-        return back()->with('success', 'Album task status updated.');
+        //使用session创建提示
+        session()->flash('message','审核操作成功！');
+        return back();
     }
 
     public function handleTreeTask(Request $request)
@@ -688,8 +702,9 @@ class CensorTaskController extends Controller
                 // 可能需要处理未知操作
                 break;
         }
-
-        return back()->with('success', 'Tree task status updated.');
+        //使用session创建提示
+        session()->flash('message','审核操作成功！');
+        return back();
     }
 
     public function handleEdgeTask(Request $request)
@@ -711,8 +726,9 @@ class CensorTaskController extends Controller
                 // 可能需要处理未知操作
                 break;
         }
-
-        return back()->with('success', 'Edge task status updated.');
+        //使用session创建提示
+        session()->flash('message','审核操作成功！');
+        return back();
     }
 
     public function handleNodeTask(Request $request)
@@ -734,6 +750,8 @@ class CensorTaskController extends Controller
                 // 可能需要处理未知操作
                 break;
         }
-        return back()->with('success', 'Node task status updated.');
+        //使用session创建提示
+        session()->flash('message','审核操作成功！');
+        return back();
     }
 }

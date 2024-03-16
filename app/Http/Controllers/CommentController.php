@@ -30,6 +30,11 @@ class CommentController extends Controller
             'parent_id' => $request->parent_id,
             'status' => 5, // May The 5 Be With You!
         ]);
+
+        
+        // 使用 session() 辅助函数设置 session 数据
+        session()->flash('message','Comment发送成功！请等待审核~');
+
         return back();
     }
 

@@ -47,6 +47,9 @@ class TopicController extends Controller
             'user_id' => Auth::id(),
             'status' => 5, // May The 5 Be With You!
         ]);
+
+        // 使用 session() 辅助函数设置 session 数据
+        session()->flash('message','Topic创建成功！请等待审核~');
     
         // 确保你的路由定义中有 'topic.show' 路由，且接受一个参数
         // 重定向到 show 方法，并传递新创建的 Topic 的 ID

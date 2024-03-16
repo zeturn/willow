@@ -15,7 +15,6 @@ class NodeController extends Controller
         $this->middleware('permission:node-index', ['only' => ['index']]);
         $this->middleware('permission:node-create', ['only' => ['create','store']]);
         $this->middleware('permission:node-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:node-soft-edit', ['only' => ['destroy']]);//一般用户，仅可以软删除
         $this->middleware('permission:node-delete', ['only' => ['destroy']]);//高级用户，删除、软删除、恢复
         $this->middleware('permission:create-wall-link', ['only' => ['createEWLink']]);
     }
@@ -78,6 +77,9 @@ class NodeController extends Controller
  
         $node->createCensorTask();
 
+        //使用session创建提示
+        session()->flash('message','Node：'.$node?->name.'创建成功！');
+
         return redirect()->route('nodes.show', $node->id); // 重定向到节点详情页
     }
 
@@ -124,6 +126,9 @@ class NodeController extends Controller
 
         $node->update($request->all()); // 更新节点信息
 
+        //使用session创建提示
+        session()->flash('message','Node：'.$node?->name.'更新成功！');
+
         return redirect()->route('nodes.show', $node->id); // 重定向到节点详情页
     }
 
@@ -142,6 +147,8 @@ class NodeController extends Controller
         }
 
         $node->delete(); // 删除节点
+        //使用session创建提示
+        session()->flash('message','Node：'.$node?->name.'删除成功！');
 
         return redirect()->route('nodes.index'); // 重定向到节点列表页
     }
@@ -182,8 +189,11 @@ class NodeController extends Controller
         try {
             $wallData = $request->only(['name', 'slug', 'description']);
             $entityWallAssociation = $node->createEWLink($wallData);
+            // 使用 session() 辅助函数设置 session 数据
+            session()->flash('message','讨论墙创建成功！');
 
-            return response()->json(['message' => 'Link created successfully', 'link' => $entityWallAssociation], 201);
+            //return response()->json(['message' => 'Link created successfully', 'link' => $entityWallAssociation], 201);
+            return back();
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to create link'], 500);
         }

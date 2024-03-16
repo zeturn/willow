@@ -147,8 +147,11 @@ class EntryVersionController extends Controller
         try {
             $wallData = $request->only(['name', 'slug', 'description']);
             $entityWallAssociation = $version->createEWLink($wallData);
+            // 使用 session() 辅助函数设置 session 数据
+            session()->flash('message','讨论墙创建成功！');
 
-            return response()->json(['message' => 'Link created successfully', 'link' => $entityWallAssociation], 201);
+            //return response()->json(['message' => 'Link created successfully', 'link' => $entityWallAssociation], 201);
+            return back();
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to create link'], 500);
         }

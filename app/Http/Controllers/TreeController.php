@@ -73,6 +73,9 @@ class TreeController extends Controller
 
         $tree->createCensorTask();
 
+        //使用session创建提示
+        session()->flash('message','Tree'.$tree?->name.'创建成功！');
+
         return redirect()->route('trees.show', $tree->id); // 重定向到分类树节点详情页
     }
 
@@ -138,6 +141,9 @@ class TreeController extends Controller
 
         $tree->update($request->all()); // 更新分类树节点信息
 
+        //使用session创建提示
+        session()->flash('message','Tree'.$tree?->name.'更新成功！');
+
         return redirect()->route('trees.show', $tree->id); // 重定向到分类树节点详情页
     }
 
@@ -155,6 +161,9 @@ class TreeController extends Controller
             return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
         }
         $tree->delete(); // 删除分类树节点
+
+        //使用session创建提示
+        session()->flash('message','Tree'.$tree?->name.'删除成功！');
 
         return redirect()->route('trees.index'); // 重定向到分类树节点列表页
     }
@@ -196,7 +205,11 @@ class TreeController extends Controller
             $wallData = $request->only(['name', 'slug', 'description']);
             $entityWallAssociation = $tree->createEWLink($wallData);
 
-            return response()->json(['message' => 'Link created successfully', 'link' => $entityWallAssociation], 201);
+            // 使用 session() 辅助函数设置 session 数据
+            session()->flash('message','讨论墙创建成功！');
+
+            //return response()->json(['message' => 'Link created successfully', 'link' => $entityWallAssociation], 201);
+            return back();
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to create link'], 500);
         }

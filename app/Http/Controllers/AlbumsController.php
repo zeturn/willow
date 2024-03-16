@@ -62,7 +62,7 @@ class AlbumsController extends Controller
             'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
         ]);
 
-        $list = [];
+        $list = '{}';
 
         $album = Album::create([
             'title' => $request->title,
@@ -88,7 +88,8 @@ class AlbumsController extends Controller
         }
 
         $album->createCensorTask();//创建审核任务
-
+        //使用session创建提示
+        session()->flash('message','Album创建成功！');
         return redirect()->route('albums.show', $album->id);
     }
 
@@ -158,7 +159,8 @@ class AlbumsController extends Controller
                                     ->delete();
             }
         }
-
+        //使用session创建提示
+        session()->flash('message','Album更新成功！');
         return redirect()->route('albums.show', $album->id);
     }
 
@@ -182,7 +184,8 @@ class AlbumsController extends Controller
 
         // 永久删除相册
         $album->forceDelete();
-
+        //使用session创建提示
+        session()->flash('message','Album删除成功！');
         return redirect()->route('albums.index')->with('success', '相册已被删除');
     }
 

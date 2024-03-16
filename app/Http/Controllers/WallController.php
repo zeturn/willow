@@ -77,7 +77,6 @@ class WallController extends Controller
         }
         
         try {
-
             // Return the view for creating a new Wall / 返回创建新 Wall 的视图
             return view('walls.create');
         } catch (\Exception $e) {
@@ -126,6 +125,8 @@ class WallController extends Controller
             // Attempt to create a new Wall record / 尝试创建新的 Wall 记录
             Wall::create($request->all());
 
+            // 使用 session() 辅助函数设置 session 数据
+            session()->flash('message','Wall创建成功！');
             // Redirect to the wall index route on success / 成功时重定向到 wall 索引路由
             return redirect()->route('wall.index');
         } catch (QueryException $exception) {

@@ -30,6 +30,9 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
+        //使用session创建提示
+        session()->flash('message','欢迎！');
+
         return DB::transaction(function () use ($input) {
             return tap(User::create([
                 'name' => $input['name'],

@@ -15,7 +15,6 @@ class EdgeController extends Controller
         $this->middleware('permission:edge-index', ['only' => ['index']]);
         $this->middleware('permission:edge-create', ['only' => ['create','store']]);
         $this->middleware('permission:edge-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:edge-soft-edit', ['only' => ['destroy']]);//一般用户，仅可以软删除
         $this->middleware('permission:edge-delete', ['only' => ['destroy']]);//高级用户，删除、软删除、恢复
         $this->middleware('permission:create-wall-link', ['only' => ['createEWLink']]);
     }
@@ -97,6 +96,9 @@ class EdgeController extends Controller
 
         $edge->createCensorTask();
 
+        //使用session创建提示
+        session()->flash('message','Edge创建成功！');
+
         return redirect()->route('edges.show', $edge->id); // 重定向到边详情页
     }
 
@@ -148,6 +150,9 @@ class EdgeController extends Controller
 
         $edge->update($request->all()); // 更新边信息
 
+        //使用session创建提示
+        session()->flash('message','Edge更新成功！');
+
         return redirect()->route('edges.show', $edge->id); // 重定向到边详情页
     }
 
@@ -166,6 +171,9 @@ class EdgeController extends Controller
         }
 
         $edge->delete(); // 删除边
+
+        //使用session创建提示
+        session()->flash('message','Edge删除成功！');
 
         return redirect()->route('edges.index'); // 重定向到边列表页
     }
@@ -206,8 +214,11 @@ class EdgeController extends Controller
         try {
             $wallData = $request->only(['name', 'slug', 'description']);
             $entityWallAssociation = $edge->createEWLink($wallData);
+            // 使用 session() 辅助函数设置 session 数据
+            session()->flash('message','讨论墙创建成功！');
 
-            return response()->json(['message' => 'Link created successfully', 'link' => $entityWallAssociation], 201);
+            //return response()->json(['message' => 'Link created successfully', 'link' => $entityWallAssociation], 201);
+            return back();
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to create link'], 500);
         }

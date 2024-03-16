@@ -91,6 +91,9 @@ class DCGController extends Controller
         
         $node = Node::create($nodeData); // 创建节点并保存
 
+        //使用session创建提示
+        session()->flash('message','Node：'.$node?->name.'创建成功！');
+
         return redirect()->route('nodes.show', $node->id); // 重定向到节点详情页
     }
 
@@ -150,6 +153,9 @@ class DCGController extends Controller
 
         $node->update($request->all()); // 更新节点信息
 
+        //使用session创建提示
+        session()->flash('message','Node：'.$node?->name.'更新成功！');
+
         return redirect()->route('nodes.show', $node->id); // 重定向到节点详情页
     }
 
@@ -170,6 +176,9 @@ class DCGController extends Controller
 
         $node = Node::findOrFail($id);
         $node->delete();
+
+        //使用session创建提示
+        session()->flash('message','Node：'.$node?->name.'删除成功！');
 
         // 返回删除成功的响应
         return redirect()->route('nodes.index');
@@ -225,7 +234,8 @@ class DCGController extends Controller
         }
         
         $edge = Edge::create($edgeData); // 创建边并保存
-
+        //使用session创建提示
+        session()->flash('message','Edge删除成功！');
         return redirect()->route('edges.show', $edge->id); // 重定向到边详情页
     }
 
@@ -281,7 +291,8 @@ class DCGController extends Controller
         $edge = Edge::findOrFail($id); // 根据ID查找节点
 
         $edge->update($request->all()); // 更新边信息
-
+        //使用session创建提示
+        session()->flash('message','Edge删除成功！');
         return redirect()->route('edges.show', $edge->id); // 重定向到边详情页
     }
 
@@ -301,7 +312,8 @@ class DCGController extends Controller
 
         $edge = Edge::findOrFail($id);
         $edge->delete();
-
+        //使用session创建提示
+        session()->flash('message','Edge删除成功！');
         // 返回删除成功的响应
         return redirect()->route('edges.index');
     }

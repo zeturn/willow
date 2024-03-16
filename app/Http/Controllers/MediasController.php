@@ -73,7 +73,8 @@ class MediasController extends Controller
             $media->save();
 
             $media->createCensorTask();
-    
+            //使用session创建提示
+            session()->flash('message','media创建成功！');
             return response()->json(['id' => $media->id, 'url' => $media->url]); // 返回媒体文件的ID和URL
         } catch (\Exception $e) {
             return response()->json(['error' => '文件上传失败'.$e], 500);
@@ -97,7 +98,8 @@ class MediasController extends Controller
 
         $media = Media::findOrFail($id);
         $media->deleteWithFile(); // 使用模型中的 deleteWithFile 方法
-
+        //使用session创建提示
+        session()->flash('message','media删除成功！');
         return redirect()->route('medias.create')->with('success', '媒体文件已删除');
     }
 
@@ -129,7 +131,8 @@ class MediasController extends Controller
         $media->description = $request->description;
         // 更新其他字段
         $media->save();
-
+        //使用session创建提示
+        session()->flash('message','media更新成功！');
         return redirect()->route('medias.show', $media->id)->with('success', '媒体文件已更新');
     }
 }

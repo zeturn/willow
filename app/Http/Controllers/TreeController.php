@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Validator;
 
 class TreeController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:tree-index', ['only' => ['index']]);
+        $this->middleware('permission:tree-create', ['only' => ['create','store']]);
+        $this->middleware('permission:tree-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:tree-delete', ['only' => ['destroy']]);//高级用户，删除、软删除、恢复
+        $this->middleware('permission:create-wall-link', ['only' => ['createEWLink']]);
+    }
+
     /**
      * Display a listing of the category tree nodes.
      *

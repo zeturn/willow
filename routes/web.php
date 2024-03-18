@@ -369,17 +369,20 @@ Route::resource('/post', PostController::class);
     Route::prefix('medias')->name('medias.')->group(function () {
         Route::get('/', [MediasController::class, 'index'])->name('index');
         Route::get('/create', [MediasController::class, 'create'])->name('create');
+        Route::get('/myMedias', [MediasController::class, 'myMedias'])->name('myMedias');
         Route::post('/', [MediasController::class, 'store'])->name('store');
         Route::get('/{media}', [MediasController::class, 'show'])->name('show');
         Route::delete('/{media}', [MediasController::class, 'delete'])->name('delete');
         Route::get('/{media}/edit', [MediasController::class, 'edit'])->name('edit');
         Route::put('/{media}', [MediasController::class, 'update'])->name('update');
+
     });
 
     // Albums 路由组
     Route::prefix('albums')->name('albums.')->group(function () {
         Route::get('/', [AlbumsController::class, 'index'])->name('index');
         Route::get('/create', [AlbumsController::class, 'create'])->name('create');
+        Route::get('/stableCreate', [AlbumsController::class, 'stableCreate'])->name('stableCreate');
         Route::post('/', [AlbumsController::class, 'store'])->name('store');
         Route::get('/{id}', [AlbumsController::class, 'show'])->name('show');
         Route::get('/{album}/edit', [AlbumsController::class, 'edit'])->name('edit');

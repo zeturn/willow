@@ -135,4 +135,15 @@ class MediasController extends Controller
         session()->flash('message','media更新成功！');
         return redirect()->route('medias.show', $media->id)->with('success', '媒体文件已更新');
     }
+
+    public function myMedias(){
+
+        $user = Auth::user();
+        // 获取查询构建器
+        $query =$user->medias();
+        // 在查询构建器上使用 paginate 方法
+        $medias =$query->paginate(10);
+
+        return view('medias.myMedias', compact('medias'));
+    }
 }

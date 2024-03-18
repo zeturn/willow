@@ -1,12 +1,12 @@
-{{-- medias/index.blade.php --}}
+{{-- medias/myMedias.blade.php --}}
 
 @extends('layouts.page')
 
-@section('title', __('Media List'))
+@section('title', __('My Media List'))
 
 @section('content')
 <div class="container mx-auto p-4 dark:bg-gray-900 max-w-7xl">
-    <h1 class="text-2xl font-bold mb-4">{{ __('Media List') }}</h1>
+    <h1 class="text-2xl font-bold mb-4">{{ __('My Media List') }}</h1>
 
     <div class="flex flex-wrap -mx-4">
         <!-- Main Content Section -->
@@ -46,16 +46,6 @@
                 </h3>
                 <a href="{{ route('medias.create') }}" class="block w-full text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
                     {{ __('Add New Media') }}
-                </a>
-                <!-- Other sidebar content -->
-            </div>
-
-            <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-                <h3 class="text-black font-bold dark:text-white py-2 px-4 rounded-lg">
-                    {{ __('Operations') }}
-                </h3>
-                <a href="{{ route('medias.myMedias') }}" class="block w-full text-center bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg">
-                    {{ __('Check My Medias') }}
                 </a>
                 <!-- Other sidebar content -->
             </div>

@@ -23,6 +23,9 @@ class LoginResponse implements LoginResponseContract
             $home = '/workstation'; // 如果没有权限，重定向到 '/workstation'
         }
 
+        //使用session创建提示
+        session()->flash('message','登录成功！');
+
         return redirect()->intended($home);
     }
 }

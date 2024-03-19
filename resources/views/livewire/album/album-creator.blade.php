@@ -1,47 +1,27 @@
-<div>
-    <input type="text" wire:model="title" placeholder="相册标题" />
+<!-- resources/views/livewire/album/album-creator.blade.php -->
+<div class="max-w-md mx-auto p-4">
+    <form class="flex flex-col space-y-4" wire:submit.prevent="saveAlbum">
+        <input type="text" wire:model="album.title" placeholder="相册标题" required class="p-2 border rounded shadow">
+        <input type="file" multiple wire:model="photos" accept="image/*" class="p-2 border rounded shadow">
+        <button type="submit" wire:click="saveAlbum()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow">创建相册</button>
+    </form>
 
-    <input type="file" wire:model="photos" multiple />
-
-    @if ($photos)
-        <div class="flex flex-wrap">
-            @foreach ($photos as $key => $photo)
-                <div class="relative" wire:key="photo-{{ $key }}">
-                    <img src="{{ $photo->temporaryUrl() }}" alt="照片" class="w-32 h-32 object-cover" draggable="true" />
-                    <input type="hidden" wire:model="photoOrders.{{ $key }}" />
-                </div>
-            @endforeach
-        </div>
+    @if ($photo_list)
+    <div class="gallery grid md:grid-cols-3 gap-4 mt-4">
+        @foreach ($photo_list as $index => $photo)
+            <div class="image-container relative">
+                <img class="w-full h-auto object-cover rounded shadow" src="{{ $photo['url'] }}" alt="Image {{$index }}">
+                <a href="#" class="absolute bottom-0 right-0 text-white bg-gray-800 rounded p-1">{{$index+1}}</a>
+                @if($index != 0)
+                <button wire:click="moveUp('{{ $index }}')" wire:click="$refresh" class="absolute top-0 left-0 bg-green-500 text-white px-2 py-1 rounded shadow">上移</button>
+                @endif
+                @if($index != count($photo_list) - 1)
+                <button wire:click="moveDown('{{ $index }}')" wire:click="$refresh" class="absolute bottom-0 left-0 bg-yellow-500 text-white px-2 py-1 rounded shadow">下移</button>
+                @endif
+                <button wire:click="removePhoto('{{ $index }}')" wire:click="$refresh" class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 rounded shadow">删除</button>
+            </div>
+        @endforeach
+    </div>
     @endif
 
-    <button wire:click="save">保存相册</button>
 </div>
-<script>
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('Sortable', () => ({
-            init() {
-                this.$el.querySelectorAll('.draggable').forEach(img => {
-                    img.addEventListener('dragstart', this.handleDragStart);
-                    img.addEventListener('dragover', this.handleDragOver);
-                    img.addEventListener('drop', this.handleDrop);
-                    img.addEventListener('dragend', this.handleDragEnd);
-                });
-            },
-            handleDragStart(e) {
-                e.dataTransfer.setData('text/plain', e.target.getAttribute('data-key'));
-            },
-            handleDragOver(e) {
-                e.preventDefault();
-            },
-            handleDrop(e) {
-                e.preventDefault();
-                const srcKey = e.dataTransfer.getData('text/plain');
-                const dstKey = e.target.getAttribute('data-key');
-                this.$wire.movePhoto(srcKey, dstKey);
-            },
-            handleDragEnd(e) {
-                // 清理样式或其他操作
-            },
-        }));
-    });
-</script>

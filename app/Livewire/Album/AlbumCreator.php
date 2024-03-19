@@ -5,69 +5,121 @@ namespace App\Livewire\Album;
 use App\Models\Album;
 use App\Models\Media;
 use App\Models\AlbumsMediaAssociation;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Str;
 class AlbumCreator extends Component
 {
     use WithFileUploads;
-    public $title;
-    public $photos = [];
-    public $photoOrders = [];
-    protected $rules = [
-        'title' => 'required|string',
-        'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
+    public $album = [
+        'title' => '',
+        'user_id' => '', // 需要根据实际情况设置用户ID
+        'list' => '',
+        'status' => 1,
     ];
+    public $photos = [];
+    public $photo_list = [];
+
     public function updatedPhotos()
     {
-        // 当用户选择新图片时，初始化排序数组
-        $this->photoOrders = collect($this->photos)->pluck('name')->toArray();
+        $this->validate([
+            'photos.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
+        ]);
+        foreach ($this->photos as $photo) {
+            // 创建临时 URL 用于预览
+            $temporaryUrl =$photo->temporaryUrl();
+            // 将图片信息追加到 photo_list
+            $this->photo_list[] = [
+                'name' => $photo->getClientOriginalName(),//可以作为老图片的名称
+                'ori_photo' => $photo,
+                'url' => $temporaryUrl,
+                'temp_path' => $photo->getRealPath(),
+                'order' => count($this->photo_list) + 1,
+                'is_new' => true,
+                'ori_id' => '',
+            ];
+        }
+        // 清空 photos 属性，以便用户可以上传新的图片
+        $this->photos = [];
     }
-    public function save()
+
+    public function moveUp($index)
     {
-        $this->validate();
+        if ($index > 0) {
+            $previousIndex =$index - 1;
+            $temp =$this->photo_list[$previousIndex];
+            $this->photo_list[$previousIndex] = $this->photo_list[$index];
+            $this->photo_list[$index] = $temp;
+            // 强制组件重新渲染
+            $this->render();
+        }
+    }
+    public function moveDown($index)
+    {
+        if ($index < count($this->photo_list) - 1) {
+            $nextIndex =$index + 1;
+            $temp =$this->photo_list[$nextIndex];
+            $this->photo_list[$nextIndex] = $this->photo_list[$index];
+            $this->photo_list[$index] = $temp;
+            // 强制组件重新渲染
+            $this->render();
+        }
+    }
+
+    public function removePhoto($index)
+    {
+        unset($this->photo_list[$index]);
+        $this->photo_list = array_values($this->photo_list);
+    }
+
+    //提交图片
+    public function saveAlbum()
+    {
+
         // 创建相册
         $album = Album::create([
-            'title' => $this->title,
-            'user_id' => auth()->id(),
-            'list' => json_encode(['photos' => []]), // 初始化 JSON
-            'status' => 1,
+            'title' => $this->album['title'],
+            'user_id' => auth()->id(), // 确保已登录用户
+            'status' => $this->album['status'],
         ]);
-        // 保存图片并更新 JSON
-        foreach ($this->photos as$key => $photo) {
-            $photoPath =$photo->store('photos', 'public');
-            $media = Media::create([
-                'url' => $photoPath,
-                'user_id' => auth()->id(),
-                'status' => 1,
-            ]);
+
+        // 处理 photo_list 中的图片并创建 Media 对象
+        $mediaList = [];
+        foreach ($this->photo_list as $photo) {
+            $url = $photo['ori_photo']->store('photos', 'public');
+            if($photo ['is_new']){
+                $media = Media::create([
+                    'url' => $url,
+                    'user_id' => auth()->id(),
+                    'status' => 1, // 设置状态或其他必要字段
+                ]);
+            }else{
+                $media = Media::where('name', $photo->ori_id)->first();
+            }
+
+
             AlbumsMediaAssociation::create([
                 'album_id' => $album->id,
                 'media_id' => $media->id,
             ]);
-            // 更新 JSON 中的排序
-            $this->photoOrders[$key] = ['name' => $photo->getClientOriginalName(), 'status' => 5, 'order' =>$key + 1];
+
+            $mediaList[] = [
+                'name' => $photo['name'],
+                'status' => 5,
+                'order' => $photo['order'],
+            ];
         }
-        // 更新相册的 JSON 字段
-        $album->update(['list' => json_encode(['photos' =>$this->photoOrders])]);
-        // session()->flash('message', 'Album created successfully!');
+        // 更新相册的 list 字段
+        $album->update(['list' => json_encode($mediaList)]);
+        session()->flash('message', 'Album创建成功！');
         return redirect()->route('albums.show', $album->id);
     }
 
-    public function movePhoto($srcIndex,$dstIndex)
+    public function mount()
     {
-        $srcPhoto =$this->photos[$srcIndex];
-        $dstPhoto =$this->photos[$dstIndex];
-        // 更新数组中的位置
-        $this->photos[$srcIndex] = $dstPhoto;
-        $this->photos[$dstIndex] = $srcPhoto;
-        // 重新排序 photoOrders
-        $this->photoOrders = array_values($this->photos);
-        // 触发前端排序更新
-        $this->dispatchBrowserEvent('photosSorted');
+        $this->photo_list = []; // 初始化 photo_list
     }
-    
+
     public function render()
     {
         return view('livewire.album.album-creator');

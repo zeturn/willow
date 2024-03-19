@@ -1,6 +1,4 @@
-<!-- resources/views/albums/create.blade.php -->
-
-@extends('layouts.page') // 确保你的布局文件包含了Livewire的必要脚本
+@extends('layouts.page')
 
 @section('content')
 <div class="container">

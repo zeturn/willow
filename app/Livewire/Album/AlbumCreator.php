@@ -30,7 +30,7 @@ class AlbumCreator extends Component
             $temporaryUrl =$photo->temporaryUrl();
             // 将图片信息追加到 photo_list
             $this->photo_list[] = [
-                'name' => $photo->getClientOriginalName(),//可以作为老图片的名称
+                'name' => Str::random(40) . '.' . $photo->getClientOriginalExtension(), // 生成唯一文件名,//可以作为老图片的名称
                 'ori_photo' => $photo,
                 'url' => $temporaryUrl,
                 'temp_path' => $photo->getRealPath(),
@@ -86,7 +86,7 @@ class AlbumCreator extends Component
         // 处理 photo_list 中的图片并创建 Media 对象
         $mediaList = [];
         foreach ($this->photo_list as $photo) {
-            $url = $photo['ori_photo']->store('photos', 'public');
+            $url = $photo['ori_photo']->storeAs('photos', $photo['name'], 'public');
             if($photo ['is_new']){
                 $media = Media::create([
                     'url' => $url,

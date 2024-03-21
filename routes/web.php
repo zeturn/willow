@@ -39,6 +39,7 @@ use App\Http\Controllers\{
     CensorTaskController,
     RoleController,
     SearchController,
+    TrendController,
 
     CategoryController,
     TreeController,
@@ -92,6 +93,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
 
 Route::resource('/post', PostController::class);
 //Route::group(['middleware' => ['auth']], function() {
@@ -462,6 +465,13 @@ Route::prefix('search')->name('search.')->group(function () {
     Route::get('/advanced', [SearchController::class, 'AdvancedSearchIndex'])->name('advancedsearchindex');
 
     Route::get('/result', [SearchController::class, 'search'])->name('result');
+
+});
+
+Route::prefix('trend')->name('trend.')->group(function () {
+
+    Route::get('/entry', [TrendController::class, 'entryTrend'])->name('entry');
+
 
 });
 

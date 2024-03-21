@@ -28,15 +28,15 @@
             <div class="relative w-full h-64 md:h-96">
                 {{-- Page number display with frosted glass effect --}}
                 <div id="page-number" class="absolute top-0 right-0 bg-gray-300 bg-opacity-30 p-2 rounded-bl-lg z-10 backdrop-filter backdrop-blur-sm">1 / {{ count($album->medias) }}</div>
-                @forelse ($album->medias as $media)
-                    <img src="{{ $media->url }}" class="absolute top-0 left-0 w-full h-full object-contain hidden" alt="Album Image">
+                @forelse ($medias as $media)
+                    <img src="{{ '/storage/photos/' .$media['name'] }}" class="absolute top-0 left-0 w-full h-full object-contain hidden" alt="Album Image">
                 @empty
                     <div class="bg-white w-full h-full"></div>
                 @endforelse
 
                 {{-- Image indicator dots --}}
                 <div class="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-                    @foreach ($album->medias as $index => $media)
+                    @foreach ($medias as $order => $media)
                     <span class="dot cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" class="w-3 h-3">
                             <circle cx="4" cy="4" r="2" class="fill-current opacity-50"/>
@@ -50,6 +50,7 @@
         <div class="md:w-1/2 p-8">
             <div class="flex justify-between items-center">
                 <h2 class="text-2xl font-bold">{{ $album->title }}</h2>
+                <span class="text-lg ml-2">{{ __('访问量') }}: {{ $Visits }}</span>
                 <a href="{{ route('albums.edit', $album->id) }}" class="text-primary-500 hover:text-primary-600">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />

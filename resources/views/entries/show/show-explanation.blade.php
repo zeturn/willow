@@ -33,6 +33,13 @@
         </div>
         <!-- Sidebar -->
         <div class="w-full lg:w-1/4 px-4 mt-6 lg:mt-0">
+
+            <!-- Demo Branch Information -->
+            <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+                <h2 class="text-2xl mb-2 dark:text-white">{{ __('访问量') }}</h2>
+                <p class="text-gray-700 dark:text-gray-300">{{ __('全部') }}: {{ $Visits }}</p>
+            </div>
+
             <!-- Demo Branch Information -->
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                 <h2 class="text-2xl mb-2 dark:text-white">{{ __('Demo Branch') }}</h2>

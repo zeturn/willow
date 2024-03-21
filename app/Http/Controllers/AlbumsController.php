@@ -108,7 +108,12 @@ class AlbumsController extends Controller
     {
         $album = Album::with('medias')->findOrFail($id);
 
-        return view('albums.show', compact('album'));
+        $medias = json_decode($album->list, true);
+
+        // 返回前增加访问量
+        visits($album)->increment();
+        $Visits = visits($album)->count();
+        return view('albums.show', compact('album','medias','Visits'));
     }
 
     public function edit($id)

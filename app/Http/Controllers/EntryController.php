@@ -277,6 +277,9 @@ class EntryController extends Controller
                 $demoBranch = $entry->getDemoBranch();
                 $demoVersion = $demoBranch ? $demoBranch->getDemoVersion() : null;
 
+                // 返回前增加访问量
+                visits($entry)->increment();
+                $Visits = visits($entry)->count();
                 // Return to the view with the fetched data.
                 // 返回到视图，并传递获取的数据。
                 return view('entries.show.show-explanation', [
@@ -287,6 +290,7 @@ class EntryController extends Controller
                     'demoVersion' => $demoVersion,
                     'userId' => Auth::id(),
                     'entryId' => $id,
+                    'Visits' => $Visits,
                     'tabname' => 'entry.show.explanation',
                 ]);
             } catch (ModelNotFoundException $e) {

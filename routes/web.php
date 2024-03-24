@@ -56,6 +56,10 @@ use App\Http\Controllers\{
 
 };
 
+use App\Http\Controllers\Auth\{
+    EmailVerificationController,
+};
+
 use Inertia\Inertia;
 
 /*
@@ -70,7 +74,7 @@ use Inertia\Inertia;
 */
 Route::middleware(['block.user.agent'])->group(function () {
 Route::middleware(['throttle:web'])->group(function () {
-
+Route::middleware(['EnsureEmailIsVerified'])->group(function () {
 Route::get('/', function () {
     return view('welcome');
 });
@@ -475,6 +479,7 @@ Route::prefix('trend')->name('trend.')->group(function () {
 
 });
 
+
 Route::get('/check-redis', function () {
     try {
         $pong = Redis::ping();
@@ -483,6 +488,15 @@ Route::get('/check-redis', function () {
         return response()->json(['m7essage' => 'Failed to connect to Redis! 😔', 'error' => $e->getMessage()], 500);
     }
 });
+
+});//middleware(['EnsureEmailIsVerified'])
+
+Route::prefix('EmailVerification')->name('EmailVerification.')->withoutMiddleware('EnsureEmailIsVerified')->group(function () {
+    Route::get('/showEmailVerification/{session}', [EmailVerificationController::class, 'showEmailVerification'])->name('showEmailVerification')->withoutMiddleware('EnsureEmailIsVerified');
+
+
+});
+
 
 });//middleware(['throttle:5,1'])
 

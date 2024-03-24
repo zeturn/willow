@@ -6,6 +6,7 @@ use App\Models\Team;
 use App\Models\User;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\EmailVerification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -44,6 +45,15 @@ class CreateNewUser implements CreatesNewUsers
                 $user->switchTeam($team);
                 $roleUser = Role::firstOrCreate(['name' => 'User', 'team_id' => null]);
                 $user->assignRole($roleUser); // 在分配角色时指定团队 ID
+
+
+                // 创建EmailVerification对象
+                $emailVerification = new EmailVerification;
+                $emailVerification->user_id =$user->id;
+                $emailVerification->verification_key = rand(100000, 999999); // 生成一个随机密钥
+                $emailVerification->verification_type = 3; // 指定验证类型
+                $emailVerification->save();
+                $emailVerification->sendVerificationEmail(); // 发送验证邮件
             });
         });
     }

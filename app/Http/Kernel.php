@@ -74,5 +74,7 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
 
         'block.user.agent' => \App\Http\Middleware\BlockUserAgent::class,
+
+        'EnsureEmailIsVerified' => \App\Http\Middleware\EnsureEmailIsVerified::class,//确保已经验证
     ];
 }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -26,7 +25,7 @@ use Spatie\Permission\Models\Permission;
 use Laravel\Scout\Searchable;
 
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
@@ -93,6 +92,11 @@ class User extends Authenticatable implements MustVerifyEmail
             'name' => $this->name,
             // Add other fields you want to index here
         ];
+    }
+
+    public function emailVerifications()
+    {
+        return $this->hasMany(EmailVerification::class);
     }
 
     /**

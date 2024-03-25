@@ -57,7 +57,7 @@ class UserTableSeeder extends Seeder
         $hollowdata_user->assignRole($roleSuperAdmin); // 在分配角色时指定团队 ID
 
         // 创建 200 个随机用户
-        User::factory()->count(100)->create()->each(function ($user) use ($roleUser) {
+        User::factory()->count(10)->create()->each(function ($user) use ($roleUser) {
             $team = $this->createTeam($user); // 为每个用户创建团队
             setPermissionsTeamId($team->id);
             $user->switchTeam($team);

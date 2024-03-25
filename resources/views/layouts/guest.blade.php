@@ -15,6 +15,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
         @vite(['resources/css/app.css', 'resources/js/app.jsx'])
 
         <!-- Styles -->

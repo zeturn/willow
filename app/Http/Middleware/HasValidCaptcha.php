@@ -11,18 +11,27 @@ use Symfony\Component\HttpFoundation\Response;
 
 final readonly class HasValidCaptcha
 {
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure$next): Response
     {
-        // Attempt to resolve the Turnstile code from the request. If it doesn't
-        // exist then return an HTTP 400 response.
-        $turnstileCode = $request->input('cf-turnstile-response') ?? abort(400);
-
+        // 从请求中获取cf-turnstile-response字段的值
+        $turnstileCode =$request->input('cf-turnstile-response');
+    
+        // 检查turnstileCode是否为null
+        if ($turnstileCode === null) {
+            // 如果为null，则返回404响应
+            abort(404);
+        }
+    
+        // 如果不为null，则进行turnstile验证
         if (!$this->turnstileCodeIsValid($turnstileCode)) {
+            // 如果验证失败，则返回400响应
             abort(400);
         }
-
+    
+        // 如果验证成功，则继续处理请求
         return $next($request);
     }
+    
 
     /**
      * Make an HTTP call to the Turnstile API to verify the code.

@@ -11,7 +11,6 @@
         </x-slot>
 
         <x-validation-errors class="mb-4" />
-
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
@@ -62,5 +61,7 @@
                 </x-button>
             </div>
         </form>
+        Hi buddy, we noticed that you have created a lot of accounts these days, please wait a moment. If you need some accounts, you can contact us directly. Our background batch creation is much faster than using a crawler! We welcome like-minded people to chat together, and we extend a sincere invitation to you: hollowdata@outlook.com. Come on, bro!
+
     </x-authentication-card>
 </x-guest-layout>

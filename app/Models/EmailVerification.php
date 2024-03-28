@@ -4,18 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailVerificationMail;
 use App\Traits\UUID;
 use App\Traits\Status;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Mail;
 
 class EmailVerification extends Model
 {
     use HasFactory;
     use UUID;
 
-    protected $fillable = ['user_id', 'verification_key', 'verification_type'];
+    protected $fillable = ['user_id', 'verification_key', 'verification_type','action_type'];
 
     public function user()
     {
@@ -35,6 +37,16 @@ class EmailVerification extends Model
     //发送验证邮件
     public function sendVerificationEmail()
     {
-        Mail::to($this->user->email)->send(new EmailVerificationMail($this));
+        // 使用Eloquent查找用户
+        $user = Auth::user();
+        // 从Redis中读取用户的新邮箱
+        $newEmail = Redis::get("user:{$user->id}:new_email");
+
+        if($this->action_type == 0){//注册
+            Mail::to($this->user->email)->send(new EmailVerificationMail($this));            
+        }else{//更新邮箱
+            Mail::to($newEmail)->send(new EmailVerificationMail($this));   
+        }
+
     }
 }

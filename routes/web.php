@@ -58,6 +58,7 @@ use App\Http\Controllers\{
 
 use App\Http\Controllers\Auth\{
     EmailVerificationController,
+    ChangeEmailController,
 };
 
 use Inertia\Inertia;
@@ -493,9 +494,11 @@ Route::get('/check-redis', function () {
 
 Route::prefix('EmailVerification')->name('EmailVerification.')->withoutMiddleware('EnsureEmailIsVerified')->group(function () {
     Route::get('/showEmailVerification/{session}', [EmailVerificationController::class, 'showEmailVerification'])->name('showEmailVerification')->withoutMiddleware('EnsureEmailIsVerified');
-
-
 });
+
+Route::get('change-email', [ChangeEmailController::class, 'changeEmailForm'])->name('change.email.form');
+Route::post('change-email', [ChangeEmailController::class, 'changeEmail'])->name('change.email');
+
 
 
 });//middleware(['throttle:5,1'])

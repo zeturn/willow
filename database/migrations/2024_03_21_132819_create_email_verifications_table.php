@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('user_id');
             $table->string('verification_key')->nullable();//验证密钥
             $table->integer('verification_type')->default(0);//验证类型
+            $table->integer('action_type')->default(0);//动作类型 0.注册 1.修改邮箱
             $table->timestamps();
             $table->timestamp('sent_at')->nullable();
             $table->timestamp('expires_at')->nullable();

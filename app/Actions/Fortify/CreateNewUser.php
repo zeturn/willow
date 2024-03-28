@@ -51,7 +51,8 @@ class CreateNewUser implements CreatesNewUsers
                 $emailVerification = new EmailVerification;
                 $emailVerification->user_id =$user->id;
                 $emailVerification->verification_key = rand(100000, 999999); // 生成一个随机密钥
-                $emailVerification->verification_type = 3; // 指定验证类型
+                $emailVerification->verification_type = 3; // 指定验证类型 3.六位数字
+                $emailVerification->action_type = 0; //动作类型 0.注册 1.修改邮箱
                 $emailVerification->save();
                 $emailVerification->sendVerificationEmail(); // 发送验证邮件
             });

@@ -23,39 +23,43 @@ class EmailVerificationController extends Controller
         // 查找EmailVerification对象
         $emailVerification = EmailVerification::where('id',$uuid)->first();
     
-        if ($emailVerification) {
-            // 根据verification_type返回对应的视图和EmailVerification对象
-            switch ($emailVerification->verification_type) {
-                case 1:
-                    return view('auth.verify-email.verificationCode4Digits', compact('emailVerification'));
-                    break;
-                case 2:
-                    return view('auth.verify-email.verificationCode4Letters', compact('emailVerification'));
-                    break;
-                case 3:
-                    return view('auth.verify-email.verificationCode6Digits', compact('emailVerification'));
-                    break;
-                case 4:
-                    return view('auth.verify-email.verificationCode6Letters', compact('emailVerification'));
-                    break;
-                case 5:
-                    return view('auth.verify-email.verificationCode6Mixed', compact('emailVerification'));
-                    break;
-                case 6:
-                    return view('auth.verify-email.doubleHashedVerification', compact('emailVerification'));
-                    break;
-                case 7:
-                    return view('auth.verify-email.singleHashedVerification', compact('emailVerification'));
-                    break;
-                default:
-                    // 如果verification_type不符合预期，可以返回错误视图或进行其他处理
-                    return view('errors.verification-type-error');
-                    break;
+            if ($emailVerification) {
+                if ($emailVerification->action_type == 1){
+                    return view('auth.change-email.verificationCode6Digits', compact('emailVerification'));
+                }else{
+                    // 根据verification_type返回对应的视图和EmailVerification对象
+                    switch ($emailVerification->verification_type) {
+                        case 1:
+                            return view('auth.verify-email.verificationCode4Digits', compact('emailVerification'));
+                            break;
+                        case 2:
+                            return view('auth.verify-email.verificationCode4Letters', compact('emailVerification'));
+                            break;
+                        case 3:
+                            return view('auth.verify-email.verificationCode6Digits', compact('emailVerification'));
+                            break;
+                        case 4:
+                            return view('auth.verify-email.verificationCode6Letters', compact('emailVerification'));
+                            break;
+                        case 5:
+                            return view('auth.verify-email.verificationCode6Mixed', compact('emailVerification'));
+                            break;
+                        case 6:
+                            return view('auth.verify-email.doubleHashedVerification', compact('emailVerification'));
+                            break;
+                        case 7:
+                            return view('auth.verify-email.singleHashedVerification', compact('emailVerification'));
+                            break;
+                        default:
+                            // 如果verification_type不符合预期，可以返回错误视图或进行其他处理
+                            return view('errors.verification-type-error');
+                            break;
+                    }//switch
+                }// action type
+            } else {
+                // 如果没有找到EmailVerification对象，可以返回错误视图或进行其他处理
+                return view('errors');
             }
-        } else {
-            // 如果没有找到EmailVerification对象，可以返回错误视图或进行其他处理
-            return view('errors.email-verification-not-found');
-        }
     }
 
     //待启用

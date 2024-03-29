@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 
@@ -21,76 +21,9 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-use Inertia\Inertia;
-
-class EntryController extends Controller
+class EntryApiController extends Controller
 {
 
-    function __construct()
-    {
-        $this->middleware('permission:entry-create', ['only' => ['create','store']]);
-        $this->middleware('permission:entry-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:entry-soft-edit', ['only' => ['delete','softDelete']]);//一般用户，仅可以软删除
-        $this->middleware('permission:entry-delete', ['only' => ['delete','destroy', 'softDelete', 'restore']]);//高级用户，删除、软删除、恢复
-    }
-
-
-    /**
-     * 显示所有词条的列表。
-     * Display a listing of the entries.
-     * 此方法用于获取所有词条并分页显示，同时确保只有登录用户才能访问此列表。
-     * This method is used to retrieve all entries and display them with pagination, also ensures that only authenticated users can access this list.
-     *
-     * @return \Illuminate\Http\Response 返回视图或重定向到登录页面 / Returns view or redirects to login page
-     */
-    public function index()
-    {
-        // 检查用户是否已经登录 / Check if the user is authenticated
-        if (!Auth::check()) {
-            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
-            // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
-            return redirect()->route('login');
-        }
-
-        // 尝试获取词条列表，使用异常处理以增加代码的健壮性 / Attempt to retrieve the list of entries, use exception handling to increase code robustness
-        try {
-            // 使用分页查询来限制每页显示的词条数量，避免大量数据一次性加载 / Use pagination query to limit the number of entries shown per page, avoiding loading large amounts of data at once
-            $entries = Entry::paginate(30);
-        } catch (\Exception $e) {
-            // 在获取数据时发生错误，重定向到错误页面并显示自定义错误消息 / An error occurred while fetching data, redirect to an error page with a custom error message
-            // 使用view函数来返回错误视图，确保你的视图文件夹中有errors.general视图文件 / Use the view function to return an error view, ensure you have an errors.general view file in your views folder
-            return view('errors.general', ['message' => '无法显示词条列表，请稍后再试。/Failed to display the entry list, please try again later.'], 500);
-        }
-
-
-        // 如果成功获取到词条列表，返回词条列表视图 / If the list of entries is successfully retrieved, return the entries list view
-        // 使用compact函数将词条变量传递给视图，以便在视图中显示词条列表 / Use the compact function to pass the entries variable to the view, so the list of entries can be displayed in the view
-        return view('entries.index', compact('entries'))->with('message', '来啦');
-    }
-
-    /**
-     * 显示创建新词条的表单。
-     * Display the form for creating a new entry.
-     * 这个方法现在增加了一个检查，确保只有当用户已经登录时才能访问创建词条的表单。
-     * If the user is not authenticated, they are redirected to the login page.
-     * 
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // 检查用户是否已经登录 / Check if the user is authenticated
-        if (!Auth::check()) {
-            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
-            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
-        }
-
-        // 使用 session() 辅助函数设置 session 数据
-        session()->flash('message','Entry创建区加载成功！');
-
-        // 用户已登录，显示创建新词条的表单 / The user is authenticated, display the form for creating a new entry
-        return view('entries.create');
-        // return Inertia::render('entry/create');
-    }
 
     /**
      * store
@@ -186,6 +119,94 @@ class EntryController extends Controller
             return back()->withInput()->withErrors('数据库异常，词条创建失败');
         }
     }
+
+    /**
+     * store_force
+     * 词条创建方法
+     * 该方法用于创建新的词条及相关数据，并确保整个创建过程的事务性和数据的完整性。
+     * @param Request $request 请求对象，包含需要创建词条的相关数据
+     * @return \Illuminate\Http\RedirectResponse 返回重定向响应
+     */
+    public function store_force(Request $request)
+    {
+        // 检查用户是否已经登录
+        if (!Auth::check()) {
+            return response()->json(['error' => '用户未登录'], 401);
+        }
+    
+        // 数据验证
+        $validated =$request->validate([
+            'name' => 'required|max:255',
+            'meta' => '',
+            'description' => 'required',
+            'content' => 'required',
+        ]);
+    
+        // 开始数据库事务
+        DB::beginTransaction();
+    
+        try {
+            // 创建新词条
+            $entry = Entry::create([
+                'name' => $validated['name'],
+                'meta' => $validated['meta'],
+                'status' => 1101111545, // 初始状态，等待审核
+            ]);
+    
+            if (!$entry) {
+                throw new \Exception('Entry creation failed');
+            }
+    
+            // 创建主分支（CB）
+            $branch =$entry->branches()->create([
+                'name' => $validated['name'],
+                'entry_id' => $entry->id,
+                'is_pb' => true,
+                'is_free' => true,
+                'status' => 1201111545, // 初始状态，等待审核
+            ]);
+    
+            if (!$branch) {
+                throw new \Exception('Branch creation failed');
+            }
+    
+            EntryBranchUser::newOwner($branch->id, Auth::id());
+    
+            // 创建版本
+            $version =$branch->versions()->create([
+                'entry_branch_id' => $branch->id,
+                'name' => $validated['name'],
+                'meta' => $validated['meta'],
+                'description' => $validated['description'],
+                'content' => $validated['content'],
+                'author_id' => Auth::id(),
+                'status' => 1301111545, // 初始状态，等待审核
+            ]);
+    
+            if (!$version) {
+                throw new \Exception('Version creation failed');
+            }
+    
+            $branch->changeDemoVersion($version->id);
+            $entry->changeDemoBranch($branch->id);
+    
+            // 提交数据库事务
+            DB::commit();
+    
+            // 返回包含 "success" 的 JSON 响应
+            return response()->json(['success' => 'Item successfully created!'], 200);
+        } catch (\Exception $e) {
+            // 回滚数据库事务
+            DB::rollBack();
+    
+            // 记录错误日志
+            Log::error('[Entry] 词条创建失败: ' . $e->getMessage());
+    
+            // 返回错误 JSON 响应
+            return response()->json(['error' => '数据库异常，词条创建失败'], 500);
+        }
+    }
+    
 
     /**
      * show
@@ -777,5 +798,4 @@ class EntryController extends Controller
             return response()->json(['error' => 'Failed to create link', 'errorInfo' => $e], [500]);
         }
     }
-
 }

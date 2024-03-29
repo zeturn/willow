@@ -61,8 +61,11 @@ use App\Http\Controllers\API\{
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::prefix('')->name('api.')->group(function () {
 Route::middleware(['throttle:api'])->group(function () {
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware(['auth:api'])->group(function () {
+    
+Route::middleware('auth:api')->post('/user', function (Request $request) {
     return $request->user();
 });
 
@@ -79,12 +82,12 @@ Route::post('/media/upload', [MediasController::class, 'store'])->name('media.up
      */
 
     // 根路由组 - Entry
-    Route::prefix('entry')->name('entry.')->group(function () {
+Route::middleware('auth:api')->prefix('entry')->name('entry.')->group(function () {
 
         // Entry的基本操作 名称为 entry.*
         #Route::get('/', [EntryApiController::class, 'index'])->name('index');
         #Route::get('/create', [EntryApiController::class, 'create'])->name('create');
-        Route::post('/store', [EntryApiController::class, 'store'])->name('store');
+        #Route::post('/store', [EntryApiController::class, 'store'])->name('store');
         Route::post('/store/force', [EntryApiController::class, 'store_force'])->name('store_force');
         Route::get('/{entryId}', [EntryApiController::class, 'show'])->name('show');
         Route::delete('/{id}', [EntryApiController::class, 'delete'])->name('delete');
@@ -187,3 +190,5 @@ Route::post('/media/upload', [MediasController::class, 'store'])->name('media.up
     });//for entry
 
 });//middleware(['throttle:api'])
+});//middleware(['auth:api'])
+});//route api

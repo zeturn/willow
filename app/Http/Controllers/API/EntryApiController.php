@@ -35,7 +35,7 @@ class EntryApiController extends Controller
     public function store(Request $request)
     {
         // 检查用户是否已经登录 / Check if the user is authenticated
-        if (!Auth::check()) {
+        if (!$request->user()) {
             // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
             return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
         }
@@ -76,7 +76,7 @@ class EntryApiController extends Controller
                 throw new \Exception('Branch creation failed');
             }
 
-            EntryBranchUser::newOwner($branch->id, Auth::id());
+            EntryBranchUser::newOwner($branch->id, $request->user()->id);
 
             // 创建版本（Version）/ Create version
             $version = $branch->versions()->create([
@@ -85,7 +85,7 @@ class EntryApiController extends Controller
                 'meta' => $validated['meta'],
                 'description' => $validated['description'],
                 'content' => $validated['content'],
-                'author_id' => Auth::id(),
+                'author_id' => $request->user()->id,
                 'status' => 1301113244, // 初始状态，等待审核 / Initial status, pending review
             ]);
 
@@ -130,7 +130,7 @@ class EntryApiController extends Controller
     public function store_force(Request $request)
     {
         // 检查用户是否已经登录
-        if (!Auth::check()) {
+        if (!$request->user()) {
             return response()->json(['error' => '用户未登录'], 401);
         }
     
@@ -170,7 +170,7 @@ class EntryApiController extends Controller
                 throw new \Exception('Branch creation failed');
             }
     
-            EntryBranchUser::newOwner($branch->id, Auth::id());
+            EntryBranchUser::newOwner($branch->id, $request->user()->id);
     
             // 创建版本
             $version =$branch->versions()->create([
@@ -179,7 +179,7 @@ class EntryApiController extends Controller
                 'meta' => $validated['meta'],
                 'description' => $validated['description'],
                 'content' => $validated['content'],
-                'author_id' => Auth::id(),
+                'author_id' => $request->user()->id,
                 'status' => 1301111545, // 初始状态，等待审核
             ]);
     

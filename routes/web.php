@@ -24,6 +24,7 @@ use App\Http\Controllers\{
 
     WorkstationController,
     UserController,
+    ExploreController,
 
     EntryController,
     EntryBranchController,
@@ -99,7 +100,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
-
+Route::prefix('explore')->name('explore.')->group(function () {
+    Route::get('/', [ExploreController::class, 'entry_waterfall'])->name('entry_waterfall');
+});
 
 Route::resource('/post', PostController::class);
 //Route::group(['middleware' => ['auth']], function() {

@@ -28,6 +28,7 @@ class EntryController extends Controller
 
     function __construct()
     {
+        $this->middleware('permission:entry-index', ['only' => ['index']]);
         $this->middleware('permission:entry-create', ['only' => ['create','store']]);
         $this->middleware('permission:entry-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:entry-soft-edit', ['only' => ['delete','softDelete']]);//一般用户，仅可以软删除

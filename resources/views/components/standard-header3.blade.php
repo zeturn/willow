@@ -26,7 +26,7 @@
         navigationMenuClose(){
             this.navigationMenuOpen = false;
             this.navigationMenu = '';
-        } }" class="relative md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center z-50">
+        } }" class="relative md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center z-40">
         <div class="relative">
             <ul class="flex items-center justify-center flex-1 p-1 list-none rounded-md text-neutral-700 group">
                 <li>
@@ -73,6 +73,10 @@
                 <!-- Entry -->
                 <div x-show="navigationMenu == 'entry-card'" class="flex items-stretch justify-center w-full max-w-2xl p-6 gap-x-3">
                     <div class="w-72">
+                        <a href="{{ url('/explore') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                            <span class="block mb-1 font-medium text-black">Explore 🔭</span>
+                            <span class="block font-light leading-5 opacity-50">Have some fun! 🤣🤟☣️</span>
+                        </a>
                         <a href="{{ url('/entry') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
                             <span class="block mb-1 font-medium text-black">Index</span>
                             <span class="block font-light leading-5 opacity-50">Main page of entry index.</span>

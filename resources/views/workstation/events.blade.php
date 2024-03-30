@@ -14,6 +14,12 @@
     <div class="flex flex-wrap -mx-4">
         <div class="w-full px-4">
             <div class="bg-white dark:bg-gray-800 p-4 rounded mb-6">
+
+            <div class="mb-10 mt-5 p-4">
+                <h1 class="text-4xl font-bold mb-2">Workstation</h1>
+                <p class="text-sm text-gray-600 mt-1">在这里查看账户中的对象</p>
+            </div>
+
                 <div class="px-8">
 
                     <ul class="flex flex-wrap items-center border-b border-slate-200" role="tablist">

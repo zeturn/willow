@@ -1,14 +1,22 @@
 @extends('workstation.events')
 
 @section('events_content')
-<div class="bg-green-100 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 shadow">
-    <h3 class="text-2xl font-semibold mb-4">{{ __('Comments') }}</h3>
+<div class="bg-white rounded-lg p-8 dark:border-gray-700 dark:bg-gray-800 mb-4">
     @foreach($comments as $comment)
-    <div class="mb-2">
-        <a href="{{ route('comment.show', $comment->id) }}" class="hover:text-green-500">
-        <span class="font-semibold">{{ \Illuminate\Support\Str::limit($comment->content, 30) }}</span> - <span class="text-sm text-gray-500">Updated at: {{ $comment->updated_at->format('M d, Y H:i') }}</span>
-        </a>
+    <div class="flex items-start mb-6">
+        <div class="flex-1">
+            <a href="{{ route('comment.show', $comment->id) }}" class="hover:text-blue-500">
+                <h4 class="text-lg font-semibold">{{ \Illuminate\Support\Str::limit($comment->content, 30) }}</h4>
+            </a>
+            <p class="text-sm text-gray-500">{{ $comment->updated_at->format('M d, Y H:i') }}</p>
+        </div>
+        <span class="text-gray-500 text-sm ml-4">{{ $comment->id }}</span>
     </div>
     @endforeach
+    <!-- Pagination -->
+    <div class="mt-4">
+        {{ $comments->links() }}
+    </div>
 </div>
+
 @endsection

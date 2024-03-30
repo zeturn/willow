@@ -17,6 +17,7 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Redis;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
@@ -66,6 +67,24 @@ class WorkstationController extends Controller
         $medias = $user->medias;
         $albums = $user->albums;
 
+        // 定义 Redis 键名
+        $key = 'entry_trend';
+
+        // 尝试从 Redis 获取数据
+        $trend_entries = Redis::get($key);
+
+        // 如果 Redis 中没有数据
+        if (!$trend_entries) {
+            // 获取热榜数据
+            $trend_entries = visits('App\Models\Entry')->top(20);
+
+            // 将数据转换为 JSON 并存储到 Redis，设置过期时间为 10 分钟
+            Redis::setex($key, 600, json_encode($trend_entries));
+        } else {
+            // 如果 Redis 中有数据，则解码 JSON
+            $trend_entries = json_decode($trend_entries);
+        }
+
         // 传递数据到视图
         return view('workstation.index', [
             'user' => $user,
@@ -76,6 +95,7 @@ class WorkstationController extends Controller
             'comments' => $comments,
             'medias' => $medias,
             'albums' => $albums,
+            'trend_entries' => $trend_entries,
         ]);
     }
 
@@ -90,7 +110,7 @@ class WorkstationController extends Controller
         $user = Auth::user();
 
         // 加载用户相关资产
-        $branches = $user->branches;
+        $branches = $user->branches()->paginate(15);
 
         // 传递数据到视图
         return view('workstation.entry-branch-events', [
@@ -111,7 +131,7 @@ class WorkstationController extends Controller
         $user = Auth::user();
 
         // 加载用户相关资产
-        $versions = $user->versions;
+        $versions = $user->versions()->paginate(15);
 
         // 传递数据到视图
         return view('workstation.entry-version-events', [
@@ -132,7 +152,7 @@ class WorkstationController extends Controller
         $user = Auth::user();
 
         // 加载用户相关资产
-        $topics = $user->topics;
+        $topics = $user->topics()->paginate(15);
 
         // 传递数据到视图
         return view('workstation.topic-events', [
@@ -152,7 +172,7 @@ class WorkstationController extends Controller
         // 获取当前登录用户
         $user = Auth::user();
         
-        $comments = $user->comments;
+        $comments = $user->comments()->paginate(15);
 
         // 传递数据到视图
         return view('workstation.comment-events', [
@@ -173,7 +193,7 @@ class WorkstationController extends Controller
         $user = Auth::user();
 
         // 加载用户相关资产
-        $versionTasks = $user->versiontasks;
+        $versionTasks = $user->versiontasks()->paginate(15);
 
         // 传递数据到视图
         return view('workstation.entry-version-task-events', [

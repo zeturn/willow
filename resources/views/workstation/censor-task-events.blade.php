@@ -11,8 +11,9 @@
               </a>
             </div>
           @endforeach
-        @if($versionTasks->count() > 5)
-          <div class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</div>
-        @endif
+        <!-- Pagination -->
+        <div class="mt-4">
+      {{ $versionTasks->links() }}
+    </div>
       </div>
 @endsection

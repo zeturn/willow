@@ -1,14 +1,22 @@
 @extends('workstation.events')
 
 @section('events_content')
-<div class="bg-blue-100 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 shadow">
-    <h3 class="text-2xl font-semibold mb-4">{{ __('Topics') }}</h3>
-    @foreach($topics->take(5) as $topic)
-        <div class="mb-2">
-            <a href="{{ route('topic.show', $topic->id) }}" class="hover:text-blue-500">
-            <span class="font-semibold">{{ $topic->name }}</span> - <span class="text-sm text-gray-500">Updated at: {{ $topic->updated_at->format('M d, Y H:i') }}</span>
-            </a>
+<div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+    @foreach($topics as $topic)
+        <div class="flex items-center justify-between mb-4">
+            <div class="flex flex-col">
+                <a href="{{ route('topic.show', $topic->id) }}" class="text-blue-700 dark:text-blue-400">
+                    <span class="font-semibold text-lg">{{ $topic->name }}</span>
+                </a>
+                <span class="text-sm text-gray-500 mt-1">{{ $topic->updated_at->format('M d, Y H:i') }}</span>
+            </div>
+            <span class="text-gray-500 text-sm">{{ $topic->id }}</span>
         </div>
     @endforeach
+    <!-- Pagination -->
+    <div class="mt-4">
+        {{$topics->links() }}
+    </div>
 </div>
+
 @endsection

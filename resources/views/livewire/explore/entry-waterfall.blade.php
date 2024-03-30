@@ -12,9 +12,8 @@
             @foreach ($entries as $entry)
                 <a href="{{ route('entry.show.explanation', $entry->id) }}" class="bg-white rounded-lg p-6 h-auto">
                     <!-- 显示条目的内容，并加大加粗标题 -->
-                    <h2 class="text-xl font-bold">{{ $entry->name }}</h2>
-                    <p>{{ $entry->content }}</p>
-                    {!! \Illuminate\Support\Str::limit($entry->getDemoBranch()->getDemoVersion()->content) !!}
+                    <h2 class="text-xl font-bold mb-4">{{ $entry->name }}</h2>
+                    <p class="text-gray-600">{!! \Illuminate\Support\Str::limit($entry->getDemoBranch()->getDemoVersion()->content, 50) !!}</p>
                 </a>
             @endforeach
         </div>

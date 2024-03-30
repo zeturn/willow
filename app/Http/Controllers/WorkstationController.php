@@ -78,5 +78,125 @@ class WorkstationController extends Controller
             'albums' => $albums,
         ]);
     }
-    
+
+    public function entry_branch_events(){
+        // 检查用户是否登录
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面
+            return redirect()->route('login');
+        }
+
+        // 获取当前登录用户
+        $user = Auth::user();
+
+        // 加载用户相关资产
+        $branches = $user->branches;
+
+        // 传递数据到视图
+        return view('workstation.entry-branch-events', [
+            'user' => $user,
+            'branches' => $branches,
+            'pagename' => 'entry_branch_events',
+        ]);
+    }
+
+    public function entry_version_events(){
+        // 检查用户是否登录
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面
+            return redirect()->route('login');
+        }
+
+        // 获取当前登录用户
+        $user = Auth::user();
+
+        // 加载用户相关资产
+        $versions = $user->versions;
+
+        // 传递数据到视图
+        return view('workstation.entry-version-events', [
+            'user' => $user,
+            'versions' => $versions,
+            'pagename' => 'entry_version_events',
+        ]);
+    }
+
+    public function topic_events(){
+        // 检查用户是否登录
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面
+            return redirect()->route('login');
+        }
+
+        // 获取当前登录用户
+        $user = Auth::user();
+
+        // 加载用户相关资产
+        $topics = $user->topics;
+
+        // 传递数据到视图
+        return view('workstation.topic-events', [
+            'user' => $user,
+            'topics' => $topics,
+            'pagename' => 'topic_events',
+        ]);
+    }
+
+    public function comment_events(){
+        // 检查用户是否登录
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面
+            return redirect()->route('login');
+        }
+
+        // 获取当前登录用户
+        $user = Auth::user();
+        
+        $comments = $user->comments;
+
+        // 传递数据到视图
+        return view('workstation.comment-events', [
+            'user' => $user,
+            'comments' => $comments,
+            'pagename' => 'comment_events',
+        ]);
+    }
+
+    public function entry_version_task_events(){
+        // 检查用户是否登录
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面
+            return redirect()->route('login');
+        }
+
+        // 获取当前登录用户
+        $user = Auth::user();
+
+        // 加载用户相关资产
+        $versionTasks = $user->versiontasks;
+
+        // 传递数据到视图
+        return view('workstation.entry-version-task-events', [
+            'user' => $user,
+            'versionTasks' => $versionTasks,
+            'pagename' => 'entry_version_task_events',
+        ]);
+    }
+
+    public function censor_task_events(){
+        // 检查用户是否登录
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面
+            return redirect()->route('login');
+        }
+
+        // 获取当前登录用户
+        $user = Auth::user();
+
+        // 传递数据到视图
+        return view('workstation.cesor-task-events', [
+            'user' => $user,
+        ]);
+        
+    }
 }

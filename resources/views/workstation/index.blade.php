@@ -20,7 +20,7 @@
     <!-- Left Column (EntryVersion) -->
     <div class="w-full lg:w-1/4 px-4 py-4 lg:py-0 order-2 lg:order-1">
       <div class="bg-blue-100 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 shadow">
-        <h3 class="text-2xl font-semibold mb-4">{{ __('Entry Version Tasks') }}</h3>
+        <a href="{{ route('workstation.entry_version_task_events')}}" class="text-2xl font-semibold mb-4">{{ __('Entry Version Tasks') }}</a>
           @foreach($versionTasks->take(5) as $item)
             <div class="mb-2">
               <a href="{{ route('entry.version.editor', $item->id) }}" class="hover:text-blue-500">
@@ -29,7 +29,7 @@
             </div>
           @endforeach
         @if($versionTasks->count() > 5)
-          <div class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</div>
+          <a href="{{ route('workstation.entry_version_task_events')}}" class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</a>
         @endif
       </div>
 
@@ -44,7 +44,7 @@
     <div class="w-full lg:w-1/4 px-4 mt-4 lg:mt-0 order-3 lg:order-3">
         <!-- Branches Section -->
         <div class="bg-orange-100 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 shadow">
-            <h3 class="text-2xl font-semibold mb-4">{{ __('Branches') }}</h3>
+            <a href="{{ route('workstation.entry_branch_events') }}" class="text-2xl font-semibold mb-4">{{ __('Branches') }}</a>
               @foreach($branches->take(5) as $branch)
                   <div class="mb-2">
                     <a href="{{ route('entry.branch.show', $branch->id) }}" class="hover:text-orange-500">
@@ -53,13 +53,13 @@
                   </div>
               @endforeach
             @if($branches->count() > 5)
-                <div class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</div>
+                <a href="{{ route('workstation.entry_branch_events') }}" class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</a>
             @endif
         </div>
 
         <!-- Versions Section -->
         <div class="bg-yellow-100 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 shadow">
-            <h3 class="text-2xl font-semibold mb-4">{{ __('Versions') }}</h3>
+            <a href="{{ route('workstation.entry_version_events') }}" class="text-2xl font-semibold mb-4">{{ __('Versions') }}</a>
             @foreach($versions->take(5) as $version)
                 <div class="mb-2">
                   <a href="{{ route('entry.version.show',$version->id) }}" class="hover:text-yellow-500">
@@ -68,13 +68,13 @@
                 </div>
             @endforeach
             @if($versions->count() > 5)
-                <div class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</div>
+                <a href="{{ route('workstation.entry_version_events') }}" class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</a>
             @endif
         </div>
 
         <!-- Topics Section -->
         <div class="bg-blue-100 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 shadow">
-            <h3 class="text-2xl font-semibold mb-4">{{ __('Topics') }}</h3>
+            <a href="{{ route('workstation.topic_events')}}" class="text-2xl font-semibold mb-4">{{ __('Topics') }}</a>
             @foreach($topics->take(5) as $topic)
                 <div class="mb-2">
                   <a href="{{ route('topic.show', $topic->id) }}" class="hover:text-blue-500">
@@ -83,13 +83,13 @@
                 </div>
             @endforeach
             @if($topics->count() > 5)
-                <div class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</div>
+                <a a href="{{ route('workstation.topic_events')}}" class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</a>
             @endif
         </div>
 
         <!-- Comments Section -->
         <div class="bg-green-100 rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 shadow">
-            <h3 class="text-2xl font-semibold mb-4">{{ __('Comments') }}</h3>
+            <a href="{{ route('workstation.comment_events')}}" class="text-2xl font-semibold mb-4">{{ __('Comments') }}</a>
             @foreach($comments->take(5) as $comment)
             <div class="mb-2">
               <a href="{{ route('comment.show', $comment->id) }}" class="hover:text-green-500">
@@ -98,7 +98,7 @@
             </div>
             @endforeach
             @if($comments->count() > 5)
-                <div class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</div>
+                <a href="{{ route('workstation.comment_events')}}" class="text-sm text-gray-600 hover:text-gray-700 cursor-pointer">More...</a>
             @endif
         </div>
     </div>

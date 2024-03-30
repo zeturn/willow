@@ -113,8 +113,14 @@ Route::resource('/post', PostController::class);
      * 
      * 
      */
-    Route::controller(WorkstationController::class)->group(function () {
-        Route::get('/workstation', 'index')->name('workstation.index');
+    Route::prefix('workstation')->name('workstation.')->controller(WorkstationController::class)->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/entry_branch_events', 'entry_branch_events')->name('entry_branch_events');
+        Route::get('/entry_version_events', 'entry_version_events')->name('entry_version_events');
+        Route::get('/topic_events', 'topic_events')->name('topic_events');
+        Route::get('/comment_events', 'comment_events')->name('comment_events');
+        Route::get('/entry_version_task_events', 'entry_version_task_events')->name('entry_version_task_events');
+        Route::get('/censor_task_events', 'censor_task_events')->name('censor_task_events');
     });
 
     Route::get('/user/{id}', [UserController::class, 'showProfile'])->name('user.profile');

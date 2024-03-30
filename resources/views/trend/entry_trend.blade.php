@@ -9,9 +9,14 @@
 
 
 @section('content')
-<div class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md">
-    <h1 class="text-4xl font-bold text-gray-900 mb-4">Entry Trend</h1>
-    <p class="text-lg text-gray-600 mb-8">Entry的访问排行，刷新频率：10分钟</p>
+<div class="container mx-auto px-4 md:px-8 lg:px-16 xl:px-24">
+
+    <div class="mb-10 mt-5 p-4">
+        <h1 class="text-4xl font-bold mb-2">Entry Trend</h1>
+        <p class="text-sm text-gray-600 mt-1">Entry的访问排行，刷新频率：10分钟</p>
+        <p class="text-sm text-gray-600 mt-1">本站内容由用户编写或根据互联网内容自动处理而成，不代表本站观点</p>
+    </div>
+
     <ul class="space-y-4">
         @foreach ($entries as $entry)
         <li class="flex items-center space-x-4 border-b border-gray-200 last:border-b-0 py-2">

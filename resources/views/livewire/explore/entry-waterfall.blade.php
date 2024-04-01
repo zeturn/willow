@@ -18,7 +18,21 @@
             @endforeach
         </div>
 
-    <button wire:click="loadMoreEntries" class="text-center text-gray-500 my-4">Load More 加载更多 ...</button>
+        <div class="flex justify-center">
+            <button wire:click="loadMoreEntries" class=" text-gray-500 font-bold py-2 px-2">
+                Load More 加载更多 ...
+            </button>
+            <div wire:loading class=" text-gray-500 font-bold py-2 px-2"> 
+                <!-- Component: Square horizontal sm sized spinner  -->
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-live="polite" aria-busy="true">
+                <path d="M7 10H3V14H7V10Z" class="fill-emerald-500 animate animate-bounce " />
+                <path d="M14 10H10V14H14V10Z" class="fill-emerald-500 animate animate-bounce  [animation-delay:.2s]" />
+                <path d="M21 10H17V14H21V10Z" class="fill-emerald-500 animate animate-bounce  [animation-delay:.4s]" />
+                </svg>
+                <!-- End Square horizontal sm sized spinner  -->
+            </div>
+        </div>
+
     <div x-data="{
                 observe () {
                     let observer = new IntersectionObserver((entries) => {
@@ -34,7 +48,7 @@
                 }
             }"
             x-init="observe"
-        ></div>      
+        ></div> 
 
     </div>
 </div>

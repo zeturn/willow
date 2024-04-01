@@ -266,8 +266,8 @@
                                         <div class="absolute inset-0 px-4 sm:px-5">
                                             <div class="relative h-full overflow-hidden border border-dashed rounded-md border-neutral-300">
 
-
-											<div>
+                                            <!--用户区域-->
+											<div class="p-6">
 												@guest
 												<button class="inline-flex items-center border-0 py-1 px-4 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
 													<a href="{{ route('login') }}">{{ __('Login')}}</a>
@@ -337,6 +337,104 @@
 												@endguest
 											</div>
 
+                                            <!--链接区域-->
+                                            <div x-data="{ 
+                                                    activeAccordion: '', 
+                                                    setActiveAccordion(id) { 
+                                                        this.activeAccordion = (this.activeAccordion == id) ? '' : id 
+                                                    } 
+                                                }" class="relative w-full mx-auto overflow-hidden text-sm font-normal bg-white border border-gray-200 divide-y divide-gray-200">
+                                                <div x-data="{ id: $id('accordion') }" class="cursor-pointer group">
+                                                    <button @click="setActiveAccordion(id)" class="flex items-center justify-between w-full p-4 text-left select-none group-hover:underline">
+                                                        <span>{{ __('Entry')}}</span>
+                                                        <svg class="w-4 h-4 duration-200 ease-out" :class="{ 'rotate-180': activeAccordion==id }" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                                    </button>
+                                                    <div x-show="activeAccordion==id" x-collapse x-cloak>
+                                                        <div class="p-4 pt-0 opacity-70">
+                                                            <div class="">
+                                                                <a href="{{ url('/explore') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                    <span class="block mb-1 font-medium text-black">Explore 🔭</span>
+                                                                    <span class="block font-light leading-5 opacity-50">Have some fun! 🤣🤟☣️</span>
+                                                                </a>
+                                                                @can('entry-index')
+                                                                <a href="{{ url('/entry') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                    <span class="block mb-1 font-medium text-black">Index 📕</span>
+                                                                    <span class="block font-light leading-5 opacity-50">Main page of entry index.</span>
+                                                                </a>
+                                                                @endcan
+                                                                @can('entry-create')
+                                                                <a href="{{ url('/entry/create') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                    <span class="block mb-1 font-medium text-black">Create Entry ➕</span>
+                                                                    <span class="block leading-5 opacity-50">Entry Create Page</span>
+                                                                </a>
+                                                                @endcan
+                                                                @can('entry-censor')
+                                                                <a href="{{ route('censor.tasks.list.entry') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                    <span class="block mb-1 font-medium text-black">Censor List 👮</span>
+                                                                    <span class="block leading-5 opacity-50">Censor List Page</span>
+                                                                </a>
+                                                                @endcan
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div x-data="{ id: $id('accordion') }" class="cursor-pointer group">
+                                                    <button @click="setActiveAccordion(id)" class="flex items-center justify-between w-full p-4 text-left select-none group-hover:underline">
+                                                        <span>{{ __('Discuss')}}</span>
+                                                        <svg class="w-4 h-4 duration-200 ease-out" :class="{ 'rotate-180': activeAccordion==id }" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                                    </button>
+                                                    <div x-show="activeAccordion==id" x-collapse x-cloak>
+                                                        <div class="p-4 pt-0 opacity-70">
+                                                            <div class="">
+                                                                <a href="{{ route('wall.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                    <span class="block mb-1 font-medium text-black">Wall index</span>
+                                                                    <span class="block font-light leading-5 opacity-50">index of wall</span>
+                                                                </a>
+                                                                <a href="{{ route('censor.tasks.list.wall') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                    <span class="block mb-1 font-medium text-black">Wall Censor List</span>
+                                                                    <span class="block font-light leading-5 opacity-50">Wall Censor List Page</span>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div x-data="{ id: $id('accordion') }" class="cursor-pointer group">
+                                                    <button @click="setActiveAccordion(id)" class="flex items-center justify-between w-full p-4 text-left select-none group-hover:underline">
+                                                        <span>{{ __('Category')}}</span>
+                                                        <svg class="w-4 h-4 duration-200 ease-out" :class="{ 'rotate-180': activeAccordion==id }" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                                    </button>
+                                                    <div x-show="activeAccordion==id" x-collapse x-cloak>
+                                                        <div class="p-4 pt-0 opacity-70">
+                                                            <div class="">
+                                                                <a href="{{ route('categories.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                    <span class="block mb-1 font-medium text-black">Category Index</span>
+                                                                    <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
+                                                                </a>
+                                                                <a href="{{ route('trees.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                    <span class="block mb-1 font-medium text-black">Tree</span>
+                                                                    <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
+                                                                </a>
+                                                                <a href="{{ route('dcg.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                    <span class="block mb-1 font-medium text-black">DCG</span>
+                                                                    <span class="block leading-5 opacity-50">Main page of DCG index.</span>
+                                                                </a>
+                                                            </div>
+                                                            <div class="">
+                                                                <a href="{{ route('nodes.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                    <span class="block mb-1 font-medium text-black">Node</span>
+                                                                    <span class="block font-light leading-5 opacity-50">Main page of node index.</span>
+                                                                </a>
+                                                                <a href="{{ route('edges.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                    <span class="block mb-1 font-medium text-black">Edge</span>
+                                                                    <span class="block leading-5 opacity-50">Main page of edge index.</span>
+                                                                </a>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
 

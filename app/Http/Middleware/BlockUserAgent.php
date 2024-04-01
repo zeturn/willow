@@ -31,7 +31,8 @@ class BlockUserAgent
             'wget',
             'curl',
             'libcurl',
-            'AnotherBadBot'
+            'AnotherBadBot',
+            'AhrefsBot'
         ];
 
         if (in_array($userAgent,$blockList)) {

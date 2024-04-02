@@ -100,42 +100,63 @@
                 <!-- Discuss -->
                 <div x-show="navigationMenu == 'discuss-card'" class="flex items-stretch justify-center w-full p-6">
                     <div class="w-72">
+                        <a href="{{ route('explore.wall_square') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                            <span class="block mb-1 font-medium text-black">Wall Square 💬</span>
+                            <span class="block font-light leading-5 opacity-50">Find some discuss walls</span>
+                        </a>
+                        @can('wall-index')
                         <a href="{{ route('wall.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
                             <span class="block mb-1 font-medium text-black">Wall index</span>
                             <span class="block font-light leading-5 opacity-50">index of wall</span>
                         </a>
+                        @endcan
+                        @can('wall-censor')
                         <a href="{{ route('censor.tasks.list.wall') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
                             <span class="block mb-1 font-medium text-black">Wall Censor List</span>
                             <span class="block font-light leading-5 opacity-50">Wall Censor List Page</span>
                         </a>
+                        @endcan
                     </div>
                 </div>
                 <!-- Category -->
                 <div x-show="navigationMenu == 'category-card'" class="flex items-stretch justify-center w-full p-6">
                     <div class="w-72">
+                        <a href="{{ route('explore.node_square') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                            <span class="block mb-1 font-medium text-black">Node Square</span>
+                            <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
+                        </a>
+                        @can('entry-index')
                         <a href="{{ route('categories.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
                             <span class="block mb-1 font-medium text-black">Category Index</span>
                             <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
                         </a>
+                        @endcan
+                        @can('tree-index')
                         <a href="{{ route('trees.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
                             <span class="block mb-1 font-medium text-black">Tree</span>
                             <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
                         </a>
+                        @endcan
+                        @can('dcg-index')
                         <a href="{{ route('dcg.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
                             <span class="block mb-1 font-medium text-black">DCG</span>
                             <span class="block leading-5 opacity-50">Main page of DCG index.</span>
                         </a>
+                        @endcan
                     </div>
                     <div class="w-72">
+                        @can('node-index')
                         <a href="{{ route('nodes.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
                             <span class="block mb-1 font-medium text-black">Node</span>
                             <span class="block font-light leading-5 opacity-50">Main page of node index.</span>
                         </a>
+                        @endcan
+                        @can('edge-index')
                         <a href="{{ route('edges.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
                             <span class="block mb-1 font-medium text-black">Edge</span>
                             <span class="block leading-5 opacity-50">Main page of edge index.</span>
                         </a>
-
+                        @endcan
                     </div>
                 </div>
             
@@ -387,14 +408,22 @@
                                                     <div x-show="activeAccordion==id" x-collapse x-cloak>
                                                         <div class="p-4 pt-0 opacity-70">
                                                             <div class="">
+                                                                <a href="{{ route('explore.wall_square') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                    <span class="block mb-1 font-medium text-black">Wall Square 💬</span>
+                                                                    <span class="block font-light leading-5 opacity-50">Find some discuss walls</span>
+                                                                </a>
+                                                                @can('wall-index')
                                                                 <a href="{{ route('wall.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
                                                                     <span class="block mb-1 font-medium text-black">Wall index</span>
                                                                     <span class="block font-light leading-5 opacity-50">index of wall</span>
                                                                 </a>
+                                                                @endcan
+                                                                @can('wall-censor')
                                                                 <a href="{{ route('censor.tasks.list.wall') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
                                                                     <span class="block mb-1 font-medium text-black">Wall Censor List</span>
                                                                     <span class="block font-light leading-5 opacity-50">Wall Censor List Page</span>
                                                                 </a>
+                                                                @endcan
                                                             </div>
                                                         </div>
                                                     </div>
@@ -406,31 +435,42 @@
                                                     </button>
                                                     <div x-show="activeAccordion==id" x-collapse x-cloak>
                                                         <div class="p-4 pt-0 opacity-70">
-                                                            <div class="">
-                                                                <a href="{{ route('categories.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                    <span class="block mb-1 font-medium text-black">Category Index</span>
-                                                                    <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
-                                                                </a>
-                                                                <a href="{{ route('trees.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                    <span class="block mb-1 font-medium text-black">Tree</span>
-                                                                    <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
-                                                                </a>
-                                                                <a href="{{ route('dcg.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                    <span class="block mb-1 font-medium text-black">DCG</span>
-                                                                    <span class="block leading-5 opacity-50">Main page of DCG index.</span>
-                                                                </a>
-                                                            </div>
-                                                            <div class="">
-                                                                <a href="{{ route('nodes.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                    <span class="block mb-1 font-medium text-black">Node</span>
-                                                                    <span class="block font-light leading-5 opacity-50">Main page of node index.</span>
-                                                                </a>
-                                                                <a href="{{ route('edges.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                    <span class="block mb-1 font-medium text-black">Edge</span>
-                                                                    <span class="block leading-5 opacity-50">Main page of edge index.</span>
-                                                                </a>
-
-                                                            </div>
+                                                        <div class="">
+                                                            <a href="{{ route('explore.node_square') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                <span class="block mb-1 font-medium text-black">Node Square</span>
+                                                                <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
+                                                            </a>
+                                                            @can('entry-index')
+                                                            <a href="{{ route('categories.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                <span class="block mb-1 font-medium text-black">Category Index</span>
+                                                                <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
+                                                            </a>
+                                                            @endcan
+                                                            @can('tree-index')
+                                                            <a href="{{ route('trees.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                <span class="block mb-1 font-medium text-black">Tree</span>
+                                                                <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
+                                                            </a>
+                                                            @endcan
+                                                            @can('dcg-index')
+                                                            <a href="{{ route('dcg.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                <span class="block mb-1 font-medium text-black">DCG</span>
+                                                                <span class="block leading-5 opacity-50">Main page of DCG index.</span>
+                                                            </a>
+                                                            @endcan
+                                                            @can('node-index')
+                                                            <a href="{{ route('nodes.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                <span class="block mb-1 font-medium text-black">Node</span>
+                                                                <span class="block font-light leading-5 opacity-50">Main page of node index.</span>
+                                                            </a>
+                                                            @endcan
+                                                            @can('edge-index')
+                                                            <a href="{{ route('edges.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
+                                                                <span class="block mb-1 font-medium text-black">Edge</span>
+                                                                <span class="block leading-5 opacity-50">Main page of edge index.</span>
+                                                            </a>
+                                                            @endcan
+                                                        </div>
                                                         </div>
                                                     </div>
                                                 </div>

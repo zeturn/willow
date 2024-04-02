@@ -14,9 +14,9 @@
                     <h2 class="title-font font-medium text-gray-900 dark:text-gray-300 tracking-widest text-sm mb-3">EXPLORE</h2>
                     <nav class="list-none">
                         <li><a href="/" class="text-gray-600 hover:text-gray-800">Index</a></li>
-                        <li><a href="/explore" class="text-gray-600 hover:text-gray-800">Entries</a></li>
-                        <li><a href="/wall" class="text-gray-600 hover:text-gray-800">Wall</a></li>
-                        <li><a href="/topic" class="text-gray-600 hover:text-gray-800">Topics</a></li>
+                        <li><a href="{{ route('explore.entry_waterfall') }}" class="text-gray-600 hover:text-gray-800">Entries</a></li>
+                        <li><a href="{{ route('explore.wall_square') }}" class="text-gray-600 hover:text-gray-800">Wall</a></li>
+                        <li><a href="{{ route('explore.node_square') }}" class="text-gray-600 hover:text-gray-800">Node</a></li>
                     </nav>
                 </div>
 

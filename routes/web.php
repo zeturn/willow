@@ -102,6 +102,8 @@ Route::middleware([
 
 Route::prefix('explore')->name('explore.')->group(function () {
     Route::get('/', [ExploreController::class, 'entry_waterfall'])->name('entry_waterfall');
+    Route::get('/wall', [ExploreController::class, 'wallSquare'])->name('wall_square');
+    Route::get('/node', [ExploreController::class, 'NodeSquare'])->name('node_square');
 });
 
 Route::resource('/post', PostController::class);

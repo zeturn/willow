@@ -15,7 +15,7 @@
             <section class="flex flex-wrap items-center py-10 px-6">
                 <div class="w-full lg:w-1/2">
                     <h1 class="text-6xl font-extrabold mb-6 text-gray-800 dark:text-white">{{ __('欢迎来到 memeGit 开发站点') }}</h1>
-                    <p class="text-xl mb-6 text-gray-800 dark:text-white">{{ __('为人而编写的百科全书') }}</p>
+                    <p class="text-xl mb-6 text-gray-800 dark:text-white">{{ __('记录迷因的百科全书') }}</p>
                     @guest
                     <a href="{{ route('register') }}" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">{{ __('Sign up') }}</a>
                     @endguest
@@ -36,7 +36,6 @@
                 </div>
             </section>
         </div> <!-- End of Main Column -->
-        <button onclick="window.toast('Message', {type: 'success', description: 'short description', position: 'bottom-left', html: ''})">弹出通知</button>
 
         <!-- Footer -->
         <footer class="mt-16 p-6 bg-gradient-to-tl from-teal-500 to-green-500 text-white rounded-lg shadow-md">

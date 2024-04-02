@@ -39,12 +39,13 @@ class EmailVerification extends Model
     {
         // 使用Eloquent查找用户
         $user = Auth::user();
-        // 从Redis中读取用户的新邮箱
-        $newEmail = Redis::get("user:{$user->id}:new_email");
+
 
         if($this->action_type == 0){//注册
             Mail::to($this->user->email)->send(new EmailVerificationMail($this));            
         }else{//更新邮箱
+            // 从Redis中读取用户的新邮箱
+            $newEmail = Redis::get("user:{$user->id}:new_email");
             Mail::to($newEmail)->send(new EmailVerificationMail($this));   
         }
 

@@ -3,9 +3,9 @@
     <div class="container mx-auto px-4 md:px-8 lg:px-16 xl:px-24">
 
         <div class="mb-10 mt-5 p-4 dark:bg-gray-800 dark:text-white">
-            <h1 class="text-4xl font-bold mb-2">探索 🔭</h1>
-            <p class="text-sm text-gray-600 mt-1 dark:text-gray-400">此页根据近期更新及实时热度推荐，与个人偏好无关👍</p>
-            <p class="text-sm text-gray-600 mt-1 dark:text-gray-400">⚠️本站内容由用户编写或根据互联网内容自动处理而成，不代表本站观点，也不代表运营者观点</p>
+            <h1 class="text-4xl font-bold mb-2">{{ __('entry.explore')}} 🔭</h1>
+            <p class="text-sm text-gray-600 mt-1 dark:text-gray-400">{{ __('This page is recommended based on recent updates and real-time popularity, and has nothing to do with personal preferences👍')}}</p>
+            <p class="text-sm text-gray-600 mt-1 dark:text-gray-400">{{ __(    '⚠️The content of this site is written by users or automatically processed based on Internet content. It does not represent the views of this site or the views of the operator.')}}</p>
         </div>
 
 

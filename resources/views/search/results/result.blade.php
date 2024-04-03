@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('title')
-{{ __('Search') }}
+{{ __('Search') }} - {{ $query ?? 'everything' }}
 @endsection
 
 @section('content')

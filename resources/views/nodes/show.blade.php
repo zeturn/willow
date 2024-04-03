@@ -1,6 +1,10 @@
 {{-- Display details of a single node --}}
 @extends('layouts.page')
 
+@section('title')
+{{ $node->name }}
+@endsection
+
 @section('content')
 <div class="container mx-auto p-4 dark:bg-gray-900 max-w-7xl">
     <div class="flex flex-wrap -mx-4">

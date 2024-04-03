@@ -34,8 +34,8 @@
 
             <!-- Demo Branch Information -->
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-                <h2 class="text-2xl mb-2 dark:text-white">{{ __('访问量') }}</h2>
-                <p class="text-gray-700 dark:text-gray-300">{{ __('全部') }}: {{ $Visits }}</p>
+                <h2 class="text-2xl mb-2 dark:text-white">{{ __('Views') }}</h2>
+                <p class="text-gray-700 dark:text-gray-300">{{ __('All') }}: {{ $Visits }}</p>
             </div>
 
             <!-- Demo Branch Information -->

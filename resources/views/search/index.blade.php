@@ -1,5 +1,9 @@
 @extends('layouts.blank')
 
+@section('title')
+{{ __('Search') }}
+@endsection
+
 @section('content')
     <div class="container h-screen flex justify-center mt-10">
         <div class="max-w-md mt-10">

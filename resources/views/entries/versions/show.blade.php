@@ -1,5 +1,9 @@
 @extends('layouts.page')
 
+@section('title')
+{{ $version->name }} - version
+@endsection
+
 @section('content')
 <div class="container mx-auto mt-12 max-w-7xl">
     <div class="flex flex-wrap -mx-4">

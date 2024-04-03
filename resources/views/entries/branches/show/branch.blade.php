@@ -1,6 +1,10 @@
 {{-- entries/branches/show/branch.blade.php --}}
 @extends('layouts.page')
 
+@section('title')
+{{ $branch->entry->name }} - branch
+@endsection
+
 @section('content')
 <div class="container mx-auto p-4 dark:bg-gray-900 max-w-7xl">
     <div class="flex flex-wrap -mx-4">

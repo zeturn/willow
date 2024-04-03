@@ -12,30 +12,30 @@
             <div class="lg:w-3/4 md:w-1/2 w-full flex flex-col md:flex-row justify-evenly">
                 <div class="flex flex-col mb-10">
                     <h2 class="title-font font-medium text-gray-900 dark:text-gray-300 tracking-widest text-sm mb-3">EXPLORE</h2>
-                    <nav class="list-none">
+                    <menu class="list-none">
                         <li><a href="/" class="text-gray-600 hover:text-gray-800">Index</a></li>
                         <li><a href="{{ route('explore.entry_waterfall') }}" class="text-gray-600 hover:text-gray-800">Entries</a></li>
                         <li><a href="{{ route('explore.wall_square') }}" class="text-gray-600 hover:text-gray-800">Wall</a></li>
                         <li><a href="{{ route('explore.node_square') }}" class="text-gray-600 hover:text-gray-800">Node</a></li>
-                    </nav>
+                    </menu>
                 </div>
 
                 <div class="flex flex-col mb-10">
                     <h2 class="title-font font-medium text-gray-900 dark:text-gray-300 tracking-widest text-sm mb-3">RESOURCES</h2>
-                    <nav class="list-none">
+                    <menu class="list-none">
                         <li><a href="/map" class="text-gray-600 hover:text-gray-800">Map</a></li>
                         <li><a href="/category" class="text-gray-600 hover:text-gray-800">Categories</a></li>
                         <li><a href="/trees" class="text-gray-600 hover:text-gray-800">Trees</a></li>
                         <li><a href="/dcg" class="text-gray-600 hover:text-gray-800">DCG</a></li>
-                    </nav>
+                    </menu>
                 </div>
 
                 <div class="flex flex-col mb-10">
                     <h2 class="title-font font-medium text-gray-900 dark:text-gray-300 tracking-widest text-sm mb-3">MEDIA</h2>
-                    <nav class="list-none">
+                    <menu class="list-none">
                         <li><a href="/medias" class="text-gray-600 hover:text-gray-800">Medias</a></li>
                         <li><a href="/albums" class="text-gray-600 hover:text-gray-800">Albums</a></li>
-                    </nav>
+                    </menu>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
 
     <div class="text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-800">
         <div class="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
-            <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900 dark:text-white">
+            <a href="https://pacenotes.hollowdata.com" class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900 dark:text-white">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                 </svg>

@@ -1,5 +1,6 @@
 @extends('entries.show.entry') {{-- Ensure the correct layout file is used --}}
 
+
 @section('entry-content')
 <div class="container mx-auto p-4 dark:bg-gray-700 max-w-7xl">
     <div class="flex flex-wrap -mx-4">

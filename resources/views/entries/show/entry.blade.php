@@ -36,7 +36,7 @@
 
 
                 <div class="flex border-b border-slate-200">
-                    <ul class="flex flex-grow flex-wrap items-center " role="tablist" x-data="tabList()" name="hor_bar">
+                    <ul class="flex flex-grow flex-wrap items-center" role="tablist" x-data="tabList()" name="hor_bar">
                         <li  x-show="maxVisibleLi > 0" role="presentation">
                             <a href="{{ route('entry.show.explanation', $entry->id) }}"  x-ref="tab1" role="tab" aria-controls="tabpanel-explanation" class="{{ $tabname == 'entry.show.explanation' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Explanation</a>
                         </li>

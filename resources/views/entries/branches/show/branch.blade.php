@@ -34,30 +34,32 @@
                     $currentRouteName = Route::currentRouteName();
                 @endphp
 
-                <ul class="flex items-center border-b border-slate-200">
-                    <li role="presentation">
+                <div class="flex border-b border-slate-200">
+
+                <ul class="flex flex-grow flex-wrap items-center " role="tablist" x-data="tabList()" name="hor_bar">
+                    <li x-show="maxVisibleLi > 0" x-ref="tab1" role="presentation">
                         <a href="{{ route('entry.branch.show.showDemoVersion', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-demo-version' ? 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible : outline-none whitespace-nowrap border-emerald-500 hover:border-emerald-600 focus:border-emerald-700 text-emerald-500 hover:text-emerald-600 focus:text-emerald-700 hover:bg-emerald-50 focus:bg-emerald-50' : 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 border-transparent rounded-t focus-visible:outline-none justify-self-center hover:border-emerald-500 focus:border-emerald-600 whitespace-nowrap text-slate-700 stroke-slate-700 hover:bg-emerald-50 hover:text-emerald-500 focus:stroke-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 hover:stroke-emerald-600' }}" role="tab" aria-setsize="3" aria-posinset="1" tabindex="{{ $currentRouteName == 'entries.branches.show.show-demo-version' ? '0' : '-1' }}" aria-controls="tab-panel-1a" aria-selected="{{ $currentRouteName == 'entries.branches.show.show-demo-version' ? 'true' : 'false' }}">
                             <span>Demo Version</span>
                         </a>
                     </li>
-                    <li role="presentation">
+                    <li x-show="maxVisibleLi > 1" x-ref="tab2" role="presentation">
                         <a href="{{ route('entry.branch.show.showVersionList', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-version-list' ? 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none whitespace-nowrap border-emerald-500 hover:border-emerald-600 focus:border-emerald-700 text-emerald-500 hover:text-emerald-600 focus:text-emerald-700 hover:bg-emerald-50 focus:bg-emerald-50' : 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 border-transparent rounded-t focus-visible:outline-none justify-self-center hover:border-emerald-500 focus:border-emerald-600 whitespace-nowrap text-slate-700 stroke-slate-700 hover:bg-emerald-50 hover:text-emerald-500 focus:stroke-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 hover:stroke-emerald-600' }}" role="tab" aria-setsize="3" aria-posinset="2" tabindex="{{ $currentRouteName == 'entries.branches.show.show-version-list' ? '0' : '-1' }}" aria-controls="tab-panel-2a" aria-selected="{{ $currentRouteName == 'entries.branches.show.show-version-list' ? 'true' : 'false' }}">
                             <span>Version List</span>
                         </a>
                     </li>
-                    <li role="presentation">
+                    <li x-show="maxVisibleLi > 2" x-ref="tab3" role="presentation">
                         <a href="{{ route('entry.branch.show.showInfo', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-info' ? 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none whitespace-nowrap border-emerald-500 hover:border-emerald-600 focus:border-emerald-700 text-emerald-500 hover:text-emerald-600 focus:text-emerald-700 hover:bg-emerald-50 focus:bg-emerald-50' : 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 border-transparent rounded-t focus-visible:outline-none justify-self-center hover:border-emerald-500 focus:border-emerald-600 whitespace-nowrap text-slate-700 stroke-slate-700 hover:bg-emerald-50 hover:text-emerald-500 focus:stroke-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 hover:stroke-emerald-600' }}" role="tab" aria-setsize="3" aria-posinset="3" tabindex="{{ $currentRouteName == 'entries.branches.show.show-info' ? '0' : '-1' }}" aria-controls="tab-panel-3a" aria-selected="{{ $currentRouteName == 'entries.branches.show.show-info' ? 'true' : 'false' }}">
                             <span>Info</span>
                         </a>
                     </li>
-                    <li role="presentation">
+                    <li x-show="maxVisibleLi > 3" x-ref="tab4" role="presentation">
                         <a href="{{ route('entry.branch.show.showEditors', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-editors' ? 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none whitespace-nowrap border-emerald-500 hover:border-emerald-600 focus:border-emerald-700 text-emerald-500 hover:text-emerald-600 focus:text-emerald-700 hover:bg-emerald-50 focus:bg-emerald-50' : 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 border-transparent rounded-t focus-visible:outline-none justify-self-center hover:border-emerald-500 focus:border-emerald-600 whitespace-nowrap text-slate-700 stroke-slate-700 hover:bg-emerald-50 hover:text-emerald-500 focus:stroke-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 hover:stroke-emerald-600' }}" role="tab" aria-setsize="3" aria-posinset="4" tabindex="{{ $currentRouteName == 'entries.branches.show.show-editors' ? '0' : '-1' }}" aria-controls="tab-panel-4a" aria-selected="{{ $currentRouteName == 'entries.branches.show.show-editors' ? 'true' : 'false' }}">
                             <span>Editors</span>
                         </a>
                     </li>
                     @auth
                     @if($branch->owner->id == Auth::id())
-                    <li role="presentation">
+                    <li x-show="maxVisibleLi > 4" x-ref="tab5" role="presentation">
                         <a href="{{ route('entry.branch.show.showControl', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-control' ? 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none whitespace-nowrap border-emerald-500 hover:border-emerald-600 focus:border-emerald-700 text-emerald-500 hover:text-emerald-600 focus:text-emerald-700 hover:bg-emerald-50 focus:bg-emerald-50' : 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 border-transparent rounded-t focus-visible:outline-none justify-self-center hover:border-emerald-500 focus:border-emerald-600 whitespace-nowrap text-slate-700 stroke-slate-700 hover:bg-emerald-50 hover:text-emerald-500 focus:stroke-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 hover:stroke-emerald-600' }}" role="tab" aria-setsize="3" aria-posinset="5" tabindex="{{ $currentRouteName == 'entries.branches.show.show-control' ? '0' : '-1' }}" aria-controls="tab-panel-5a" aria-selected="{{ $currentRouteName == 'entries.branches.show.show-control' ? 'true' : 'false' }}">
                             <span>Control</span>
                         </a>
@@ -65,6 +67,97 @@
                     @endif
                     @endauth
                 </ul>
+
+                <div x-data="tabList" class="relative w-12">
+                            <button 
+                                x-show="showButton" 
+                                @click="dropdownOpen = true" 
+                                class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors bg-white rounded-md hover:bg-neutral-200 active:bg-gray-200 focus:bg-gray-300 focus:outline-none disabled:opacity-50 disabled:pointer-events-none dark:bg-gray-700 dark:hover:bg-neutral-600 dark:active:bg-gray-700 dark:focus:bg-gray-700 dark:focus:ring-neutral-400/60">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                </svg>
+                            </button>
+                            <div x-show="dropdownOpen" 
+                                @click.away="dropdownOpen=false"
+                                x-transition:enter="ease-out duration-200"
+                                x-transition:enter-start="-translate-y-2"
+                                x-transition:enter-end="translate-y-0"
+                                class="absolute top-0 z-50 w-56 mt-12 -translate-x-1/2 left-1/2"
+                                x-cloak>
+                                <div class="p-1 mt-1 text-sm bg-white border rounded-md shadow-md border-neutral-200/70 text-neutral-700">
+                                    <a x-show="maxVisibleLi < 1" href="{{ route('entry.branch.show.showDemoVersion', $branch->id) }}" class="{{$currentRouteName == 'entries.branches.show.show-demo-version' ? 'block px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-100 hover:text-emerald-900' : 'block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}" role="menuitem" tabindex="-1" id="tab-panel-1a">Demo Version</a>
+                                    <a x-show="maxVisibleLi < 2" href="{{ route('entry.branch.show.showVersionList', $branch->id) }}" class="{{$currentRouteName == 'entries.branches.show.show-version-list' ? 'block px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-100 hover:text-emerald-900' : 'block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}" role="menuitem" tabindex="-1" id="tab-panel-2a">Version List</a>
+                                    <a x-show="maxVisibleLi < 3" href="{{ route('entry.branch.show.showInfo', $branch->id) }}" class="{{$currentRouteName == 'entries.branches.show.show-info' ? 'block px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-100 hover:text-emerald-900' : 'block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}" role="menuitem" tabindex="-1" id="tab-panel-3a">Info</a>
+                                    <a x-show="maxVisibleLi < 4" href="{{ route('entry.branch.show.showEditors', $branch->id) }}" class="{{$currentRouteName == 'entries.branches.show.show-editors' ? 'block px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-100 hover:text-emerald-900' : 'block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}" role="menuitem" tabindex="-1" id="tab-panel-4a">Editors</a>
+                                    @auth
+                                    @if($branch->owner->id == Auth::id())
+                                    <a x-show="maxVisibleLi < 5" href="{{ route('entry.branch.show.showControl', $branch->id) }}" class="{{$currentRouteName == 'entries.branches.show.show-control' ? 'block px-4 py-2 text-sm text-emerald-700 hover:bg-emerald-100 hover:text-emerald-900' : 'block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}" role="menuitem" tabindex="-1" id="tab-panel-5a">Control</a>
+                                    @endif
+                                    @endauth
+                                </div>
+                            </div>
+                    </div><!--alp-->
+
+                    </div>
+
+                <script>
+                                document.addEventListener('alpine:init', () => {
+                                    Alpine.data('tabList', () => ({
+                                        ulWidth: 0,
+                                        liCount: 0,
+                                        maxVisibleLi: 5,
+                                        // 添加一个属性来控制按钮的显示
+                                        showButton: false,
+                                        dropdownOpen: false,
+
+                                        init() {
+                                            this.maxVisibleLi = 5;
+                                            this.updateData();
+                                            window.addEventListener('resize', this.debounce(this.updateData, 100).bind(this));
+                                        },
+
+                                        debounce(func, wait) {
+                                            let timeout;
+                                            return function() {
+                                                const context = this;
+                                                const args = arguments;
+                                                clearTimeout(timeout);
+                                                timeout = setTimeout(() => func.apply(context, args), wait);
+                                            };
+                                        },
+
+                                        updateData() {
+                                            const ul = document.querySelector('ul[name="hor_bar"]');
+                                            if (ul) {
+                                                ul.style.display = 'none';
+                                                ul.offsetHeight;
+                                                ul.style.display = '';
+                                                this.ulWidth = ul.offsetWidth;
+                                                const lis = ul.querySelectorAll('li');
+                                                lis.forEach(li => {
+                                                    li.style.display = '';
+                                                });
+                                                this.maxVisibleLi = 0;
+                                                let barWidth = 0;
+                                                for (let li of lis) {
+                                                    if (barWidth + li.offsetWidth <= this.ulWidth) {
+                                                        barWidth += li.offsetWidth;
+                                                        this.maxVisibleLi++;
+                                                    } else {
+                                                        break;
+                                                    }
+                                                }
+                                                for (let i = this.maxVisibleLi; i < lis.length; i++) {
+                                                    lis[i].style.display = 'none';
+                                                }
+
+                                                // 更新 showButton 的值
+                                                this.showButton = this.maxVisibleLi < 5;
+                                            }
+                                        }
+                                    }));
+                                });
+                            </script>
 
                 {{-- Tab Content --}}
                 <div class="py-4">

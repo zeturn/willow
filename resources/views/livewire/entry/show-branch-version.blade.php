@@ -1,7 +1,7 @@
-<div class="flex">
+<div class="flex flex-col md:flex-row">
 
     <!-- Left Side: Branches List -->
-    <div class="w-1/2 p-4">
+    <div class="w-full md:w-1/2 p-4">
         <h2 class="text-lg font-semibold">Branches</h2>
         <div class="mt-4 space-y-4 max-h-[750px] overflow-y-auto overscroll-none">
             @foreach($branches as $branch)
@@ -39,7 +39,7 @@
     </div>
 
     <!-- Right Side: Versions List -->
-    <div class="w-1/2 p-4 border-l border-gray-200">
+    <div class="w-full md:w-1/2 md:p-4 md:border-l md:border-gray-200">
         <h2 class="text-lg font-semibold">Versions</h2>
         <div class="mt-4 space-y-4 max-h-[750px] overflow-y-auto overscroll-none">
 

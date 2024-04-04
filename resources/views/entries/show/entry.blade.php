@@ -68,40 +68,38 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
                                 </svg>
-
-
                             </button>
-                                <div x-show="dropdownOpen" 
-                                    @click.away="dropdownOpen=false"
-                                    x-transition:enter="ease-out duration-200"
-                                    x-transition:enter-start="-translate-y-2"
-                                    x-transition:enter-end="translate-y-0"
-                                    class="absolute top-0 z-50 w-56 mt-12 -translate-x-1/2 left-1/2"
-                                    x-cloak>
-                                    <div class="p-1 mt-1 text-sm bg-white border rounded-md shadow-md border-neutral-200/70 text-neutral-700">
-                                        <a href="{{ route('entry.show.explanation', $entry->id) }}" x-show="maxVisibleLi < 1" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
-                                            <span>Explanation</span>
-                                        </a>
-                                        <a href="{{ route('entry.show.branch.BranchesList', ['id' => $entry->id]) }}" x-show="maxVisibleLi < 2" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
-                                            <span>Branch</span>
-                                        </a>
-                                        <a href="{{ route('entry.show.community', $entry->id) }}" x-show="maxVisibleLi < 3" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
-                                            <span>Community</span>
-                                        </a>
-                                        <a href="{{ route('entry.show.album', $entry->id) }}" x-show="maxVisibleLi < 4" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
-                                            <span>Album</span>
-                                        </a>
-                                        <a href="{{ route('entry.show.details', $entry->id) }}" x-show="maxVisibleLi < 5" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
-                                            <span>Details</span>
-                                        </a>
-                                        @auth
-                                        <a href="{{ route('entry.show.control.GeneralSetting', $entry->id) }}" x-show="maxVisibleLi < 6" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
-                                            <span>Control</span>
-                                        </a>
-                                        @endauth
-                                    </div>
+                            <div x-show="dropdownOpen" 
+                                @click.away="dropdownOpen=false"
+                                x-transition:enter="ease-out duration-200"
+                                x-transition:enter-start="-translate-y-2"
+                                x-transition:enter-end="translate-y-0"
+                                class="absolute top-0 z-50 w-56 mt-12 -translate-x-1/2 left-1/2"
+                                x-cloak>
+                                <div class="p-1 mt-1 text-sm bg-white border rounded-md shadow-md border-neutral-200/70 text-neutral-700">
+                                    <a href="{{ route('entry.show.explanation', $entry->id) }}" x-show="maxVisibleLi < 1" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
+                                        <span>Explanation</span>
+                                    </a>
+                                    <a href="{{ route('entry.show.branch.BranchesList', ['id' => $entry->id]) }}" x-show="maxVisibleLi < 2" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
+                                        <span>Branch</span>
+                                    </a>
+                                    <a href="{{ route('entry.show.community', $entry->id) }}" x-show="maxVisibleLi < 3" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
+                                        <span>Community</span>
+                                    </a>
+                                    <a href="{{ route('entry.show.album', $entry->id) }}" x-show="maxVisibleLi < 4" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
+                                        <span>Album</span>
+                                    </a>
+                                    <a href="{{ route('entry.show.details', $entry->id) }}" x-show="maxVisibleLi < 5" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
+                                        <span>Details</span>
+                                    </a>
+                                    @auth
+                                    <a href="{{ route('entry.show.control.GeneralSetting', $entry->id) }}" x-show="maxVisibleLi < 6" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
+                                        <span>Control</span>
+                                    </a>
+                                    @endauth
                                 </div>
-                            </div><!--alp-->
+                            </div>
+                    </div><!--alp-->
 
 
 

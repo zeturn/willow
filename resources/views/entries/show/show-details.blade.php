@@ -56,11 +56,23 @@
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4">其他信息</h3>
                 <!-- 在这里添加额外的信息或组件 -->
+                <!-- 访问量 字段 -->
+                <div class="mb-6">
+                    <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="branch_count">
+                        日访问量
+                    </label>
+                    <p class="text-gray-700 dark:text-gray-400 leading-tight">-</p>
+                    <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="branch_count">
+                        总访问量
+                    </label>
+                    <p class="text-gray-700 dark:text-gray-400 leading-tight">-</p>
+                </div>
             </div>
 
             <!-- 另一个卡片，例如相关链接或联系信息 -->
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800">
                 <h3 class="text-xl font-bold text-gray-800 dark:text-white mb-4">相关链接</h3>
+                <p class="text-gray-700 dark:text-gray-400 leading-tight">-</p>
                 <!-- 在这里添加链接或其他内容 -->
             </div>
         </div>

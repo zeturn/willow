@@ -23,8 +23,9 @@
                     <a class="inline-flex items-center py-1 font-normal hover:text-neutral-900 focus:outline-none z-10">{{ $topic->name }}</a>
                 </li>
             </ol>
-            <span class="bg-transparent text-yellow-500 border border-yellow-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Topic</span>
-
+            <div>
+                <span class="bg-transparent text-yellow-500 border border-yellow-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Topic</span>
+            </div>
         </nav>
 
         <h1 class="text-3xl font-bold mb-2">{{ $topic->name }}</h1>

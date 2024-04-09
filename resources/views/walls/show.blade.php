@@ -21,7 +21,9 @@
                     </li>
                 </ol>
 
-                <span class="bg-transparent text-yellow-500 border border-yellow-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Wall</span>
+                <div>
+                    <span class="bg-transparent text-yellow-500 border border-yellow-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Wall</span>
+                </div>
             </nav>
 
             <h1 class="text-2xl font-bold mb-2">{{ $wall->name }}</h1>

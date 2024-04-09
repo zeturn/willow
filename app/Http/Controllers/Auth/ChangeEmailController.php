@@ -39,7 +39,8 @@ class ChangeEmailController extends Controller
         if ($validator->fails()) {
             return back()->withErrors($validator)->withInput();
         }
-
+        // 将用户ID和新邮箱存储到Redis中
+        Redis::set("user:{$user->id}:new_email",$request->new_email);
         // 创建EmailVerification对象
         $emailVerification = new EmailVerification;
         $emailVerification->user_id =$user->id;
@@ -49,9 +50,6 @@ class ChangeEmailController extends Controller
         $emailVerification->save();
         $emailVerification->sendVerificationEmail(); // 发送验证邮件
 
-
-        // 将用户ID和新邮箱存储到Redis中
-        Redis::set("user:{$user->id}:new_email",$request->new_email);
 
         // 这里可以添加发送确认邮件的逻辑
         $encryptedUuid =$emailVerification->encryptUuid($emailVerification->id);

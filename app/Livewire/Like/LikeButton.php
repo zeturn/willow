@@ -3,6 +3,7 @@
 namespace App\Livewire\Like;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Like;
 
@@ -12,14 +13,31 @@ class LikeButton extends Component
     public $itemId;  // 项目的ID
     public $itemType; // 项目的类型
     public $isLiked; // 是否喜爱
+    public $likeCount; //喜爱数量
 
     public function mount($itemId, $itemType)
     {
         $this->itemId = $itemId;
         $this->itemType = $itemType;
-
-
         $this->isLiked = $this->isItemLikedByUser(Auth::user());
+        $this->likeCount = $this->getlikeCount();
+    }
+
+    public function getlikeCount(){
+
+        $cached_count = Redis::get("like:itemId:{$this->itemId}:itemType:{$this->itemType}:likecount");
+
+        if($cached_count){
+            return $cached_count;
+        }else{
+            $likeCount = Like::where('model_type', $this->itemType)
+                ->where('model_id', $this->itemId)
+                ->count();
+        
+            // 将点赞量存储到Redis中
+            Redis::set("like:itemId:{$this->itemId}:itemType:{$this->itemType}:likecount",$likeCount);
+            return $likeCount;
+        }
     }
 
     public function toggleLike()
@@ -40,6 +58,11 @@ class LikeButton extends Component
             //$this->isLiked = !$this->isLiked; // 切换点赞状态
             //dd($this->isLiked);
             $this->dispatch('likeButtonUpdated', $this->isLiked);
+
+            $this->likeCount = $this->likeCount + 1;
+
+            Redis::set("like:itemId:{$this->itemId}:itemType:{$this->itemType}:likecount",$this->likeCount);
+            $this->dispatch('likeButtonUpdated', $this->likeCount);
         }else{
             return redirect()->guest(route('login'));
         }
@@ -87,6 +110,8 @@ class LikeButton extends Component
 
         // 设置 $isLiked 为 false，表示用户取消了点赞
         $this->isLiked = false;
+        $this->likeCount = $this->likeCount - 2;
+        Redis::set("like:itemId:{$this->itemId}:itemType:{$this->itemType}:likecount",$this->likeCount);
     }
     public function render()
     {

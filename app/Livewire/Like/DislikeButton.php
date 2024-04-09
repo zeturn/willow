@@ -3,6 +3,7 @@
 namespace App\Livewire\Like;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Dislike;
 
@@ -12,12 +13,30 @@ class DislikeButton extends Component
     public $itemId;  // 项目的ID 
     public $itemType; // 项目的类型
     public $isDisliked; // 是否喜爱
+    public $dislikeCount; //喜爱数量
 
     public function mount($itemId, $itemType)
     {
         $this->itemId = $itemId;
         $this->itemType = $itemType;
         $this->isDisliked = $this->isItemDislikedByUser(Auth::user());
+        $this->dislikeCount = $this->getDislikeCount();
+    }
+
+    public function getDislikeCount(){
+
+        $cached_count = Redis::get("dislike:itemId:{$this->itemId}:itemType:{$this->itemType}:dislikecount");
+
+        if($cached_count){
+            return $cached_count;
+        }else{
+        $dislikeCount = DisLike::where('model_type', $this->itemType)
+            ->where('model_id', $this->itemId)
+            ->count();
+            // 将点踩量存储到Redis中
+            Redis::set("dislike:itemId:{$this->itemId}:itemType:{$this->itemType}:dislikecount",$dislikeCount);
+            return $dislikeCount;
+        }
     }
 
     public function toggleDislike()
@@ -34,10 +53,15 @@ class DislikeButton extends Component
                 $this->addDislike($user->id);
                 $this->isDisliked = True;
             }
-
+            $this->dislikeCount = $this->dislikeCount+1;
             //$this->isDisliked = !$this->isDisliked; // 切换点赞状态
             //dd($this->isDisliked);
             $this->dispatch('dislikeButtonUpdated', $this->isDisliked);
+
+
+            Redis::set("dislike:itemId:{$this->itemId}:itemType:{$this->itemType}:dislikecount",$this->dislikeCount);
+
+            //$this->dispatch('dislikeButtonUpdated', $this->dislikeCount);
         }else{
             return redirect()->guest(route('login'));
         }
@@ -90,6 +114,11 @@ class DislikeButton extends Component
 
         // 设置 $isDisliked 为 false，表示用户取消了点赞
         $this->isDisliked = false;
+
+        $this->dislikeCount = $this->dislikeCount-2;//why???
+        Redis::set("dislike:itemId:{$this->itemId}:itemType:{$this->itemType}:dislikecount",$this->dislikeCount);
+
+        $this->dispatch('dislikeButtonUpdated', $this->dislikeCount);
     }
 
     public function render()

@@ -21,6 +21,20 @@
                 <div class="bg-white rounded-lg p-2 dark:border-gray-700 dark:bg-gray-900 mb-6 text-gray-700 dark:text-gray-300">
                     <p class="">{!! \Illuminate\Support\Str::markdown($demoVersion->content) !!}</p>
                 </div>
+
+                <div class="m-6 flex items-center">
+                
+                    <div class="mr-6">
+                    <livewire:like.like-button :itemId="$entry->id" :itemType="'Entry'" />
+                    </div>
+
+                    <div>  
+                    <livewire:like.dislike-button :itemId="$entry->id" :itemType="'Entry'" />
+                    </div>
+
+                </div>
+
+                </div>
             </div>
             @else
             <div class="flex flex-col items-center max-w-lg mx-auto text-center">

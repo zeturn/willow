@@ -17,23 +17,20 @@
                         <span class="bg-transparent text-purple-500 border border-purple-500 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:border-gray-600">Demo Branch</span>
                     </div>
                     <div class="text-gray-400 text-sm md:text-right dark:text-gray-300">{{$demoBranch->id}}<p class="md:mr-2">{{$demoBranch->getDemoVersion()->created_at->format('M d, Y') }}</p></div> <!-- id放在右侧 -->
-                </div>
-                <div class="bg-white rounded-lg p-2 dark:border-gray-700 dark:bg-gray-900 mb-6 text-gray-700 dark:text-gray-300">
-                    <p class="">{!! \Illuminate\Support\Str::markdown($demoVersion->content) !!}</p>
-                </div>
 
-                <div class="m-6 flex items-center">
+                </div>
+                    <div class="bg-white rounded-lg p-2 dark:border-gray-700 dark:bg-gray-900 mb-6 text-gray-700 dark:text-gray-300">
+                        <p class="">{!! \Illuminate\Support\Str::markdown($demoVersion->content) !!}</p>
+                    </div>
+                    <div class="m-6 flex items-center">
                 
-                    <div class="mr-6">
+                <div class="mr-6 flex items-center">
                     <livewire:like.like-button :itemId="$entry->id" :itemType="'Entry'" />
                     </div>
 
                     <div>  
                     <livewire:like.dislike-button :itemId="$entry->id" :itemType="'Entry'" />
                     </div>
-
-                </div>
-
                 </div>
             </div>
             @else

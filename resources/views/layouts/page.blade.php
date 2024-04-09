@@ -21,7 +21,7 @@
         <!-- Styles  -->
        @livewireStyles
     </head>
-    <body class="overflow-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+    <body class="overflow-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200 pt-6">
     <div x-data="{
             bannerVisible: false,
             bannerVisibleAfter: 300,

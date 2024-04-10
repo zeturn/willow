@@ -46,171 +46,439 @@ class EntryBranchController extends Controller
         ]);
     }
 
-    public function showDemoVersion($id){
+    /**
+     * 显示演示版本
+     *
+     * 此函数用于显示特定分支的演示版本。
+     * 首先尝试查找对应的分支记录，如果不存在，则抛出异常。
+     * 然后从分支记录中获取演示版本信息。
+     * 最后，将分支和演示版本信息传递给视图。
+     *
+     * @param int $id 分支ID
+     * @return \Illuminate\View\View
+     */
+    public function showDemoVersion($id)
+    {
+        try {
 
+            // Ensure the ID is an string(uuid) to prevent type mismatch.
+            // 确保ID是一个uuid，以防止类型不匹配。
+            $id = (string) $id;
 
-        $branch = EntryBranch::findOrFail($id);
+            // 尝试查找指定ID的分支记录，如果不存在则抛出异常
+            $branch = EntryBranch::findOrFail($id);
 
-        $demoversion = $branch->demoVersion;
-        
-        return view('entries.branches.show.show-demo-version', [
-            'branch' => $branch,
-            'demoversion' => $demoversion,
-        ]);
+            // 从分支记录中获取演示版本信息
+            $demoversion =$branch->demoVersion;
+
+            // 将分支和演示版本信息传递给视图
+            return view('entries.branches.show.show-demo-version', [
+                'branch' => $branch,
+                'demoversion' => $demoversion,
+            ]);
+        } catch (\Exception $e) {
+            // 捕获任何异常并记录错误信息
+            \Log::error("Error fetching demo version: " . $e->getMessage());
+
+            // 可以选择返回错误视图或进行其他错误处理
+            return view('errors.general');
+        }
     }
 
-    public function showVersionList($id){
 
-        $branch = EntryBranch::findOrFail($id);
-        
-        $versions = $branch->versions;
+    /**
+     * 显示版本列表
+     *
+     * 此函数用于显示特定分支的版本列表。
+     * 首先尝试查找对应的分支记录，如果不存在，则抛出异常。
+     * 然后从分支记录中获取所有版本信息。
+     * 最后，将分支和版本信息传递给视图。
+     *
+     * @param int $id 分支ID
+     * @return \Illuminate\View\View
+     */
+    public function showVersionList($id)
+    {
+        try {
 
-        return view('entries.branches.show.show-version-list', [
-            'branch' => $branch,
-            'versions' => $versions,
-        ]);
+            // Ensure the ID is an string(uuid) to prevent type mismatch.
+            // 确保ID是一个uuid，以防止类型不匹配。
+            $id = (string) $id;
 
+            // 尝试查找指定ID的分支记录，如果不存在则抛出异常
+            $branch = EntryBranch::findOrFail($id);
+
+            // 从分支记录中获取所有版本信息
+            $versions =$branch->versions;
+
+            // 将分支和版本信息传递给视图
+            return view('entries.branches.show.show-version-list', [
+                'branch' => $branch,
+                'versions' => $versions,
+            ]);
+        } catch (\Exception $e) {
+            // 捕获任何异常并记录错误信息
+            \Log::error("Error fetching version list: " . $e->getMessage());
+
+            // 可以选择返回错误视图或进行其他错误处理
+            return view('errors.general');
+        }
     }
 
-    public function showInfo($id){
 
-        $branch = EntryBranch::findOrFail($id);
-        
-        return view('entries.branches.show.show-info', [
-            'branch' => $branch,
-        ]);
+    /**
+     * 显示分支信息
+     *
+     * 此函数用于显示特定分支的详细信息。
+     * 首先尝试查找对应的分支记录，如果不存在，则抛出异常。
+     * 最后，将分支信息传递给视图。
+     *
+     * @param int $id 分支ID
+     * @return \Illuminate\View\View
+     */
+    public function showInfo($id)
+    {
+        try {
 
+            // Ensure the ID is an string(uuid) to prevent type mismatch.
+            // 确保ID是一个uuid，以防止类型不匹配。
+            $id = (string) $id;
+
+
+            // 尝试查找指定ID的分支记录，如果不存在则抛出异常
+            $branch = EntryBranch::findOrFail($id);
+
+            // 将分支信息传递给视图
+            return view('entries.branches.show.show-info', [
+                'branch' => $branch,
+            ]);
+        } catch (\Exception $e) {
+            // 捕获任何异常并记录错误信息
+            \Log::error("Error fetching branch info: " . $e->getMessage());
+
+            // 可以选择返回错误视图或进行其他错误处理
+            return view('errors.general');
+        }
     }
 
-    public function showEditors($id){
 
-        $branch = EntryBranch::findOrFail($id);
+    /**
+     * 显示编辑者列表
+     *
+     * 此函数用于显示特定分支的所有者和编辑者列表。
+     * 首先尝试查找对应的分支记录，如果不存在，则抛出异常。
+     * 然后获取分支的所有者和编辑者信息。
+     * 最后，将分支、所有者和编辑者信息传递给视图。
+     *
+     * @param int $id 分支ID
+     * @return \Illuminate\View\View
+     */
+    public function showEditors($id)
+    {
+        try {
 
-        $owner = $branch->owner;
+            // Ensure the ID is an string(uuid) to prevent type mismatch.
+            // 确保ID是一个uuid，以防止类型不匹配。
+            $id = (string) $id;
+            
+            // 尝试查找指定ID的分支记录，如果不存在则抛出异常
+            $branch = EntryBranch::findOrFail($id);
 
-        $editors = $branch->users;
+            // 获取分支的所有者信息
+            $owner =$branch->owner;
 
-        //dd($owner,$editors);
-        return view('entries.branches.show.show-editors', [
-            'branch' => $branch,
-            'owner' => $owner,
-            'editors' => $editors,
-        ]);
+            // 获取分支的编辑者列表
+            $editors =$branch->users;
 
+            // 将分支、所有者和编辑者信息传递给视图
+            return view('entries.branches.show.show-editors', [
+                'branch' => $branch,
+                'owner' => $owner,
+                'editors' => $editors,
+            ]);
+        } catch (\Exception $e) {
+            // 捕获任何异常并记录错误信息
+            \Log::error("Error fetching editors: " . $e->getMessage());
+
+            // 可以选择返回错误视图或进行其他错误处理
+            return view('errors.general');
+        }
     }
 
-    public function showControl($id){
 
-        $branch = EntryBranch::findOrFail($id);
+    /**
+     * 显示控制面板
+     *
+     * 此函数用于显示特定分支的控制面板。
+     * 首先尝试查找对应的分支记录，如果不存在，则抛出异常。
+     * 然后获取分支的所有者和编辑者信息。
+     * 最后，将分支、所有者和编辑者信息传递给视图。
+     *
+     * @param int $id 分支ID
+     * @return \Illuminate\View\View
+     */
+    public function showControl($id)
+    {
+        try {
 
-        $owner = $branch->owner;
+            // Ensure the ID is an string(uuid) to prevent type mismatch.
+            // 确保ID是一个uuid，以防止类型不匹配。
+            $id = (string) $id;
 
-        $editors = $branch->users;
+            // 尝试查找指定ID的分支记录，如果不存在则抛出异常
+            $branch = EntryBranch::findOrFail($id);
 
-        return view('entries.branches.show.control.control', [
-            'branch' => $branch,
-            'owner' => $owner,
-            'editors' => $editors,
-        ]);
+            // 获取分支的所有者信息
+            $owner =$branch->owner;
 
+            // 获取分支的编辑者列表
+            $editors =$branch->users;
+
+            // 将分支、所有者和编辑者信息传递给视图
+            return view('entries.branches.show.control.control', [
+                'branch' => $branch,
+                'owner' => $owner,
+                'editors' => $editors,
+            ]);
+        } catch (\Exception $e) {
+            // 捕获任何异常并记录错误信息
+            \Log::error("Error fetching control panel data: " . $e->getMessage());
+
+            // 可以选择返回错误视图或进行其他错误处理
+            return view('errors.general');
+        }
     }
+
 
     /**
      * ----------------------------------
      * control 功能区
      */
-    public function pushRequests($id){
+    /**
+     * 显示推送请求
+     *
+     * 此函数用于显示特定分支的版本推送请求。
+     * 首先尝试查找对应的分支记录，如果不存在，则抛出异常。
+     * 然后检查当前用户是否是分支的所有者，如果不是，则返回403 Forbidden响应。
+     * 最后，将分支和待审核的版本信息传递给视图。
+     *
+     * @param int $id 分支ID
+     * @return \Illuminate\View\View
+     */
+    public function pushRequests($id)
+    {
+        try {
+            // Ensure the ID is an string(uuid) to prevent type mismatch.
+            // 确保ID是一个uuid，以防止类型不匹配。
+            $id = (string) $id;
 
-        $branch = EntryBranch::findOrFail($id);
+            // 尝试查找指定ID的分支记录，如果不存在则抛出异常
+            $branch = EntryBranch::findOrFail($id);
 
-        // 检查当前用户是否拥有访问分支的权限
-        if ($branch->owner->id !== Auth::id()) {
-            // 如果没有权限，则返回403 Forbidden响应
-            abort(403);
+            // 检查当前用户是否拥有访问分支的权限
+            if ($branch->owner->id !== Auth::id()) {
+                // 如果没有权限，则返回403 Forbidden响应
+                abort(403);
+            }
+
+            // 获取分支的待审核版本信息
+            $versionsforreview = $branch->versionsforreview;
+
+            // 将分支和待审核的版本信息传递给视图
+            return view('entries.branches.show.control.push-requests', [
+                'branch' => $branch,
+                'versionsforreview' => $versionsforreview,
+            ]);
+        } catch (\Exception $e) {
+            // 捕获任何异常并记录错误信息
+            \Log::error("Error fetching push requests: " . $e->getMessage());
+
+            // 可以选择返回错误视图或进行其他错误处理
+            return view('errors.404');
         }
-
-        $versionsforreview = $branch->versionsforreview; 
-
-        return view('entries.branches.show.control.push-requests', [
-            'branch' => $branch,
-            'versionsforreview' => $versionsforreview,
-        ]);
-
     }
-    public function EditorGroup($id){
 
-        $branch = EntryBranch::findOrFail($id);
+    /**
+     * 显示编辑者组
+     *
+     * 此函数用于显示特定分支的编辑者组信息。
+     * 首先尝试查找对应的分支记录，如果不存在，则抛出异常。
+     * 然后检查当前用户是否是分支的所有者，如果不是，则返回403 Forbidden响应。
+     * 最后，将分支、分支ID、所有者和编辑者信息传递给视图。
+     *
+     * @param int $id 分支ID
+     * @return \Illuminate\View\View
+     */
+    public function EditorGroup($id)
+    {
+        try {
+            // Ensure the ID is an string(uuid) to prevent type mismatch.
+            // 确保ID是一个uuid，以防止类型不匹配。
+            $id = (string) $id;
 
-        // 检查当前用户是否拥有访问分支的权限
-        if ($branch->owner->id !== Auth::id()) {
-            // 如果没有权限，则返回403 Forbidden响应
-            abort(403);
+            // 尝试查找指定ID的分支记录，如果不存在则抛出异常
+            $branch = EntryBranch::findOrFail($id);
+
+            // 检查当前用户是否拥有访问分支的权限
+            if ($branch->owner->id !== Auth::id()) {
+                // 如果没有权限，则返回403 Forbidden响应
+                abort(403);
+            }
+
+            // 获取分支ID
+            $branchId =$branch->id;
+
+            // 获取分支的所有者信息
+            $owner =$branch->owner;
+
+            // 获取分支的编辑者列表
+            $editors =$branch->users;
+
+            // 将分支、分支ID、所有者和编辑者信息传递给视图
+            return view('entries.branches.show.control.editor-group', [
+                'branch' => $branch,
+                'branchId' => $branchId,
+                'owner' => $owner,
+                'editors' => $editors,
+            ]);
+        } catch (\Exception $e) {
+            // 捕获任何异常并记录错误信息
+            \Log::error("Error fetching editor group: " . $e->getMessage());
+
+            // 可以选择返回错误视图或进行其他错误处理
+            return view('errors.general');
         }
-
-        $branchId = $branch->id;
-
-        $owner = $branch->owner;
-
-        $editors = $branch->users;
-
-        return view('entries.branches.show.control.editor-group', [
-            'branch' => $branch,
-            'branchId' => $branchId,
-            'owner' => $owner,
-            'editors' => $editors,
-        ]);
-
     }
+
     
-    public function VersionList($id){
+    /**
+     * 显示版本列表
+     *
+     * 此函数用于显示特定分支的版本列表。
+     * 首先尝试查找对应的分支记录，如果不存在，则抛出异常。
+     * 然后检查当前用户是否是分支的所有者，如果不是，则返回403 Forbidden响应。
+     * 最后，将分支和版本信息传递给视图。
+     *
+     * @param int $id 分支ID
+     * @return \Illuminate\View\View
+     */
+    public function VersionList($id)
+    {
+        try {
+            // Ensure the ID is an string(uuid) to prevent type mismatch.
+            // 确保ID是一个uuid，以防止类型不匹配。
+            $id = (string) $id;
 
-        $branch = EntryBranch::findOrFail($id);
+            // 尝试查找指定ID的分支记录，如果不存在则抛出异常
+            $branch = EntryBranch::findOrFail($id);
 
-        // 检查当前用户是否拥有访问分支的权限
-        if ($branch->owner->id !== Auth::id()) {
-            // 如果没有权限，则返回403 Forbidden响应
-            abort(403);
+            // 检查当前用户是否拥有访问分支的权限
+            if ($branch->owner->id !== Auth::id()) {
+                // 如果没有权限，则返回403 Forbidden响应
+                abort(403);
+            }
+
+            // 获取分支的版本信息
+            $versions =$branch->versions;
+
+            // 将分支和版本信息传递给视图
+            return view('entries.branches.show.control.version-list', [
+                'branch' => $branch,
+                'versions' => $versions,
+            ]);
+        } catch (\Exception $e) {
+            // 捕获任何异常并记录错误信息
+            \Log::error("Error fetching version list: " . $e->getMessage());
+
+            // 可以选择返回错误视图或进行其他错误处理
+            return view('errors.general');
         }
-        
-        $versions = $branch->versions;
-
-        return view('entries.branches.show.control.version-list', [
-            'branch' => $branch,
-            'branch' => $branch,
-            'versions' => $versions,
-        ]);
-
-    }
-    public function GenreralSetting($id){
-
-        $branch = EntryBranch::findOrFail($id);
-        
-        // 检查当前用户是否拥有访问分支的权限
-        if ($branch->owner->id !== Auth::id()) {
-            // 如果没有权限，则返回403 Forbidden响应
-            abort(403);
-        }
-
-        return view('entries.branches.show.control.general-setting', [
-            'branch' => $branch,
-            'branchId' => $branch->id,
-        ]);
-
     }
 
+    /**
+     * 显示拉取规则
+     *
+     * 此函数用于显示特定分支的拉取规则。
+     * 首先尝试查找对应的分支记录，如果不存在，则抛出异常。
+     * 然后检查当前用户是否是分支的所有者，如果不是，则返回403 Forbidden响应。
+     * 最后，将分支信息传递给视图。
+     *
+     * @param int $id 分支ID
+     * @return \Illuminate\View\View
+     */
     public function pullRule($id)
     {
-        $branch = EntryBranch::findOrFail($id);
-        // 检查当前用户是否拥有访问分支的权限
-        if ($branch->owner->id !== Auth::id()) {
-            // 如果没有权限，则返回403 Forbidden响应
-            abort(403);
+        try {
+
+            // Ensure the ID is an string(uuid) to prevent type mismatch.
+            // 确保ID是一个uuid，以防止类型不匹配。
+            $id = (string) $id;
+            
+            // 尝试查找指定ID的分支记录，如果不存在则抛出异常
+            $branch = EntryBranch::findOrFail($id);
+
+            // 检查当前用户是否拥有访问分支的权限
+            if ($branch->owner->id !== Auth::id()) {
+                // 如果没有权限，则返回403 Forbidden响应
+                abort(403);
+            }
+
+            // 将分支信息传递给视图
+            return view('entries.branches.show.control.pull-rule', [
+                'branch' => $branch,
+            ]);
+        } catch (\Exception $e) {
+            // 捕获任何异常并记录错误信息
+            \Log::error("Error fetching pull rule: " . $e->getMessage());
+
+            // 可以选择返回错误视图或进行其他错误处理
+            return view('errors.general');
         }
-        // 如果有权限，则渲染视图
-        return view('entries.branches.show.control.pull-rule', [
-            'branch' => $branch,
-        ]);
     }
+
+
+        /**
+     * 显示通用设置
+     *
+     * 此函数用于显示特定分支的通用设置。
+     * 首先尝试查找对应的分支记录，如果不存在，则抛出异常。
+     * 然后检查当前用户是否是分支的所有者，如果不是，则返回403 Forbidden响应。
+     * 最后，将分支和分支ID传递给视图。
+     *
+     * @param int $id 分支ID
+     * @return \Illuminate\View\View
+     */
+    public function GenreralSetting($id)
+    {
+        try {
+
+            // Ensure the ID is an string(uuid) to prevent type mismatch.
+            // 确保ID是一个uuid，以防止类型不匹配。
+            $id = (string) $id;
+            
+            // 尝试查找指定ID的分支记录，如果不存在则抛出异常
+            $branch = EntryBranch::findOrFail($id);
+
+            // 检查当前用户是否拥有访问分支的权限
+            if ($branch->owner->id !== Auth::id()) {
+                // 如果没有权限，则返回403 Forbidden响应
+                abort(403);
+            }
+
+            // 将分支和分支ID传递给视图
+            return view('entries.branches.show.control.general-setting', [
+                'branch' => $branch,
+                'branchId' => $branch->id,
+            ]);
+        } catch (\Exception $e) {
+            // 捕获任何异常并记录错误信息
+            \Log::error("Error fetching general settings: " . $e->getMessage());
+
+            // 可以选择返回错误视图或进行其他错误处理
+            return view('errors.general');
+        }
+    }
+
 
     //功能区域
 

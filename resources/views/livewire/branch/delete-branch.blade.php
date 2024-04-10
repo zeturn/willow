@@ -1,5 +1,5 @@
 <div>
-
+<div class="font-bold">{{ _('Delete this branch') }}</div>
 <div x-data="{ ConfirmModalOpen: false, NightModalOpen: false, confirmMessage: ''  }"
     @keydown.escape.window="ConfirmModalOpen = false"
     @keydown.escape.window="NightModalOpen = false"

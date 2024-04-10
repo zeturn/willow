@@ -49,7 +49,7 @@
                         {{ __('Operations') }}
                     </h3>
                 </div>
-                <a href="{{ route('albums.create') }}" class="block w-full text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
+                <a href="{{ route('albums.stableCreate') }}" class="block w-full text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
                     {{ __('Add New Album') }}
                 </a>
                 <!-- You can add other sidebar content here -->

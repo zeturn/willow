@@ -8,7 +8,7 @@
 @section('entry-content')
 <div class="container mx-auto p-4 max-w-7xl flex flex-col lg:flex-row">
     <!-- Sidebar, 在大屏幕时位于左侧，在小屏幕时位于顶部 -->
-    <div class="sticky top-0 flex flex-col w-full lg:w-1/6 h-auto lg:h-screen px-5 py-8 overflow-y-auto bg-white border-b lg:border-b-0 lg:border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+    <div class="sticky top-0 flex flex-col w-full lg:w-1/6 h-auto lg:h-screen px-5 py-8 overflow-y-auto border-b lg:border-b-0 lg:border-r rtl:border-r-0 rtl:border-l ">
         <div class="flex flex-col justify-between flex-1">
             <nav class="-mx-3 space-y-6">
                 <label class="px-3 text-xs text-gray-500 uppercase dark:text-gray-400">General</label>
@@ -25,7 +25,7 @@
     </div>
 
     <!-- 主视图, 在所有屏幕上占据剩余空间 -->
-    <div class="flex-grow p-8">
+    <div class="flex-grow p-8 dark:text-gray-400">
         @yield('entry-control-content')
     </div>
 </div>

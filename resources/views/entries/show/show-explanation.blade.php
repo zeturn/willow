@@ -2,12 +2,12 @@
 
 
 @section('entry-content')
-<div class="container mx-auto p-4 dark:bg-gray-700 max-w-7xl">
+<div class="container mx-auto p-4 dark:bg-gray-800 max-w-7xl">
     <div class="flex flex-wrap -mx-4">
         <!-- Main Content -->
         <div class="w-full lg:w-3/4 px-6">
             @if($demoBranch->getDemoVersion()->isOwnerVisible())
-            <div class="p-4 border-b dark:border-gray-700">
+            <div class="p-4 border-b dark:border-gray-800">
                 <div class="flex flex-col md:flex-row justify-between mb-6"> <!-- 修改Flex容器，移除items-center -->
                     <div class="flex items-center md:mb-2"> <!-- 新增一个Flex容器，用于头像和branchname并排 -->
                         <x-user-name-and-avatar :user-id="$demoBranch->owner->id" class="mr-4" />
@@ -19,7 +19,7 @@
                     <div class="text-gray-400 text-sm md:text-right dark:text-gray-300">{{$demoBranch->id}}<p class="md:mr-2">{{$demoBranch->getDemoVersion()->created_at->format('M d, Y') }}</p></div> <!-- id放在右侧 -->
 
                 </div>
-                    <div class="bg-white rounded-lg p-2 dark:border-gray-700 dark:bg-gray-900 mb-6 text-gray-700 dark:text-gray-300">
+                    <div class="bg-white rounded-lg p-2 dark:border-gray-800 dark:bg-gray-800 mb-6 text-gray-700 dark:text-gray-300">
                         <p class="">{!! \Illuminate\Support\Str::markdown($demoVersion->content) !!}</p>
                     </div>
                     <div class="m-6 flex items-center">

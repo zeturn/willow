@@ -1,7 +1,7 @@
 @extends('entries.show.entry')
 
 @section('entry-content')
-    <div class="container mx-auto p-4 dark:bg-gray-900 max-w-7xl">
+    <div class="container mx-auto p-4  max-w-7xl">
         <div class="flex flex-wrap -mx-4">
             <!-- Main Column -->
             <div class="w-full lg:w-3/4 px-4">

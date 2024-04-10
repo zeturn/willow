@@ -1,7 +1,7 @@
 @extends('entries.show.entry') {{-- 使用了正确的布局文件 --}}
 
 @section('entry-content')
-<div class="container mx-auto p-4 dark:bg-gray-900">
+<div class="container mx-auto p-4">
     <div class="flex flex-wrap -mx-4"> <!-- 用于包含主列和侧边栏的容器 -->
         <div class="w-full lg:w-3/4 px-4"> <!-- 主列 -->
             <!-- 显示条目详情的卡片 -->

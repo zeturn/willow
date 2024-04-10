@@ -9,7 +9,7 @@
         <div class="flex flex-wrap -mx-4">
             <!-- Left Column for Entry Information -->
             <div class="w-full lg:w-1/2 px-4">
-                    <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+                    <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-700 mb-4">
                         <h2 class="text-xl font-bold mb-4">Entry Information</h2>
                         <p><strong>ID:</strong> {{ $entry->id }}</p>
                         <p><strong>Name:</strong> {{ $entry->name }}</p>

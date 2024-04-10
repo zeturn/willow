@@ -16,9 +16,9 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
     @foreach ($nodes as $node)
-    <div class="rounded-lg shadow-sm bg-white">
+    <div class="rounded-lg shadow-sm bg-white dark:bg-gray-800 dark:text-gray-400">
         <div class="p-4">
-            <h5 class="text-xl font-semibold text-gray-900 mb-2">{{$node->name}}</h5>
+            <h5 class="text-xl font-semibold text-gray-900 dark:text-gray-400 mb-2">{{$node->name}}</h5>
             <p class="text-gray-700 text-base">{{$node->description}}</p>
 
             <!-- 显示更新时间 -->

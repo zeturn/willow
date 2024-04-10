@@ -13,16 +13,16 @@
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                 <div>
                     <div class="flex justify-between">
-                    <h1 class="text-4xl font-semibold text-gray-900">{{ $node->name }}</h1>
+                    <h1 class="text-4xl font-semibold text-gray-900 dark:text-gray-400">{{ $node->name }}</h1>
                     <div>
                         <span class="bg-transparent text-green-500 border border-green-500 text-xs font-semibold px-2.5 py-0.5 mt-1 rounded-full">Node</span>
                     </div>
                     </div>
-                    <p class="text-lg text-gray-700 mt-4"><span class="font-medium">{{ $node->description }}</span></p>
+                    <p class="text-lg text-gray-700 mt-4 dark:text-gray-500"><span class="font-medium">{{ $node->description }}</span></p>
                 </div>
                 <!-- Adjacent Nodes Display -->
                 <div class="mt-6">
-                    <h2 class="text-2xl font-semibold text-gray-900">{{ __('Adjacent Nodes') }}</h2>
+                    <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-500">{{ __('Adjacent Nodes') }}</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                         @foreach ($adjacentNodesAndEdges as $item)
                             <div class="bg-white rounded-lg p-4 dark:bg-gray-800 dark:border-gray-700">
@@ -35,7 +35,7 @@
 
                 <!-- Entries Display -->
                 <div class="mt-6">
-                    <h2 class="text-2xl font-semibold text-gray-900">{{ __('Related Entries') }}</h2>
+                    <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-500">{{ __('Related Entries') }}</h2>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
                         @foreach ($entries as $entry)
                             <div class="bg-white rounded-lg p-4 dark:bg-gray-800 dark:border-gray-700">

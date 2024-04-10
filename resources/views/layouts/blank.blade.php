@@ -23,7 +23,7 @@
     <body class="h-screen bg-[#f7fdff] text-white dark:bg-gray-900">
 
     <!-- Page Heading -->
-    <x-standard-header3 />
+    <x-standard-header1 />
 
     <!-- Page Content -->
     <main class="text-white">

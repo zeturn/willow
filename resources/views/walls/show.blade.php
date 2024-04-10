@@ -9,7 +9,7 @@
 @section('content')
 <div class="container mx-auto mt-5 max-w-7xl">
     <!-- Wall Detail Card -->
-    <div class="mb-6 bg-white rounded-lg p-6">
+    <div class="mb-6 bg-white dark:bg-gray-800 rounded-lg p-6">
 
         <div>
             <nav class="flex justify-between">
@@ -26,7 +26,7 @@
                 </div>
             </nav>
 
-            <h1 class="text-2xl font-bold mb-2">{{ $wall->name }}</h1>
+            <h1 class="text-2xl font-bold mb-2 dark:text-gray-400">{{ $wall->name }}</h1>
             <p class="text-gray-600 mb-2">{{ $wall->slug }}</p>
             <p class="text-gray-600 mb-2">{{ $wall->description }}</p>
             <p class="text-gray-600 mb-2">Status: {{ $wall->status }}</p>
@@ -41,10 +41,10 @@
         <!-- Main Content -->
         <div class="w-full lg:w-3/4 px-4">
             <!-- Display Topics -->
-            <div class="bg-white rounded-lg mb-6">
+            <div class="bg-white dark:bg-gray-800 rounded-lg mb-6">
                 <div class="p-6">
                     @foreach($topics as $topic)
-                        <div class="mb-4 border-b pb-4">
+                        <div class="mb-4 border-b pb-4 dark:text-gray-400">
                             <a href="{{ route('topic.show', $topic) }}" class="text-xl font-bold">{{ $topic->name }}</a>
                             <p class="text-gray-500">{{ $topic->description }}</p>
                         </div>
@@ -56,8 +56,8 @@
             <!-- Check if user is authenticated -->
             @if (auth()->check())
                 <!-- Add New Topic Form -->
-                <div class="bg-white rounded-lg p-6">
-                    <h2 class="text-xl font-semibold mb-4">Add New Topic</h2>
+                <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4 dark:text-gray-400">Add New Topic</h2>
                     <form action="{{ route('topic.store') }}" method="POST">
                         @csrf
                         <input type="hidden" name="wall_id" value="{{ $wall->id }}">

@@ -4,7 +4,7 @@
 @section('entry-control-content')
     @auth
         <div>
-            <div class="max-w-4xl mx-auto p-6 bg-white rounded-md">
+            <div class="max-w-4xl mx-auto p-6 rounded-md">
                 <h1 class="text-2xl font-semibold mb-4">
                     General Zone 
                 </h1>
@@ -73,7 +73,7 @@
             </div>
 
             @can('entry-delete')
-            <div class="max-w-4xl mx-auto p-6 bg-white rounded-md">
+            <div class="max-w-4xl mx-auto p-6 rounded-md">
                 <h1 class="text-2xl font-semibold mb-4">
                     Danger Zone
                 </h1>

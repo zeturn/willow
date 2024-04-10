@@ -6,8 +6,8 @@
 
 @section('content')
 <div class="container mx-auto max-w-9xl p-4">
-    <div class="flex flex-col md:flex-row md:w-10/12 mx-auto bg-white my-6 rounded-lg">
-    <div id="image-slider" class="md:w-1/2 rounded-lg relative">
+    <div class="flex flex-col md:flex-row md:w-10/12 mx-auto bg-white dark:bg-gray-700 my-6 rounded-lg">
+        <div id="image-slider" class="md:w-3/5 rounded-lg relative">
             {{-- 添加左右切换按钮 --}}
             <button id="previous-button" aria-label="Previous image" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-30 p-1 rounded-full z-20 backdrop-filter backdrop-blur-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -27,7 +27,7 @@
             {{-- Fixed-size image container with page number --}}
             <div class="relative w-full h-64 md:h-96">
                 {{-- Page number display with frosted glass effect --}}
-                <div id="page-number" class="absolute top-0 right-0 bg-gray-300 bg-opacity-30 p-2 rounded-bl-lg z-10 backdrop-filter backdrop-blur-sm">1 / {{ count($album->medias) }}</div>
+                <div id="page-number" class="absolute bg-gray-300 bg-opacity-30 p-2 rounded-lg z-10 backdrop-filter backdrop-blur-sm">1 / {{ count($album->medias) }}</div>
                 @forelse ($medias as $media)
                     <img src="{{ '/storage/photos/' .$media['name'] }}" class="absolute top-0 left-0 w-full h-full object-contain hidden" alt="Album Image">
                 @empty
@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="md:w-1/2 p-8">
+        <div class="md:w-2/5 p-8">
             <div class="flex justify-between items-center">
                 <h2 class="text-2xl font-bold">{{ $album->title }}</h2>
                 <span class="text-lg ml-2">{{ __('Views') }}: {{ $Visits }}</span>

@@ -405,6 +405,7 @@ Route::resource('/post', PostController::class);
         Route::post('/', [AlbumsController::class, 'store'])->name('store');
         Route::get('/{id}', [AlbumsController::class, 'show'])->name('show');
         Route::get('/{album}/edit', [AlbumsController::class, 'edit'])->name('edit');
+        Route::get('/stableEdit/{albumId}', [AlbumsController::class, 'stableEdit'])->name('stableEdit');
         Route::put('/{album}', [AlbumsController::class, 'update'])->name('update');
         Route::delete('/{album}', [AlbumsController::class, 'delete'])->name('delete');
     });

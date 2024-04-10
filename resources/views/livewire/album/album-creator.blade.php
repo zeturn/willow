@@ -1,42 +1,40 @@
 <!-- resources/views/livewire/album/album-creator.blade.php -->
-<div class="max-w-md mx-auto p-4">
+<div class="w-full p-6">
     <form class="flex flex-col space-y-4" wire:submit.prevent="saveAlbum">
 
         <input type="text" wire:model="album.title" placeholder="相册标题" required class="p-2 border rounded shadow">
 
         <div
-    x-data="{ uploading: false, progress: 0 }"
-    x-on:livewire-upload-start="uploading = true"
-    x-on:livewire-upload-finish="uploading = false"
-    x-on:livewire-upload-cancel="uploading = false"
-    x-on:livewire-upload-error="uploading = false"
-    x-on:livewire-upload-progress="progress = $event.detail.progress"
-    class="space-y-4"
->
-    <!-- File Input -->
-    <input type="file" multiple wire:model="photos" accept="image/*" class="block w-full text-sm text-slate-500
-      file:mr-4 file:py-2 file:px-4
-      file:rounded-full file:border-0
-      file:text-sm file:font-semibold
-      file:bg-violet-50 file:text-violet-700
-      hover:file:bg-violet-100
-    "/>
+            x-data="{ uploading: false, progress: 0 }"
+            x-on:livewire-upload-start="uploading = true"
+            x-on:livewire-upload-finish="uploading = false"
+            x-on:livewire-upload-cancel="uploading = false"
+            x-on:livewire-upload-error="uploading = false"
+            x-on:livewire-upload-progress="progress = $event.detail.progress"
+            class="space-y-4"
+        >
+        <!-- File Input -->
+        <input type="file" multiple wire:model="photos" accept="image/*" class="block w-full text-sm text-slate-500
+        file:mr-4 file:py-2 file:px-4
+        file:rounded-full file:border-0
+        file:text-sm file:font-semibold
+        file:bg-violet-50 file:text-violet-700
+        hover:file:bg-violet-100
+        "/>
 
-    <!-- Progress Bar -->
-    <div x-show="uploading" class="flex justify-center items-center">
-        <div class="relative w-full h-2">
-            <div class="absolute inset-0 flex items-center justify-center">
-                <progress max="100" x-bind:value="progress" class="appearance-none w-full h-full rounded-full"></progress>
+            <!-- Progress Bar -->
+            <div x-show="uploading" class="flex justify-center items-center">
+                <div class="relative w-full h-2">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <progress max="100" x-bind:value="progress" class="appearance-none w-full h-full rounded-full"></progress>
+                    </div>
+                    <div class="absolute inset-0 rounded-full bg-slate-200"></div>
+                </div>
             </div>
-            <div class="absolute inset-0 rounded-full bg-slate-200"></div>
         </div>
-    </div>
-</div>
-
-
 
         <button type="submit" wire:click="saveAlbum()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow">创建相册</button>
-    </form>
+
 
     @if ($photo_list)
     <div class="gallery grid md:grid-cols-3 gap-4 mt-4">
@@ -55,5 +53,5 @@
         @endforeach
     </div>
     @endif
-
+    </form>
 </div>

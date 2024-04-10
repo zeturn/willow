@@ -129,6 +129,17 @@ class AlbumsController extends Controller
         return view('albums.edit', compact('album'));
     }
 
+    public function stableEdit($albumId)
+    {
+        // 检查用户是否已经登录 / Check if the user is authenticated
+        if (!Auth::check()) {
+            // 如果用户未登录，重定向到登录页面 / If the user is not authenticated, redirect to the login page
+            return redirect()->route('login'); // 确保你的路由文件中定义了 'login' 路由 / Make sure the 'login' route is defined in your routes file
+        }
+
+        return view('albums.stable_edit',compact('albumId'));
+    }
+
     public function update(Request $request, $id)
     {
         // 检查用户是否已经登录 / Check if the user is authenticated

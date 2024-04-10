@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-    @livewire('album.album-creator')
+    @livewire('album.album-editor',['album_id'=>$albumId])
 
 </div>
 @endsection

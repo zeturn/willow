@@ -55,6 +55,8 @@ use App\Http\Controllers\{
 
     PostController,
 
+    TermsOfServiceController,
+    PrivacyPolicyController,
 };
 
 use App\Http\Controllers\Auth\{
@@ -99,6 +101,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::get('/terms-of-service', [TermsOfServiceController::class, 'show'])->name('terms.show');
+Route::get('/privacy-policy', [PrivacyPolicyController::class, 'show'])->name('policy.show');
 
 Route::prefix('explore')->name('explore.')->group(function () {
     Route::get('/', [ExploreController::class, 'entry_waterfall'])->name('entry_waterfall');

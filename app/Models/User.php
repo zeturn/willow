@@ -80,7 +80,15 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-        /**
+    /**
+     * Get the profile associated with the user.
+     */
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class);
+    }
+
+    /**
      * Get the indexable data array for the model.
      *
      * @return array

@@ -39,6 +39,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\TeamsPermission::class,//要在已经创建了session之后，substitute之前            
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\HandleInertiaRequests::class,
+            \App\Http\Middleware\SetLanguage::class,
         ],
 
         'api' => [

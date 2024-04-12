@@ -35,7 +35,7 @@
             </div>
             @else
             <div class="flex flex-col items-center max-w-lg mx-auto text-center">
-                <p class="text-sm font-medium text-blue-500 dark:text-blue-400">{{ __('Demo Version 不可用') }}</p>
+                <p class="text-sm font-medium text-blue-500 dark:text-blue-400">{{ __('basic.DemoVersion') }}{{ __('basic.Unavailable') }}</p>
             </div>
             @endif
             <livewire:entry.entry-explain :entryId="$entryId" />
@@ -51,13 +51,13 @@
 
             <!-- Demo Branch Information -->
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-                <h2 class="text-2xl mb-2 dark:text-white">{{ __('Demo Branch') }}</h2>
+                <h2 class="text-2xl mb-2 dark:text-white">{{ __('basic.DemoBranch') }}</h2>
                 <p class="text-gray-700 dark:text-gray-300">{{ __('Id') }}: {{ $demoBranch->id }}</p>
             </div>
 
             <!-- Related Nodes -->
             <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-                <h2 class="text-2xl mb-2 dark:text-white">{{ __('Related Nodes') }}</h2>
+                <h2 class="text-2xl mb-2 dark:text-white">{{ __('basic.Related') }}{{ __('basic.Node') }}</h2>
                 <div class="mt-4">
                     @foreach ($nodes as $node)
                         <div class="bg-white rounded-lg dark:bg-gray-800 dark:border-gray-700 mb-4">

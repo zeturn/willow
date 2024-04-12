@@ -10,7 +10,7 @@
             <div class="flex items-center justify-center mt-10 mb-4">
                 <x-authentication-card-logo class="mx-auto mt-12" />
                 <span class="ml-4 text-gray-300 font-semibold">|</span>
-                <span class="ml-4 text-gray-300 font-semibold">Search</span>
+                <span class="ml-4 text-gray-300 font-semibold">{{__('actions.search')}}</span>
             </div>
 
             <form action="{{ route('search.result') }}" method="GET" class="mt-4">

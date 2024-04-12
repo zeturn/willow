@@ -5,7 +5,7 @@
         <div>
             <div class="max-w-4xl mx-auto p-6 bg-white rounded-md">
                 <h1 class="text-2xl font-semibold mb-4">
-                    General Zone
+                    {{__('basic.General')}}{{__('basic.Zone')}}
                 </h1>
                 <div class="divide-y divide-gray-200">
                         <!-- Section: Change repository visibility -->
@@ -20,7 +20,8 @@
                                         </p>
                                     </div>
                                     <a href="{{ route('entry.branch.create', $entry->id) }}" class="mt-4 sm:mt-0 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-white text-blue-600 hover:bg-blue-600 hover:text-white border border-gray-300">
-                                        create
+                                    {{__('basic.Check')}}
+
                                     </a>
                             </div>
 
@@ -38,7 +39,7 @@
                                         </p>
                                     </div>
                                     <a href="{{ route('entry.branch.list', ['entryId' => $entryId ]) }}" class="mt-4 sm:mt-0 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-white text-blue-600 hover:bg-blue-600 hover:text-white border border-gray-300">
-                                        check
+                                    {{__('basic.Check')}}
                                     </a>
                             </div>
 
@@ -56,7 +57,7 @@
                                         </p>
                                     </div>
                                     <a href="{{ route('entry.branchUser.brancheslist', ['userId' => $userId, 'branchId' => $demoBranch->id, 'entryId' => $entryId ]) }}"  class="mt-4 sm:mt-0 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-white text-blue-600 hover:bg-blue-600 hover:text-white border border-gray-300">
-                                        check
+                                    {{__('basic.Check')}}
                                     </a>
                             </div>
 

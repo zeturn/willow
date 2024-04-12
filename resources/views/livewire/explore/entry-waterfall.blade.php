@@ -1,9 +1,9 @@
+<!--Trans:240412 Finish:90%-->
 <div>
-
     <div class="container mx-auto px-4 md:px-8 lg:px-16 xl:px-24">
 
         <div class="mb-10 mt-5 p-4 dark:bg-gray-800 dark:text-white">
-            <h1 class="text-4xl font-bold mb-2">{{ __('entry.explore')}} 🔭</h1>
+            <h1 class="text-4xl font-bold mb-2">{{ __('basic.Explore')}} 🔭</h1>
             <p class="text-sm text-gray-600 mt-1 dark:text-gray-400">{{ __('This page is recommended based on recent updates and real-time popularity, and has nothing to do with personal preferences👍')}}</p>
             <p class="text-sm text-gray-600 mt-1 dark:text-gray-400">{{ __(    '⚠️The content of this site is written by users or automatically processed based on Internet content. It does not represent the views of this site or the views of the operator.')}}</p>
         </div>
@@ -20,8 +20,8 @@
         </div>
 
         <div class="flex justify-center">
-            <button wire:click="loadMoreEntries" class=" text-gray-500 font-bold py-2 px-2">
-                Load More 加载更多 ...
+            <button wire:click="loadMoreEntries" class=" text-gray-500 font-bold px-2">
+            {{__('basic.Load More')}}
             </button>
             <div wire:loading class=" text-gray-500 font-bold py-2 px-2"> 
                 <!-- Component: Square horizontal sm sized spinner  -->

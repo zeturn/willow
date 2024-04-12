@@ -31,7 +31,7 @@
                     <!-- Description -->
                     <div class="bg-gray-50 px-4 py-5 dark:bg-gray-700">
                         <div class="text-sm font-medium text-gray-500 dark:text-gray-300">
-                            {{ __('Description') }}
+                            {{ __('basic.Description') }}
                         </div>
                         <div class="mt-1 text-sm text-gray-900 dark:text-gray-200">
                             {!! \Illuminate\Support\Str::markdown($version->description) !!}
@@ -40,7 +40,7 @@
                     <!-- Content -->
                     <div class="bg-white px-4 py-5 dark:bg-gray-800">
                         <dt class="text-sm font-medium text-gray-500 dark:text-gray-300">
-                            {{ __('Content') }}
+                        {{ __('basic.Content') }}
                         </dt>
                         <dd class="mt-1 text-sm text-gray-900 dark:text-gray-200">
                             <div class="bg-gray-200 p-4 rounded dark:bg-gray-600">
@@ -66,7 +66,7 @@
                 <dl>
                     <div class="mb-4">
                         <dt class="text-sm font-medium text-gray-500">
-                            {{ __('Author') }}
+                            {{ __('basic.Author') }}
                         </dt>
                         <dd class="mt-1 text-sm text-gray-900">
                             <x-user-name-and-avatar :user-id="$version->author->id" class="w-8 h-8 rounded-full" />
@@ -74,7 +74,7 @@
                     </div>
                     <div>
                         <dt class="text-sm font-medium text-gray-500">
-                            {{ __('Created At') }}
+                            {{ __('basic.Created') }}
                         </dt>
                         <dd class="mt-1 text-sm text-gray-900">
                             {{ $version->created_at->format('d M, Y') }}
@@ -88,7 +88,7 @@
                 @forelse($walls as $wall)
                     <a href="{{ route('wall.show', $wall->id) }}" class="text-lg text-blue-500 hover:text-blue-600 transition duration-200 mb-4 block">{{ $wall->name }}</a>
                 @empty
-                    <p class="text-gray-600">{{ __('No related walls') }}</p>
+                    <p class="text-gray-600">{{ __('basic.No related walls') }}</p>
                 @endforelse
 
                 <!-- Wall Creation Form -->

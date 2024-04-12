@@ -121,7 +121,7 @@
 		</div>
 
 	<div class="rounded-sm p-4 border border-gray-400 dark:border-gray-700 dark:bg-gray-900 mb-6">
-		<a href="{{ route('trend.entry') }}" class="text-xl font-normal mb-4">{{ __('Trend') }}</a>
+		<a href="{{ route('trend.entry') }}" class="text-xl font-normal mb-4">{{ __('basic.Trend') }}</a>
 		<ul class="space-y-2">
 			@foreach ($trend_entries as $entry)
 			<li class="flex items-center space-x-2">

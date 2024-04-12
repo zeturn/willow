@@ -8,7 +8,7 @@
             <div class="bg-white dark:bg-gray-800 rounded-lg p-4 dark:border-gray-700 mb-4 shadow-sm">
                 <a href="{{ route('entry.version.show', $version->id) }}">
                     <h3 class="text-xl font-semibold dark:text-white">{{ $version->name }}</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-400">作者：{{ $version->author_id }} | 创建时间：{{ $version->created_at->format('M d, Y') }} |                     
+                    <p class="text-sm text-gray-500 dark:text-gray-400">{{__('basic.Author')}}：{{ $version->author_id }} | {{__('basic.Created')}}：{{ $version->created_at->format('M d, Y') }} |                     
                         @if($version -> id == $demo_version_id)
                             <span class="bg-transparent text-purple-500 border border-purple-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Demo Version</span>
                         @elseif($version -> status == 1301113244)
@@ -27,13 +27,13 @@
                 </a>
                 @auth
                     @if($isfree|| $userEditable != 0 )
-                    status：{{$version -> getCensorStatus()}}
+                    {{__('basic.Status')}}：{{$version -> getCensorStatus()}}
                         @if($version -> getCensorStatus() == 7)
-                            <button wire:click="selectVersion('{{ $version->id }}')" class=" text-gray-500 py-2 px-4 rounded mt-2">开始编辑</button>
+                            <button wire:click="selectVersion('{{ $version->id }}')" class=" text-gray-500 py-2 px-4 rounded mt-2">{{__('basic.Edit')}}</button>
                         @endif
                     @endif
                     @if($author_id == $branch->owner->id )
-                        <button wire:click="deleteVersion('{{ $version->id }}')" class=" text-red-500 py-2 px-4 rounded mt-2">删除</button>
+                        <button wire:click="deleteVersion('{{ $version->id }}')" class=" text-red-500 py-2 px-4 rounded mt-2">{{__('basic.Delete')}}</button>
                     @endif
                 @endauth
 

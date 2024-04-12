@@ -1,8 +1,7 @@
-
 <!-- resources/views/livewire/entry/entry-explain.blade.php -->
-
+<!--Trans:240412 Finish:All-->
 <div class="space-y-6">
- <p class="p-3 m-3 text-lg">全部解释</p>
+ <p class="p-3 m-3 text-lg">{{__('basic.All')}}{{__('basic.Explanation')}}</p>
     @foreach ($branches as $branch)
         @if($branch->getDemoVersion()->isOwnerVisible())
             @if($branch -> id != $entry -> getDemoBranch() -> id)
@@ -27,7 +26,7 @@
     @endforeach
 
     @if($hasMoreBranches)
-        <button wire:click="loadMoreBranches" class="text-center text-gray-500 my-4">Load More 加载更多 ...</button>
+        <button wire:click="loadMoreBranches" class="text-center text-gray-500 my-4">{{__('basic.Load More')}} ...</button>
 
         <div x-data="{
                     observe () {
@@ -46,6 +45,6 @@
                 x-init="observe"
             ></div>
     @else
-        <p class="text-center text-gray-500 my-4">That's all 就这些</p>
+        <p class="text-center text-gray-500 my-4">{{__('basic.Thats all')}}</p>
     @endif
 </div>

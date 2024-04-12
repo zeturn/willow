@@ -6,6 +6,7 @@
 @endsection
 
 @section('content')
+<!--Trans:240412 Finish:All-->
 <div class="container mx-auto p-4 dark:bg-gray-900 max-w-7xl">
     <div class="flex flex-wrap -mx-4">
         <div class="w-full lg:w-3/4 px-4">
@@ -26,8 +27,8 @@
                 </nav>
 
                 <div class = "px-6">
-                    <h1 class="text-3xl font-semibold dark:text-white">Branch:{{ $branch->id }}</h1>
-                    <h2 class="text-2xl font-semibold dark:text-white">From:{{ $branch->entry->name }}</h2>
+                    <h1 class="text-3xl font-semibold dark:text-white">{{__('basic.Branch')}}:{{ $branch->id }}</h1>
+                    <h2 class="text-2xl font-semibold dark:text-white">{{__('basic.From')}}:{{ $branch->entry->name }}</h2>
                 </div>
                 {{-- Tabs Navigation --}}
                 @php
@@ -39,29 +40,29 @@
                 <ul class="flex flex-grow flex-wrap items-center " role="tablist" x-data="tabList()" name="hor_bar">
                     <li x-show="maxVisibleLi > 0" x-ref="tab1" role="presentation">
                         <a href="{{ route('entry.branch.show.showDemoVersion', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-demo-version' ? 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible : outline-none whitespace-nowrap border-emerald-500 hover:border-emerald-600 focus:border-emerald-700 text-emerald-500 hover:text-emerald-600 focus:text-emerald-700 hover:bg-emerald-50 focus:bg-emerald-50' : 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 border-transparent rounded-t focus-visible:outline-none justify-self-center hover:border-emerald-500 focus:border-emerald-600 whitespace-nowrap text-slate-700 stroke-slate-700 hover:bg-emerald-50 hover:text-emerald-500 focus:stroke-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 hover:stroke-emerald-600' }}" role="tab" aria-setsize="3" aria-posinset="1" tabindex="{{ $currentRouteName == 'entries.branches.show.show-demo-version' ? '0' : '-1' }}" aria-controls="tab-panel-1a" aria-selected="{{ $currentRouteName == 'entries.branches.show.show-demo-version' ? 'true' : 'false' }}">
-                            <span>Demo Version</span>
+                            <span>{{__('basic.DemoVersion')}}</span>
                         </a>
                     </li>
                     <li x-show="maxVisibleLi > 1" x-ref="tab2" role="presentation">
                         <a href="{{ route('entry.branch.show.showVersionList', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-version-list' ? 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none whitespace-nowrap border-emerald-500 hover:border-emerald-600 focus:border-emerald-700 text-emerald-500 hover:text-emerald-600 focus:text-emerald-700 hover:bg-emerald-50 focus:bg-emerald-50' : 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 border-transparent rounded-t focus-visible:outline-none justify-self-center hover:border-emerald-500 focus:border-emerald-600 whitespace-nowrap text-slate-700 stroke-slate-700 hover:bg-emerald-50 hover:text-emerald-500 focus:stroke-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 hover:stroke-emerald-600' }}" role="tab" aria-setsize="3" aria-posinset="2" tabindex="{{ $currentRouteName == 'entries.branches.show.show-version-list' ? '0' : '-1' }}" aria-controls="tab-panel-2a" aria-selected="{{ $currentRouteName == 'entries.branches.show.show-version-list' ? 'true' : 'false' }}">
-                            <span>Version List</span>
+                            <span>{{__('basic.VersionList')}}</span>
                         </a>
                     </li>
                     <li x-show="maxVisibleLi > 2" x-ref="tab3" role="presentation">
                         <a href="{{ route('entry.branch.show.showInfo', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-info' ? 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none whitespace-nowrap border-emerald-500 hover:border-emerald-600 focus:border-emerald-700 text-emerald-500 hover:text-emerald-600 focus:text-emerald-700 hover:bg-emerald-50 focus:bg-emerald-50' : 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 border-transparent rounded-t focus-visible:outline-none justify-self-center hover:border-emerald-500 focus:border-emerald-600 whitespace-nowrap text-slate-700 stroke-slate-700 hover:bg-emerald-50 hover:text-emerald-500 focus:stroke-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 hover:stroke-emerald-600' }}" role="tab" aria-setsize="3" aria-posinset="3" tabindex="{{ $currentRouteName == 'entries.branches.show.show-info' ? '0' : '-1' }}" aria-controls="tab-panel-3a" aria-selected="{{ $currentRouteName == 'entries.branches.show.show-info' ? 'true' : 'false' }}">
-                            <span>Info</span>
+                            <span>{{__('basic.Info')}}</span>
                         </a>
                     </li>
                     <li x-show="maxVisibleLi > 3" x-ref="tab4" role="presentation">
                         <a href="{{ route('entry.branch.show.showEditors', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-editors' ? 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none whitespace-nowrap border-emerald-500 hover:border-emerald-600 focus:border-emerald-700 text-emerald-500 hover:text-emerald-600 focus:text-emerald-700 hover:bg-emerald-50 focus:bg-emerald-50' : 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 border-transparent rounded-t focus-visible:outline-none justify-self-center hover:border-emerald-500 focus:border-emerald-600 whitespace-nowrap text-slate-700 stroke-slate-700 hover:bg-emerald-50 hover:text-emerald-500 focus:stroke-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 hover:stroke-emerald-600' }}" role="tab" aria-setsize="3" aria-posinset="4" tabindex="{{ $currentRouteName == 'entries.branches.show.show-editors' ? '0' : '-1' }}" aria-controls="tab-panel-4a" aria-selected="{{ $currentRouteName == 'entries.branches.show.show-editors' ? 'true' : 'false' }}">
-                            <span>Editors</span>
+                            <span>{{__('basic.Editors')}}</span>
                         </a>
                     </li>
                     @auth
                     @if($branch->owner->id == Auth::id())
                     <li x-show="maxVisibleLi > 4" x-ref="tab5" role="presentation">
                         <a href="{{ route('entry.branch.show.showControl', $branch->id) }}" class="{{ $currentRouteName == 'entries.branches.show.show-control' ? 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none whitespace-nowrap border-emerald-500 hover:border-emerald-600 focus:border-emerald-700 text-emerald-500 hover:text-emerald-600 focus:text-emerald-700 hover:bg-emerald-50 focus:bg-emerald-50' : 'inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-sm font-medium tracking-wide transition duration-300 border-b-2 border-transparent rounded-t focus-visible:outline-none justify-self-center hover:border-emerald-500 focus:border-emerald-600 whitespace-nowrap text-slate-700 stroke-slate-700 hover:bg-emerald-50 hover:text-emerald-500 focus:stroke-emerald-600 focus:bg-emerald-50 focus:text-emerald-600 hover:stroke-emerald-600' }}" role="tab" aria-setsize="3" aria-posinset="5" tabindex="{{ $currentRouteName == 'entries.branches.show.show-control' ? '0' : '-1' }}" aria-controls="tab-panel-5a" aria-selected="{{ $currentRouteName == 'entries.branches.show.show-control' ? 'true' : 'false' }}">
-                            <span>Control</span>
+                            <span>{{__('basic.Control')}}</span>
                         </a>
                     </li>
                     @endif
@@ -173,7 +174,7 @@
                 <dl>
                     <div class="mb-4">
                         <dt class="text-sm font-medium text-gray-500">
-                            {{ __('Owner') }}
+                            {{ __('basic.Owner') }}
                         </dt>
                         <dd class="mt-1 text-sm text-gray-900">
                             {{ $branch->owner->name }}
@@ -181,7 +182,7 @@
                     </div>
                     <div>
                         <dt class="text-sm font-medium text-gray-500">
-                            {{ __('Created At') }}
+                            {{ __('basic.Created') }}
                         </dt>
                         <dd class="mt-1 text-sm text-gray-900">
                             {{ $branch->created_at->format('d M, Y') }}

@@ -1,8 +1,8 @@
+<!--Trans:240412 Finish:All-->
 <div class="flex flex-col md:flex-row dark:text-gray-400">
-
     <!-- Left Side: Branches List -->
     <div class="w-full md:w-1/2 p-4">
-        <h2 class="text-lg font-semibold">Branches</h2>
+        <h2 class="text-lg font-semibold">{{__('basic.Branch')}}</h2>
         <div class="mt-4 space-y-4 max-h-[750px] overflow-y-auto overscroll-none">
             @foreach($branches as $branch)
                 <div class="p-4 space-x-3 border rounded-md shadow-sm dark:hover:bg-gray-400 hover:bg-gray-50  border-neutral-200/70 ">
@@ -30,8 +30,10 @@
                         <button wire:click="loadVersions('{{ $branch->id }}')" class="text-blue-600 hover:text-blue-800 text-sm">
                             {{ $branch->id }}
                         </button>
-                        <span class="text-xs text-gray-600">版本数量: {{ $branch->versions->count() }}个</span>
-                        <span class="text-xs text-gray-600">Updated: {{ $branch->updated_at->diffForHumans() }}</span>
+                        <div class="flex flex-col">
+                            <span class="text-xs text-gray-600">{{__('basic.Version')}}{{__('basic.Number')}}: {{ $branch->versions->count() }}个</span>
+                            <span class="text-xs text-gray-600">{{__('basic.Updated')}}: {{ $branch->updated_at->diffForHumans() }}</span>
+                        </div>
                     </div>
                 </div>
             @endforeach
@@ -40,14 +42,14 @@
 
     <!-- Right Side: Versions List -->
     <div class="w-full md:w-1/2 md:p-4 md:border-l md:border-gray-200">
-        <h2 class="text-lg font-semibold">Versions</h2>
+        <h2 class="text-lg font-semibold">{{__('basic.Version')}}</h2>
         <div class="mt-4 space-y-4 max-h-[750px] overflow-y-auto overscroll-none">
 
         @if($versions && count($versions) > 0)
             <ul class="mt-4 space-y-4">
                 <a href="{{ route('entry.branch.show.showDemoVersion', $branch->id) }}" class="block">
                     <li class="p-4 border rounded-md shadow-sm hover:bg-gray-50 border-neutral-200/70">
-                        <div class="text-gray-800 dark:text-gray-400">Visit Branch</div>
+                        <div class="text-gray-800 dark:text-gray-400">{{__('basic.Visit This Branch')}}</div>
                     </li>
                 </a>
 
@@ -63,9 +65,9 @@
         @else
             <div class="text-gray-400 text-center mt-10">
                 @if($selectedBranchId)
-                    当前分支中没有版本
+                {{__('basic.The current branch has no version')}}
                 @else
-                    在左边分支列表中选择分支
+                {{__('basic.Select a branch in the branch list on the left')}}
                 @endif
             </div>
         @endif

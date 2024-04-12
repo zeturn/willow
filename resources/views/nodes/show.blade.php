@@ -71,7 +71,7 @@
                     <a href="{{ route('wall.show', $wall->id) }}" class="text-lg text-blue-500 hover:text-blue-600 transition duration-200">{{ $wall->name }}</a>
                 </div>
             @empty
-                <p class="text-gray-600">{{ __('No related walls') }}</p>
+                <p class="text-gray-600">{{ __('basic.No related walls') }}</p>
             @endforelse
 
             @can('create-wall-link')

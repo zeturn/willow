@@ -2,7 +2,7 @@
 @extends('entries.branches.show.control.control')
 
 @section('entry-branch-control-content')
-    <h2 class="text-2xl font-semibold dark:text-white">General Setting</h2>
+    <h2 class="text-2xl font-semibold dark:text-white">{{__('basic.General')}}{{__('basic.Setting')}}</h2>
     
     @livewire('branch.switch-is-free', ['entryBranchId' => $branchId])
 

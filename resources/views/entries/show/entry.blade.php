@@ -16,7 +16,7 @@
                     
                     <div class="flex justify-between items-center">
                         <h1 class="text-4xl mt-8 dark:text-white">{{ $entry->name }}</h1> 
-                        <span class="bg-transparent text-pink-500 border border-pink-500 text-xs font-semibold mt-9 mr-3 px-2.5 py-0.5 rounded-full">Entry</span>
+                        <span class="bg-transparent text-pink-500 border border-pink-500 text-xs font-semibold mt-9 mr-3 px-2.5 py-0.5 rounded-full">{{__('basic.Entry')}}</span>
                     </div>
                     
 
@@ -38,23 +38,23 @@
                 <div class="flex border-b border-slate-200">
                     <ul class="flex flex-grow flex-wrap items-center" role="tablist" x-data="tabList()" name="hor_bar">
                         <li  x-show="maxVisibleLi > 0" role="presentation">
-                            <a href="{{ route('entry.show.explanation', $entry->id) }}"  x-ref="tab1" role="tab" aria-controls="tabpanel-explanation" class="{{ $tabname == 'entry.show.explanation' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Explanation</a>
+                            <a href="{{ route('entry.show.explanation', $entry->id) }}"  x-ref="tab1" role="tab" aria-controls="tabpanel-explanation" class="{{ $tabname == 'entry.show.explanation' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">{{__('basic.Explanation')}}</a>
                         </li>
                         <li  x-show="maxVisibleLi > 1" role="presentation">
-                            <a href="{{ route('entry.show.branch.BranchesList', ['id' => $entry->id]) }}"  x-ref="tab2" role="tab" aria-controls="tabpanel-brancheslist" class="{{ $tabname == 'entries.show.branch' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Branch</a>
+                            <a href="{{ route('entry.show.branch.BranchesList', ['id' => $entry->id]) }}"  x-ref="tab2" role="tab" aria-controls="tabpanel-brancheslist" class="{{ $tabname == 'entries.show.branch' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">{{__('basic.Branch')}}</a>
                         </li>
                         <li  x-show="maxVisibleLi > 2" role="presentation">
-                            <a href="{{ route('entry.show.community', $entry->id) }}"  x-ref="tab3" role="tab" aria-controls="tabpanel-community" class="{{ $tabname == 'entry.show.community' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Community</a>
+                            <a href="{{ route('entry.show.community', $entry->id) }}"  x-ref="tab3" role="tab" aria-controls="tabpanel-community" class="{{ $tabname == 'entry.show.community' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">{{__('basic.Community')}}</a>
                         </li>
                         <li  x-show="maxVisibleLi > 3" role="presentation">
-                            <a href="{{ route('entry.show.album', $entry->id) }}"  x-ref="tab4" role="tab" aria-controls="tabpanel-album" class="{{ $tabname == 'entry.show.album' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Album</a>
+                            <a href="{{ route('entry.show.album', $entry->id) }}"  x-ref="tab4" role="tab" aria-controls="tabpanel-album" class="{{ $tabname == 'entry.show.album' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">{{__('basic.Album')}}</a>
                         </li>
                         <li  x-show="maxVisibleLi > 4" role="presentation">
-                            <a href="{{ route('entry.show.details', $entry->id) }}"  x-ref="tab5" role="tab" aria-controls="tabpanel-details" class="{{ $tabname == 'entry.show.details' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Details</a>
+                            <a href="{{ route('entry.show.details', $entry->id) }}"  x-ref="tab5" role="tab" aria-controls="tabpanel-details" class="{{ $tabname == 'entry.show.details' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">{{__('basic.Details')}}</a>
                         </li>
                         @auth
                         <li  x-show="maxVisibleLi > 5" role="presentation">
-                            <a href="{{ route('entry.show.control.GeneralSetting', $entry->id) }}"  x-ref="tab6" role="tab" aria-controls="tabpanel-setting" class="{{ $currentRouteName == 'entry.show.control' ? 'text-green-700 border-b-2 border-green-500 focus:border-green-700 hover:border-green-600 focus:outline-none focus:text-green-700 hover:text-green-600 focus:bg-green-50 hover:bg-green-50' : 'text-slate-700 hover:text-green-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Control</a>
+                            <a href="{{ route('entry.show.control.GeneralSetting', $entry->id) }}"  x-ref="tab6" role="tab" aria-controls="tabpanel-setting" class="{{ $currentRouteName == 'entry.show.control' ? 'text-green-700 border-b-2 border-green-500 focus:border-green-700 hover:border-green-600 focus:outline-none focus:text-green-700 hover:text-green-600 focus:bg-green-50 hover:bg-green-50' : 'text-slate-700 hover:text-green-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">{{__('basic.Control')}}</a>
                         </li>
                         @endauth
 
@@ -78,23 +78,23 @@
                                 x-cloak>
                                 <div class="p-1 mt-1 text-sm bg-white border rounded-md shadow-md border-neutral-200/70 text-neutral-700">
                                     <a href="{{ route('entry.show.explanation', $entry->id) }}" x-show="maxVisibleLi < 1" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
-                                        <span>Explanation</span>
+                                        <span>{{__('basic.Explanation')}}</span>
                                     </a>
                                     <a href="{{ route('entry.show.branch.BranchesList', ['id' => $entry->id]) }}" x-show="maxVisibleLi < 2" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
-                                        <span>Branch</span>
+                                        <span>{{__('basic.Branch')}}</span>
                                     </a>
                                     <a href="{{ route('entry.show.community', $entry->id) }}" x-show="maxVisibleLi < 3" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
-                                        <span>Community</span>
+                                        <span>{{__('basic.Community')}}</span>
                                     </a>
                                     <a href="{{ route('entry.show.album', $entry->id) }}" x-show="maxVisibleLi < 4" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
-                                        <span>Album</span>
+                                        <span>{{__('basic.Album')}}</span>
                                     </a>
                                     <a href="{{ route('entry.show.details', $entry->id) }}" x-show="maxVisibleLi < 5" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
-                                        <span>Details</span>
+                                        <span>{{__('basic.Details')}}</span>
                                     </a>
                                     @auth
                                     <a href="{{ route('entry.show.control.GeneralSetting', $entry->id) }}" x-show="maxVisibleLi < 6" @click="dropdownOpen=false" class="relative flex justify-between w-full cursor-default select-none group items-center rounded px-2 py-1.5 hover:bg-neutral-100 hover:text-neutral-900 outline-none data-[disabled]:opacity-50 data-[disabled]:pointer-events-none">
-                                        <span>Control</span>
+                                        <span>{{__('basic.Control')}}</span>
                                     </a>
                                     @endauth
                                 </div>

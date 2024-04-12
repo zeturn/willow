@@ -32,28 +32,28 @@
                 <li>
                     <button
                         :class="{ 'bg-neutral-100 dark:bg-gray-800' : navigationMenu=='entry-card', 'hover:bg-neutral-100' : navigationMenu!='entry-card' }" @mouseover="navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='entry-card'" @mouseleave="navigationMenuLeave()" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md  focus:outline-none disabled:opacity-50 disabled:pointer-events-none group w-max">
-                        <span>{{ __('Entry')}}</span> 
+                        <span>{{ __('basic.Entry')}}</span> 
                         <svg :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'entry-card' }" class="relative top-[1px] ml-1 h-3 w-3 ease-out duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </button>
                 </li>
                 <li>
                     <button 
                         :class="{ 'bg-neutral-100 dark:bg-gray-800' : navigationMenu=='discuss-card', 'hover:bg-neutral-100' : navigationMenu!='discuss-card' }" @mouseover="navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='discuss-card'" @mouseleave="navigationMenuLeave()" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md  focus:outline-none disabled:opacity-50 disabled:pointer-events-none bg-background hover:bg-neutral-100 group w-max">
-                        <span>{{ __('Discuss')}}</span>
+                        <span>{{ __('basic.Discuss')}}</span>
                         <svg :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'discuss-card' }" class="relative top-[1px] ml-1 h-3 w-3 ease-out duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </button>
                 </li>
                 <li>
                     <button 
                         :class="{ 'bg-neutral-100 dark:bg-gray-800' : navigationMenu=='category-card', 'hover:bg-neutral-100' : navigationMenu!='category-card' }" @mouseover="navigationMenuOpen=true; navigationMenuReposition($el); navigationMenu='category-card'" @mouseleave="navigationMenuLeave()" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md  focus:outline-none disabled:opacity-50 disabled:pointer-events-none bg-background hover:bg-neutral-100 group w-max">
-                        <span>{{ __('Category')}}</span>
+                        <span>{{ __('basic.Category')}}</span>
                         <svg :class="{ '-rotate-180' : navigationMenuOpen==true && navigationMenu == 'category-card' }" class="relative top-[1px] ml-1 h-3 w-3 ease-out duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </button>
                 </li>
 
                 <li>
                     <a href="/search" class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors rounded-md  focus:outline-none disabled:opacity-50 disabled:pointer-events-none bg-background dark:hover:bg-gray-800 hover:bg-neutral-100 group w-max">
-                    {{ __('Search')}}
+                    {{ __('basic.Search')}}
                     </a>
                 </li>
             </ul>
@@ -74,24 +74,24 @@
                 <div x-show="navigationMenu == 'entry-card'" class="flex items-stretch justify-center w-full max-w-2xl p-6 gap-x-3">
                     <div class="w-72">
                         <a href="{{ url('/explore') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100 hover:dark:bg-gary-700">
-                            <span class="block mb-1 font-medium text-black">Explore 🔭</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Explore')}} 🔭</span>
                             <span class="block font-light leading-5 opacity-50">Have some fun! 🤣🤟☣️</span>
                         </a>
                         @can('entry-index')
                         <a href="{{ url('/entry') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Index 📕</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Entry')}}{{__('basic.Index')}} 📕</span>
                             <span class="block font-light leading-5 opacity-50">Main page of entry index.</span>
                         </a>
                         @endcan
                         @can('entry-create')
                         <a href="{{ url('/entry/create') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Create Entry ➕</span>
+                            <span class="block mb-1 font-medium text-black">{{__('actions.create')}}{{__('basic.Entry')}}➕</span>
                             <span class="block leading-5 opacity-50">Entry Create Page</span>
                         </a>
                         @endcan
                         @can('entry-censor')
                         <a href="{{ route('censor.tasks.list.entry') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Censor List 👮</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Censor List')}} 👮</span>
                             <span class="block leading-5 opacity-50">Censor List Page</span>
                         </a>
                         @endcan
@@ -101,18 +101,18 @@
                 <div x-show="navigationMenu == 'discuss-card'" class="flex items-stretch justify-center w-full p-6">
                     <div class="w-72">
                         <a href="{{ route('explore.wall_square') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Wall Square 💬</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Wall')}} Square 💬</span>
                             <span class="block font-light leading-5 opacity-50">Find some discuss walls</span>
                         </a>
                         @can('wall-index')
                         <a href="{{ route('wall.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Wall index</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Wall')}}{{__('basic.Index')}}</span>
                             <span class="block font-light leading-5 opacity-50">index of wall</span>
                         </a>
                         @endcan
                         @can('wall-censor')
                         <a href="{{ route('censor.tasks.list.wall') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Wall Censor List</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Wall')}}{{__('basic.Censor List')}}</span>
                             <span class="block font-light leading-5 opacity-50">Wall Censor List Page</span>
                         </a>
                         @endcan
@@ -122,24 +122,24 @@
                 <div x-show="navigationMenu == 'category-card'" class="flex items-stretch justify-center w-full p-6">
                     <div class="w-72">
                         <a href="{{ route('explore.node_square') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Node Square</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Node')}} Square</span>
                             <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
                         </a>
                         @can('entry-index')
                         <a href="{{ route('categories.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Category Index</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Category')}}{{__('basic.Index')}}</span>
                             <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
                         </a>
                         @endcan
                         @can('tree-index')
                         <a href="{{ route('trees.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Tree</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Tree')}}</span>
                             <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
                         </a>
                         @endcan
                         @can('dcg-index')
                         <a href="{{ route('dcg.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">DCG</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.DCG')}}</span>
                             <span class="block leading-5 opacity-50">Main page of DCG index.</span>
                         </a>
                         @endcan
@@ -147,13 +147,13 @@
                     <div class="w-72">
                         @can('node-index')
                         <a href="{{ route('nodes.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Node</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Node')}}</span>
                             <span class="block font-light leading-5 opacity-50">Main page of node index.</span>
                         </a>
                         @endcan
                         @can('edge-index')
                         <a href="{{ route('edges.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">Edge</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Edge')}}</span>
                             <span class="block leading-5 opacity-50">Main page of edge index.</span>
                         </a>
                         @endcan
@@ -278,7 +278,7 @@
                                             <div class="flex items-center h-auto ml-3">
                                                 <button @click="slideOverOpen=false" class="absolute top-0 right-0 z-30 flex items-center justify-center px-3 py-2 mt-4 mr-5 space-x-1 text-xs font-medium uppercase border rounded-md border-neutral-200 text-neutral-600 hover:bg-neutral-100">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                    <span>Close</span>
+                                                    <span>{{__('actions.close')}}</span>
                                                 </button>
                                             </div>
                                         </div>
@@ -367,31 +367,31 @@
                                                 }" class="relative w-full mx-auto overflow-hidden text-sm text-gray-700 dark:text-gray-400 font-normal bg-white dark:bg-gray-800 border border-gray-200 divide-y divide-gray-200">
                                                 <div x-data="{ id: $id('accordion') }" class="cursor-pointer group">
                                                     <button @click="setActiveAccordion(id)" class="flex items-center justify-between w-full p-4 text-left select-none group-hover:underline">
-                                                        <span>{{ __('Entry')}}</span>
+                                                        <span>{{ __('basic.Entry')}}</span>
                                                         <svg class="w-4 h-4 duration-200 ease-out" :class="{ 'rotate-180': activeAccordion==id }" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                                     </button>
                                                     <div x-show="activeAccordion==id" x-collapse x-cloak>
                                                         <div class="p-4 pt-0 opacity-70">
                                                             <div class="">
                                                                 <a href="{{ url('/explore') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                    <span class="block mb-1 font-medium text-black">Explore 🔭</span>
+                                                                    <span class="block mb-1 font-medium text-black">{{__('basic.Explore')}} 🔭</span>
                                                                     <span class="block font-light leading-5 opacity-50">Have some fun! 🤣🤟☣️</span>
                                                                 </a>
                                                                 @can('entry-index')
                                                                 <a href="{{ url('/entry') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                    <span class="block mb-1 font-medium text-black">Index 📕</span>
+                                                                    <span class="block mb-1 font-medium text-black">{{__('basic.Entry')}}{{__('basic.Index')}} 📕</span>
                                                                     <span class="block font-light leading-5 opacity-50">Main page of entry index.</span>
                                                                 </a>
                                                                 @endcan
                                                                 @can('entry-create')
                                                                 <a href="{{ url('/entry/create') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                    <span class="block mb-1 font-medium text-black">Create Entry ➕</span>
+                                                                    <span class="block mb-1 font-medium text-black">{{__('actions.create')}}{{__('basic.Entry')}} ➕</span>
                                                                     <span class="block leading-5 opacity-50">Entry Create Page</span>
                                                                 </a>
                                                                 @endcan
                                                                 @can('entry-censor')
                                                                 <a href="{{ route('censor.tasks.list.entry') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                    <span class="block mb-1 font-medium text-black">Censor List 👮</span>
+                                                                    <span class="block mb-1 font-medium text-black">{{__('basic.Censor List')}} 👮</span>
                                                                     <span class="block leading-5 opacity-50">Censor List Page</span>
                                                                 </a>
                                                                 @endcan
@@ -402,25 +402,25 @@
                                                 </div>
                                                 <div x-data="{ id: $id('accordion') }" class="cursor-pointer group">
                                                     <button @click="setActiveAccordion(id)" class="flex items-center justify-between w-full p-4 text-left select-none group-hover:underline">
-                                                        <span>{{ __('Discuss')}}</span>
+                                                        <span>{{ __('basic.Discuss')}}</span>
                                                         <svg class="w-4 h-4 duration-200 ease-out" :class="{ 'rotate-180': activeAccordion==id }" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                                     </button>
                                                     <div x-show="activeAccordion==id" x-collapse x-cloak>
                                                         <div class="p-4 pt-0 opacity-70">
                                                             <div class="">
                                                                 <a href="{{ route('explore.wall_square') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                    <span class="block mb-1 font-medium text-black">Wall Square 💬</span>
+                                                                    <span class="block mb-1 font-medium text-black">{{__('basic.Wall')}} 💬</span>
                                                                     <span class="block font-light leading-5 opacity-50">Find some discuss walls</span>
                                                                 </a>
                                                                 @can('wall-index')
                                                                 <a href="{{ route('wall.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                    <span class="block mb-1 font-medium text-black">Wall index</span>
+                                                                    <span class="block mb-1 font-medium text-black">{{__('basic.Wall')}}{{__('basic.Index')}}</span>
                                                                     <span class="block font-light leading-5 opacity-50">index of wall</span>
                                                                 </a>
                                                                 @endcan
                                                                 @can('wall-censor')
                                                                 <a href="{{ route('censor.tasks.list.wall') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                    <span class="block mb-1 font-medium text-black">Wall Censor List</span>
+                                                                    <span class="block mb-1 font-medium text-black">{{__('basic.Wall')}}{{__('basic.Censor List')}}</span>
                                                                     <span class="block font-light leading-5 opacity-50">Wall Censor List Page</span>
                                                                 </a>
                                                                 @endcan
@@ -430,43 +430,43 @@
                                                 </div>
                                                 <div x-data="{ id: $id('accordion') }" class="cursor-pointer group">
                                                     <button @click="setActiveAccordion(id)" class="flex items-center justify-between w-full p-4 text-left select-none group-hover:underline">
-                                                        <span>{{ __('Category')}}</span>
+                                                        <span>{{ __('basic.Category')}}</span>
                                                         <svg class="w-4 h-4 duration-200 ease-out" :class="{ 'rotate-180': activeAccordion==id }" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                                     </button>
                                                     <div x-show="activeAccordion==id" x-collapse x-cloak>
                                                         <div class="p-4 pt-0 opacity-70">
                                                         <div class="">
                                                             <a href="{{ route('explore.node_square') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                <span class="block mb-1 font-medium text-black">Node Square</span>
+                                                                <span class="block mb-1 font-medium text-black">{{__('basic.Node')}} Square</span>
                                                                 <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
                                                             </a>
                                                             @can('entry-index')
                                                             <a href="{{ route('categories.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                <span class="block mb-1 font-medium text-black">Category Index</span>
+                                                                <span class="block mb-1 font-medium text-black">{{__('basic.Category')}}{{__('basic.Index')}}</span>
                                                                 <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
                                                             </a>
                                                             @endcan
                                                             @can('tree-index')
                                                             <a href="{{ route('trees.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                <span class="block mb-1 font-medium text-black">Tree</span>
+                                                                <span class="block mb-1 font-medium text-black">{{__('basic.Tree')}}</span>
                                                                 <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
                                                             </a>
                                                             @endcan
                                                             @can('dcg-index')
                                                             <a href="{{ route('dcg.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                <span class="block mb-1 font-medium text-black">DCG</span>
+                                                                <span class="block mb-1 font-medium text-black">{{__('basic.DCG')}}</span>
                                                                 <span class="block leading-5 opacity-50">Main page of DCG index.</span>
                                                             </a>
                                                             @endcan
                                                             @can('node-index')
                                                             <a href="{{ route('nodes.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                <span class="block mb-1 font-medium text-black">Node</span>
+                                                                <span class="block mb-1 font-medium text-black">{{__('basic.Node')}}</span>
                                                                 <span class="block font-light leading-5 opacity-50">Main page of node index.</span>
                                                             </a>
                                                             @endcan
                                                             @can('edge-index')
                                                             <a href="{{ route('edges.index') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                <span class="block mb-1 font-medium text-black">Edge</span>
+                                                                <span class="block mb-1 font-medium text-black">{{__('basic.Edge')}}</span>
                                                                 <span class="block leading-5 opacity-50">Main page of edge index.</span>
                                                             </a>
                                                             @endcan

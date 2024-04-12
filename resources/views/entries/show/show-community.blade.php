@@ -42,7 +42,7 @@
                         @forelse($walls as $wall)
                             <a href="{{ route('wall.show', $wall->id) }}" class="text-lg font-semibold text-blue-500 hover:text-blue-600 transition duration-200">{{ $wall->name }}</a>
                         @empty
-                            <p class="text-gray-600 dark:text-gray-300">No related walls.</p>
+                            <p class="text-gray-600 dark:text-gray-300">{{__('basic.No related walls')}}</p>
                         @endforelse
                     </div>
 

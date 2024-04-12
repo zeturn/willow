@@ -6,7 +6,7 @@
         <div>
             <div class="max-w-4xl mx-auto p-6 rounded-md">
                 <h1 class="text-2xl font-semibold mb-4">
-                    General Zone 
+                {{__('basic.GeneralZone')}}
                 </h1>
                 <div class="divide-y divide-gray-200">
                         <!-- Section: Change repository visibility -->
@@ -15,14 +15,14 @@
                             <div class="flex flex-col sm:flex-row justify-between items-start">
                                     <div>
                                         <h2 class="text-sm font-medium">
-                                            create new branch
+                                        {{__('basic.Create')}}{{__('basic.New')}}{{__('basic.Branch')}}
                                         </h2>
                                         <p class="text-xs">
                                             从空白开始构建
                                         </p>
                                     </div>
                                     <a href="{{ route('entry.branch.create', $entry->id) }}" class="mt-4 sm:mt-0 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-white text-blue-600 hover:bg-blue-600 hover:text-white border border-gray-300">
-                                        create
+                                        {{__('basic.Check')}}
                                     </a>
                             </div>
 
@@ -41,7 +41,7 @@
                                         </p>
                                     </div>
                                     <a href="{{ route('entry.branch.list', ['entryId' => $entryId ]) }}" class="mt-4 sm:mt-0 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-white text-blue-600 hover:bg-blue-600 hover:text-white border border-gray-300">
-                                        check
+                                    {{__('basic.Check')}}
                                     </a>
                             </div>
 
@@ -59,7 +59,7 @@
                                         </p>
                                     </div>
                                     <a href="{{ route('entry.branchUser.brancheslist', ['userId' => $userId, 'branchId' => $demoBranch->id, 'entryId' => $entryId ]) }}"  class="mt-4 sm:mt-0 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-white text-blue-600 hover:bg-blue-600 hover:text-white border border-gray-300">
-                                        check
+                                    {{__('basic.Check')}}
                                     </a>
                             </div>
 
@@ -75,7 +75,7 @@
             @can('entry-delete')
             <div class="max-w-4xl mx-auto p-6 rounded-md">
                 <h1 class="text-2xl font-semibold mb-4">
-                    Danger Zone
+                {{__('basic.DangerZone')}}
                 </h1>
                 <div class="divide-y divide-gray-200">
                         <!-- Section: Change repository visibility -->
@@ -84,7 +84,7 @@
 
                                     <div>
                                         <h2 class="text-sm font-medium">
-                                            Soft deletion
+                                        {{__('basic.SoftDelete')}}
                                         </h2>
                                         <p class="text-xs">
                                             Execute soft delete procedure.
@@ -94,7 +94,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="mt-4 sm:mt-0 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-white text-red-600 hover:bg-red-600 hover:text-white border border-gray-300">
-                                        Soft delete
+                                    {{__('basic.SoftDelete')}}
                                     </button>
                                     </form> 
                             </div>
@@ -106,7 +106,7 @@
 
                                     <div>
                                         <h2 class="text-sm font-medium">
-                                            Deletion
+                                        {{__('basic.Delete')}}
                                         </h2>
                                         <p class="text-xs">
                                             Execute delete procedure.
@@ -116,7 +116,7 @@
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="mt-4 sm:mt-0 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-white text-red-600 hover:bg-red-600 hover:text-white border border-gray-300">
-                                        delete
+                                    {{__('basic.Delete')}}
                                     </button>
                                     </form> 
                             </div>

@@ -1,3 +1,4 @@
+<!--Trans:240412 Finish:All-->
 <div class="inline-flex items-center justify-center px-2 py-2 text-sm text-gray-500 font-medium transition-colors bg-white dark:bg-gray-800 rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">
     <button wire:click="toggleDislike" wire:model="isDisliked">
         @if ($isDisliked)
@@ -13,7 +14,7 @@
         @if($dislikeCount !=0 )
             <p class="text-sm">{{($dislikeCount)}}</p>
         @else
-        <p class="text-sm">{{__('点踩')}}</p>
+        <p class="text-sm">{{__('basic.Dislike')}}</p>
         @endif
     </div>
 </div>

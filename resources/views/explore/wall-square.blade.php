@@ -22,10 +22,10 @@
             <p class="text-gray-700 text-base dark:text-gray-400">{{$wall->description}}</p>
 
             <!-- 显示更新时间 -->
-            <p class="text-gray-500 text-sm">Updated at: {{ date('Y-m-d', strtotime($wall->updated_at)) }}</p>
+            <p class="text-gray-500 text-sm">{{__('basic.Updated')}}: {{ date('Y-m-d', strtotime($wall->updated_at)) }}</p>
 
             <a href="{{ route('wall.show', $wall->id) }}" class="inline-block mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                查看详情
+            {{__('basic.ViewDetails')}}
             </a>
         </div>
     </div>

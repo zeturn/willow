@@ -9,19 +9,19 @@
                 <div class="mt-4">
                     @foreach ($edges as $edge)
                     <div class="bg-gray-100 rounded-lg p-4 flex justify-between items-center mb-2">
-                        <span>{{ $edge->startNode->name }} 到 {{ $edge->endNode->name }}</span>
+                        <span>{{ $edge->startNode->name }} {{__('basic.To')}} {{ $edge->endNode->name }}</span>
                         <div class="flex space-x-2">
                             <a href="{{ route('edges.show', $edge->id) }}" class="text-blue-600 hover:text-blue-800">
-                                查看详情
+                                {{__('basic.ViewDetails')}}
                             </a>
                             <a href="{{ route('edges.edit', $edge->id) }}" class="text-green-600 hover:text-green-800">
-                                编辑
+                                {{__('basic.Edit')}}
                             </a>
                             <form action="{{ route('edges.destroy', $edge->id) }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-600 hover:text-red-800">
-                                    删除
+                                    {{__('basic.Delete')}}
                                 </button>
                             </form>
                         </div>

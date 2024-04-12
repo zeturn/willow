@@ -57,27 +57,27 @@
             @if (auth()->check())
                 <!-- Add New Topic Form -->
                 <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
-                    <h2 class="text-xl font-semibold mb-4 dark:text-gray-400">Add New Topic</h2>
+                    <h2 class="text-xl font-semibold mb-4 dark:text-gray-400">{{__('basic.Add New Topic')}}</h2>
                     <form action="{{ route('topic.store') }}" method="POST">
                         @csrf
                         <input type="hidden" name="wall_id" value="{{ $wall->id }}">
                         
                         <!-- Name Field -->
                         <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                            <label for="name" class="block text-sm font-medium text-gray-700">{{__('basic.Name')}}</label>
                             <input type="text" name="name" id="name" class="mt-1 p-2 w-full border rounded-lg" required>
                         </div>
 
                         <!-- Description Field -->
                         <div class="mb-4">
-                            <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                            <label for="description" class="block text-sm font-medium text-gray-700">{{__('basic.Description')}}</label>
                             <textarea name="description" id="description" rows="4" class="mt-1 p-2 w-full border rounded-lg"></textarea>
                         </div>
 
                         <!-- Submit Button -->
                         <div class="mt-4">
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">
-                                Add Topic
+                            {{__('basic.Send')}}
                             </button>
                         </div>
                     </form>
@@ -85,7 +85,7 @@
             @else
                 <!-- Not Authenticated User Message -->
                 <div class="bg-white rounded-lg p-6">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-700">Authentication Required</h2>
+                    <h2 class="text-xl font-semibold mb-4 text-gray-700">{{__('basic.Authentication Required')}}</h2>
                     <p class="text-sm text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to add a new topic.</p>
                 </div>
             @endif

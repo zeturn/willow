@@ -79,7 +79,7 @@
             @else
                 <!-- Not Authenticated User Message -->
                 <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-700">Authentication Required</h2>
+                    <h2 class="text-xl font-semibold mb-4 text-gray-700">{{__('basic.Authentication Required')}}</h2>
                     <p class="text-sm text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to create new content.</p>
                 </div>
             @endif

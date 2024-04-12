@@ -28,7 +28,7 @@
                 </div>
             @else
                 <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 text-center">
-                    <h1 class="text-xl font-semibold text-gray-900">Authentication Required</h1>
+                    <h1 class="text-xl font-semibold text-gray-900">{{__('basic.Authentication Required')}}</h1>
                     <p class="mt-4 text-gray-600">Please <a href="{{ route('login') }}" class="text-blue-500 hover:text-blue-700">log in</a> to access category management.</p>
                 </div>
             @endif

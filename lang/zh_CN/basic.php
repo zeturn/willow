@@ -3,9 +3,12 @@
 declare(strict_types=1);
 
 return [
+    'Add New Comment' => '创建新评论',
+    'Add New Topic' => '创建新话题',
     'Album' => '相册',
     'All' => '全部',
     'Author' => '作者',
+    'Authentication Required' => '需要身份验证',
     'Available' => '可用',
     'Branch' => '分支',
     'Category' => '分类',
@@ -60,7 +63,9 @@ return [
     'Owner' => '所有者',
     'Post' => '帖子',
     'Related' => '相关',
+    'Reply' => '回复',
     'Search' => '搜索',
+    'Send' => '发送',
     'Setting' => '设置',
     'Select a branch in the branch list on the left' => '在左边分支列表中选择分支',
     'Status' => '状态',
@@ -68,6 +73,7 @@ return [
     'SoftDelete' => '软删除',
     'Thats all' => '就这些',
     'The current branch has no version ' => '当前分支中没有版本',
+    'To' => '至',
     'Topic' => '话题',
     'Tree' => '树',
     'Trend' => '趋势',
@@ -76,11 +82,12 @@ return [
     'Unavailable' => '不可用',
     'Version' => '版本',
     'VersionList' => '版本列表',
+    'ViewDetails' => '查看详情',
     'Visit This Branch' => '访问所选分支',
     'Wall' => '墙',
     'Zone' => '区域',
 ];
 
 
-// v5
+// v6
 // <!--Trans:240412 Finish:All-->

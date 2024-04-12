@@ -25,7 +25,7 @@
             <p class="text-gray-500 text-sm">Updated at: {{ date('Y-m-d', strtotime($node->updated_at)) }}</p>
 
             <a href="{{ route('nodes.show', $node->id) }}" class="inline-block mt-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                查看详情
+                {{__('basic.ViewDetails')}}
             </a>
         </div>
     </div>

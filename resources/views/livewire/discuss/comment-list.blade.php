@@ -18,11 +18,11 @@
 
                 <div class="mr-6 flex items-center">
                     <div>
-                    <livewire:like.like-button wire:key="LF.{{ $comment->id }}.like" :itemId="$comment->id" :itemType="'Comment'" />
+                    <livewire:like.like-button wire:key="'{{Str::uuid()}}" :itemId="$comment->id" :itemType="'Comment'" />
                     </div>
 
                     <div>  
-                    <livewire:like.dislike-button wire:key="LF.{{ $comment->id }}.dislike" :itemId="$comment->id" :itemType="'Comment'" />
+                    <livewire:like.dislike-button wire:key="{{Str::uuid()}}" :itemId="$comment->id" :itemType="'Comment'" />
                     </div>
                     <button @click="modalOpen=true;$wire.getChildrenComments('{{ $comment->id }}')" @click="openModal('{{ $comment->id }}')" class="inline-flex items-center justify-center px-2 py-2 text-sm text-gray-500 font-medium transition-colors bg-white dark:bg-gray-800 rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  width="20" height="20">
@@ -76,11 +76,11 @@
 
                             <div class="mr-6 flex items-center">
                                 <div>
-                                <livewire:like.like-button wire:key="{{ $LFcomment->id }}.like" :itemId="$LFcomment->id" :itemType="'Comment'" />
+                                <livewire:like.like-button wire:key="{{Str::uuid()}}" :itemId="$LFcomment->id" :itemType="'Comment'" />
                                 </div>
 
                                 <div>  
-                                <livewire:like.dislike-button wire:key="{{ $LFcomment->id }}.dislike" :itemId="$LFcomment->id" :itemType="'Comment'" />
+                                <livewire:like.dislike-button wire:key="{{Str::uuid()}}" :itemId="$LFcomment->id" :itemType="'Comment'" />
                                 </div>
                                 <button @click="$wire.selectComment('{{ $LFcomment->id }}','{{ $LFcomment->user->id }}')" class="inline-flex items-center justify-center px-2 py-2 text-sm text-gray-500 font-medium transition-colors bg-white dark:bg-gray-800 rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  width="20" height="20">
@@ -102,11 +102,11 @@
                                 <div class="text-xs text-gray-600 dark:text-gray-400">
                                     <div class="mr-6 flex items-center">
                                         <div>
-                                        <livewire:like.like-button wire:key="{{ $comment->id }}.like" :itemId="$comment->id" :itemType="'Comment'" />
+                                        <livewire:like.like-button wire:key="{{Str::uuid()}}" :itemId="$comment->id" :itemType="'Comment'" />
                                         </div>
 
                                         <div>  
-                                        <livewire:like.dislike-button wire:key="{{ $comment->id }}.dislike" :itemId="$comment->id" :itemType="'Comment'" />
+                                        <livewire:like.dislike-button wire:key="{{Str::uuid()}}" :itemId="$comment->id" :itemType="'Comment'" />
                                         </div>
                                         <button @click="$wire.selectComment('{{ $comment->id }}','{{ $comment->user->id }}')" @click="openModal('{{ $comment->id }}','{{ $comment->user->id }}')" class="inline-flex items-center justify-center px-2 py-2 text-sm text-gray-500 font-medium transition-colors bg-white dark:bg-gray-800 rounded-md hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none focus:ring-2 focus:ring-neutral-200/60 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">

@@ -54,6 +54,7 @@ use App\Http\Controllers\{
     InitializationController,
 
     PostController,
+    ArticleController,
 
     TermsOfServiceController,
     PrivacyPolicyController,
@@ -112,6 +113,7 @@ Route::prefix('explore')->name('explore.')->group(function () {
 });
 
 Route::resource('/post', PostController::class);
+Route::resource('/articles', ArticleController::class);
 //Route::group(['middleware' => ['auth']], function() {
 
     /**

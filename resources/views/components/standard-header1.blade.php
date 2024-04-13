@@ -241,7 +241,7 @@
             slideOverOpen: false
         }"
         class="z-50 w-auto h-auto sm:hidden float-right inline-flex items-center ml-auto">
-        <button @click="slideOverOpen=true; preventScroll = true" class=" ml-auto float-right h-10 px-4 py-2 text-sm font-medium transition-colors bg-white dark:bg-gray-800 border rounded-md hover:bg-neutral-100 dark:hover:bg-gray-900 active:bg-white focus:bg-whit disabled:opacity-50 disabled:pointer-events-none">
+        <button @click="slideOverOpen=true; preventScroll = true" aria-label="Menu" class=" ml-auto float-right h-10 px-4 py-2 text-sm font-medium transition-colors bg-white dark:bg-gray-800 border rounded-md hover:bg-neutral-100 dark:hover:bg-gray-900 active:bg-white focus:bg-whit disabled:opacity-50 disabled:pointer-events-none">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
 			</svg>

@@ -8,6 +8,22 @@
   <div class="container mx-auto p-4 dark:bg-gray-900 max-w-7xl">
     <div class="flex flex-wrap -mx-4">
       <div class="w-full px-4">
+        <script>
+          import Editor from '@toast-ui/editor'
+          import '@toast-ui/editor/dist/toastui-editor.css';
+          const editor = new Editor({
+              el: document.querySelector('#editor'),
+              height: '400px',
+              initialEditType: 'markdown',
+              placeholder: 'Write something cool!',
+            })
+
+          document.querySelector('#createEntryForm').addEventListener('submit', e => {
+          e.preventDefault();
+          document.querySelector('#content').value = editor.getMarkdown();
+          e.target.submit();
+          });
+        </script>
         <h1 class="text-3xl mb-4 dark:text-white">Create New Entry</h1>
         <h2 class="text-2xl mb-4 dark:text-white">{{ __('Create new entry, branch, version') }}</h2>
 

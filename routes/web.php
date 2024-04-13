@@ -58,6 +58,7 @@ use App\Http\Controllers\{
 
     TermsOfServiceController,
     PrivacyPolicyController,
+    UserProfileController,
 };
 
 use App\Http\Controllers\Auth\{
@@ -105,6 +106,8 @@ Route::middleware([
 
 Route::get('/terms-of-service', [TermsOfServiceController::class, 'show'])->name('terms.show');
 Route::get('/privacy-policy', [PrivacyPolicyController::class, 'show'])->name('policy.show');
+Route::get('/user/profile', [UserProfileController::class, 'show'])->name('profile.show');
+Route::get('/user/profile/basic/edit', [UserProfileController::class, 'basic_info_edit'])->name('profile.basic_info_edit');
 
 Route::prefix('explore')->name('explore.')->group(function () {
     Route::get('/', [ExploreController::class, 'entry_waterfall'])->name('entry_waterfall');

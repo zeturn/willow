@@ -48,7 +48,7 @@ use App\Http\Controllers\{
 use App\Http\Controllers\API\{
     EntryApiController,
     EntryBranchApiController,
-    EntryVerisonApiController,
+    //EntryVerisonApiController,
 };
 
 /*
@@ -169,7 +169,7 @@ Route::middleware('auth:api')->prefix('entry')->name('entry.')->group(function (
         });
 
         // 子路由组 - Branch下的Version branchUser. 名称为entry.version.*
-        Route::prefix('version')->name('version.')->group(function () {
+        /*Route::prefix('version')->name('version.')->group(function () {
             Route::get('/show/{versionId}', [EntryVersionApiController::class, 'show'])->name('show');
             Route::get('/{branchId}/list', [EntryVersionApiController::class, 'versionList'])->name('list'); // 版本列表
             Route::get('/{branchId}/create/from/{versionId}', [EntryVersionApiController::class, 'create'])->name('create');//创建分支下的版本
@@ -181,7 +181,7 @@ Route::middleware('auth:api')->prefix('entry')->name('entry.')->group(function (
             Route::get('/contentcensor/id={versionId}', [EntryVersionApiController::class, 'contentCensorShow'])->name('contentCensorShow');//entry.version.contentCensorShow 内容审核区域
             Route::post('/contentcensor/handleContentCensor', [EntryVersionApiController::class, 'handleContentCensor'])->name('handleContentCensor');//entry.version.handleContentCensor 内容审核区域
         });
-
+*/
 
         //审核路由组
         /*Route::prefix('censor')->name('censor.')->group(function () {

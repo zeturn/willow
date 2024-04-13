@@ -29,7 +29,7 @@
             <h1 class="text-2xl font-bold mb-2 dark:text-gray-400">{{ $wall->name }}</h1>
             <p class="text-gray-600 mb-2">{{ $wall->slug }}</p>
             <p class="text-gray-600 mb-2">{{ $wall->description }}</p>
-            <p class="text-gray-600 mb-2">Status: {{ $wall->status }}</p>
+            <!--p class="text-gray-600 mb-2">Status: {{ $wall->status }}</p-->
             @if($wall->eid)
                 <p class="text-gray-600">EID: {{ $wall->eid }}</p>
             @endif

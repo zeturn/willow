@@ -33,7 +33,7 @@
                 </div>
             </div>
         @empty
-            <p class="text-gray-500 dark:text-gray-400">No comments yet.</p>
+            <p class="text-gray-500 dark:text-gray-400">{{__('basic.No comments yet')}}</p>
         @endforelse
         <!-- Pagination -->
         <div class="mt-4">
@@ -61,7 +61,7 @@
             x-transition:leave-end="opacity-0 -translate-y-2 sm:scale-95"
             class="relative w-full py-6 bg-white border shadow-lg px-7 sm:max-w-lg sm:rounded-lg">
             <div class="flex items-center justify-between pb-3">
-                <h3 class="text-lg font-semibold">回复</h3>
+                <h3 class="text-lg font-semibold">{{__('basic.Reply')}}</h3>
                 <button @click="modalOpen=false;$wire.closeModal()" class="absolute top-0 right-0 flex items-center justify-center w-8 h-8 mt-5 mr-5 text-gray-600 rounded-full hover:text-gray-800 hover:bg-gray-50">
                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>  
                 </button>
@@ -86,7 +86,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  width="20" height="20">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
                                     </svg>
-                                    <p class="p-1">回复</p>
+                                    <p class="p-1">{{__('basic.Reply')}}</p>
                                 </button>
 
                             </div>
@@ -112,14 +112,14 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" width="20" height="20">
                                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z" />
                                             </svg>
-                                            <p class="p-1">回复</p>
+                                            <p class="p-1">{{__('basic.Reply')}}</p>
                                         </button>
 
                                     </div>
                                 </div>
                         </div>  
                         @empty
-                            No comments yet.
+                            {{__('basic.No comments yet')}}
                         @endforelse
 
                         <div x-data="{

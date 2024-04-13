@@ -101,7 +101,7 @@
                 <div x-show="navigationMenu == 'discuss-card'" class="flex items-stretch justify-center w-full p-6">
                     <div class="w-72">
                         <a href="{{ route('explore.wall_square') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">{{__('basic.Wall')}} Square 💬</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Wall')}}{{__('basic.Square')}} 💬</span>
                             <span class="block font-light leading-5 opacity-50">Find some discuss walls</span>
                         </a>
                         @can('wall-index')
@@ -122,7 +122,7 @@
                 <div x-show="navigationMenu == 'category-card'" class="flex items-stretch justify-center w-full p-6">
                     <div class="w-72">
                         <a href="{{ route('explore.node_square') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                            <span class="block mb-1 font-medium text-black">{{__('basic.Node')}} Square</span>
+                            <span class="block mb-1 font-medium text-black">{{__('basic.Node')}}{{__('basic.Square')}}</span>
                             <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
                         </a>
                         @can('entry-index')
@@ -437,7 +437,7 @@
                                                         <div class="p-4 pt-0 opacity-70">
                                                         <div class="">
                                                             <a href="{{ route('explore.node_square') }}" @click="navigationMenuClose()" class="block px-3.5 py-3 text-sm rounded hover:bg-neutral-100">
-                                                                <span class="block mb-1 font-medium text-black">{{__('basic.Node')}} Square</span>
+                                                                <span class="block mb-1 font-medium text-black">{{__('basic.Node')}}{{__('basic.Square')}}</span>
                                                                 <span class="block font-light leading-5 opacity-50">Main page of category index.</span>
                                                             </a>
                                                             @can('entry-index')

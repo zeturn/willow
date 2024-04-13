@@ -22,9 +22,9 @@
                 <div x-data="{ modalOpen: false }"
                 @keydown.escape.window="modalOpen = false"
                 class="relative z-50 w-auto h-auto">
-                <button wire:click="autoSave" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-green-500 transition-colors duration-100 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-green-100 bg-green-50 hover:text-green-600 hover:bg-green-100">Store Version</button>
-                <button wire:click="push" @click="modalOpen=true" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-yellow-600 transition-colors duration-100 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-yellow-100 bg-yellow-50 hover:text-yellow-700 hover:bg-yellow-100">Push Changes</button>
-                <button wire:click="deletetask" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-red-600 transition-colors duration-100 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-red-100 bg-red-50 hover:text-red-700 hover:bg-red-100">Delete Task</button>
+                <button wire:click="autoSave" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-green-500 transition-colors duration-100 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-green-100 bg-green-50 hover:text-green-600 hover:bg-green-100">{{__('basic.Store Version')}}</button>
+                <button wire:click="push" @click="modalOpen=true" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-yellow-600 transition-colors duration-100 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-yellow-100 bg-yellow-50 hover:text-yellow-700 hover:bg-yellow-100">{{__('basic.Push Changes')}}</button>
+                <button wire:click="deletetask" class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-red-600 transition-colors duration-100 rounded-md focus:ring-2 focus:ring-offset-2 focus:ring-red-100 bg-red-50 hover:text-red-700 hover:bg-red-100">{{__('basic.Delete Task')}}</button>
 
                 <template x-teleport="body">
                     <div x-show="modalOpen" class="fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen" x-cloak>
@@ -84,7 +84,7 @@
                 <!-- Sidebar content here -->
                 <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                     <!-- Sidebar Widgets or Additional Information -->
-                    编辑类型
+                    {{__('basic.Edit')}} {{__('basic.Type')}}
                     @if($status == 5)
                         <p>5:new branch</p>
                     @elseif($status == 7)
@@ -97,15 +97,15 @@
                 <!-- Sidebar content here -->
                 <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                     <!-- Sidebar Widgets or Additional Information -->
-                    <p>Entry ID: {{ $entryId }}</p>
-                    <p>Branch ID: {{ $branchId }}</p>
-                    <p>Original Version ID: {{ $originalVersionId }}</p>
+                    <p>{{__('basic.Entry')}} ID: {{ $entryId }}</p>
+                    <p>{{__('basic.Branch')}} ID: {{ $branchId }}</p>
+                    <p>{{__('basic.Original Version')}} ID: {{ $originalVersionId }}</p>
                 </div>
 
                 <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
                     <!-- Sidebar Widgets or Additional Information -->
-                    <p>ConflictingVersions</p>
-                    <p>以下列出了当前task创建后生成的版本，为避免编辑冲突，建议检查以下版本：</p>
+                    <p>Conflicting {{__('basic.Version')}}</p>
+                    <p>{{__('basic.The following lists the versions generated after the current task is created. To avoid editing conflicts, it is recommended to check the following versions')}}</p>
 
                     @if($ConflictingVersions)
                     @foreach($ConflictingVersions as $ConflictingVersion)

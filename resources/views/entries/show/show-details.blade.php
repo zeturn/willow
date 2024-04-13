@@ -59,11 +59,11 @@
                 <!-- 访问量 字段 -->
                 <div class="mb-6">
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="branch_count">
-                        日访问量
+                    {{__('basic.Daily')}}{{__('basic.Visits')}}
                     </label>
                     <p class="text-gray-700 dark:text-gray-400 leading-tight">-</p>
                     <label class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2" for="branch_count">
-                        总访问量
+                    {{__('basic.All')}}{{__('basic.Visits')}}
                     </label>
                     <p class="text-gray-700 dark:text-gray-400 leading-tight">-</p>
                 </div>

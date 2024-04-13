@@ -11,16 +11,16 @@
     <!-- Middle Column -->
     <div class="w-full lg:w-1/2 px-4 mt-4 lg:mt-0 order-1 lg:order-2">
       <div class="rounded p-6 dark:bg-gray-800 mb-4 border border-gray-400">
-        <h3 class="text-xl font-normal mb-4">{{ __('欢迎来到workstation！') }}</h3>
+        <h3 class="text-xl font-normal mb-4">{{ __('basic.Welcome to the workstation!') }}</h3>
         <!-- Replace with your content -->
-        <p class="text-gray-600 dark:text-gray-300">看起来没有内容需要检查</p>
+        <p class="text-gray-600 dark:text-gray-300">{{ __('basic.It looks like there is nothing to check') }}</p>
       </div>
     </div>
 
     <!-- Left Column (EntryVersion) -->
     <div class="w-full lg:w-1/4 px-4 py-4 lg:py-0 order-2 lg:order-1 border-r border-gray-400 dark:border-gray-700">
       <div class="p-6  dark:bg-gray-800 mb-4">
-        <a href="{{ route('workstation.entry_version_task_events')}}" class="text-xl font-normal mb-4">{{ __('Entry Version Tasks') }}</a>
+        <a href="{{ route('workstation.entry_version_task_events')}}" class="text-xl font-normal mb-4">{{ __('basic.EntryVersionTask') }}</a>
           @foreach($versionTasks->take(5) as $item)
             <div class="mb-2">
               <a href="{{ route('entry.version.editor', $item->id) }}" class="hover:text-blue-500">
@@ -34,13 +34,13 @@
       </div>
 
       <div class="rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-        <h3 class="text-xl font-normal mb-4">{{ __('Censor Tasks') }}</h3>
+        <h3 class="text-xl font-normal mb-4">{{ __('basic.CensorTask') }}</h3>
         
       </div>
 
 	          <!-- Branches Section -->
 			  <div class="rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-            <a href="{{ route('workstation.entry_branch_events') }}" class="text-xl font-normal mb-4">{{ __('Branches') }}</a>
+            <a href="{{ route('workstation.entry_branch_events') }}" class="text-xl font-normal mb-4">{{ __('basic.EntryBranch') }}</a>
               @foreach($branches->take(5) as $branch)
                   <div class="mb-2">
                     <a href="{{ route('entry.branch.show', $branch->id) }}" class="hover:text-orange-500">
@@ -55,7 +55,7 @@
 
         <!-- Versions Section -->
         <div class="rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-            <a href="{{ route('workstation.entry_version_events') }}" class="text-xl font-normal mb-4">{{ __('Versions') }}</a>
+            <a href="{{ route('workstation.entry_version_events') }}" class="text-xl font-normal mb-4">{{ __('basic.Version') }}</a>
             @foreach($versions->take(5) as $version)
                 <div class="mb-2">
                   <a href="{{ route('entry.version.show',$version->id) }}" class="hover:text-yellow-500">
@@ -70,7 +70,7 @@
 
         <!-- Topics Section -->
         <div class="rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-            <a href="{{ route('workstation.topic_events')}}" class="text-xl font-normal mb-4">{{ __('Topics') }}</a>
+            <a href="{{ route('workstation.topic_events')}}" class="text-xl font-normal mb-4">{{ __('basic.Topic') }}</a>
             @foreach($topics->take(5) as $topic)
                 <div class="mb-2">
 				<a href="{{ route('topic.show', $topic->id) }}" class="hover:text-blue-500">
@@ -85,7 +85,7 @@
 
         <!-- Comments Section -->
         <div class="rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-            <a href="{{ route('workstation.comment_events')}}" class="text-xl font-normal mb-4">{{ __('Comments') }}</a>
+            <a href="{{ route('workstation.comment_events')}}" class="text-xl font-normal mb-4">{{ __('basic.Comment') }}</a>
             @foreach($comments->take(5) as $comment)
             <div class="mb-2">
               <a href="{{ route('comment.show', $comment->id) }}" class="hover:text-green-500">
@@ -104,17 +104,17 @@
     <div class="w-full lg:w-1/4 px-4 mt-4 lg:mt-0 order-3 lg:order-3">
 
 		<div class="rounded-sm p-4 border border-gray-400 dark:border-gray-700 dark:bg-gray-900 mb-6">
-			<a class="text-xl font-normal mb-8">{{ __('New') }}</a>
+			<a class="text-xl font-normal mb-8">{{ __('basic.New') }}</a>
 			<div class="p-4">
 			@if (Auth::user()->can('entry-create'))
 				<a href="{{ route('entry.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">
-					创建条目
+					{{ __('basic.Create') }}{{ __('basic.Entry') }}
 				</a>
 			@endif
 
 			@if (Auth::user()->can('album-create'))
 				<a href="{{ route('albums.stableCreate') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">
-					创建相册
+          {{ __('basic.Create') }}{{ __('basic.Album') }}
 				</a>
 			@endif
 			</div>

@@ -55,6 +55,7 @@ return [
     'GeneralZone' => '通用区',
     'HollowData' => '不靠谱数据',
     'Index' => '主页',
+    'InfoEdit' => '信息编辑',
     'Info' => '信息',
     'Information' => '信息',
     'Inherited from' => '继承自',

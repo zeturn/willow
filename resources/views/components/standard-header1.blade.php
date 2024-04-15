@@ -204,6 +204,10 @@
 							{{ __('Workstation') }}
 						</x-dropdown-link>
 
+                        <x-dropdown-link href="{{ route('profile.basic_info_edit') }}">
+							{{ __('basic.InfoEdit') }}
+						</x-dropdown-link>
+
 						<x-dropdown-link href="{{ route('profile.show') }}">
 							{{ __('Profile') }}
 						</x-dropdown-link>
@@ -323,10 +327,14 @@
 																<div class="block px-4 py-2 text-xs text-gray-400">
 																	{{ __('Manage Account') }}
 																</div>
-
+                                                                
 																<x-dropdown-link href="{{ route('workstation.index') }}">
 																	{{ __('Workstation') }}
 																</x-dropdown-link>
+
+                                                                <x-dropdown-link href="{{ route('profile.basic_info_edit') }}">
+                                                                    {{ __('basic.InfoEdit') }}
+                                                                </x-dropdown-link>
 
 																<x-dropdown-link href="{{ route('profile.show') }}">
 																	{{ __('Profile') }}

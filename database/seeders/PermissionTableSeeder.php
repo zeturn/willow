@@ -131,7 +131,15 @@ class PermissionTableSeeder extends Seeder
             'censor-list',
             'censor-create',
             'censor-edit',
-            'censor-delete'
+            'censor-delete',
+
+            // 讨论article区权限
+            'article-index',
+            'article-create',
+            'article-edit',
+            'article-soft-delete',
+            'article-delete',
+            'article-censor',
         ];
 
         

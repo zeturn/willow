@@ -17,10 +17,26 @@ class TermsOfServiceController extends Controller
      */
     public function show(Request $request)
     {
-        $termsFile = Jetstream::localizedMarkdownPath('terms.md');
-
-        return view('terms', [
-            'terms' => Str::markdown(file_get_contents($termsFile)),
-        ]);
+        try {
+            // 获取本地化条款文件的路径
+            $termsFile = Jetstream::localizedMarkdownPath('terms.md');
+    
+            // 读取文件内容，并将其转换为Markdown格式
+            $termsMarkdown = file_get_contents($termsFile);
+    
+            // 将Markdown转换为HTML
+            $termsHtml = Str::markdown($termsMarkdown);
+    
+            // 渲染视图，并传递条款HTML
+            return view('terms', [
+                'terms' => $termsHtml,
+            ]);
+        } catch (\Exception $e) {
+            // 记录错误信息
+            Log::error("Error reading terms file: " . $e->getMessage());
+    
+            // 可以根据需要返回错误视图或进行其他错误处理
+            return abort(500, 'An error occurred while reading the terms file.');
+        }
     }
 }

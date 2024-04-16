@@ -14,7 +14,7 @@ class EntryVersionCensorController extends Controller
     public function index()
     {
         $evcRecords = EntryVersionCensor::whereIn('status', [4, 14])->get();
-        dd('11111111111');
+        //dd('11111111111');
         return view('entries.versions.censor.index', compact('evcRecords'));
     }
 

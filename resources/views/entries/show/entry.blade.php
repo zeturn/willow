@@ -5,6 +5,10 @@
 {{ $entry->name }} - entry
 @endsection
 
+@section('description')
+{{ $entry->name }} - entry
+@endsection
+
 @section('content')
 <div class="container mx-auto p-4 dark:bg-gray-900 max-w-7xl">
     <div class="flex flex-wrap -mx-4">

@@ -15,7 +15,7 @@
             <section class="flex flex-wrap items-center py-10 px-6">
                 <div class="w-full lg:w-1/2">
                     <h1 class="text-6xl font-extrabold mb-6 text-gray-800 dark:text-white">{{ __('index.welcome') }}</h1>
-                    <p class="text-xl mb-6 text-gray-800 dark:text-white">{{ __('index.slogan') }}</p>
+                    <!--p class="text-xl mb-6 text-gray-800 dark:text-white">{{ __('index.slogan') }}</p-->
                     @guest
                     <a href="{{ route('register') }}" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">{{ __('Sign up') }}</a>
                     @endguest
@@ -31,7 +31,7 @@
                 <div class="px-10 py-24 mx-auto max-w-7xl">
                     <div class="w-full mx-auto text-left md:text-center">
                         <h1 class="mb-6 text-5xl font-extrabold leading-none max-w-5xl mx-auto tracking-normal text-gray-900 dark:text-gray-100 sm:text-6xl md:text-6xl lg:text-7xl md:tracking-tight"> The <span class="w-full text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 lg:inline dark:from-green-600 dark:via-blue-700 dark:to-purple-700">Number One Source</span> for<br class="lg:block hidden">all your creative needs. </h1>
-                        <p class="px-0 mb-6 text-lg text-gray-600 dark:text-gray-400 md:text-xl lg:px-24">{{ __('index.slogan2') }}</p>
+                        <!--p class="px-0 mb-6 text-lg text-gray-600 dark:text-gray-400 md:text-xl lg:px-24">{{ __('index.slogan2') }}</p-->
                     </div>
                 </div>
             </section>

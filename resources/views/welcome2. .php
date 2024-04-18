@@ -11,7 +11,7 @@
     <div class="container mx-auto p-4 dark:bg-gray-900 max-w-7xl">
         <!-- Full Width Main Column -->
         <div class="w-full px-4">
-            <h1 class="text-6xl font-extrabold mb-6 text-gray-800 dark:text-white">维护中 （2404常规维护）</h1>
+            <h1 class="text-6xl font-extrabold mb-6 text-gray-800 dark:text-white">维护种中 （2404常规维护）</h1>
             <p class="text-xl mb-6 text-gray-800 dark:text-white">预计240411完成</p>
         </div> <!-- End of Main Column -->
     </div>

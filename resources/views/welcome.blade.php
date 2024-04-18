@@ -17,8 +17,9 @@
                     <h1 class="text-6xl font-extrabold mb-6 text-gray-800 dark:text-white">{{ __('index.welcome') }}</h1>
                     <!--p class="text-xl mb-6 text-gray-800 dark:text-white">{{ __('index.slogan') }}</p-->
                     @guest
-                    <a href="{{ route('register') }}" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">{{ __('Sign up') }}</a>
+                    <a href="{{ route('register') }}" class="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 m-6">{{ __('Sign up') }}</a>
                     @endguest
+                    <a href="{{ route('explore.entry_waterfall') }}" class="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300">{{ __('basic.Explore') }}</a>
                 </div>
                 <div class="w-full lg:w-1/2 pl-8">
                     <!-- Inline SVG Image Placeholder --> 

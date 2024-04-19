@@ -5,10 +5,10 @@
     <form action="{{ route('medias.store') }}" class="dropzone border-dashed border-2 border-gray-300 rounded-md" id="my-awesome-dropzone">
         @csrf
         <div class="flex justify-center items-center h-32">
-            <p class="text-gray-400">文件大小不应超过8MB</p>
+            <p class="text-gray-400">{{__('basic.File size should not exceed 8MB')}}</p>
         </div>
     </form>
-    <button id="uploadButton" class="btn btn-primary mt-3">上传文件</button>
+    <x-button id="uploadButton" class="mt-3">{{__('basic.Upload')}}</button>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>

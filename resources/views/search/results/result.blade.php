@@ -29,29 +29,29 @@
 		<!-- Left Column (select model) -->
 		<div class="w-full lg:w-1/4 px-4 py-4 lg:py-0 order-2 lg:order-1">
 
-		<div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+		<div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 ml-4">
 			<ul class="dark:text-gray-200">
-				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="entry">Entry</button></li>
-				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="entry_branch">EntryBranch</button></li>
-				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="entry_version">EntryVersion</button></li>
-				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="wall">Wall</button></li>
-				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="topic">Topic</button></li>
-				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="comment">Comment</button></li>
-				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="media">Media</button></li>
-				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="album">Album</button></li>
-				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="tree">Tree</button></li>
-				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="node">Node</button></li>
-				<li><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="edge">Edge</button></li>
+				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="entry">{{__('basic.Entry')}}</button></li>
+				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="entry_branch">{{__('basic.EntryBranch')}}</button></li>
+				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="entry_version">{{__('basic.EntryVersion')}}</button></li>
+				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="wall">{{__('basic.Wall')}}</button></li>
+				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="topic">{{__('basic.Topic')}}</button></li>
+				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="comment">{{__('basic.Comment')}}</button></li>
+				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="media">{{__('basic.Media')}}</button></li>
+				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="album">{{__('basic.Album')}}</button></li>
+				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="tree">{{__('basic.Tree')}}</button></li>
+				<li class="mb-2"><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="node">{{__('basic.Node')}}</button></li>
+				<li><button type="button" class="modelTypeBtn dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-white" data-modeltype="edge">{{__('basic.Edge')}}</button></li>
 			</ul>
 		</div>
 
 
-			<div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
+			<div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4 ml-4">
 				<div class="form-group mt-4">
-					<label for="dates">Created on the dates:</label>
-					<input type="date" name="start_date" id="start_date" class="w-full md:w-48 h-10 px-3 py-2 text-sm bg-white border rounded-md border-gray-300 ring-offset-background focus:border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" value="{{ $start_date ?? '' }}">
-					<span class="mx-2">to</span>
-					<input type="date" name="end_date" id="end_date" class="w-full md:w-48 h-10 px-3 py-2 text-sm bg-white border rounded-md border-gray-300 ring-offset-background focus:border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" value="{{ $end_date ?? '' }}">
+					<label for="dates">{{__('basic.Created on the dates:')}}</label>
+					<input type="date" name="start_date" id="start_date" class="w-full md:w-48 h-10 px-3 py-2 m-2 text-sm bg-white border rounded-md border-gray-300 ring-offset-background focus:border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" value="{{ $start_date ?? '' }}">
+					<label for="dates">{{__('basic.To')}}</label>
+					<input type="date" name="end_date" id="end_date" class="w-full md:w-48 h-10 px-3 py-2 text-sm m-2 bg-white border rounded-md border-gray-300 ring-offset-background focus:border-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400" value="{{ $end_date ?? '' }}">
 				</div>
 			</div>
 

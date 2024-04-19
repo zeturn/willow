@@ -24,7 +24,7 @@ class LoginResponse implements LoginResponseContract
         }
 
         //使用session创建提示
-        session()->flash('message','登录成功！');
+        session()->flash('message', __('basic.login successful'));
 
         return redirect()->intended($home);
     }

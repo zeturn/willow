@@ -7,7 +7,7 @@
 @section('result-list')
 
     @if ($results->isEmpty())
-        <p class="text-center text-gray-500 my-4">No results found.</p>
+        <p class="text-center text-gray-500 my-4">{{__('basic.No results found')}}</p>
     @else
         <ul class="divide-y divide-gray-200">
             @foreach ($results as $topic)

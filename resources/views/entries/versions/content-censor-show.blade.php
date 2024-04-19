@@ -44,20 +44,20 @@
                             radioGroupSelectedValue: null,
                             radioGroupOptions: [
                                 {
-                                    title: '同意',
-                                    description: '没有问题，通过',
+                                    title: '{{ __('basic.Pass') }}',
+                                    description: '{{ __('basic.No problem, pass') }}',
                                     value: 'approve',
                                     color: 'primary'
                                 },
                                 {
-                                    title: '拒绝',
-                                    description: '打回',
+                                    title: '{{ __('basic.Reject') }}',
+                                    description: '{{ __('basic.Reject') }}',
                                     value: 'reject',
                                     color: 'danger'
                                 },
                                 {
-                                    title: '等待',
-                                    description: '存入等待区',
+                                    title: '{{ __('basic.Wait') }}',
+                                    description: '{{ __('basic.Save to waiting area')}}',
                                     value: 'wait',
                                     color: 'warning'
                                 }

@@ -11,19 +11,19 @@
         <div class="w-full lg:w-3/4 px-4">
             @if (auth()->check())
                 <div class="bg-white rounded-lg p-6 dark:border-gray-700 dark:bg-gray-800 mb-4">
-                    <h1 class="text-2xl font-semibold text-gray-900">{{ __('分类管理') }}</h1>
+                    <h1 class="text-2xl font-semibold text-gray-900">{{__('basic.Category')}} {{__('basic.Control')}}</h1>
                     <div class="mt-4 space-y-2">
                         <!-- Tree and DCG buttons in a row -->
                         <div class="flex justify-between">
-                            <a href="{{ route('trees.index') }}" class="block text-center bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 flex-grow mr-2">{{ __('Tree 分类首页') }}</a>
-                            <a href="{{ route('dcg.index') }}" class="block text-center bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-700 flex-grow ml-2">{{ __('DCG 首页') }}</a>
+                            <a href="{{ route('trees.index') }}" class="block text-center bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700 flex-grow mr-2">{{__('basic.Tree')}} {{__('basic.Index')}}</a>
+                            <a href="{{ route('dcg.index') }}" class="block text-center bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-700 flex-grow ml-2">{{__('basic.DCG')}} {{__('basic.Index')}}</a>
                         </div>
                         
                         <!-- Node button -->
-                        <a href="{{ route('nodes.index') }}" class="block text-center bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">{{ __('Node 节点首页') }}</a>
+                        <a href="{{ route('nodes.index') }}" class="block text-center bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">{{__('basic.Node')}} {{__('basic.Index')}}</a>
                         
                         <!-- Edge button -->
-                        <a href="{{ route('edges.index') }}" class="block text-center bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">{{ __('Edge 边首页') }}</a>
+                        <a href="{{ route('edges.index') }}" class="block text-center bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">{{__('basic.Edge')}} {{__('basic.Index')}}</a>
                     </div>
                 </div>
             @else

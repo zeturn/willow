@@ -26,25 +26,25 @@
         <div x-data="{
             radioGroupSelectedValue: null,
             radioGroupOptions: [
-                {
-                    title: '同意',
-                    description: '没有问题，通过',
-                    value: 'approve',
-                    color: 'primary'
-                },
-                {
-                    title: '拒绝',
-                    description: '打回',
-                    value: 'reject',
-                    color: 'danger'
-                },
-                {
-                    title: '等待',
-                    description: '存入等待区',
-                    value: 'wait',
-                    color: 'warning'
-                }
-            ]
+                                {
+                                    title: '{{ __('basic.Pass') }}',
+                                    description: '{{ __('basic.No problem, pass') }}',
+                                    value: 'approve',
+                                    color: 'primary'
+                                },
+                                {
+                                    title: '{{ __('basic.Reject') }}',
+                                    description: '{{ __('basic.Reject') }}',
+                                    value: 'reject',
+                                    color: 'danger'
+                                },
+                                {
+                                    title: '{{ __('basic.Wait') }}',
+                                    description: '{{ __('basic.Save to waiting area')}}',
+                                    value: 'wait',
+                                    color: 'warning'
+                                }
+                            ]
         }" class="space-y-3">
         <template x-for="(option, index) in radioGroupOptions" :key="index">
             <label @click="radioGroupSelectedValue=option.value" class="flex items-start p-5 space-x-3 bg-white border rounded-md shadow-sm hover:bg-gray-50 border-neutral-200/70">

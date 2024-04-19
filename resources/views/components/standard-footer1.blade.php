@@ -21,20 +21,20 @@
                 </div>
 
                 <div class="flex flex-col mb-10">
-                    <h2 class="title-font font-medium text-gray-900 dark:text-gray-300 tracking-widest text-sm mb-3">RESOURCES</h2>
+                    <h2 class="title-font font-medium text-gray-900 dark:text-gray-300 tracking-widest text-sm mb-3">{{__('basic.Resource')}} </h2>
                     <menu class="list-none">
-                        <li><a href="/map" class="text-gray-600 hover:text-gray-800">Map</a></li>
-                        <li><a href="/category" class="text-gray-600 hover:text-gray-800">Categories</a></li>
-                        <li><a href="/trees" class="text-gray-600 hover:text-gray-800">Trees</a></li>
-                        <li><a href="/dcg" class="text-gray-600 hover:text-gray-800">DCG</a></li>
+                        <li><a href="/map" class="text-gray-600 hover:text-gray-800">{{__('basic.Map')}}</a></li>
+                        <li><a href="/category" class="text-gray-600 hover:text-gray-800">{{__('basic.Category')}}</a></li>
+                        <li><a href="/trees" class="text-gray-600 hover:text-gray-800">{{__('basic.Tree')}}</a></li>
+                        <li><a href="/dcg" class="text-gray-600 hover:text-gray-800">{{__('basic.DCG')}}</a></li>
                     </menu>
                 </div>
 
                 <div class="flex flex-col mb-10">
-                    <h2 class="title-font font-medium text-gray-900 dark:text-gray-300 tracking-widest text-sm mb-3">MEDIA</h2>
+                    <h2 class="title-font font-medium text-gray-900 dark:text-gray-300 tracking-widest text-sm mb-3">{{__('basic.Media')}}</h2>
                     <menu class="list-none">
-                        <li><a href="/medias" class="text-gray-600 hover:text-gray-800">Medias</a></li>
-                        <li><a href="/albums" class="text-gray-600 hover:text-gray-800">Albums</a></li>
+                        <li><a href="/medias" class="text-gray-600 hover:text-gray-800">{{__('basic.Media')}}</a></li>
+                        <li><a href="/albums" class="text-gray-600 hover:text-gray-800">{{__('basic.Album')}}</a></li>
                     </menu>
                 </div>
             </div>
@@ -49,9 +49,9 @@
                 </svg>
                 <span class="ml-3 text-xl">HollowData</span>
             </a>
-            <p class="sm:ml-6 sm:mt-0 mt-4 text-gray-600 dark:text-gray-300">© 2021-2023 memeGit — <a href="#" rel="noopener noreferrer" class="ml-1" target="_blank">@Hollowdata Web</a></p>
+            <p class="sm:ml-6 sm:mt-0 mt-4 text-gray-600 dark:text-gray-300">© 2021-2024 memeGit — {{__('basic.An experimental project to study automated machine mining of popular culture')}}</p>
             <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-                memeGit LB V0.6
+                memeGit LB V0.8 (2024/4)
                 <!-- 社交媒体链接图标 -->
             </span>
         </div>

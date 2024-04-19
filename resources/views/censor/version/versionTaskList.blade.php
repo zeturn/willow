@@ -32,17 +32,17 @@
 <div class="flex flex-col mb-4">
     <!-- Button 1: tasks.list.entry -->
     <a href="{{ route('censor.tasks.list.entry') }}" class="my-4 bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded mt-4">
-        Entry列表
+        {{ __('basic.Entry')}} {{ __('basic.List')}}
     </a>
 
     <!-- Button 2: tasks.list.branch -->
     <a href="{{ route('censor.tasks.list.branch') }}" class="my-4 bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded mt-4">
-        Branch列表
+        {{ __('basic.Branch')}} {{ __('basic.List')}}
     </a>
 
     <!-- Button 3: tasks.list.version -->
     <a href="{{ route('censor.tasks.list.version') }}" class="my-4 bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded mt-4">
-        Version列表
+        {{ __('basic.Version')}} {{ __('basic.List')}}
     </a>
 </div>
 

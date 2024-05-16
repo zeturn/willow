@@ -91,6 +91,7 @@ Route::get('/map', function () {
 });
 
 Route::get('/reactjs', function () {
+    # 返回一个Inertia视图
     return Inertia::render('hello-world');
 });
 

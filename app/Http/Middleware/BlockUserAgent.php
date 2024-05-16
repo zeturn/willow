@@ -38,7 +38,7 @@ class BlockUserAgent
 
         if (in_array($userAgent,$blockList)) {
             // 可以返回403禁止访问，或者重定向到其他页面
-            abort(403, 'Forbidden');
+            abort(418, 'I am a teapot :)');
         }
 
         return $next($request);

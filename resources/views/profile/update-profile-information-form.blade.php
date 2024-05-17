@@ -62,10 +62,14 @@
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
             <x-label for="email" value="{{ __('Email') }}" />
-            <x-input id="email" type="email" class="mt-1 block w-full" wire:model.live="state.email" required autocomplete="username" readonly/>
-            <x-input-error for="email" class="mt-2" />
+            
+            <div class='flex justify-between items-center'>
+                <x-input id="email" type="email" class="mt-1 block w-3/4" wire:model.live="state.email" required autocomplete="username" readonly/>
+                <x-input-error for="email" class="mt-2" />
 
-            <a class="pt-5" href="{{ route('change.email') }}">更改邮箱</a>
+                <x-link.bigabutton  url="{{ route('change.email') }}">{{ __('basic.Change email') }}</x-link.bigabutton>
+            </div>
+
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! $this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2 dark:text-white">
                     {{ __('Your email address is unverified.') }}

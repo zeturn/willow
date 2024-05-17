@@ -1,22 +1,19 @@
-@extends('layouts.guard')
+<x-app-layout>
 
-@section('title')
-    {{ __('Verify Email') }}
-@endsection
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('basic.Change email') }}
+        </h2>
+    </x-slot>
 
-@section('description', 'youxianbyanzheng')
-@section('keywords', '迷因, meme, HollowData, memeGit')
+    <body class="bg-gray-100 flex items-center justify-center h-screen">
+        <div class="bg-white p-8 m-4 rounded-lg shadow-md w-1/3 mx-auto">
 
-@section('content')
-<body class="bg-gray-100 flex items-center justify-center h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-md w-1/3">
-        <h1 class="text-3xl font-bold mb-6">Change Email</h1>
-
-        <form action="{{ route('change.email') }}" method="post" class="space-y-4">
+            <form action="{{ route('change.email') }}" method="post" class="space-y-4">
             @csrf
 
             <div>
-                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name:</label>
+                <label for="name" class="block text-gray-700 text-sm font-bold mb-2">{{ __('basic.Name') }}</label>
                 <input type="text" id="name" name="name" value="{{ Auth::user()->name }}" readonly class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
@@ -35,10 +32,12 @@
                 <input type="email" id="new_email" name="new_email" required class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
             </div>
 
-            <div>
-                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Change Email</button>
+            <div class="text-right">
+                <x-button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Change Email</x-button>
             </div>
-        </form>
-    </div>
-</body>
-@endsection
+            </div>
+            </form>
+        </div>
+        </div>
+    </body>
+</x-app-layout>

@@ -13,7 +13,7 @@ class TopicPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class TopicPolicy
      */
     public function view(User $user, Topic $topic): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class TopicPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,9 @@ class TopicPolicy
      */
     public function update(User $user, Topic $topic): bool
     {
-        //
+        return $user->id === $topic->user_id
+        ? true
+        : false;
     }
 
     /**
@@ -45,7 +47,9 @@ class TopicPolicy
      */
     public function delete(User $user, Topic $topic): bool
     {
-        //
+        return $user->id === $topic->user_id || $user->hasRole('admin')
+        ? true
+        : false;
     }
 
     /**
@@ -53,7 +57,7 @@ class TopicPolicy
      */
     public function restore(User $user, Topic $topic): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +65,6 @@ class TopicPolicy
      */
     public function forceDelete(User $user, Topic $topic): bool
     {
-        //
+        return true;
     }
 }

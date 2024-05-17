@@ -13,7 +13,7 @@ class WallPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class WallPolicy
      */
     public function view(User $user, Wall $wall): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class WallPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,9 @@ class WallPolicy
      */
     public function update(User $user, Wall $wall): bool
     {
-        //
+        return $user->id === $wall->user_id
+            ? true
+            : false;
     }
 
     /**
@@ -45,7 +47,9 @@ class WallPolicy
      */
     public function delete(User $user, Wall $wall): bool
     {
-        //
+        return $user->id === $wall->user_id || $user->hasRole('admin')
+            ? true
+            : false;
     }
 
     /**
@@ -53,7 +57,7 @@ class WallPolicy
      */
     public function restore(User $user, Wall $wall): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -61,6 +65,6 @@ class WallPolicy
      */
     public function forceDelete(User $user, Wall $wall): bool
     {
-        //
+        return true;
     }
 }

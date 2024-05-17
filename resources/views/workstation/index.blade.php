@@ -107,15 +107,16 @@
 			<a class="text-xl font-normal mb-8">{{ __('basic.New') }}</a>
 			<div class="p-4">
 			@if (Auth::user()->can('entry-create'))
-				<a href="{{ route('entry.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">
-					{{ __('basic.Create') }}{{ __('basic.Entry') }}
-				</a>
+      <x-link.bigabutton url="{{ route('entry.create') }}" class="mr-4">
+        <span>{{ __('basic.Create') }}{{ __('basic.Entry') }}</span>
+      </x-link.bigabutton>
+
 			@endif
 
 			@if (Auth::user()->can('album-create'))
-				<a href="{{ route('albums.stableCreate') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">
-          {{ __('basic.Create') }}{{ __('basic.Album') }}
-				</a>
+				<x-link.bigabutton url="{{ route('entry.create') }}" class="mr-4">
+          <span>{{ __('basic.Create') }}{{ __('basic.Album') }}</span>
+				</x-link.bigabutton>
 			@endif
 			</div>
 		</div>

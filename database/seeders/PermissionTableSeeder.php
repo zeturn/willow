@@ -140,6 +140,9 @@ class PermissionTableSeeder extends Seeder
             'article-soft-delete',
             'article-delete',
             'article-censor',
+
+            'admin-control-panel',
+            'what-control-panel',
         ];
 
         
@@ -161,3 +164,5 @@ class PermissionTableSeeder extends Seeder
 
     }
 }
+
+#运行指令：php artisan db:seed --class=PermissionTableSeeder

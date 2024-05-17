@@ -18,14 +18,16 @@ use App\Traits\UUID;
 use App\Traits\Status;
 
 use Spatie\Permission\Traits\HasRoles;
-
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
 use Laravel\Scout\Searchable;
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
     use HasFactory;
@@ -79,6 +81,17 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Determine if the user has verified their email address and superadmin role.
+     *
+     * @return bool
+     */
+    public function canAccessPanel(Panel $panel): bool
+    {
+        setPermissionsTeamId($this->current_team_id);//这一句务必加
+        return $this->hasRole('SuperAdmin') && $this->hasVerifiedEmail();
+    }
 
     /**
      * Get the profile associated with the user.

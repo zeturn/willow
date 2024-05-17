@@ -4,7 +4,7 @@
 
             <!-- 大标题 -->
             <div class="lg:w-1/4 md:w-1/2 w-full">
-                <h2 class="title-font font-bold tracking-tight leading-8 text-gray-900 dark:text-gray-300 text-5xl mb-3">memeGit</h2>
+                <h2 class="title-font font-bold tracking-tight leading-8 text-gray-900 dark:text-gray-300 text-5xl mb-3">{{config('app.name', 'memeGit')}}</h2>
                 <p class="text-gray-500 text-base lg:text-3xl mt-2 md:text-left text-center"><br class="hidden lg:block"></p>
             </div>
 
@@ -49,9 +49,9 @@
                 </svg>
                 <span class="ml-3 text-xl">HollowData</span>
             </a>
-            <p class="sm:ml-6 sm:mt-0 mt-4 text-gray-600 dark:text-gray-300">© 2021-2023 memeGit — <a href="#" rel="noopener noreferrer" class="ml-1" target="_blank">@Hollowdata Web</a></p>
+            <p class="sm:ml-6 sm:mt-0 mt-4 text-gray-600 dark:text-gray-300">© 2021-2023 {{config('app.name', 'memeGit')}} — <a href="#" rel="noopener noreferrer" class="ml-1" target="_blank">@Hollowdata Web</a></p>
             <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-                memeGit LB V0.6
+            {{config('app.name', 'memeGit')}}) LB V0.6
                 <!-- 社交媒体链接图标 -->
             </span>
         </div>

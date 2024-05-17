@@ -1,7 +1,7 @@
 <header class="text-gray-600 body-font">
   <div class="container mx-auto flex p-5 flex-row items-center">
     <a class="flex title-font font-medium items-center md:mb-0 float-left"  href="{{ url('/') }}">
-      <span class="ml-3 text-blue-500 font-semibold text-3xl">memeGit </span>
+      <span class="ml-3 text-blue-500 font-semibold text-3xl">{{config('app.name', 'memeGit')}}</span>
     </a>
 
     <nav x-data="{
@@ -276,7 +276,7 @@
                                         <div class="flex items-start justify-between pb-1">
                                             <h2 class="text-base font-semibold leading-6 text-gray-900" id="slide-over-title">
 												<a class="flex title-font font-medium items-center mb-4 md:mb-0"  href="{{ url('/') }}">
-													<span class="ml-3 text-blue-500 font-semibold text-3xl">memeGit </span>
+													<span class="ml-3 text-blue-500 font-semibold text-3xl">{{config('app.name', 'memeGit')}}</span>
 												</a>
 											</h2>
                                             <div class="flex items-center h-auto ml-3">

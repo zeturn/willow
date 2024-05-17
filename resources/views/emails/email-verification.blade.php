@@ -15,7 +15,7 @@
 
 玩的愉快！
 
-memeGit 
+{{config('app.name', 'memeGit')}}
 2024
 
 @endcomponent

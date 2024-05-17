@@ -9,7 +9,7 @@
         </div>
 
 
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6 lg:gap-8 place-items-start">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5 gap-4 md:gap-6 lg:gap-8 place-items-start">
             @foreach ($entries as $entry)
                 <a href="{{ route('entry.show.explanation', $entry->id) }}" class="bg-white rounded-lg p-6 h-auto dark:bg-gray-700 dark:text-white">
                     <!-- 显示条目的内容，并加大加粗标题 -->

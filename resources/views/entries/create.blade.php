@@ -24,7 +24,7 @@
           e.target.submit();
           });
         </script>
-        <h1 class="text-3xl mb-4 dark:text-white">{{ __('basic.Create a new Entry') }}</h1>
+        <h1 class="text-3xl text-bold mb-4 dark:text-white">{{ __('basic.Create a new Entry') }}</h1>
         <h2 class="text-2xl mb-4 dark:text-white">{{ __('basic.Create new entry, branch, version') }}</h2>
 
         <!-- Form -->
@@ -45,8 +45,8 @@
 
           <!-- Entry description -->
           <div class="mb-4">
-            <label for="meta" class="block text-gray-700 dark:text-white">{{ __('basic.Entry') }}{{ __('basic.Meta') }} (json,如无，请输入{})</label>
-            <textarea id="meta" name="meta" rows="4" class="p-2 w-full border rounded dark:bg-gray-800 dark:border-gray-700"></textarea>
+            <label for="meta" class="block text-gray-700 dark:text-white">{{ __('basic.Entry') }}{{ __('basic.Meta') }} (json格式，如无，请输入{})</label>
+            <textarea id="meta" name="meta" rows="4" placeholder="{}" class="p-2 w-full border rounded dark:bg-gray-800 dark:border-gray-700">{}</textarea>
           </div>
 
           <!-- Entry content -->
@@ -60,9 +60,13 @@
           <input type="hidden" name="content" id="content">
 
           <!-- Submit Button -->
-          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            {{ __('basic.Send') }}
-          </button>
+            <div class="text-right m-12 p-12">
+              <x-button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-2 px-4 rounded">
+              {{ __('basic.Send') }}
+              </x-button>
+            </div>
+            </div>
+        </div>
         </form>
       </div>
     </div>

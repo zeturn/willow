@@ -20,7 +20,10 @@
                     
                     <div class="flex justify-between items-center">
                         <h1 class="text-4xl mt-8 dark:text-white">{{ $entry->name }}</h1> 
+                        <div class="flex justify-between items-center">
                         <span class="bg-transparent text-pink-500 border border-pink-500 text-xs font-semibold mt-9 mr-3 px-2.5 py-0.5 rounded-full">{{__('basic.Entry')}}</span>
+
+                        </div>
                     </div>
                     
 
@@ -180,3 +183,67 @@
 
 
 
+{{--
+                        <div x-data="{
+                                popoverOpen: false,
+                                popoverArrow: true,
+                                popoverPosition: 'bottom',
+                                popoverHeight: 0,
+                                popoverOffset: 8,
+                                popoverHeightCalculate() {
+                                    this.$refs.popover.classList.add('invisible'); 
+                                    this.popoverOpen=true; 
+                                    let that=this;
+                                    $nextTick(function(){ 
+                                        that.popoverHeight = that.$refs.popover.offsetHeight;
+                                        that.popoverOpen=false; 
+                                        that.$refs.popover.classList.remove('invisible');
+                                        that.$refs.popoverInner.setAttribute('x-transition', '');
+                                        that.popoverPositionCalculate();
+                                    });
+                                },
+                                popoverPositionCalculate(){
+                                    if(window.innerHeight < (this.$refs.popoverButton.getBoundingClientRect().top + this.$refs.popoverButton.offsetHeight + this.popoverOffset + this.popoverHeight)){
+                                        this.popoverPosition = 'top';
+                                    } else {
+                                        this.popoverPosition = 'bottom';
+                                    }
+                                }
+                            }"
+                            x-init="
+                                that = this;
+                                window.addEventListener('resize', function(){
+                                    popoverPositionCalculate();
+                                });
+                                $watch('popoverOpen', function(value){
+                                    if(value){ popoverPositionCalculate(); document.getElementById('width').focus();  }
+                                });
+                            "
+                            class="relative">
+                            
+                            <button x-ref="popoverButton" @click="popoverOpen=!popoverOpen" class="flex items-center justify-center w-10 h-10 mt-8 rounded-sm bg-white cursor-pointer hover:bg-neutral-100 focus-visible:ring-gray-400 focus-visible:ring-2 focus-visible:outline-none active:bg-white border-neutral-200/70">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" />
+                                </svg>
+                            </button>
+
+                            <div x-ref="popover"
+                                x-show="popoverOpen"
+                                x-init="setTimeout(function(){ popoverHeightCalculate(); }, 100);"
+                                x-trap.inert="popoverOpen"
+                                @click.away="popoverOpen=false;"
+                                @keydown.escape.window="popoverOpen=false"
+                                :class="{ 'top-0 mt-12' : popoverPosition == 'bottom', 'bottom-0 mb-12' : popoverPosition == 'top' }"
+                                class="absolute w-[300px] max-w-lg -translate-x-1/2 left-1/2" x-cloak>
+                                <div x-ref="popoverInner" x-show="popoverOpen" class="w-full p-4 bg-white border rounded-md shadow-sm border-neutral-200/70">
+                                    <div class="grid gap-4">
+                                        <div class="space-y-2">
+                                        <livewire:favorite.add-to-favorite wire:key="'{{Str::uuid()}}" :modelType="'Entry'" :modelId="$entry->id" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                            --}}

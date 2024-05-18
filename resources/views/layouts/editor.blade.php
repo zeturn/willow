@@ -18,7 +18,7 @@
         @yield('script')
         @viteReactRefresh
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.jsx'])
+        @vite(['resources/css/app.css', 'resources/js/app_editor.js'])
 
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6920492664192072" crossorigin="anonymous"></script>
         <!-- Styles  -->

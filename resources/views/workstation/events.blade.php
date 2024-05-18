@@ -20,9 +20,9 @@
                 <p class="text-sm text-gray-600 mt-1">在这里查看账户中的对象</p>
             </div>
 
-                <div class="px-8">
+                <div class="px-8" x-data="tabList()">
                     <div class="flex border-b border-slate-200">
-                        <ul class="flex flex-grow flex-wrap items-center" role="tablist" x-data="tabList()" name="hor_bar">
+                        <ul class="flex flex-grow flex-wrap items-center" role="tablist"  name="hor_bar">
                             <li x-show="maxVisibleLi > 0" role="presentation">
                                 <a href="{{ route('workstation.entry_branch_events') }}" x-ref="tab1" class="{{ $pagename == 'entry_branch_events' ? 'text-emerald-700 border-b-2 border-emerald-500 focus:border-emerald-700 hover:border-emerald-600 focus:outline-none focus:text-emerald-700 hover:text-emerald-600 focus:bg-emerald-50 hover:bg-emerald-50' : 'text-slate-700 hover:text-emerald-500' }} inline-flex items-center justify-center w-full h-12 gap-2 px-6 -mb-px text-md font-medium tracking-wide transition duration-300 border-b-2 rounded-t focus-visible:outline-none border-transparent">Branch</a>
                             </li>
@@ -40,7 +40,7 @@
                             </li>
                         </ul>
 
-                        <div x-data="tabList" class="relative w-12">
+                        <div class="relative w-12">
                                 <button 
                                     x-show="showButton" 
                                     @click="dropdownOpen = true" 

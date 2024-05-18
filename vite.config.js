@@ -10,7 +10,8 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
-                "resources/js/app.jsx"
+                "resources/js/app.jsx",
+                "resources/js/app_editor.js",
             ],
             refresh: [
                 ...refreshPaths,

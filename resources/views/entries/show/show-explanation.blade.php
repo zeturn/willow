@@ -24,13 +24,18 @@
                     </div>
                     <div class="m-6 flex items-center">
                 
-                <div class="mr-6 flex items-center">
+                    <div class="mr-6 flex items-center">
                     <livewire:like.like-button :itemId="$entry->id" :itemType="'Entry'" />
                     </div>
 
-                    <div>  
+                    <div class="mr-6 flex items-center">  
                     <livewire:like.dislike-button :itemId="$entry->id" :itemType="'Entry'" />
                     </div>
+
+                    <div class="mr-6 flex items-center"> 
+                    <livewire:favorite.add-to-favorite wire:key="'{{Str::uuid()}}" :modelType="'Entry'" :modelId="$entry->id" />
+                    </div>
+
                 </div>
             </div>
             @else

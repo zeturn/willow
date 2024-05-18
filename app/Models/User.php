@@ -121,6 +121,13 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
+     * 返回收藏夹
+     * 
+     */
+    public function favorites() {
+        return $this->belongsToMany(Favorite::class, 'user_favorites', 'user_id', 'favorite_id');
+    }
+    /**
      * 返回用户持有的分支EntryBranch
      * 
      * 修改:拥有多个

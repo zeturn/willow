@@ -29,8 +29,6 @@
             }
         " 
         x-init="
-
-
             window.customToastHTML = `
                 <!--put custom content here-->
             `
